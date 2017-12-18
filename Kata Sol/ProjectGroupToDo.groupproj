@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{ED57A1B3-FC78-4CEC-832E-965F9E584E17}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="UnitTestToDo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="FormToDo.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="UnitTestToDo">
+        <MSBuild Projects="UnitTestToDo.dproj"/>
+    </Target>
+    <Target Name="UnitTestToDo:Clean">
+        <MSBuild Projects="UnitTestToDo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="UnitTestToDo:Make">
+        <MSBuild Projects="UnitTestToDo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FormToDo">
+        <MSBuild Projects="FormToDo.dproj"/>
+    </Target>
+    <Target Name="FormToDo:Clean">
+        <MSBuild Projects="FormToDo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FormToDo:Make">
+        <MSBuild Projects="FormToDo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="UnitTestToDo;FormToDo"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="UnitTestToDo:Clean;FormToDo:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="UnitTestToDo:Make;FormToDo:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
