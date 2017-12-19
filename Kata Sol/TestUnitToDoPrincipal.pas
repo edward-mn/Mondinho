@@ -23,6 +23,16 @@ type
    procedure DefinirData_DiaDeAmanha_Amanha;
    procedure DefinirDatal_DiaInvalido_DataInvalido;
 
+   procedure TelaCriacao_TarefaNula_Nulo;
+   procedure TelaCriacao_TarefaNaoNula_Texto;
+
+   procedure TelaInicial_FiltroStatus_Todos;
+   procedure TelaInicial_FiltroStatus_Atrasada;
+   procedure TelaInicial_FiltroStatus_Agendada;
+   procedure TelaInicial_FiltroStatus_Adiada;
+   procedure TelaInicial_FiltroStatus_Finalizada;
+   procedure TelaInicial_FiltroStatus_AtrasadaOuAgendada;
+
   end;
 
 implementation
@@ -31,6 +41,16 @@ uses
   UnitToDoFuncoes, System.DateUtils;
 
 { TestTtesteToDo }
+
+procedure TTestToDo.TelaCriacao_TarefaNaoNula_Texto;
+begin
+  CheckEquals('Texto', TFuncoesToDo.Tarefas(''));
+end;
+
+procedure TTestToDo.TelaCriacao_TarefaNula_Nulo;
+begin
+  CheckEquals('', TFuncoesToDo.Tarefas('NaoNulo'));
+end;
 
 procedure TTestToDo.TelaInicial_AtualizarTarefa_TarefasAtualizadas;
 begin
@@ -45,6 +65,37 @@ end;
 procedure TTestToDo.TelaInicial_DeletarTarefa_TarefaDeletada;
 begin
   CheckEquals('TarefaDeletada', TFuncoesToDo.OpcoesDeTarefas('Deletar'));
+end;
+
+procedure TTestToDo.TelaInicial_FiltroStatus_Adiada;
+begin
+  CheckEquals('Status = ''Adiada''', TFuncoesToDo.FiltroStatus('Adiada'));
+end;
+
+procedure TTestToDo.TelaInicial_FiltroStatus_Agendada;
+begin
+  CheckEquals('Status = ''Agendada''', TFuncoesToDo.FiltroStatus('Agendada'));
+end;
+
+procedure TTestToDo.TelaInicial_FiltroStatus_Atrasada;
+begin
+  CheckEquals('Status = ''Atrasada''', TFuncoesToDo.FiltroStatus('Atrasada'));
+end;
+
+procedure TTestToDo.TelaInicial_FiltroStatus_AtrasadaOuAgendada;
+begin
+  CheckEquals('Status = ''Agendada'' or ''Atrasada''', TFuncoesToDo.FiltroStatus('Agendada'  'Atrasada'));
+end;
+
+procedure TTestToDo.TelaInicial_FiltroStatus_Finalizada;
+begin
+  CheckEquals('Status = ''Finalizada''', TFuncoesToDo.FiltroStatus('Finalizada'));
+end;
+
+procedure TTestToDo.TelaInicial_FiltroStatus_Todos;
+begin
+  CheckEquals('Status = ''Adiada'' or Status = ''Agendada'' or Status = ''Finalizada'' or Status = ''Atrasada''',
+  TFuncoesToDo.FiltroStatus('Tudo'));
 end;
 
 procedure TTestToDo.DefinirData_DiaDeAmanha_Amanha;
