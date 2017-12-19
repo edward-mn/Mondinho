@@ -3,7 +3,7 @@ unit UnitToDoFuncoes;
 interface
 
 uses
-  System.SysUtils, System.DateUtils;
+  System.SysUtils, System.DateUtils, UnitToDo, UnitCriacaoEdicao;
 
 type
 
@@ -13,7 +13,6 @@ type
   class function Calendario(Dia : TDateTime) : String;
   class function Tarefas(Tarefa : String) : String;
   class function FiltroStatus(StatusDoFiltro : String) : String;
-
 
   end;
 
@@ -52,20 +51,20 @@ begin
 end;
 
 begin
-//  if StatusDoFiltro = 'Tudo' then
-//  begin
-//    AdicionarStatus(BoxAgendada + BoxAdiada + BoxFinalizada + BoxAtrasada);
-//    Result := Filtro;
-//  end;
+  if StatusDoFiltro = 'Tudo' then
+  begin
+    AdicionarStatus(BoxAdiada + Ou + BoxAgendada + Ou + BoxFinalizada + Ou + BoxAtrasada);
+    Result := Filtro;
+  end;
   if StatusDoFiltro = 'Atrasada' then
   begin
     AdicionarStatus(BoxAtrasada);
-    Result := Filtro
+    Result := Filtro;
   end ;
   if StatusDoFiltro = 'Agendada' then
   begin
     AdicionarStatus(BoxAgendada);
-    Result := Filtro
+    Result := Filtro;
   end;
   if StatusDoFiltro = 'Adiada' then
   begin
@@ -77,6 +76,10 @@ begin
     AdicionarStatus(BoxFinalizada);
     Result := Filtro;
   end;
+
+    FormCriacaoEdicao.Clientes.cdsClientes.Filter := Filtro;
+    FormCriacaoEdicao.Clientes.cdsClientes.Filtered := True;
+
 end;
 
 class function TFuncoesToDo.OpcoesDeTarefas(Opcao: String): String;
