@@ -11,8 +11,22 @@ type
   TFormView = class(TForm)
     dbGridPrincipal: TDBGrid;
     dsToDo: TDataSource;
+    GroupBox1: TGroupBox;
+    cbAtrasadas: TCheckBox;
+    cbFinalizadas: TCheckBox;
+    cbAdiadas: TCheckBox;
+    cbAgendadas: TCheckBox;
+    btnAtualizar: TButton;
+    btnPesquisar: TButton;
+    btnEditar: TButton;
     btnCriarTarefa: TButton;
+    btnDeletar: TButton;
+    procedure btnAtualizarClick(Sender: TObject);
     procedure btnCriarTarefaClick(Sender: TObject);
+    procedure btnDeletarClick(Sender: TObject);
+    procedure btnEditarClick(Sender: TObject);
+    procedure btnPesquisarClick(Sender: TObject);
+    procedure btnSalvarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
     FConexao : TdmConexao;
@@ -29,6 +43,9 @@ implementation
 
 {$R *.dfm}
 
+uses
+  UnitToDoFuncoes;
+
 constructor TFormView.Create(AOwner: TComponent);
 begin
   inherited;
@@ -38,9 +55,36 @@ begin
   FClientes.cdsClientes.SetProvider(FConexao.sqlProvider);
 end;
 
+procedure TFormView.btnAtualizarClick(Sender: TObject);
+begin
+  FClientes.cdsClientes.Refresh;
+end;
+
 procedure TFormView.btnCriarTarefaClick(Sender: TObject);
 begin
   CriarForm();
+end;
+
+procedure TFormView.btnDeletarClick(Sender: TObject);
+begin
+  if MessageDlg('Deseja realmete deletar essa tarefa ?', mtInformation, [mbYes , mbNo],0) = mrYes then
+    FClientes.cdsClientes.Delete;
+    FClientes.cdsClientes.ApplyUpdates(0);
+end;
+
+procedure TFormView.btnEditarClick(Sender: TObject);
+begin
+  CriarForm();
+end;
+
+procedure TFormView.btnPesquisarClick(Sender: TObject);
+begin
+    TFuncoesToDo.FiltroStatus();
+end;
+
+procedure TFormView.btnSalvarClick(Sender: TObject);
+begin
+  FClientes.cdsClientes.ApplyUpdates(0);
 end;
 
 procedure TFormView.CriarForm;
