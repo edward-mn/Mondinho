@@ -1,9 +1,11 @@
 object FormCriacaoEdicao: TFormCriacaoEdicao
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
   Caption = 'FormCriacaoEdicao'
-  ClientHeight = 303
-  ClientWidth = 646
+  ClientHeight = 313
+  ClientWidth = 656
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,6 +13,7 @@ object FormCriacaoEdicao: TFormCriacaoEdicao
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poMainFormCenter
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -18,7 +21,7 @@ object FormCriacaoEdicao: TFormCriacaoEdicao
     Left = 0
     Top = 0
     Width = 505
-    Height = 303
+    Height = 313
     Align = alLeft
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
@@ -64,7 +67,7 @@ object FormCriacaoEdicao: TFormCriacaoEdicao
     OnClick = btnCancelarClick
   end
   object dsToDo: TDataSource
-    Left = 248
-    Top = 176
+    Left = 568
+    Top = 24
   end
 end

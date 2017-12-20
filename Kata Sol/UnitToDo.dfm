@@ -4,7 +4,7 @@ object FormView: TFormView
   Align = alCustom
   BorderStyle = bsSingle
   Caption = 'FormView'
-  ClientHeight = 316
+  ClientHeight = 336
   ClientWidth = 653
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -21,7 +21,7 @@ object FormView: TFormView
     Left = 0
     Top = 0
     Width = 517
-    Height = 316
+    Height = 336
     Align = alLeft
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET

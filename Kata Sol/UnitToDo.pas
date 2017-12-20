@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
-  DataModuleConexao, DataModuleClientes, UnitCriacaoEdicao, Vcl.StdCtrls;
+  DataModuleConexao, DataModuleClientes, UnitCriacaoEdicao, Vcl.StdCtrls,
+  Vcl.Menus;
 
 type
   TFormView = class(TForm)
@@ -79,7 +80,7 @@ end;
 
 procedure TFormView.btnPesquisarClick(Sender: TObject);
 begin
-    TFuncoesToDo.FiltroStatus();
+   // TFuncoesToDo.FiltroStatus();
 end;
 
 procedure TFormView.btnSalvarClick(Sender: TObject);
