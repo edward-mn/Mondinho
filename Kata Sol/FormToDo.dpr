@@ -5,7 +5,8 @@ uses
   UnitToDo in 'UnitToDo.pas' {FormView},
   DataModuleConexao in 'DataModuleConexao.pas' {dmConexao: TDataModule},
   DataModuleClientes in 'DataModuleClientes.pas' {DmClientes: TDataModule},
-  UnitCriacaoEdicao in 'UnitCriacaoEdicao.pas' {FormCriacaoEdicao};
+  UnitCriacaoEdicao in 'UnitCriacaoEdicao.pas' {FormCriacaoEdicao},
+  UnitTarefas in 'UnitTarefas.pas' {FormTarefas};
 
 {$R *.res}
 
