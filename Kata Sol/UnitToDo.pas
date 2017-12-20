@@ -6,35 +6,22 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
   DataModuleConexao, DataModuleClientes, UnitCriacaoEdicao, Vcl.StdCtrls,
-  Vcl.Menus;
+  UnitTarefas, Vcl.ExtCtrls;
 
 type
   TFormView = class(TForm)
     dbGridPrincipal: TDBGrid;
     dsToDo: TDataSource;
-    GroupBox1: TGroupBox;
-    cbAtrasadas: TCheckBox;
-    cbFinalizadas: TCheckBox;
-    cbAdiadas: TCheckBox;
-    cbAgendadas: TCheckBox;
-    btnAtualizar: TButton;
-    btnPesquisar: TButton;
-    btnEditar: TButton;
-    btnCriarTarefa: TButton;
-    btnDeletar: TButton;
-    procedure btnAtualizarClick(Sender: TObject);
-    procedure btnCriarTarefaClick(Sender: TObject);
-    procedure btnDeletarClick(Sender: TObject);
-    procedure btnEditarClick(Sender: TObject);
-    procedure btnPesquisarClick(Sender: TObject);
-    procedure btnSalvarClick(Sender: TObject);
+    Panel1: TPanel;
+    btnTarefas: TButton;
+    procedure btnTarefasClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
     FConexao : TdmConexao;
     FClientes : TDmClientes;
   public
     constructor Create(AOwner: TComponent); override;
-    procedure CriarForm;
+    procedure CriarFormTarefas;
   end;
 
 var
@@ -56,43 +43,17 @@ begin
   FClientes.cdsClientes.SetProvider(FConexao.sqlProvider);
 end;
 
-procedure TFormView.btnAtualizarClick(Sender: TObject);
+
+procedure TFormView.btnTarefasClick(Sender: TObject);
 begin
-  FClientes.cdsClientes.Refresh;
+  CriarFormTarefas();
 end;
 
-procedure TFormView.btnCriarTarefaClick(Sender: TObject);
-begin
-  CriarForm();
-end;
-
-procedure TFormView.btnDeletarClick(Sender: TObject);
-begin
-  if MessageDlg('Deseja realmete deletar essa tarefa ?', mtInformation, [mbYes , mbNo],0) = mrYes then
-    FClientes.cdsClientes.Delete;
-    FClientes.cdsClientes.ApplyUpdates(0);
-end;
-
-procedure TFormView.btnEditarClick(Sender: TObject);
-begin
-  CriarForm();
-end;
-
-procedure TFormView.btnPesquisarClick(Sender: TObject);
-begin
-   // TFuncoesToDo.FiltroStatus();
-end;
-
-procedure TFormView.btnSalvarClick(Sender: TObject);
-begin
-  FClientes.cdsClientes.ApplyUpdates(0);
-end;
-
-procedure TFormView.CriarForm;
+procedure TFormView.CriarFormTarefas;
 var
-  NewForm : TFormCriacaoEdicao;
+  NewForm : TFormTarefas;
 begin
-  NewForm := TFormCriacaoEdicao.Create(nil);
+  NewForm := TFormTarefas.Create(nil);
 try
   NewForm.Clientes := FClientes;
   NewForm.ShowModal;
@@ -100,7 +61,6 @@ try
 finally
   NewForm.Free;
 end;
-
 end;
 
 procedure TFormView.FormCreate(Sender: TObject);
