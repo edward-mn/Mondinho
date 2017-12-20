@@ -11,6 +11,7 @@ object FormCriacaoEdicao: TFormCriacaoEdicao
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesktopCenter
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -29,7 +30,7 @@ object FormCriacaoEdicao: TFormCriacaoEdicao
   end
   object btnAtualizar: TButton
     Left = 523
-    Top = 123
+    Top = 131
     Width = 105
     Height = 26
     Caption = 'Atualizar'
@@ -38,7 +39,7 @@ object FormCriacaoEdicao: TFormCriacaoEdicao
   end
   object btnSalvar: TButton
     Left = 523
-    Top = 165
+    Top = 207
     Width = 105
     Height = 26
     Caption = 'Salvar'
@@ -47,7 +48,7 @@ object FormCriacaoEdicao: TFormCriacaoEdicao
   end
   object btnAdicionar: TButton
     Left = 523
-    Top = 80
+    Top = 96
     Width = 105
     Height = 25
     Caption = 'Adicionar'
@@ -56,14 +57,14 @@ object FormCriacaoEdicao: TFormCriacaoEdicao
   end
   object btnCancelar: TButton
     Left = 523
-    Top = 208
+    Top = 168
     Width = 105
     Height = 25
     Caption = 'Cancelar'
     TabOrder = 4
     OnClick = btnCancelarClick
   end
-  object dsToDo: TDataSource
+  object dsCriarTarefas: TDataSource
     Left = 248
     Top = 176
   end

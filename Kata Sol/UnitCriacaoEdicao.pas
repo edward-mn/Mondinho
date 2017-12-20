@@ -10,7 +10,7 @@ uses
 type
   TFormCriacaoEdicao = class(TForm)
     dbGridCriacaoEdicao: TDBGrid;
-    dsToDo: TDataSource;
+    dsCriarTarefas: TDataSource;
     btnAtualizar: TButton;
     btnSalvar: TButton;
     btnAdicionar: TButton;
@@ -40,6 +40,7 @@ end;
 
 procedure TFormCriacaoEdicao.btnAtualizarClick(Sender: TObject);
 begin
+  Clientes.cdsClientes.ApplyUpdates(0);
   Clientes.cdsClientes.Refresh;
 end;
 
@@ -55,8 +56,8 @@ end;
 
 procedure TFormCriacaoEdicao.FormShow(Sender: TObject);
 begin
-  dsToDo.DataSet := Clientes.cdsClientes;
-  dbGridCriacaoEdicao.DataSource := dsToDo;
+  dsCriarTarefas.DataSet := Clientes.cdsClientes;
+  dbGridCriacaoEdicao.DataSource := dsCriarTarefas;
 end;
 
 end.

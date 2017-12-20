@@ -77,8 +77,8 @@ begin
     Result := Filtro;
   end;
 
-    FormCriacaoEdicao.Clientes.cdsClientes.Filter := Filtro;
-    FormCriacaoEdicao.Clientes.cdsClientes.Filtered := True;
+//    FormCriacaoEdicao.Clientes.cdsClientes.Filter := Filtro;
+//    FormCriacaoEdicao.Clientes.cdsClientes.Filtered := True;
 
 end;
 
