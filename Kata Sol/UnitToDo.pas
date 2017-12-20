@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
   DataModuleConexao, DataModuleClientes, UnitCriacaoEdicao, Vcl.StdCtrls,
-  UnitTarefas, Vcl.ExtCtrls;
+  UnitTarefas, Vcl.ExtCtrls, UnitPessoas;
 
 type
   TFormView = class(TForm)
@@ -14,6 +14,8 @@ type
     dsToDo: TDataSource;
     Panel1: TPanel;
     btnTarefas: TButton;
+    btnPessoas: TButton;
+    procedure btnPessoasClick(Sender: TObject);
     procedure btnTarefasClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
@@ -22,6 +24,7 @@ type
   public
     constructor Create(AOwner: TComponent); override;
     procedure CriarFormTarefas;
+    procedure CriarFormPessoas;
   end;
 
 var
@@ -40,13 +43,32 @@ begin
   FConexao := TdmConexao.Create(Self);
   FClientes := TDmClientes.Create(Self);
 
-  FClientes.cdsClientes.SetProvider(FConexao.sqlProvider);
+  FClientes.cdsToDo.SetProvider(FConexao.sqlProviderToDo);
+end;
+
+procedure TFormView.btnPessoasClick(Sender: TObject);
+begin
+  CriarFormPessoas();
 end;
 
 
 procedure TFormView.btnTarefasClick(Sender: TObject);
 begin
   CriarFormTarefas();
+end;
+
+procedure TFormView.CriarFormPessoas;
+var
+  NewForm : TFormPessoas;
+begin
+  NewForm := TFormPessoas.Create(nil);
+try
+  NewForm.Clintes := FClientes;
+  NewForm.ShowModal;
+
+finally
+  NewForm.Free;
+end;
 end;
 
 procedure TFormView.CriarFormTarefas;
@@ -65,8 +87,8 @@ end;
 
 procedure TFormView.FormCreate(Sender: TObject);
 begin
-  FClientes.cdsClientes.Open;
-  dsToDo.DataSet := FClientes.cdsClientes;
+  FClientes.cdsToDo.Open;
+  dsToDo.DataSet := FClientes.cdsToDo;
   dbGridPrincipal.DataSource := dsToDo;
 end;
 

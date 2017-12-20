@@ -8,14 +8,25 @@ uses
 
 type
   TdmConexao = class(TDataModule)
-    sqlQuery: TSQLQuery;
+    sqlQueryToDo: TSQLQuery;
     sqlConexao: TSQLConnection;
-    sqlProvider: TDataSetProvider;
-    sqlQueryid_todo: TIntegerField;
-    sqlQuerynomes: TWideStringField;
-    sqlQuerytarefas: TWideStringField;
-    sqlQuerystatus: TWideStringField;
-    sqlQuerydata: TDateField;
+    sqlProviderToDo: TDataSetProvider;
+    sqlQueryToDoid_todo: TIntegerField;
+    sqlQueryToDonomes: TWideStringField;
+    sqlQueryToDotarefas: TWideStringField;
+    sqlQueryToDostatus: TWideStringField;
+    sqlQueryToDodata: TDateField;
+    sqlProviderPessoas: TDataSetProvider;
+    sqlQueryPessoas: TSQLQuery;
+    sqlQueryPessoasid_pessoas: TIntegerField;
+    sqlQueryPessoaspessoas: TWideStringField;
+    sqlQueryPessoascpf: TFMTBCDField;
+    sqlQueryPessoasendereco: TWideStringField;
+    sqlQueryPessoastelefone: TFMTBCDField;
+    sqlQueryPessoascelular: TFMTBCDField;
+    sqlQueryPessoasstatus: TWideStringField;
+    sqlQueryPessoasfornecedores: TWideStringField;
+    sqlQueryPessoasdata: TDateField;
   private
     { Private declarations }
   public
