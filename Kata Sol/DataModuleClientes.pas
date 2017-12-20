@@ -7,12 +7,22 @@ uses
 
 type
   TDmClientes = class(TDataModule)
-    cdsClientes: TClientDataSet;
-    cdsClientesid_todo: TIntegerField;
-    cdsClientesnomes: TWideStringField;
-    cdsClientestarefas: TWideStringField;
-    cdsClientesstatus: TWideStringField;
-    cdsClientesdata: TDateField;
+    cdsToDo: TClientDataSet;
+    cdsToDoid_todo: TIntegerField;
+    cdsToDonomes: TWideStringField;
+    cdsToDotarefas: TWideStringField;
+    cdsToDostatus: TWideStringField;
+    cdsToDodata: TDateField;
+    cdsPessoas: TClientDataSet;
+    cdsPessoasid_pessoas: TIntegerField;
+    cdsPessoaspessoas: TWideStringField;
+    cdsPessoascpf: TFMTBCDField;
+    cdsPessoasendereco: TWideStringField;
+    cdsPessoastelefone: TFMTBCDField;
+    cdsPessoascelular: TFMTBCDField;
+    cdsPessoasstatus: TWideStringField;
+    cdsPessoasfornecedores: TWideStringField;
+    cdsPessoasdata: TDateField;
   private
     { Private declarations }
   public

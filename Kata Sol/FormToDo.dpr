@@ -6,7 +6,8 @@ uses
   DataModuleConexao in 'DataModuleConexao.pas' {dmConexao: TDataModule},
   DataModuleClientes in 'DataModuleClientes.pas' {DmClientes: TDataModule},
   UnitCriacaoEdicao in 'UnitCriacaoEdicao.pas' {FormCriacaoEdicao},
-  UnitTarefas in 'UnitTarefas.pas' {FormTarefas};
+  UnitTarefas in 'UnitTarefas.pas' {FormTarefas},
+  UnitPessoas in 'UnitPessoas.pas' {FormPessoas};
 
 {$R *.res}
 

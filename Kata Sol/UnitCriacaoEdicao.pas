@@ -35,28 +35,28 @@ implementation
 
 procedure TFormCriacaoEdicao.btnAdicionarClick(Sender: TObject);
 begin
-  Clientes.cdsClientes.Insert;
+  Clientes.cdsToDo.Insert;
 end;
 
 procedure TFormCriacaoEdicao.btnAtualizarClick(Sender: TObject);
 begin
-  Clientes.cdsClientes.ApplyUpdates(0);
-  Clientes.cdsClientes.Refresh;
+  Clientes.cdsToDo.ApplyUpdates(0);
+  Clientes.cdsToDo.Refresh;
 end;
 
 procedure TFormCriacaoEdicao.btnCancelarClick(Sender: TObject);
 begin
-  Clientes.cdsClientes.Cancel;
+  Clientes.cdsToDo.Cancel;
 end;
 
 procedure TFormCriacaoEdicao.btnSalvarClick(Sender: TObject);
 begin
-  Clientes.cdsClientes.ApplyUpdates(0);
+  Clientes.cdsToDo.ApplyUpdates(0);
 end;
 
 procedure TFormCriacaoEdicao.FormShow(Sender: TObject);
 begin
-  dsCriarTarefas.DataSet := Clientes.cdsClientes;
+  dsCriarTarefas.DataSet := Clientes.cdsToDo;
   dbGridCriacaoEdicao.DataSource := dsCriarTarefas;
 end;
 

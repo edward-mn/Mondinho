@@ -43,7 +43,7 @@ implementation
 
 procedure TFormTarefas.btnAtualizarClick(Sender: TObject);
 begin
-  Clientes.cdsClientes.Refresh;
+  Clientes.cdsToDo.Refresh;
 end;
 
 procedure TFormTarefas.btnCriarTarefaClick(Sender: TObject);
@@ -54,8 +54,8 @@ end;
 procedure TFormTarefas.btnDeletarClick(Sender: TObject);
 begin
   if MessageDlg('Deseja realmete deletar essa tarefa ?', mtInformation, [mbYes , mbNo],0) = mrYes then
-    Clientes.cdsClientes.Delete;
-    Clientes.cdsClientes.ApplyUpdates(0);
+    Clientes.cdsToDo.Delete;
+    Clientes.cdsToDo.ApplyUpdates(0);
 end;
 
 procedure TFormTarefas.btnEditarClick(Sender: TObject);
@@ -84,7 +84,7 @@ end;
 
 procedure TFormTarefas.FormShow(Sender: TObject);
 begin
-  dsTarefas.DataSet := Clientes.cdsClientes;
+  dsTarefas.DataSet := Clientes.cdsToDo;
   dbGridTarefas.DataSource := dsTarefas;
 end;
 

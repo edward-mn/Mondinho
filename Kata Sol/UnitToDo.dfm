@@ -38,8 +38,6 @@ object FormView: TFormView
     Height = 46
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 240
-    ExplicitWidth = 1058
     object btnTarefas: TButton
       Left = 1
       Top = 1
@@ -49,8 +47,18 @@ object FormView: TFormView
       Caption = 'Tarefas'
       TabOrder = 0
       OnClick = btnTarefasClick
-      ExplicitLeft = 16
-      ExplicitTop = 5
+    end
+    object btnPessoas: TButton
+      Left = 76
+      Top = 1
+      Width = 75
+      Height = 44
+      Align = alLeft
+      Caption = 'Pessoas'
+      TabOrder = 1
+      OnClick = btnPessoasClick
+      ExplicitLeft = 256
+      ExplicitTop = 15
       ExplicitHeight = 25
     end
   end
