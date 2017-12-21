@@ -7,7 +7,8 @@ uses
   DataModuleClientes in 'DataModuleClientes.pas' {DmClientes: TDataModule},
   UnitCriacaoEdicao in 'UnitCriacaoEdicao.pas' {FormCriacaoEdicao},
   UnitTarefas in 'UnitTarefas.pas' {FormTarefas},
-  UnitPessoas in 'UnitPessoas.pas' {FormPessoas};
+  UnitPessoas in 'UnitPessoas.pas' {FormPessoas},
+  UnitCriacaoEdicaoPessoas in 'UnitCriacaoEdicaoPessoas.pas' {FormCriacaoEdicaoPessoas};
 
 {$R *.res}
 

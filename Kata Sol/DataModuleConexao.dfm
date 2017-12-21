@@ -53,11 +53,13 @@ object dmConexao: TdmConexao
   end
   object sqlProviderToDo: TDataSetProvider
     DataSet = sqlQueryToDo
+    Options = [poPropogateChanges, poUseQuoteChar]
     Left = 24
     Top = 152
   end
   object sqlProviderPessoas: TDataSetProvider
     DataSet = sqlQueryPessoas
+    Options = [poPropogateChanges, poUseQuoteChar]
     Left = 187
     Top = 153
   end
@@ -68,7 +70,7 @@ object dmConexao: TdmConexao
       'select * from pessoas')
     SQLConnection = sqlConexao
     Left = 187
-    Top = 81
+    Top = 73
     object sqlQueryPessoasid_pessoas: TIntegerField
       FieldName = 'id_pessoas'
     end

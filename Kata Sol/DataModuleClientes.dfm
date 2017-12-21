@@ -31,42 +31,50 @@ object DmClientes: TDmClientes
     Aggregates = <>
     Params = <>
     ProviderName = 'sqlProviderPessoas'
-    Left = 162
+    Left = 130
     Top = 46
     object cdsPessoasid_pessoas: TIntegerField
       FieldName = 'id_pessoas'
     end
     object cdsPessoaspessoas: TWideStringField
+      DisplayLabel = 'Pessoas'
       FieldName = 'pessoas'
       Size = 50
     end
     object cdsPessoascpf: TFMTBCDField
+      DisplayLabel = 'CPF'
       FieldName = 'cpf'
       Precision = 11
       Size = 0
     end
     object cdsPessoasendereco: TWideStringField
+      DisplayLabel = 'Endere'#231'o'
       FieldName = 'endereco'
       Size = 100
     end
     object cdsPessoastelefone: TFMTBCDField
+      DisplayLabel = 'Telefone'
       FieldName = 'telefone'
       Precision = 10
       Size = 0
     end
     object cdsPessoascelular: TFMTBCDField
+      DisplayLabel = 'Celular'
       FieldName = 'celular'
       Precision = 11
       Size = 0
     end
     object cdsPessoasstatus: TWideStringField
+      DisplayLabel = 'Status'
       FieldName = 'status'
     end
     object cdsPessoasfornecedores: TWideStringField
+      DisplayLabel = 'Fornecedores'
       FieldName = 'fornecedores'
       Size = 50
     end
     object cdsPessoasdata: TDateField
+      DisplayLabel = 'Data'
       FieldName = 'data'
     end
   end

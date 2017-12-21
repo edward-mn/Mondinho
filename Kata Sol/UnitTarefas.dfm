@@ -20,7 +20,7 @@ object FormTarefas: TFormTarefas
     Top = 276
     Width = 105
     Height = 25
-    Caption = 'Deletar'
+    Caption = 'Deletar Tarefa'
     TabOrder = 0
     OnClick = btnDeletarClick
   end
@@ -29,7 +29,7 @@ object FormTarefas: TFormTarefas
     Top = 242
     Width = 105
     Height = 26
-    Caption = 'Atualizar'
+    Caption = 'Atualizar Tarefa'
     TabOrder = 1
     OnClick = btnAtualizarClick
   end
@@ -38,7 +38,7 @@ object FormTarefas: TFormTarefas
     Top = 212
     Width = 105
     Height = 25
-    Caption = 'Editar'
+    Caption = 'Editar Tarefa'
     TabOrder = 2
     OnClick = btnEditarClick
   end
@@ -106,6 +106,7 @@ object FormTarefas: TFormTarefas
     Width = 524
     Height = 306
     Align = alLeft
+    ReadOnly = True
     TabOrder = 5
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText

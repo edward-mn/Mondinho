@@ -19,6 +19,7 @@ type
     procedure btnAtualizarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
   private
     { Private declarations }
@@ -54,8 +55,15 @@ begin
   Clientes.cdsToDo.ApplyUpdates(0);
 end;
 
+procedure TFormCriacaoEdicao.FormClose(Sender: TObject; var Action:
+    TCloseAction);
+begin
+  Clientes.cdsToDoid_todo.Visible := True;
+end;
+
 procedure TFormCriacaoEdicao.FormShow(Sender: TObject);
 begin
+  Clientes.cdsToDoid_todo.Visible := False;
   dsCriarTarefas.DataSet := Clientes.cdsToDo;
   dbGridCriacaoEdicao.DataSource := dsCriarTarefas;
 end;
