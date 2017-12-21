@@ -24,6 +24,7 @@ object FormView: TFormView
     Width = 1084
     Height = 473
     Align = alBottom
+    ReadOnly = True
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -57,9 +58,6 @@ object FormView: TFormView
       Caption = 'Pessoas'
       TabOrder = 1
       OnClick = btnPessoasClick
-      ExplicitLeft = 256
-      ExplicitTop = 15
-      ExplicitHeight = 25
     end
   end
   object dsToDo: TDataSource

@@ -63,7 +63,8 @@ var
 begin
   NewForm := TFormPessoas.Create(nil);
 try
-  NewForm.Clintes := FClientes;
+  NewForm.Clientes := FClientes;
+  NewForm.Conexao := FConexao;
   NewForm.ShowModal;
 
 finally
