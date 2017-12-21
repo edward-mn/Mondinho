@@ -1,7 +1,7 @@
-object FormCriacaoEdicao: TFormCriacaoEdicao
+object FormEditarTarefas: TFormEditarTarefas
   Left = 0
   Top = 0
-  Caption = 'FormCriacaoEdicao'
+  Caption = 'Criar/Editar Tarefas'
   ClientHeight = 303
   ClientWidth = 646
   Color = clBtnFace
@@ -65,7 +65,7 @@ object FormCriacaoEdicao: TFormCriacaoEdicao
     OnClick = btnCancelarClick
   end
   object dsCriarTarefas: TDataSource
-    Left = 248
-    Top = 176
+    Left = 576
+    Top = 248
   end
 end

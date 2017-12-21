@@ -5,33 +5,34 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DataModuleClientes, DataModuleConexao,
-  Data.DB, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, UnitCriacaoEdicao;
+  Data.DB, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, UnitEditarTarefas;
 
 type
   TFormTarefas = class(TForm)
-    btnDeletar: TButton;
-    btnAtualizar: TButton;
-    btnEditar: TButton;
+    btnDeletarTarefa: TButton;
+    btnAtualizarTarefa: TButton;
+    btnEditarTarefa: TButton;
     GroupBox1: TGroupBox;
     cbAtrasadas: TCheckBox;
     cbFinalizadas: TCheckBox;
     cbAdiadas: TCheckBox;
-    cbAgendadas: TCheckBox;
+    cbAgendada: TCheckBox;
     btnPesquisar: TButton;
     btnCriarTarefa: TButton;
     dbGridTarefas: TDBGrid;
     dsTarefas: TDataSource;
-    procedure btnAtualizarClick(Sender: TObject);
+    Tarefas: TLabel;
+    procedure btnAtualizarTarefaClick(Sender: TObject);
     procedure btnCriarTarefaClick(Sender: TObject);
-    procedure btnDeletarClick(Sender: TObject);
-    procedure btnEditarClick(Sender: TObject);
+    procedure btnDeletarTarefaClick(Sender: TObject);
+    procedure btnEditarTarefaClick(Sender: TObject);
     procedure btnPesquisarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
     Clientes : TDmClientes;
-    procedure CriarFormCriacaoEdicao;
+    procedure CriarFormEditarTarefas;
   end;
 
 var
@@ -39,28 +40,31 @@ var
 
 implementation
 
+uses
+  System.UITypes;
+
 {$R *.dfm}
 
-procedure TFormTarefas.btnAtualizarClick(Sender: TObject);
+procedure TFormTarefas.btnAtualizarTarefaClick(Sender: TObject);
 begin
-  Clientes.cdsClientes.Refresh;
+  Clientes.cdsToDo.Refresh;
 end;
 
 procedure TFormTarefas.btnCriarTarefaClick(Sender: TObject);
 begin
-  CriarFormCriacaoEdicao();
+  CriarFormEditarTarefas();
 end;
 
-procedure TFormTarefas.btnDeletarClick(Sender: TObject);
+procedure TFormTarefas.btnDeletarTarefaClick(Sender: TObject);
 begin
   if MessageDlg('Deseja realmete deletar essa tarefa ?', mtInformation, [mbYes , mbNo],0) = mrYes then
-    Clientes.cdsClientes.Delete;
-    Clientes.cdsClientes.ApplyUpdates(0);
+    Clientes.cdsToDo.Delete;
+    Clientes.cdsToDo.ApplyUpdates(0);
 end;
 
-procedure TFormTarefas.btnEditarClick(Sender: TObject);
+procedure TFormTarefas.btnEditarTarefaClick(Sender: TObject);
 begin
-  CriarFormCriacaoEdicao();
+  CriarFormEditarTarefas();
 end;
 
 procedure TFormTarefas.btnPesquisarClick(Sender: TObject);
@@ -68,11 +72,11 @@ begin
 //    TFuncoesToDo.FiltroStatus();
 end;
 
-procedure TFormTarefas.CriarFormCriacaoEdicao;
+procedure TFormTarefas.CriarFormEditarTarefas;
 var
-  NewForm : TFormCriacaoEdicao;
+  NewForm : TFormEditarTarefas;
 begin
-  NewForm := TFormCriacaoEdicao.Create(nil);
+  NewForm := TFormEditarTarefas.Create(nil);
 try
   NewForm.Clientes := Clientes;
   NewForm.ShowModal;
@@ -84,7 +88,7 @@ end;
 
 procedure TFormTarefas.FormShow(Sender: TObject);
 begin
-  dsTarefas.DataSet := Clientes.cdsClientes;
+  dsTarefas.DataSet := Clientes.cdsTodo;
   dbGridTarefas.DataSource := dsTarefas;
 end;
 

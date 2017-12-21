@@ -4,18 +4,29 @@ interface
 
 uses
   System.SysUtils, System.Classes, Data.FMTBcd, Datasnap.Provider, Data.DB,
-  Data.SqlExpr, DbxDevartPostgreSQL;
+  Data.SqlExpr, DbxDevartPostgreSQL, Datasnap.DBClient;
 
 type
-  TdmConexao = class(TDataModule)
-    sqlQuery: TSQLQuery;
+  TDmConexao = class(TDataModule)
+    sqlQueryToDo: TSQLQuery;
     sqlConexao: TSQLConnection;
-    sqlProvider: TDataSetProvider;
-    sqlQueryid_todo: TIntegerField;
-    sqlQuerynomes: TWideStringField;
-    sqlQuerytarefas: TWideStringField;
-    sqlQuerystatus: TWideStringField;
-    sqlQuerydata: TDateField;
+    sqlProviderToDo: TDataSetProvider;
+    sqlQueryToDoid_todo: TIntegerField;
+    sqlQueryToDonomes: TWideStringField;
+    sqlQueryToDotarefas: TWideStringField;
+    sqlQueryToDostatus: TWideStringField;
+    sqlQueryToDodata: TDateField;
+    sqlQueryVendas: TSQLQuery;
+    sqlProviderVendas: TDataSetProvider;
+    sqlQueryVendasid_produtos: TIntegerField;
+    sqlQueryVendasprodutos: TWideStringField;
+    sqlQueryVendasvendedores: TWideStringField;
+    sqlQueryVendasstatus: TWideStringField;
+    sqlQueryVendasfornecedores: TWideStringField;
+    sqlQueryVendasdata: TDateField;
+    sqlQueryVendasvalor_produto: TFMTBCDField;
+    sqlQueryVendasquantidade: TIntegerField;
+    sqlQueryVendasvalor_total: TFMTBCDField;
   private
     { Private declarations }
   public
@@ -23,7 +34,7 @@ type
   end;
 
 var
-  dmConexao: TdmConexao;
+  DmConexao: TDmConexao;
 
 implementation
 

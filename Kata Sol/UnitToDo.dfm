@@ -3,7 +3,7 @@ object FormView: TFormView
   Top = 0
   Align = alCustom
   BorderStyle = bsSingle
-  Caption = 'FormView'
+  Caption = 'Mondinho'
   ClientHeight = 631
   ClientWidth = 1084
   Color = clBtnFace
@@ -38,8 +38,6 @@ object FormView: TFormView
     Height = 46
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 240
-    ExplicitWidth = 1058
     object btnTarefas: TButton
       Left = 1
       Top = 1
@@ -49,13 +47,19 @@ object FormView: TFormView
       Caption = 'Tarefas'
       TabOrder = 0
       OnClick = btnTarefasClick
-      ExplicitLeft = 16
-      ExplicitTop = 5
-      ExplicitHeight = 25
+    end
+    object btnVendas: TButton
+      Left = 241
+      Top = 2
+      Width = 80
+      Height = 41
+      Caption = 'Vendas'
+      TabOrder = 1
+      OnClick = btnVendasClick
     end
   end
   object dsToDo: TDataSource
-    Left = 112
-    Top = 392
+    Left = 1032
+    Top = 120
   end
 end

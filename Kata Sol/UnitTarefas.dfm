@@ -1,9 +1,9 @@
 object FormTarefas: TFormTarefas
   Left = 0
   Top = 0
-  Caption = 'FormTarefas'
-  ClientHeight = 306
-  ClientWidth = 647
+  Caption = 'Tarefas'
+  ClientHeight = 325
+  ClientWidth = 649
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,32 +15,39 @@ object FormTarefas: TFormTarefas
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object btnDeletar: TButton
+  object Tarefas: TLabel
     Left = 530
-    Top = 276
+    Top = 172
+    Width = 99
+    Height = 18
+    Caption = 'Tarefas:'
+  end
+  object btnDeletarTarefa: TButton
+    Left = 530
+    Top = 292
     Width = 105
     Height = 25
     Caption = 'Deletar'
     TabOrder = 0
-    OnClick = btnDeletarClick
+    OnClick = btnDeletarTarefaClick
   end
-  object btnAtualizar: TButton
+  object btnAtualizarTarefa: TButton
     Left = 530
-    Top = 242
+    Top = 260
     Width = 105
     Height = 26
     Caption = 'Atualizar'
     TabOrder = 1
-    OnClick = btnAtualizarClick
+    OnClick = btnAtualizarTarefaClick
   end
-  object btnEditar: TButton
+  object btnEditarTarefa: TButton
     Left = 530
-    Top = 212
+    Top = 228
     Width = 105
     Height = 25
     Caption = 'Editar'
     TabOrder = 2
-    OnClick = btnEditarClick
+    OnClick = btnEditarTarefaClick
   end
   object GroupBox1: TGroupBox
     Left = 530
@@ -73,12 +80,12 @@ object FormTarefas: TFormTarefas
       Caption = 'Adiadas'
       TabOrder = 2
     end
-    object cbAgendadas: TCheckBox
+    object cbAgendada: TCheckBox
       Left = 8
       Top = 18
       Width = 97
       Height = 17
-      Caption = 'Agendadas'
+      Caption = 'Agendada'
       TabOrder = 3
     end
     object btnPesquisar: TButton
@@ -93,10 +100,10 @@ object FormTarefas: TFormTarefas
   end
   object btnCriarTarefa: TButton
     Left = 530
-    Top = 176
+    Top = 196
     Width = 105
     Height = 26
-    Caption = 'CriarTarefa'
+    Caption = 'Criar'
     TabOrder = 4
     OnClick = btnCriarTarefaClick
   end
@@ -104,7 +111,7 @@ object FormTarefas: TFormTarefas
     Left = 0
     Top = 0
     Width = 524
-    Height = 306
+    Height = 325
     Align = alLeft
     TabOrder = 5
     TitleFont.Charset = DEFAULT_CHARSET
