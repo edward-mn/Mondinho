@@ -50,7 +50,6 @@ begin
     end;
 end;
 
-
 procedure TFormCadastro.FormShow(Sender: TObject);
 begin
   FClientes.cdsCadastro.SetProvider(FConexao.sqlProviderCadastro);

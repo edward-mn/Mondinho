@@ -7,10 +7,6 @@ uses
 
 type
   TDMCadastro = class(TDataModule)
-    cdsCadastro: TClientDataSet;
-    cdsCadastroid: TIntegerField;
-    cdsCadastronome_usuario: TWideStringField;
-    cdsCadastrosenha: TWideStringField;
   private
     { Private declarations }
   public

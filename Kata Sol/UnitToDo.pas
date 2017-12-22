@@ -5,38 +5,29 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
-  DataModuleConexao, DataModuleClientes, UnitCriacaoEdicao, Vcl.StdCtrls;
+  DataModuleConexao, DataModuleClientes,UnitEditarTarefas, Vcl.StdCtrls,
+  UnitTarefas, Vcl.ExtCtrls, UnitVendas, UnitPessoas;
 
 type
   TFormView = class(TForm)
     dbGridPrincipal: TDBGrid;
     dsToDo: TDataSource;
-    GroupBox1: TGroupBox;
-    cbAtrasadas: TCheckBox;
-    cbFinalizadas: TCheckBox;
-    cbAdiadas: TCheckBox;
-    cbAgendadas: TCheckBox;
-    btnAtualizar: TButton;
-    btnPesquisar: TButton;
-    btnEditar: TButton;
-    btnCriarTarefa: TButton;
-    btnDeletar: TButton;
-    procedure btnAtualizarClick(Sender: TObject);
-    procedure btnCriarTarefaClick(Sender: TObject);
-    procedure btnDeletarClick(Sender: TObject);
-    procedure btnEditarClick(Sender: TObject);
-    procedure btnPesquisarClick(Sender: TObject);
-    procedure btnSalvarClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    Panel1: TPanel;
+    btnTarefas: TButton;
+    btnPessoas: TButton;
+    btnVendas: TButton;
+    procedure btnPessoasClick(Sender: TObject);
+    procedure btnTarefasClick(Sender: TObject);
+    procedure btnVendasClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure FormShow(Sender: TObject);
   private
     FConexao : TdmConexao;
     FClientes : TDmClientes;
   public
     constructor Create(AOwner: TComponent); override;
-    procedure CriarForm;
+    procedure CriarFormTarefas;
+    procedure CriarFormVendas;
+    procedure CriarFormPessoas;
   end;
 
 var
@@ -47,7 +38,7 @@ implementation
 {$R *.dfm}
 
 uses
-  UnitToDoFuncoes, UnitLogin;
+  UnitToDoFuncoes;
 
 constructor TFormView.Create(AOwner: TComponent);
 begin
@@ -55,51 +46,46 @@ begin
   FConexao := TdmConexao.Create(Self);
   FClientes := TDmClientes.Create(Self);
 
-  FClientes.cdsClientes.SetProvider(FConexao.sqlProviderToDo);
+  FClientes.cdstodo.SetProvider(FConexao.sqlProviderToDo);
 end;
 
-procedure TFormView.btnAtualizarClick(Sender: TObject);
+procedure TFormView.btnPessoasClick(Sender: TObject);
 begin
-  FClientes.cdsClientes.Refresh;
+  CriarFormPessoas();
 end;
 
-procedure TFormView.btnCriarTarefaClick(Sender: TObject);
+
+procedure TFormView.btnTarefasClick(Sender: TObject);
 begin
-  CriarForm();
+  CriarFormTarefas();
 end;
 
-procedure TFormView.btnDeletarClick(Sender: TObject);
+procedure TFormView.btnVendasClick(Sender: TObject);
 begin
-  if MessageDlg('Deseja realmete deletar essa tarefa ?', mtInformation, [mbYes , mbNo],0) = mrYes then
-    FClientes.cdsClientes.Delete;
-    FClientes.cdsClientes.ApplyUpdates(0);
+  CriarFormVendas();
 end;
 
-procedure TFormView.btnEditarClick(Sender: TObject);
-begin
-  CriarForm();
-end;
-
-procedure TFormView.btnPesquisarClick(Sender: TObject);
-begin
-//    TFuncoesToDo.FiltroStatus();
-end;
-
-procedure TFormView.btnSalvarClick(Sender: TObject);
-begin
-  FClientes.cdsClientes.ApplyUpdates(0);
-end;
-
-procedure TFormView.Button1Click(Sender: TObject);
-begin
-FormLogin.Close;
-end;
-
-procedure TFormView.CriarForm;
+procedure TFormView.CriarFormPessoas;
 var
-  NewForm : TFormCriacaoEdicao;
+  NewForm : TFormPessoas;
 begin
-  NewForm := TFormCriacaoEdicao.Create(nil);
+  NewForm := TFormPessoas.Create(nil);
+try
+  NewForm.Clientes := FClientes;
+  NewForm.Conexao := FConexao;
+  NewForm.ShowModal;
+
+finally
+  NewForm.Free;
+end;
+
+end;
+
+procedure TFormView.CriarFormTarefas;
+var
+  NewForm : TFormTarefas;
+begin
+  NewForm := TFormTarefas.Create(nil);
 try
   NewForm.Clientes := FClientes;
   NewForm.ShowModal;
@@ -110,22 +96,27 @@ end;
 
 end;
 
-procedure TFormView.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TFormView.CriarFormVendas;
+var
+  NewForm : TFormVendas;
 begin
-FormLogin.Close;
+  NewForm := TFormVendas.Create(nil);
+try
+  NewForm.Clientes := FClientes;
+  NewForm.Conexao := FConexao;
+  NewForm.ShowModal;
+finally
+  NewForm.Free;
 end;
+
+end;
+
 
 procedure TFormView.FormCreate(Sender: TObject);
 begin
-  FClientes.cdsClientes.Open;
-  dsToDo.DataSet := FClientes.cdsClientes;
+  FClientes.cdsToDo.Open;
+  dsToDo.DataSet := FClientes.cdsToDo;
   dbGridPrincipal.DataSource := dsToDo;
-end;
-
-procedure TFormView.FormShow(Sender: TObject);
-begin
-//  FormLogin.Close;
-  FormLogin.Visible := False;
 end;
 
 end.
