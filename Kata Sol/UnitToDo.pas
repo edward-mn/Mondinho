@@ -15,7 +15,7 @@ type
     Panel1: TPanel;
     btnTarefas: TButton;
     btnPessoas: TButton;
-    btnPessoas: TButton;
+    btnVendas: TButton;
     procedure btnPessoasClick(Sender: TObject);
     procedure btnTarefasClick(Sender: TObject);
     procedure btnVendasClick(Sender: TObject);
@@ -63,6 +63,22 @@ end;
 procedure TFormView.btnVendasClick(Sender: TObject);
 begin
   CriarFormVendas();
+end;
+
+procedure TFormView.CriarFormPessoas;
+var
+  NewForm : TFormPessoas;
+begin
+  NewForm := TFormPessoas.Create(nil);
+try
+  NewForm.Clientes := FClientes;
+  NewForm.Conexao := FConexao;
+  NewForm.ShowModal;
+
+finally
+  NewForm.Free;
+end;
+
 end;
 
 procedure TFormView.CriarFormTarefas;

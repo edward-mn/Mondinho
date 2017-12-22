@@ -55,7 +55,7 @@ object FormView: TFormView
       Width = 80
       Height = 41
       Caption = 'Vendas'
-      TabOrder = 1
+      TabOrder = 2
       OnClick = btnVendasClick
     end
     object btnPessoas: TButton
@@ -70,7 +70,7 @@ object FormView: TFormView
     end
   end
   object dsToDo: TDataSource
-    Left = 1032
-    Top = 120
+    Left = 552
+    Top = 336
   end
 end

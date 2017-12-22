@@ -5,14 +5,12 @@ uses
   UnitToDo in 'UnitToDo.pas' {FormView},
   DataModuleConexao in 'DataModuleConexao.pas' {DmConexao: TDataModule},
   DataModuleClientes in 'DataModuleClientes.pas' {DmClientes: TDataModule},
-  UnitCriacaoEdicao in 'UnitCriacaoEdicao.pas' {FormCriacaoEdicao},
-  UnitTarefas in 'UnitTarefas.pas' {FormTarefas};
-  UnitEditarTarefas in 'UnitEditarTarefas.pas' {FormEditarTarefas},
+  UnitTarefas in 'UnitTarefas.pas' {FormTarefas},
   UnitVendas in 'UnitVendas.pas' {FormVendas},
-  UnitEditarVendas in 'UnitEditarVendas.pas' {FormEditarVendas};
   UnitPessoas in 'UnitPessoas.pas' {FormPessoas},
+  UnitEditarVendas in 'UnitEditarVendas.pas' {FormEditarVendas},
+  UnitEditarTarefas in 'UnitEditarTarefas.pas' {FormEditarTarefas},
   UnitCriacaoEdicaoPessoas in 'UnitCriacaoEdicaoPessoas.pas' {FormCriacaoEdicaoPessoas};
-
 
 {$R *.res}
 
@@ -22,6 +20,5 @@ begin
   Application.CreateForm(TFormView, FormView);
   Application.CreateForm(TDmConexao, DmConexao);
   Application.CreateForm(TDmClientes, DmClientes);
-  Application.CreateForm(TFormEditarVendas, FormEditarVendas);
   Application.Run;
 end.

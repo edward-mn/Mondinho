@@ -31,8 +31,8 @@ object DmClientes: TDmClientes
     Aggregates = <>
     Params = <>
     ProviderName = 'sqlProviderVendas'
-    Left = 123
-    Top = 41
+    Left = 107
+    Top = 49
     object cdsVendasid_produtos: TIntegerField
       DisplayLabel = 'C'#243'd. Produtos'
       FieldName = 'id_produtos'
@@ -81,7 +81,7 @@ object DmClientes: TDmClientes
     Aggregates = <>
     Params = <>
     ProviderName = 'sqlProviderPessoas'
-    Left = 130
+    Left = 178
     Top = 46
     object cdsPessoasid_pessoas: TIntegerField
       FieldName = 'id_pessoas'

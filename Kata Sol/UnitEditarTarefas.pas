@@ -55,8 +55,15 @@ begin
   Clientes.cdsTodo.ApplyUpdates(0);
 end;
 
+procedure TFormEditarTarefas.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  Clientes.cdsToDoid_todo.Visible := True;
+end;
+
 procedure TFormEditarTarefas.FormShow(Sender: TObject);
 begin
+  Clientes.cdsToDoid_todo.Visible := False;
   dsCriarTarefas.DataSet := Clientes.cdsTodo;
   dbGridCriacaoEdicao.DataSource := dsCriarTarefas;
 end;

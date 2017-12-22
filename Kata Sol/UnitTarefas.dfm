@@ -18,8 +18,8 @@ object FormTarefas: TFormTarefas
   object Tarefas: TLabel
     Left = 530
     Top = 172
-    Width = 99
-    Height = 18
+    Width = 41
+    Height = 13
     Caption = 'Tarefas:'
   end
   object btnDeletarTarefa: TButton
