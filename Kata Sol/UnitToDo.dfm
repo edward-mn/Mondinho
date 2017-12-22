@@ -24,7 +24,6 @@ object FormView: TFormView
     Width = 1084
     Height = 473
     Align = alBottom
-    ReadOnly = True
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -49,8 +48,6 @@ object FormView: TFormView
       TabOrder = 0
       OnClick = btnTarefasClick
     end
-<<<<<<< HEAD
-<<<<<<< HEAD
     object btnVendas: TButton
       Left = 241
       Top = 2
@@ -59,22 +56,6 @@ object FormView: TFormView
       Caption = 'Vendas'
       TabOrder = 1
       OnClick = btnVendasClick
-=======
-=======
->>>>>>> master
-    object btnPessoas: TButton
-      Left = 76
-      Top = 1
-      Width = 75
-      Height = 44
-      Align = alLeft
-      Caption = 'Pessoas'
-      TabOrder = 1
-      OnClick = btnPessoasClick
-<<<<<<< HEAD
->>>>>>> master
-=======
->>>>>>> master
     end
   end
   object dsToDo: TDataSource

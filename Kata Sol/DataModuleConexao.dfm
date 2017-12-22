@@ -1,17 +1,7 @@
 object DmConexao: TDmConexao
   OldCreateOrder = False
-<<<<<<< HEAD
-<<<<<<< HEAD
   Height = 245
   Width = 300
-=======
-  Height = 253
-  Width = 285
->>>>>>> master
-=======
-  Height = 253
-  Width = 285
->>>>>>> master
   object sqlQueryToDo: TSQLQuery
     MaxBlobSize = -1
     Params = <>
@@ -19,18 +9,8 @@ object DmConexao: TDmConexao
       'select * from monde_todo'
       '')
     SQLConnection = sqlConexao
-<<<<<<< HEAD
-<<<<<<< HEAD
     Left = 80
     Top = 88
-=======
-    Left = 24
-    Top = 80
->>>>>>> master
-=======
-    Left = 24
-    Top = 80
->>>>>>> master
     object sqlQueryToDoid_todo: TIntegerField
       FieldName = 'id_todo'
     end
@@ -56,7 +36,7 @@ object DmConexao: TDmConexao
     LoginPrompt = False
     Params.Strings = (
       'BlobSize=-1'
-      'HostName=localhost:5433'
+      'HostName=localhost:5434'
       'DataBase=MiniMonde'
       'SchemaName=mondinho'
       'DriverName=DevartPostgreSQL'
@@ -68,84 +48,13 @@ object DmConexao: TDmConexao
       'IPVersion=IPv4'
       'UseUnicode=True'
       'Charset=')
-<<<<<<< HEAD
-<<<<<<< HEAD
     Left = 128
-=======
-    Connected = True
-    Left = 104
->>>>>>> master
-=======
-    Connected = True
-    Left = 104
->>>>>>> master
     Top = 16
   end
   object sqlProviderToDo: TDataSetProvider
     DataSet = sqlQueryToDo
-<<<<<<< HEAD
-<<<<<<< HEAD
     Left = 80
     Top = 160
-=======
-=======
->>>>>>> master
-    Options = [poPropogateChanges, poUseQuoteChar]
-    Left = 24
-    Top = 152
-  end
-  object sqlProviderPessoas: TDataSetProvider
-    DataSet = sqlQueryPessoas
-    Options = [poPropogateChanges, poUseQuoteChar]
-    Left = 187
-    Top = 153
-  end
-  object sqlQueryPessoas: TSQLQuery
-    MaxBlobSize = -1
-    Params = <>
-    SQL.Strings = (
-      'select * from pessoas')
-    SQLConnection = sqlConexao
-    Left = 187
-    Top = 73
-    object sqlQueryPessoasid_pessoas: TIntegerField
-      FieldName = 'id_pessoas'
-    end
-    object sqlQueryPessoaspessoas: TWideStringField
-      FieldName = 'pessoas'
-      Size = 50
-    end
-    object sqlQueryPessoascpf: TFMTBCDField
-      FieldName = 'cpf'
-      Precision = 11
-      Size = 0
-    end
-    object sqlQueryPessoasendereco: TWideStringField
-      FieldName = 'endereco'
-      Size = 100
-    end
-    object sqlQueryPessoastelefone: TFMTBCDField
-      FieldName = 'telefone'
-      Precision = 10
-      Size = 0
-    end
-    object sqlQueryPessoascelular: TFMTBCDField
-      FieldName = 'celular'
-      Precision = 11
-      Size = 0
-    end
-    object sqlQueryPessoasstatus: TWideStringField
-      FieldName = 'status'
-    end
-    object sqlQueryPessoasfornecedores: TWideStringField
-      FieldName = 'fornecedores'
-      Size = 50
-    end
-    object sqlQueryPessoasdata: TDateField
-      FieldName = 'data'
-    end
-<<<<<<< HEAD
->>>>>>> master
   end
   object sqlQueryVendas: TSQLQuery
     MaxBlobSize = -1
@@ -197,7 +106,5 @@ object DmConexao: TDmConexao
     DataSet = sqlQueryVendas
     Left = 184
     Top = 160
-=======
->>>>>>> master
   end
 end

@@ -114,22 +114,6 @@
             <Form>FormEditarVendas</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="UnitPessoas.pas">
-            <Form>FormPessoas</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="UnitCriacaoEdicaoPessoas.pas">
-            <Form>FormCriacaoEdicaoPessoas</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="UnitPessoas.pas">
-            <Form>FormPessoas</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="UnitCriacaoEdicaoPessoas.pas">
-            <Form>FormCriacaoEdicaoPessoas</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

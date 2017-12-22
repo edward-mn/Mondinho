@@ -13,8 +13,6 @@ type
     cdsToDotarefas: TWideStringField;
     cdsToDostatus: TWideStringField;
     cdsToDodata: TDateField;
-<<<<<<< HEAD
-<<<<<<< HEAD
     cdsVendas: TClientDataSet;
     cdsVendasid_produtos: TIntegerField;
     cdsVendasprodutos: TWideStringField;
@@ -25,23 +23,6 @@ type
     cdsVendasquantidade: TIntegerField;
     cdsVendasvalor_total: TFMTBCDField;
     cdsVendasdata: TDateField;
-=======
-=======
->>>>>>> master
-    cdsPessoas: TClientDataSet;
-    cdsPessoasid_pessoas: TIntegerField;
-    cdsPessoaspessoas: TWideStringField;
-    cdsPessoascpf: TFMTBCDField;
-    cdsPessoasendereco: TWideStringField;
-    cdsPessoastelefone: TFMTBCDField;
-    cdsPessoascelular: TFMTBCDField;
-    cdsPessoasstatus: TWideStringField;
-    cdsPessoasfornecedores: TWideStringField;
-    cdsPessoasdata: TDateField;
-<<<<<<< HEAD
->>>>>>> master
-=======
->>>>>>> master
   private
     { Private declarations }
   public

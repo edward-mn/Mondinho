@@ -5,17 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DataModuleClientes, DataModuleConexao,
-<<<<<<< HEAD
-<<<<<<< HEAD
   Data.DB, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, UnitEditarTarefas;
-=======
-  Data.DB, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, UnitCriacaoEdicao,
-  System.UITypes;
->>>>>>> master
-=======
-  Data.DB, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, UnitCriacaoEdicao,
-  System.UITypes;
->>>>>>> master
 
 type
   TFormTarefas = class(TForm)
@@ -98,15 +88,7 @@ end;
 
 procedure TFormTarefas.FormShow(Sender: TObject);
 begin
-<<<<<<< HEAD
-<<<<<<< HEAD
   dsTarefas.DataSet := Clientes.cdsTodo;
-=======
-  dsTarefas.DataSet := Clientes.cdsToDo;
->>>>>>> master
-=======
-  dsTarefas.DataSet := Clientes.cdsToDo;
->>>>>>> master
   dbGridTarefas.DataSource := dsTarefas;
 end;
 
