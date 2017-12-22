@@ -3,7 +3,7 @@ unit UnitToDoFuncoes;
 interface
 
 uses
-  System.SysUtils, System.DateUtils, UnitToDo, UnitEditarTarefas;
+  System.SysUtils, System.DateUtils, UnitToDo, UnitCriacaoEdicao;
 
 type
 
@@ -77,8 +77,8 @@ begin
     Result := Filtro;
   end;
 
-//    FormCriacaoEdicao.Clientes.cdsClientes.Filter := Filtro;
-//    FormCriacaoEdicao.Clientes.cdsClientes.Filtered := True;
+    FormCriacaoEdicao.Clientes.cdsClientes.Filter := Filtro;
+    FormCriacaoEdicao.Clientes.cdsClientes.Filtered := True;
 
 end;
 

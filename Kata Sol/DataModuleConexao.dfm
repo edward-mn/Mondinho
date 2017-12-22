@@ -1,17 +1,18 @@
-object DmConexao: TDmConexao
+object dmConexao: TdmConexao
   OldCreateOrder = False
-  Height = 253
-  Width = 285
+  Height = 225
+  Width = 308
   object sqlQueryToDo: TSQLQuery
     MaxBlobSize = -1
     Params = <>
     SQL.Strings = (
       'select * from monde_todo')
     SQLConnection = sqlConexao
-    Left = 24
-    Top = 80
+    Left = 64
+    Top = 86
     object sqlQueryToDoid_todo: TIntegerField
       FieldName = 'id_todo'
+      Visible = False
     end
     object sqlQueryToDonomes: TWideStringField
       FieldName = 'nomes'
@@ -35,7 +36,7 @@ object DmConexao: TDmConexao
     LoginPrompt = False
     Params.Strings = (
       'BlobSize=-1'
-      'HostName=localhost:5433'
+      'HostName=localhost:5432'
       'DataBase=MiniMonde'
       'SchemaName=mondinho'
       'DriverName=DevartPostgreSQL'
@@ -47,115 +48,52 @@ object DmConexao: TDmConexao
       'IPVersion=IPv4'
       'UseUnicode=True'
       'Charset=')
-    Left = 128
-    Top = 16
+    Connected = True
+    Left = 144
+    Top = 32
   end
   object sqlProviderToDo: TDataSetProvider
     DataSet = sqlQueryToDo
     Options = [poPropogateChanges, poUseQuoteChar]
-    Left = 24
-    Top = 152
+    Left = 64
+    Top = 134
   end
-  object sqlQueryVendas: TSQLQuery
-    MaxBlobSize = -1
-    Params = <>
-    SQL.Strings = (
-      'select * from vendas')
-    SQLConnection = sqlConexao
-    Left = 184
-    Top = 88
-    object sqlQueryVendasid_produtos: TIntegerField
-      FieldName = 'id_produtos'
-    end
-    object sqlQueryVendasprodutos: TWideStringField
-      FieldName = 'produtos'
-      Size = 50
-    end
-    object sqlQueryVendasvendedores: TWideStringField
-      FieldName = 'vendedores'
-      Size = 50
-    end
-    object sqlQueryVendasstatus: TWideStringField
-      FieldName = 'status'
-    end
-    object sqlQueryVendasfornecedores: TWideStringField
-      FieldName = 'fornecedores'
-      Size = 50
-    end
-    object sqlQueryVendasdata: TDateField
-      FieldName = 'data'
-    end
-    object sqlQueryVendasvalor_produto: TFMTBCDField
-      DisplayLabel = 'Valor do Produto'
-      FieldName = 'valor_produto'
-      Precision = 11
-      Size = 2
-    end
-    object sqlQueryVendasquantidade: TIntegerField
-      DisplayLabel = 'Quantidade'
-      FieldName = 'quantidade'
-    end
-    object sqlQueryVendasvalor_total: TFMTBCDField
-      DisplayLabel = 'Valor Total'
-      FieldName = 'valor_total'
-      Precision = 11
-      Size = 2
-    end
-  end
-  object sqlProviderVendas: TDataSetProvider
-    DataSet = sqlQueryVendas
-    Left = 184
-    Top = 160
-  end
-  object sqlProviderPessoas: TDataSetProvider
-    DataSet = sqlQueryPessoas
+  object sqlProviderCadastro: TDataSetProvider
+    DataSet = sqlQueryCadastro
     Options = [poPropogateChanges, poUseQuoteChar]
-    Left = 187
-    Top = 153
+    Left = 232
+    Top = 142
   end
-  object sqlQueryPessoas: TSQLQuery
+  object sqlQueryCadastro: TSQLQuery
     MaxBlobSize = -1
-    Params = <>
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'usuario'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'senha'
+        ParamType = ptInput
+      end>
     SQL.Strings = (
-      'select * from pessoas')
+      
+        'select  * from monde_cadastro  where nome_usuario = :usuario and' +
+        ' senha = :senha')
     SQLConnection = sqlConexao
-    Left = 187
-    Top = 73
-    object sqlQueryPessoasid_pessoas: TIntegerField
-      FieldName = 'id_pessoas'
+    Left = 232
+    Top = 88
+    object sqlQueryCadastroid: TIntegerField
+      FieldName = 'id'
     end
-    object sqlQueryPessoaspessoas: TWideStringField
-      FieldName = 'pessoas'
-      Size = 50
+    object sqlQueryCadastronome_usuario: TWideStringField
+      FieldName = 'nome_usuario'
+      Size = 25
     end
-    object sqlQueryPessoascpf: TFMTBCDField
-      FieldName = 'cpf'
-      Precision = 11
-      Size = 0
-    end
-    object sqlQueryPessoasendereco: TWideStringField
-      FieldName = 'endereco'
-      Size = 100
-    end
-    object sqlQueryPessoastelefone: TFMTBCDField
-      FieldName = 'telefone'
-      Precision = 10
-      Size = 0
-    end
-    object sqlQueryPessoascelular: TFMTBCDField
-      FieldName = 'celular'
-      Precision = 11
-      Size = 0
-    end
-    object sqlQueryPessoasstatus: TWideStringField
-      FieldName = 'status'
-    end
-    object sqlQueryPessoasfornecedores: TWideStringField
-      FieldName = 'fornecedores'
-      Size = 50
-    end
-    object sqlQueryPessoasdata: TDateField
-      FieldName = 'data'
+    object sqlQueryCadastrosenha: TWideStringField
+      FieldName = 'senha'
+      Size = 25
     end
   end
 end
