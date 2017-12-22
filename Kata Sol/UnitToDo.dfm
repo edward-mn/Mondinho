@@ -50,6 +50,7 @@ object FormView: TFormView
       OnClick = btnTarefasClick
     end
 <<<<<<< HEAD
+<<<<<<< HEAD
     object btnVendas: TButton
       Left = 241
       Top = 2
@@ -59,6 +60,8 @@ object FormView: TFormView
       TabOrder = 1
       OnClick = btnVendasClick
 =======
+=======
+>>>>>>> master
     object btnPessoas: TButton
       Left = 76
       Top = 1
@@ -68,6 +71,9 @@ object FormView: TFormView
       Caption = 'Pessoas'
       TabOrder = 1
       OnClick = btnPessoasClick
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
     end
   end

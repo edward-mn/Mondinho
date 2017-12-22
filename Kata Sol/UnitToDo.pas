@@ -11,6 +11,9 @@ uses
 =======
   DataModuleConexao, DataModuleClientes, UnitCriacaoEdicao, Vcl.StdCtrls,
   UnitTarefas, Vcl.ExtCtrls, UnitPessoas;
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
 
 type
@@ -20,7 +23,12 @@ type
     Panel1: TPanel;
     btnTarefas: TButton;
 <<<<<<< HEAD
+<<<<<<< HEAD
     btnVendas: TButton;
+=======
+    btnPessoas: TButton;
+    procedure btnPessoasClick(Sender: TObject);
+>>>>>>> master
 =======
     btnPessoas: TButton;
     procedure btnPessoasClick(Sender: TObject);
@@ -35,7 +43,11 @@ type
     constructor Create(AOwner: TComponent); override;
     procedure CriarFormTarefas;
 <<<<<<< HEAD
+<<<<<<< HEAD
     procedure CriarFormVendas;
+=======
+    procedure CriarFormPessoas;
+>>>>>>> master
 =======
     procedure CriarFormPessoas;
 >>>>>>> master
@@ -58,14 +70,20 @@ begin
   FClientes := TDmClientes.Create(Self);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   FClientes.cdstodo.SetProvider(FConexao.sqlProviderToDo);
 =======
+=======
+>>>>>>> master
   FClientes.cdsToDo.SetProvider(FConexao.sqlProviderToDo);
 end;
 
 procedure TFormView.btnPessoasClick(Sender: TObject);
 begin
   CriarFormPessoas();
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
 end;
 
@@ -76,10 +94,13 @@ begin
 end;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 procedure TFormView.btnVendasClick(Sender: TObject);
 begin
   CriarFormVendas();
 =======
+=======
+>>>>>>> master
 procedure TFormView.CriarFormPessoas;
 var
   NewForm : TFormPessoas;
@@ -93,6 +114,9 @@ try
 finally
   NewForm.Free;
 end;
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
 end;
 
@@ -130,8 +154,13 @@ end;
 procedure TFormView.FormCreate(Sender: TObject);
 begin
 <<<<<<< HEAD
+<<<<<<< HEAD
   FClientes.cdstodo.Open;
   dsToDo.DataSet := FClientes.cdstodo;
+=======
+  FClientes.cdsToDo.Open;
+  dsToDo.DataSet := FClientes.cdsToDo;
+>>>>>>> master
 =======
   FClientes.cdsToDo.Open;
   dsToDo.DataSet := FClientes.cdsToDo;

@@ -1,8 +1,13 @@
 object DmConexao: TDmConexao
   OldCreateOrder = False
 <<<<<<< HEAD
+<<<<<<< HEAD
   Height = 245
   Width = 300
+=======
+  Height = 253
+  Width = 285
+>>>>>>> master
 =======
   Height = 253
   Width = 285
@@ -15,8 +20,13 @@ object DmConexao: TDmConexao
       '')
     SQLConnection = sqlConexao
 <<<<<<< HEAD
+<<<<<<< HEAD
     Left = 80
     Top = 88
+=======
+    Left = 24
+    Top = 80
+>>>>>>> master
 =======
     Left = 24
     Top = 80
@@ -59,7 +69,12 @@ object DmConexao: TDmConexao
       'UseUnicode=True'
       'Charset=')
 <<<<<<< HEAD
+<<<<<<< HEAD
     Left = 128
+=======
+    Connected = True
+    Left = 104
+>>>>>>> master
 =======
     Connected = True
     Left = 104
@@ -69,9 +84,12 @@ object DmConexao: TDmConexao
   object sqlProviderToDo: TDataSetProvider
     DataSet = sqlQueryToDo
 <<<<<<< HEAD
+<<<<<<< HEAD
     Left = 80
     Top = 160
 =======
+=======
+>>>>>>> master
     Options = [poPropogateChanges, poUseQuoteChar]
     Left = 24
     Top = 152
@@ -126,6 +144,7 @@ object DmConexao: TDmConexao
     object sqlQueryPessoasdata: TDateField
       FieldName = 'data'
     end
+<<<<<<< HEAD
 >>>>>>> master
   end
   object sqlQueryVendas: TSQLQuery
@@ -178,5 +197,7 @@ object DmConexao: TDmConexao
     DataSet = sqlQueryVendas
     Left = 184
     Top = 160
+=======
+>>>>>>> master
   end
 end

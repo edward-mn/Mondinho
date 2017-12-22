@@ -15,6 +15,9 @@ uses
   UnitTarefas in 'UnitTarefas.pas' {FormTarefas},
   UnitPessoas in 'UnitPessoas.pas' {FormPessoas},
   UnitCriacaoEdicaoPessoas in 'UnitCriacaoEdicaoPessoas.pas' {FormCriacaoEdicaoPessoas};
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
 
 {$R *.res}

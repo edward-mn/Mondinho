@@ -1,8 +1,13 @@
 object DmClientes: TDmClientes
   OldCreateOrder = False
 <<<<<<< HEAD
+<<<<<<< HEAD
   Height = 135
   Width = 203
+=======
+  Height = 142
+  Width = 239
+>>>>>>> master
 =======
   Height = 142
   Width = 239
@@ -11,6 +16,7 @@ object DmClientes: TDmClientes
     Aggregates = <>
     Params = <>
     ProviderName = 'sqlProviderToDo'
+<<<<<<< HEAD
 <<<<<<< HEAD
     Left = 42
     Top = 40
@@ -28,12 +34,23 @@ object DmClientes: TDmClientes
     end
     object cdsToDonomes: TWideStringField
 >>>>>>> master
+=======
+    Left = 34
+    Top = 46
+    object cdsToDoid_todo: TIntegerField
+      FieldName = 'id_todo'
+    end
+    object cdsToDonomes: TWideStringField
+>>>>>>> master
       FieldName = 'nomes'
       Size = 40
     end
     object cdsToDotarefas: TWideStringField
 <<<<<<< HEAD
+<<<<<<< HEAD
       DisplayLabel = 'Tarefas'
+=======
+>>>>>>> master
 =======
 >>>>>>> master
       FieldName = 'tarefas'
@@ -41,13 +58,17 @@ object DmClientes: TDmClientes
     end
     object cdsToDostatus: TWideStringField
 <<<<<<< HEAD
+<<<<<<< HEAD
       DisplayLabel = 'Status'
+=======
+>>>>>>> master
 =======
 >>>>>>> master
       FieldName = 'status'
       Size = 15
     end
     object cdsToDodata: TDateField
+<<<<<<< HEAD
 <<<<<<< HEAD
       DisplayLabel = 'Data'
       FieldName = 'data'
@@ -79,6 +100,8 @@ object DmClientes: TDmClientes
     end
     object cdsVendasfornecedores: TWideStringField
 =======
+=======
+>>>>>>> master
       FieldName = 'data'
     end
   end
@@ -124,11 +147,15 @@ object DmClientes: TDmClientes
       FieldName = 'status'
     end
     object cdsPessoasfornecedores: TWideStringField
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
       DisplayLabel = 'Fornecedores'
       FieldName = 'fornecedores'
       Size = 50
     end
+<<<<<<< HEAD
 <<<<<<< HEAD
     object cdsVendasvalor_produto: TFMTBCDField
       DisplayLabel = 'Valor Unit'#225'rio'
@@ -147,6 +174,9 @@ object DmClientes: TDmClientes
       Size = 2
     end
     object cdsVendasdata: TDateField
+=======
+    object cdsPessoasdata: TDateField
+>>>>>>> master
 =======
     object cdsPessoasdata: TDateField
 >>>>>>> master

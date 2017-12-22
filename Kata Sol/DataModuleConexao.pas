@@ -11,6 +11,9 @@ type
   TDmConexao = class(TDataModule)
 =======
   TdmConexao = class(TDataModule)
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
     sqlQueryToDo: TSQLQuery;
     sqlConexao: TSQLConnection;
@@ -20,6 +23,7 @@ type
     sqlQueryToDotarefas: TWideStringField;
     sqlQueryToDostatus: TWideStringField;
     sqlQueryToDodata: TDateField;
+<<<<<<< HEAD
 <<<<<<< HEAD
     sqlQueryVendas: TSQLQuery;
     sqlProviderVendas: TDataSetProvider;
@@ -33,6 +37,8 @@ type
     sqlQueryVendasquantidade: TIntegerField;
     sqlQueryVendasvalor_total: TFMTBCDField;
 =======
+=======
+>>>>>>> master
     sqlProviderPessoas: TDataSetProvider;
     sqlQueryPessoas: TSQLQuery;
     sqlQueryPessoasid_pessoas: TIntegerField;
@@ -44,6 +50,9 @@ type
     sqlQueryPessoasstatus: TWideStringField;
     sqlQueryPessoasfornecedores: TWideStringField;
     sqlQueryPessoasdata: TDateField;
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
   private
     { Private declarations }
