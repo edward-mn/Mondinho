@@ -3,7 +3,7 @@ object FormLogin: TFormLogin
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
-  Caption = 'FormLogin'
+  Caption = 'Login'
   ClientHeight = 345
   ClientWidth = 339
   Color = clBtnFace

@@ -3,9 +3,14 @@ program FormToDo;
 uses
   Vcl.Forms,
   UnitToDo in 'UnitToDo.pas' {FormView},
-  DataModuleConexao in 'DataModuleConexao.pas' {dmConexao: TDataModule},
+  DataModuleConexao in 'DataModuleConexao.pas' {DmConexao: TDataModule},
   DataModuleClientes in 'DataModuleClientes.pas' {DmClientes: TDataModule},
-  UnitCriacaoEdicao in 'UnitCriacaoEdicao.pas' {FormCriacaoEdicao},
+  UnitTarefas in 'UnitTarefas.pas' {FormTarefas},
+  UnitVendas in 'UnitVendas.pas' {FormVendas},
+  UnitPessoas in 'UnitPessoas.pas' {FormPessoas},
+  UnitEditarVendas in 'UnitEditarVendas.pas' {FormEditarVendas},
+  UnitEditarTarefas in 'UnitEditarTarefas.pas' {FormEditarTarefas},
+  UnitCriacaoEdicaoPessoas in 'UnitCriacaoEdicaoPessoas.pas' {FormCriacaoEdicaoPessoas},
   UnitLogin in 'UnitLogin.pas' {FormLogin},
   UnitCadastro in 'UnitCadastro.pas' {FormCadastro};
 
@@ -14,9 +19,9 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TDmClientes, DmClientes);
-  Application.CreateForm(TdmConexao, dmConexao);
   Application.CreateForm(TFormLogin, FormLogin);
-  Application.CreateForm(TFormView, FormView);
+  Application.CreateForm(TDmConexao, DmConexao);
+  Application.CreateForm(TDmClientes, DmClientes);
+  Application.CreateForm(TFormCadastro, FormCadastro);
   Application.Run;
 end.

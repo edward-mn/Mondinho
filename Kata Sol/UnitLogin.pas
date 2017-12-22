@@ -37,7 +37,7 @@ implementation
 
 {$R *.dfm}
 
-uses UnitToDo, Vcl.Themes;
+uses UnitToDo;
 
 constructor TFormLogin.Create(AOwner: TComponent);
 begin
@@ -49,7 +49,6 @@ end;
 
 procedure TFormLogin.btnCadastrarClick(Sender: TObject);
 begin
-  TStyleManager.TrySetStyle('Amakrits');
   CriarFormCadastro();
 end;
 

@@ -3,7 +3,7 @@ object FormCadastro: TFormCadastro
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
-  Caption = 'FormCadastro'
+  Caption = 'Cadastro'
   ClientHeight = 200
   ClientWidth = 493
   Color = clBtnFace
