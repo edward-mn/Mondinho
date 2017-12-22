@@ -7,7 +7,11 @@ uses
   Data.SqlExpr, DbxDevartPostgreSQL, Datasnap.DBClient;
 
 type
+<<<<<<< HEAD
   TDmConexao = class(TDataModule)
+=======
+  TdmConexao = class(TDataModule)
+>>>>>>> master
     sqlQueryToDo: TSQLQuery;
     sqlConexao: TSQLConnection;
     sqlProviderToDo: TDataSetProvider;
@@ -16,6 +20,7 @@ type
     sqlQueryToDotarefas: TWideStringField;
     sqlQueryToDostatus: TWideStringField;
     sqlQueryToDodata: TDateField;
+<<<<<<< HEAD
     sqlQueryVendas: TSQLQuery;
     sqlProviderVendas: TDataSetProvider;
     sqlQueryVendasid_produtos: TIntegerField;
@@ -27,6 +32,19 @@ type
     sqlQueryVendasvalor_produto: TFMTBCDField;
     sqlQueryVendasquantidade: TIntegerField;
     sqlQueryVendasvalor_total: TFMTBCDField;
+=======
+    sqlProviderPessoas: TDataSetProvider;
+    sqlQueryPessoas: TSQLQuery;
+    sqlQueryPessoasid_pessoas: TIntegerField;
+    sqlQueryPessoaspessoas: TWideStringField;
+    sqlQueryPessoascpf: TFMTBCDField;
+    sqlQueryPessoasendereco: TWideStringField;
+    sqlQueryPessoastelefone: TFMTBCDField;
+    sqlQueryPessoascelular: TFMTBCDField;
+    sqlQueryPessoasstatus: TWideStringField;
+    sqlQueryPessoasfornecedores: TWideStringField;
+    sqlQueryPessoasdata: TDateField;
+>>>>>>> master
   private
     { Private declarations }
   public
