@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
   DataModuleConexao, DataModuleClientes,UnitEditarTarefas, Vcl.StdCtrls,
-  UnitTarefas, Vcl.ExtCtrls, UnitVendas;
+  UnitTarefas, Vcl.ExtCtrls, UnitVendas, UnitPessoas;
 
 type
   TFormView = class(TForm)
@@ -14,7 +14,9 @@ type
     dsToDo: TDataSource;
     Panel1: TPanel;
     btnTarefas: TButton;
-    btnVendas: TButton;
+    btnPessoas: TButton;
+    btnPessoas: TButton;
+    procedure btnPessoasClick(Sender: TObject);
     procedure btnTarefasClick(Sender: TObject);
     procedure btnVendasClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -25,6 +27,7 @@ type
     constructor Create(AOwner: TComponent); override;
     procedure CriarFormTarefas;
     procedure CriarFormVendas;
+    procedure CriarFormPessoas;
   end;
 
 var
@@ -44,6 +47,11 @@ begin
   FClientes := TDmClientes.Create(Self);
 
   FClientes.cdstodo.SetProvider(FConexao.sqlProviderToDo);
+end;
+
+procedure TFormView.btnPessoasClick(Sender: TObject);
+begin
+  CriarFormPessoas();
 end;
 
 
@@ -90,8 +98,8 @@ end;
 
 procedure TFormView.FormCreate(Sender: TObject);
 begin
-  FClientes.cdstodo.Open;
-  dsToDo.DataSet := FClientes.cdstodo;
+  FClientes.cdsToDo.Open;
+  dsToDo.DataSet := FClientes.cdsToDo;
   dbGridPrincipal.DataSource := dsToDo;
 end;
 

@@ -23,6 +23,16 @@ type
     cdsVendasquantidade: TIntegerField;
     cdsVendasvalor_total: TFMTBCDField;
     cdsVendasdata: TDateField;
+    cdsPessoas: TClientDataSet;
+    cdsPessoasid_pessoas: TIntegerField;
+    cdsPessoaspessoas: TWideStringField;
+    cdsPessoascpf: TFMTBCDField;
+    cdsPessoasendereco: TWideStringField;
+    cdsPessoastelefone: TFMTBCDField;
+    cdsPessoascelular: TFMTBCDField;
+    cdsPessoasstatus: TWideStringField;
+    cdsPessoasfornecedores: TWideStringField;
+    cdsPessoasdata: TDateField;
   private
     { Private declarations }
   public

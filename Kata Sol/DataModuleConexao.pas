@@ -27,6 +27,17 @@ type
     sqlQueryVendasvalor_produto: TFMTBCDField;
     sqlQueryVendasquantidade: TIntegerField;
     sqlQueryVendasvalor_total: TFMTBCDField;
+    sqlProviderPessoas: TDataSetProvider;
+    sqlQueryPessoas: TSQLQuery;
+    sqlQueryPessoasid_pessoas: TIntegerField;
+    sqlQueryPessoaspessoas: TWideStringField;
+    sqlQueryPessoascpf: TFMTBCDField;
+    sqlQueryPessoasendereco: TWideStringField;
+    sqlQueryPessoastelefone: TFMTBCDField;
+    sqlQueryPessoascelular: TFMTBCDField;
+    sqlQueryPessoasstatus: TWideStringField;
+    sqlQueryPessoasfornecedores: TWideStringField;
+    sqlQueryPessoasdata: TDateField;
   private
     { Private declarations }
   public
