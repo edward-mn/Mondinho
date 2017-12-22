@@ -5,8 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
-  DataModuleConexao, DataModuleClientes, UnitCriacaoEdicao, Vcl.StdCtrls,
-  UnitTarefas, Vcl.ExtCtrls, UnitPessoas;
+  DataModuleConexao, DataModuleClientes,UnitEditarTarefas, Vcl.StdCtrls,
+  UnitTarefas, Vcl.ExtCtrls, UnitVendas, UnitPessoas;
 
 type
   TFormView = class(TForm)
@@ -15,8 +15,10 @@ type
     Panel1: TPanel;
     btnTarefas: TButton;
     btnPessoas: TButton;
+    btnVendas: TButton;
     procedure btnPessoasClick(Sender: TObject);
     procedure btnTarefasClick(Sender: TObject);
+    procedure btnVendasClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
     FConexao : TdmConexao;
@@ -24,6 +26,7 @@ type
   public
     constructor Create(AOwner: TComponent); override;
     procedure CriarFormTarefas;
+    procedure CriarFormVendas;
     procedure CriarFormPessoas;
   end;
 
@@ -43,7 +46,7 @@ begin
   FConexao := TdmConexao.Create(Self);
   FClientes := TDmClientes.Create(Self);
 
-  FClientes.cdsToDo.SetProvider(FConexao.sqlProviderToDo);
+  FClientes.cdstodo.SetProvider(FConexao.sqlProviderToDo);
 end;
 
 procedure TFormView.btnPessoasClick(Sender: TObject);
@@ -55,6 +58,11 @@ end;
 procedure TFormView.btnTarefasClick(Sender: TObject);
 begin
   CriarFormTarefas();
+end;
+
+procedure TFormView.btnVendasClick(Sender: TObject);
+begin
+  CriarFormVendas();
 end;
 
 procedure TFormView.CriarFormPessoas;
@@ -70,6 +78,7 @@ try
 finally
   NewForm.Free;
 end;
+
 end;
 
 procedure TFormView.CriarFormTarefas;
@@ -84,7 +93,24 @@ try
 finally
   NewForm.Free;
 end;
+
 end;
+
+procedure TFormView.CriarFormVendas;
+var
+  NewForm : TFormVendas;
+begin
+  NewForm := TFormVendas.Create(nil);
+try
+  NewForm.Clientes := FClientes;
+  NewForm.Conexao := FConexao;
+  NewForm.ShowModal;
+finally
+  NewForm.Free;
+end;
+
+end;
+
 
 procedure TFormView.FormCreate(Sender: TObject);
 begin

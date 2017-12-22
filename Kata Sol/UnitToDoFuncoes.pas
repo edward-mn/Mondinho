@@ -3,7 +3,7 @@ unit UnitToDoFuncoes;
 interface
 
 uses
-  System.SysUtils, System.DateUtils, UnitToDo, UnitCriacaoEdicao;
+  System.SysUtils, System.DateUtils, UnitToDo, UnitEditarTarefas;
 
 type
 

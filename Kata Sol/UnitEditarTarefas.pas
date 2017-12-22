@@ -1,4 +1,4 @@
-unit UnitCriacaoEdicao;
+unit UnitEditarTarefas;
 
 interface
 
@@ -8,7 +8,7 @@ uses
   Vcl.DBGrids, DataModuleConexao, Vcl.StdCtrls;
 
 type
-  TFormCriacaoEdicao = class(TForm)
+  TFormEditarTarefas = class(TForm)
     dbGridCriacaoEdicao: TDBGrid;
     dsCriarTarefas: TDataSource;
     btnAtualizar: TButton;
@@ -28,43 +28,43 @@ type
   end;
 
 var
-  FormCriacaoEdicao: TFormCriacaoEdicao;
+  FormEditarTarefas: TFormEditarTarefas;
 
 implementation
 
 {$R *.dfm}
 
-procedure TFormCriacaoEdicao.btnAdicionarClick(Sender: TObject);
+procedure TFormEditarTarefas.btnAdicionarClick(Sender: TObject);
 begin
-  Clientes.cdsToDo.Insert;
+  Clientes.cdsTodo.Insert;
 end;
 
-procedure TFormCriacaoEdicao.btnAtualizarClick(Sender: TObject);
+procedure TFormEditarTarefas.btnAtualizarClick(Sender: TObject);
 begin
-  Clientes.cdsToDo.ApplyUpdates(0);
-  Clientes.cdsToDo.Refresh;
+  Clientes.cdsTodo.ApplyUpdates(0);
+  Clientes.cdsTodo.Refresh;
 end;
 
-procedure TFormCriacaoEdicao.btnCancelarClick(Sender: TObject);
+procedure TFormEditarTarefas.btnCancelarClick(Sender: TObject);
 begin
-  Clientes.cdsToDo.Cancel;
+  Clientes.cdsTodo.Cancel;
 end;
 
-procedure TFormCriacaoEdicao.btnSalvarClick(Sender: TObject);
+procedure TFormEditarTarefas.btnSalvarClick(Sender: TObject);
 begin
-  Clientes.cdsToDo.ApplyUpdates(0);
+  Clientes.cdsTodo.ApplyUpdates(0);
 end;
 
-procedure TFormCriacaoEdicao.FormClose(Sender: TObject; var Action:
-    TCloseAction);
+procedure TFormEditarTarefas.FormClose(Sender: TObject;
+  var Action: TCloseAction);
 begin
   Clientes.cdsToDoid_todo.Visible := True;
 end;
 
-procedure TFormCriacaoEdicao.FormShow(Sender: TObject);
+procedure TFormEditarTarefas.FormShow(Sender: TObject);
 begin
   Clientes.cdsToDoid_todo.Visible := False;
-  dsCriarTarefas.DataSet := Clientes.cdsToDo;
+  dsCriarTarefas.DataSet := Clientes.cdsTodo;
   dbGridCriacaoEdicao.DataSource := dsCriarTarefas;
 end;
 

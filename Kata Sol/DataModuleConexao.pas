@@ -4,10 +4,10 @@ interface
 
 uses
   System.SysUtils, System.Classes, Data.FMTBcd, Datasnap.Provider, Data.DB,
-  Data.SqlExpr, DbxDevartPostgreSQL;
+  Data.SqlExpr, DbxDevartPostgreSQL, Datasnap.DBClient;
 
 type
-  TdmConexao = class(TDataModule)
+  TDmConexao = class(TDataModule)
     sqlQueryToDo: TSQLQuery;
     sqlConexao: TSQLConnection;
     sqlProviderToDo: TDataSetProvider;
@@ -16,6 +16,17 @@ type
     sqlQueryToDotarefas: TWideStringField;
     sqlQueryToDostatus: TWideStringField;
     sqlQueryToDodata: TDateField;
+    sqlQueryVendas: TSQLQuery;
+    sqlProviderVendas: TDataSetProvider;
+    sqlQueryVendasid_produtos: TIntegerField;
+    sqlQueryVendasprodutos: TWideStringField;
+    sqlQueryVendasvendedores: TWideStringField;
+    sqlQueryVendasstatus: TWideStringField;
+    sqlQueryVendasfornecedores: TWideStringField;
+    sqlQueryVendasdata: TDateField;
+    sqlQueryVendasvalor_produto: TFMTBCDField;
+    sqlQueryVendasquantidade: TIntegerField;
+    sqlQueryVendasvalor_total: TFMTBCDField;
     sqlProviderPessoas: TDataSetProvider;
     sqlQueryPessoas: TSQLQuery;
     sqlQueryPessoasid_pessoas: TIntegerField;
@@ -34,7 +45,7 @@ type
   end;
 
 var
-  dmConexao: TdmConexao;
+  DmConexao: TDmConexao;
 
 implementation
 

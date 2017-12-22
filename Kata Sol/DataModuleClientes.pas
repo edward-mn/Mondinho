@@ -13,6 +13,16 @@ type
     cdsToDotarefas: TWideStringField;
     cdsToDostatus: TWideStringField;
     cdsToDodata: TDateField;
+    cdsVendas: TClientDataSet;
+    cdsVendasid_produtos: TIntegerField;
+    cdsVendasprodutos: TWideStringField;
+    cdsVendasvendedores: TWideStringField;
+    cdsVendasstatus: TWideStringField;
+    cdsVendasfornecedores: TWideStringField;
+    cdsVendasvalor_produto: TFMTBCDField;
+    cdsVendasquantidade: TIntegerField;
+    cdsVendasvalor_total: TFMTBCDField;
+    cdsVendasdata: TDateField;
     cdsPessoas: TClientDataSet;
     cdsPessoasid_pessoas: TIntegerField;
     cdsPessoaspessoas: TWideStringField;

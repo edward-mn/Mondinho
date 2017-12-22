@@ -1,4 +1,4 @@
-object dmConexao: TdmConexao
+object DmConexao: TDmConexao
   OldCreateOrder = False
   Height = 253
   Width = 285
@@ -47,8 +47,7 @@ object dmConexao: TdmConexao
       'IPVersion=IPv4'
       'UseUnicode=True'
       'Charset=')
-    Connected = True
-    Left = 104
+    Left = 128
     Top = 16
   end
   object sqlProviderToDo: TDataSetProvider
@@ -56,6 +55,57 @@ object dmConexao: TdmConexao
     Options = [poPropogateChanges, poUseQuoteChar]
     Left = 24
     Top = 152
+  end
+  object sqlQueryVendas: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'select * from vendas')
+    SQLConnection = sqlConexao
+    Left = 184
+    Top = 88
+    object sqlQueryVendasid_produtos: TIntegerField
+      FieldName = 'id_produtos'
+    end
+    object sqlQueryVendasprodutos: TWideStringField
+      FieldName = 'produtos'
+      Size = 50
+    end
+    object sqlQueryVendasvendedores: TWideStringField
+      FieldName = 'vendedores'
+      Size = 50
+    end
+    object sqlQueryVendasstatus: TWideStringField
+      FieldName = 'status'
+    end
+    object sqlQueryVendasfornecedores: TWideStringField
+      FieldName = 'fornecedores'
+      Size = 50
+    end
+    object sqlQueryVendasdata: TDateField
+      FieldName = 'data'
+    end
+    object sqlQueryVendasvalor_produto: TFMTBCDField
+      DisplayLabel = 'Valor do Produto'
+      FieldName = 'valor_produto'
+      Precision = 11
+      Size = 2
+    end
+    object sqlQueryVendasquantidade: TIntegerField
+      DisplayLabel = 'Quantidade'
+      FieldName = 'quantidade'
+    end
+    object sqlQueryVendasvalor_total: TFMTBCDField
+      DisplayLabel = 'Valor Total'
+      FieldName = 'valor_total'
+      Precision = 11
+      Size = 2
+    end
+  end
+  object sqlProviderVendas: TDataSetProvider
+    DataSet = sqlQueryVendas
+    Left = 184
+    Top = 160
   end
   object sqlProviderPessoas: TDataSetProvider
     DataSet = sqlQueryPessoas
