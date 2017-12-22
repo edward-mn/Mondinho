@@ -31,6 +31,8 @@ type
    procedure TelaInicial_FiltroStatus_Agendada;
    procedure TelaInicial_FiltroStatus_Adiada;
    procedure TelaInicial_FiltroStatus_Finalizada;
+   procedure TelaInicial_FiltroStatus_AtrasadaOuAgendada;
+
   end;
 
 implementation
@@ -78,6 +80,11 @@ end;
 procedure TTestToDo.TelaInicial_FiltroStatus_Atrasada;
 begin
   CheckEquals('Status = ''Atrasada''', TFuncoesToDo.FiltroStatus('Atrasada'));
+end;
+
+procedure TTestToDo.TelaInicial_FiltroStatus_AtrasadaOuAgendada;
+begin
+//  CheckEquals('Status = ''Agendada'' or ''Atrasada''', TFuncoesToDo.FiltroStatus('Agendada'  'Atrasada'));
 end;
 
 procedure TTestToDo.TelaInicial_FiltroStatus_Finalizada;

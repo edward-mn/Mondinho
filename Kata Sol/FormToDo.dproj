@@ -90,7 +90,7 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="DataModuleConexao.pas">
-            <Form>DmConexao</Form>
+            <Form>dmConexao</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
@@ -99,23 +99,17 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="UnitTarefas.pas">
-            <Form>FormTarefas</Form>
+        <DCCReference Include="UnitCriacaoEdicao.pas">
+            <Form>FormCriacaoEdicao</Form>
+            <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="UnitVendas.pas">
-            <Form>FormVendas</Form>
+        <DCCReference Include="UnitLogin.pas">
+            <Form>FormLogin</Form>
+            <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="UnitPessoas.pas">
-            <Form>FormPessoas</Form>
-        </DCCReference>
-        <DCCReference Include="UnitEditarVendas.pas">
-            <Form>FormEditarVendas</Form>
-        </DCCReference>
-        <DCCReference Include="UnitEditarTarefas.pas">
-            <Form>FormEditarTarefas</Form>
-        </DCCReference>
-        <DCCReference Include="UnitCriacaoEdicaoPessoas.pas">
-            <Form>FormCriacaoEdicaoPessoas</Form>
+        <DCCReference Include="UnitCadastro.pas">
+            <Form>FormCadastro</Form>
+            <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

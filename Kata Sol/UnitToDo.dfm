@@ -3,9 +3,9 @@ object FormView: TFormView
   Top = 0
   Align = alCustom
   BorderStyle = bsSingle
-  Caption = 'Mondinho'
-  ClientHeight = 631
-  ClientWidth = 1084
+  Caption = 'FormView'
+  ClientHeight = 324
+  ClientWidth = 685
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,18 +13,18 @@ object FormView: TFormView
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  Position = poDesigned
-  WindowState = wsMaximized
+  Position = poScreenCenter
+  OnClose = FormClose
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object dbGridPrincipal: TDBGrid
     Left = 0
-    Top = 158
-    Width = 1084
-    Height = 473
-    Align = alBottom
-    ReadOnly = True
+    Top = 0
+    Width = 517
+    Height = 324
+    Align = alLeft
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -32,45 +32,93 @@ object FormView: TFormView
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
   end
-  object Panel1: TPanel
-    Left = 0
-    Top = 112
-    Width = 1084
-    Height = 46
-    Align = alBottom
+  object GroupBox1: TGroupBox
+    Left = 532
+    Top = 8
+    Width = 105
+    Height = 153
+    Caption = 'Status'
     TabOrder = 1
-    object btnTarefas: TButton
-      Left = 1
-      Top = 1
-      Width = 75
-      Height = 44
-      Align = alLeft
-      Caption = 'Tarefas'
+    object cbAtrasadas: TCheckBox
+      Left = 8
+      Top = 95
+      Width = 97
+      Height = 17
+      Caption = 'Atrasadas'
       TabOrder = 0
-      OnClick = btnTarefasClick
     end
-    object btnVendas: TButton
-      Left = 241
-      Top = 2
-      Width = 80
-      Height = 41
-      Caption = 'Vendas'
-      TabOrder = 2
-      OnClick = btnVendasClick
-    end
-    object btnPessoas: TButton
-      Left = 76
-      Top = 1
-      Width = 75
-      Height = 44
-      Align = alLeft
-      Caption = 'Pessoas'
+    object cbFinalizadas: TCheckBox
+      Left = 8
+      Top = 70
+      Width = 97
+      Height = 17
+      Caption = 'Finalizadas'
       TabOrder = 1
-      OnClick = btnPessoasClick
+    end
+    object cbAdiadas: TCheckBox
+      Left = 8
+      Top = 44
+      Width = 97
+      Height = 17
+      Caption = 'Adiadas'
+      TabOrder = 2
+    end
+    object cbAgendadas: TCheckBox
+      Left = 8
+      Top = 18
+      Width = 97
+      Height = 17
+      Caption = 'Agendadas'
+      TabOrder = 3
+    end
+    object btnPesquisar: TButton
+      Left = 9
+      Top = 121
+      Width = 87
+      Height = 26
+      Caption = 'Pesquisar'
+      TabOrder = 4
+      OnClick = btnPesquisarClick
     end
   end
+  object btnAtualizar: TButton
+    Left = 532
+    Top = 247
+    Width = 105
+    Height = 26
+    Caption = 'Atualizar'
+    TabOrder = 2
+    OnClick = btnAtualizarClick
+  end
+  object btnEditar: TButton
+    Left = 532
+    Top = 213
+    Width = 105
+    Height = 25
+    Caption = 'Editar'
+    TabOrder = 3
+    OnClick = btnEditarClick
+  end
+  object btnCriarTarefa: TButton
+    Left = 532
+    Top = 176
+    Width = 105
+    Height = 26
+    Caption = 'CriarTarefa'
+    TabOrder = 4
+    OnClick = btnCriarTarefaClick
+  end
+  object btnDeletar: TButton
+    Left = 532
+    Top = 283
+    Width = 105
+    Height = 25
+    Caption = 'Deletar'
+    TabOrder = 5
+    OnClick = btnDeletarClick
+  end
   object dsToDo: TDataSource
-    Left = 552
-    Top = 336
+    Left = 648
+    Top = 96
   end
 end

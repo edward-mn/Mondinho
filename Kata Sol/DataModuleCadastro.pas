@@ -1,4 +1,4 @@
-unit DataModuleClientes;
+unit DataModuleCadastro;
 
 interface
 
@@ -6,13 +6,7 @@ uses
   System.SysUtils, System.Classes, Data.DB, Datasnap.DBClient;
 
 type
-  TDmClientes = class(TDataModule)
-    cdsClientes: TClientDataSet;
-    cdsClientesid_todo: TIntegerField;
-    cdsClientesnomes: TWideStringField;
-    cdsClientestarefas: TWideStringField;
-    cdsClientesstatus: TWideStringField;
-    cdsClientesdata: TDateField;
+  TDMCadastro = class(TDataModule)
     cdsCadastro: TClientDataSet;
     cdsCadastroid: TIntegerField;
     cdsCadastronome_usuario: TWideStringField;
@@ -24,7 +18,7 @@ type
   end;
 
 var
-  DmClientes: TDmClientes;
+  DMCadastro: TDMCadastro;
 
 implementation
 
