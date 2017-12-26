@@ -22,6 +22,7 @@ type
     Image1: TImage;
     procedure btnCadastrarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure Cadastrar;
   private
 
   public
@@ -39,6 +40,11 @@ implementation
 
 
 procedure TFormCadastro.btnCadastrarClick(Sender: TObject);
+begin
+  Cadastrar;
+end;
+
+procedure TFormCadastro.Cadastrar;
 begin
   if DBEdtSenha.Text <> edtSenhaNovamente.Text then
     ShowMessage('A senha não pode ser diferente nos dois campos!')

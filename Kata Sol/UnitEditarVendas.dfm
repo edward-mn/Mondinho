@@ -1,6 +1,7 @@
 object FormEditarVendas: TFormEditarVendas
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Editar/Criar Vendas'
   ClientHeight = 309
