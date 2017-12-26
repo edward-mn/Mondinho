@@ -21,6 +21,7 @@ type
     procedure btnEntrarClick(Sender: TObject);
     procedure CriarFormCadastro;
     procedure CriarFormToDo;
+    procedure Logar;
   private
     FConexao : TdmConexao;
     FClientes : TDmClientes;
@@ -52,18 +53,7 @@ end;
 
 procedure TFormLogin.btnEntrarClick(Sender: TObject);
 begin
-  FConexao.sqlQueryCadastro.Close;
-  FConexao.sqlQueryCadastro.ParambyName('usuario').AsString := edtUsuario.Text;
-  FConexao.sqlQueryCadastro.ParambyName('senha').AsString := edtSenha.Text;
-  FConexao.sqlQueryCadastro.Open;
-
-  if FConexao.sqlQueryCadastro.IsEmpty then
-    ShowMessage('Usuario ou Senha Invalida!')
-  else
-  begin
-    CriarFormToDo();
-    FormLogin.Close;
-  end;
+Logar;
 end;
 
 procedure TFormLogin.CriarFormCadastro;
@@ -95,6 +85,22 @@ finally
   NewForm.Free;
 end;
 
+end;
+
+procedure TFormLogin.Logar;
+begin
+  FConexao.sqlQueryCadastro.Close;
+  FConexao.sqlQueryCadastro.ParambyName('usuario').AsString := edtUsuario.Text;
+  FConexao.sqlQueryCadastro.ParambyName('senha').AsString := edtSenha.Text;
+  FConexao.sqlQueryCadastro.Open;
+
+  if FConexao.sqlQueryCadastro.IsEmpty then
+    ShowMessage('Usuario ou Senha Invalida!')
+  else
+  begin
+    CriarFormToDo();
+    FormLogin.Close;
+  end;
 end;
 
 end.

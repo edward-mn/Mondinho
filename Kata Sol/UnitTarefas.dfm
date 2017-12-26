@@ -1,6 +1,7 @@
 object FormTarefas: TFormTarefas
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Tarefas'
   ClientHeight = 335

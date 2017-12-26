@@ -1,6 +1,7 @@
 object FormPessoas: TFormPessoas
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Pessoas'
   ClientHeight = 319

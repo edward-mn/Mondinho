@@ -1,6 +1,7 @@
 object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Editar/Cadastrar Pessoas'
   ClientHeight = 309
