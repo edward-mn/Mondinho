@@ -114,12 +114,11 @@
         <DCCReference Include="UnitEditarTarefas.pas">
             <Form>FormEditarTarefas</Form>
         </DCCReference>
-        <DCCReference Include="UnitCriacaoEdicaoPessoas.pas">
+        <DCCReference Include="UnitEditarPessoas.pas">
             <Form>FormCriacaoEdicaoPessoas</Form>
         </DCCReference>
         <DCCReference Include="UnitLogin.pas">
             <Form>FormLogin</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="UnitCadastro.pas">
             <Form>FormCadastro</Form>
@@ -149,8 +148,6 @@
                     <Excluded_Packages Name="$(BDSBIN)\dclofficexp210.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                     <Excluded_Packages Name="C:\Program Files (x86)\FastReport 5 VCL Professional\LibD21\dclfrxTee21.bpl">(untitled)</Excluded_Packages>
                     <Excluded_Packages Name="C:\Program Files (x86)\FastReport 5 VCL Professional\LibD21\dclfsTee21.bpl">FastScript 1.9 Tee Components</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport 5 VCL Professional\LibD21\dclfrxIBX21.bpl">FastReport 5.0 IBX Components</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport 5 VCL Professional\LibD21\dclfsIBX21.bpl">FastScript 1.9 IBX Components</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment>

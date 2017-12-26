@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Imaging.pngimage,
-  Vcl.ExtCtrls, UnitCadastro, DataModuleClientes, DataModuleConexao;
+  Vcl.ExtCtrls, UnitCadastro, DataModuleClientes, DataModuleConexao, Data.DB;
 
 type
   TFormLogin = class(TForm)
@@ -19,13 +19,11 @@ type
     Image1: TImage;
     procedure btnCadastrarClick(Sender: TObject);
     procedure btnEntrarClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
     procedure CriarFormCadastro;
     procedure CriarFormToDo;
   private
     FConexao : TdmConexao;
     FClientes : TDmClientes;
-    fdefaultStyleName:String;
   public
     constructor Create(AOwner: TComponent); override;
   end;
@@ -62,12 +60,10 @@ begin
   if FConexao.sqlQueryCadastro.IsEmpty then
     ShowMessage('Usuario ou Senha Invalida!')
   else
+  begin
     CriarFormToDo();
-end;
-
-procedure TFormLogin.Button1Click(Sender: TObject);
-begin
-  CriarFormToDo;
+    FormLogin.Close;
+  end;
 end;
 
 procedure TFormLogin.CriarFormCadastro;
@@ -90,12 +86,16 @@ procedure TFormLogin.CriarFormToDo;
 var
   NewForm : TFormView;
 begin
+  FormLogin.Visible := False;
   NewForm := TFormView.Create(nil);
-try
+ try
   NewForm.ShowModal;
 
 finally
   NewForm.Free;
 end;
+
 end;
+
 end.
+

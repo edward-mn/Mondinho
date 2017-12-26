@@ -27,6 +27,7 @@ type
   public
   FClientes :TDmClientes;
   FConexao : TdmConexao;
+  procedure LimparCampos;
   end;
 
 var
@@ -40,14 +41,13 @@ implementation
 procedure TFormCadastro.btnCadastrarClick(Sender: TObject);
 begin
   if DBEdtSenha.Text <> edtSenhaNovamente.Text then
-  begin
-    ShowMessage('A senha não pode ser diferente nos dois campos.');
-  end;
-  if DBEdtSenha.Text = edtSenhaNovamente.Text then
+    ShowMessage('A senha não pode ser diferente nos dois campos!')
+ else
     begin
       FConexao.sqlQueryCadastro.Close;
       FClientes.cdsCadastro.ApplyUpdates(0);
       ShowMessage('Cadastro Concluido!');
+      LimparCampos;
     end;
 end;
 
@@ -58,6 +58,13 @@ begin
   FClientes.cdsCadastro.Open;
   dsCadastro.DataSet := FClientes.cdsCadastro;
   FClientes.cdsCadastro.Insert;
+end;
+
+procedure TFormCadastro.LimparCampos;
+begin
+  DBEdtUsuario.Text := '';
+  DBEdtSenha.Text := '';
+  edtSenhaNovamente.Text := '';
 end;
 
 end.

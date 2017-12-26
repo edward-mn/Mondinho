@@ -35,7 +35,7 @@ object DmConexao: TDmConexao
     LoginPrompt = False
     Params.Strings = (
       'BlobSize=-1'
-      'HostName=localhost:5432'
+      'HostName=localhost:5434'
       'DataBase=MiniMonde'
       'SchemaName=mondinho'
       'DriverName=DevartPostgreSQL'
@@ -47,8 +47,8 @@ object DmConexao: TDmConexao
       'IPVersion=IPv4'
       'UseUnicode=True'
       'Charset=')
-    Left = 128
-    Top = 16
+    Left = 248
+    Top = 8
   end
   object sqlProviderToDo: TDataSetProvider
     DataSet = sqlQueryToDo

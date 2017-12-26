@@ -1,7 +1,7 @@
 object DmClientes: TDmClientes
   OldCreateOrder = False
-  Height = 142
-  Width = 383
+  Height = 130
+  Width = 312
   object cdsToDo: TClientDataSet
     Aggregates = <>
     Params = <>
@@ -132,7 +132,7 @@ object DmClientes: TDmClientes
     Aggregates = <>
     Params = <>
     ProviderName = 'sqlProviderCadastro'
-    Left = 280
+    Left = 240
     Top = 46
     object cdsCadastroid: TIntegerField
       FieldName = 'id'
