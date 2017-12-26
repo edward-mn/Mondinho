@@ -26,6 +26,7 @@ object DmClientes: TDmClientes
     end
     object cdsToDodata: TDateField
       FieldName = 'data'
+      EditMask = '!99/99/9999;1;_'
     end
   end
   object cdsVendas: TClientDataSet
@@ -80,6 +81,7 @@ object DmClientes: TDmClientes
     object cdsVendasdata: TDateField
       DisplayLabel = 'Data'
       FieldName = 'data'
+      EditMask = '!99/99/9999_;1;_'
     end
   end
   object cdsPessoas: TClientDataSet
@@ -132,6 +134,7 @@ object DmClientes: TDmClientes
     object cdsPessoasdata: TDateField
       DisplayLabel = 'Data'
       FieldName = 'data'
+      EditMask = '!99/99/9999;1;_'
     end
   end
   object cdsCadastro: TClientDataSet

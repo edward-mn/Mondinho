@@ -1,6 +1,7 @@
 object FormEditarTarefas: TFormEditarTarefas
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Editar/Cadastrar Tarefas'
   ClientHeight = 307

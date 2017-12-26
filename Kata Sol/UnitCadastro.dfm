@@ -5,7 +5,7 @@ object FormCadastro: TFormCadastro
   BorderStyle = bsSingle
   Caption = 'Cadastro'
   ClientHeight = 200
-  ClientWidth = 493
+  ClientWidth = 491
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
