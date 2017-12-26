@@ -1,9 +1,10 @@
 object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
   Left = 0
   Top = 0
-  Caption = 'Cadastrar e Editar Pessoas'
-  ClientHeight = 299
-  ClientWidth = 635
+  BorderStyle = bsSingle
+  Caption = 'Editar/Cadastrar Pessoas'
+  ClientHeight = 309
+  ClientWidth = 645
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,7 +21,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     Left = 0
     Top = 0
     Width = 489
-    Height = 299
+    Height = 309
     Align = alLeft
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
@@ -58,7 +59,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
   end
   object btnSalvarPessoas: TButton
     Left = 512
-    Top = 192
+    Top = 189
     Width = 105
     Height = 26
     Caption = 'Salvar'

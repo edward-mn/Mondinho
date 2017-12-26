@@ -1,9 +1,10 @@
 object FormEditarTarefas: TFormEditarTarefas
   Left = 0
   Top = 0
-  Caption = 'Criar/Editar Tarefas'
-  ClientHeight = 303
-  ClientWidth = 646
+  BorderStyle = bsSingle
+  Caption = 'Editar/Cadastrar Tarefas'
+  ClientHeight = 307
+  ClientWidth = 656
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,7 +21,7 @@ object FormEditarTarefas: TFormEditarTarefas
     Left = 0
     Top = 0
     Width = 505
-    Height = 303
+    Height = 307
     Align = alLeft
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET

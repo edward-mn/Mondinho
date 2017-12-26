@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Datasnap.DBClient,
   Vcl.StdCtrls, Vcl.DBCtrls, DataModuleClientes, DataModuleConexao, Vcl.Mask,
-  DataModuleCadastro, UnitToDo;
+  DataModuleCadastro, UnitToDo, Vcl.Imaging.pngimage, Vcl.ExtCtrls;
 
 type
   TFormCadastro = class(TForm)
@@ -19,6 +19,7 @@ type
     edtSenhaNovamente: TEdit;
     Label1: TLabel;
     Label4: TLabel;
+    Image1: TImage;
     procedure btnCadastrarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private

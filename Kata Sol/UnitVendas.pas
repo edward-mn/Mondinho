@@ -12,20 +12,21 @@ type
   TFormVendas = class(TForm)
     dbGridVendas: TDBGrid;
     dsVendas: TDataSource;
-    btnDeletarTarefa: TButton;
-    btnAtualizarTarefa: TButton;
-    btnEditarTarefa: TButton;
     GroupBox1: TGroupBox;
     cbExcluida: TCheckBox;
     cbFinalizada: TCheckBox;
     cbAberta: TCheckBox;
     btnPesquisar: TButton;
-    btnCriarTarefa: TButton;
+    Vendas: TGroupBox;
+    btnAtualizarVendas: TButton;
+    btnDeletarVendas: TButton;
+    btnEditarVendas: TButton;
+    btnCadastrarVendas: TButton;
     Tarefas: TLabel;
-    procedure btnAtualizarTarefaClick(Sender: TObject);
-    procedure btnCriarTarefaClick(Sender: TObject);
-    procedure btnDeletarTarefaClick(Sender: TObject);
-    procedure btnEditarTarefaClick(Sender: TObject);
+    procedure btnAtualizarVendasClick(Sender: TObject);
+    procedure btnCadastrarVendasClick(Sender: TObject);
+    procedure btnDeletarVendasClick(Sender: TObject);
+    procedure btnEditarVendasClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
     { Private declarations }
@@ -43,24 +44,24 @@ implementation
 
 {$R *.dfm}
 
-procedure TFormVendas.btnAtualizarTarefaClick(Sender: TObject);
+procedure TFormVendas.btnAtualizarVendasClick(Sender: TObject);
 begin
   Clientes.cdsVendas.Refresh;
 end;
 
-procedure TFormVendas.btnCriarTarefaClick(Sender: TObject);
+procedure TFormVendas.btnCadastrarVendasClick(Sender: TObject);
 begin
   CriarFormEditarVendas();
 end;
 
-procedure TFormVendas.btnDeletarTarefaClick(Sender: TObject);
+procedure TFormVendas.btnDeletarVendasClick(Sender: TObject);
 begin
   if MessageDlg('Deseja realmete deletar essa venda ?', mtInformation, [mbYes , mbNo],0) = mrYes then
     Clientes.cdsVendas.Delete;
     Clientes.cdsVendas.ApplyUpdates(0);
 end;
 
-procedure TFormVendas.btnEditarTarefaClick(Sender: TObject);
+procedure TFormVendas.btnEditarVendasClick(Sender: TObject);
 begin
   CriarFormEditarVendas();
 end;

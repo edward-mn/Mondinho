@@ -22,6 +22,7 @@ type
     btnEditarCadastro: TButton;
     btnAtualizarCadastro: TButton;
     btnDeletarCadastro: TButton;
+    GroupBox2: TGroupBox;
     procedure btnAtualizarCadastroClick(Sender: TObject);
     procedure btnCadastrarPessoaClick(Sender: TObject);
     procedure btnDeletarCadastroClick(Sender: TObject);
