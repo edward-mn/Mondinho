@@ -10,7 +10,7 @@ uses
   UnitPessoas in 'UnitPessoas.pas' {FormPessoas},
   UnitEditarVendas in 'UnitEditarVendas.pas' {FormEditarVendas},
   UnitEditarTarefas in 'UnitEditarTarefas.pas' {FormEditarTarefas},
-  UnitCriacaoEdicaoPessoas in 'UnitCriacaoEdicaoPessoas.pas' {FormCriacaoEdicaoPessoas},
+  UnitEditarPessoas in 'UnitEditarPessoas.pas' {FormCriacaoEdicaoPessoas},
   UnitLogin in 'UnitLogin.pas' {FormLogin},
   UnitCadastro in 'UnitCadastro.pas' {FormCadastro};
 
@@ -22,6 +22,5 @@ begin
   Application.CreateForm(TFormLogin, FormLogin);
   Application.CreateForm(TDmConexao, DmConexao);
   Application.CreateForm(TDmClientes, DmClientes);
-  Application.CreateForm(TFormCadastro, FormCadastro);
   Application.Run;
 end.
