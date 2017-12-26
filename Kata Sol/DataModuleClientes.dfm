@@ -9,6 +9,7 @@ object DmClientes: TDmClientes
     Left = 34
     Top = 46
     object cdsToDoid_todo: TIntegerField
+      DisplayLabel = 'C'#243'd. Tarefas'
       FieldName = 'id_todo'
     end
     object cdsToDonomes: TWideStringField
@@ -37,28 +38,30 @@ object DmClientes: TDmClientes
       DisplayLabel = 'C'#243'd. Produtos'
       FieldName = 'id_produtos'
     end
-    object cdsVendasprodutos: TWideStringField
-      DisplayLabel = 'Produtos'
-      FieldName = 'produtos'
-      Size = 50
-    end
     object cdsVendasvendedores: TWideStringField
       DisplayLabel = 'Vendedores'
       FieldName = 'vendedores'
       Size = 50
-    end
-    object cdsVendasstatus: TWideStringField
-      DisplayLabel = 'Status'
-      FieldName = 'status'
     end
     object cdsVendasfornecedores: TWideStringField
       DisplayLabel = 'Fornecedores'
       FieldName = 'fornecedores'
       Size = 50
     end
+    object cdsVendasstatus: TWideStringField
+      DisplayLabel = 'Status'
+      FieldName = 'status'
+    end
+    object cdsVendasprodutos: TWideStringField
+      DisplayLabel = 'Produtos'
+      FieldName = 'produtos'
+      Size = 50
+    end
     object cdsVendasvalor_produto: TFMTBCDField
-      DisplayLabel = 'Valor Unit'#225'rio'
+      DisplayLabel = 'Pre'#231'o'
       FieldName = 'valor_produto'
+      EditFormat = '0.00'
+      currency = True
       Precision = 11
       Size = 2
     end
@@ -69,6 +72,8 @@ object DmClientes: TDmClientes
     object cdsVendasvalor_total: TFMTBCDField
       DisplayLabel = 'Valor Total'
       FieldName = 'valor_total'
+      EditFormat = '0.00'
+      currency = True
       Precision = 11
       Size = 2
     end
@@ -84,6 +89,7 @@ object DmClientes: TDmClientes
     Left = 178
     Top = 46
     object cdsPessoasid_pessoas: TIntegerField
+      DisplayLabel = 'C'#243'd. Pessoas'
       FieldName = 'id_pessoas'
     end
     object cdsPessoaspessoas: TWideStringField
