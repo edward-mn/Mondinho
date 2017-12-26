@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
   DataModuleConexao, DataModuleClientes,UnitEditarTarefas, Vcl.StdCtrls,
-  UnitTarefas, Vcl.ExtCtrls, UnitVendas, UnitPessoas;
+  UnitTarefas, Vcl.ExtCtrls, UnitVendas, UnitPessoas, Vcl.Imaging.pngimage;
 
 type
   TFormView = class(TForm)
@@ -16,6 +16,7 @@ type
     btnTarefas: TButton;
     btnPessoas: TButton;
     btnVendas: TButton;
+    Image1: TImage;
     procedure btnPessoasClick(Sender: TObject);
     procedure btnTarefasClick(Sender: TObject);
     procedure btnVendasClick(Sender: TObject);

@@ -1,9 +1,10 @@
 object FormPessoas: TFormPessoas
   Left = 0
   Top = 0
-  Caption = 'FormPessoas'
-  ClientHeight = 309
-  ClientWidth = 637
+  BorderStyle = bsSingle
+  Caption = 'Pessoas'
+  ClientHeight = 319
+  ClientWidth = 666
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,8 +19,8 @@ object FormPessoas: TFormPessoas
   object dbGridPessoas: TDBGrid
     Left = 0
     Top = 0
-    Width = 489
-    Height = 309
+    Width = 524
+    Height = 319
     Align = alLeft
     ReadOnly = True
     TabOrder = 0
@@ -30,9 +31,9 @@ object FormPessoas: TFormPessoas
     TitleFont.Style = []
   end
   object GroupBox1: TGroupBox
-    Left = 512
+    Left = 530
     Top = 6
-    Width = 105
+    Width = 120
     Height = 153
     Caption = 'Status'
     TabOrder = 1
@@ -77,41 +78,49 @@ object FormPessoas: TFormPessoas
       TabOrder = 4
     end
   end
-  object btnCadastrarPessoa: TButton
-    Left = 512
-    Top = 174
-    Width = 105
-    Height = 26
-    Caption = 'Cadastrar Pessoas'
+  object GroupBox2: TGroupBox
+    Left = 530
+    Top = 165
+    Width = 120
+    Height = 136
+    Caption = 'Pessoas'
     TabOrder = 2
-    OnClick = btnCadastrarPessoaClick
-  end
-  object btnEditarCadastro: TButton
-    Left = 512
-    Top = 210
-    Width = 105
-    Height = 25
-    Caption = 'Editar Cadastro'
-    TabOrder = 3
-    OnClick = btnEditarCadastroClick
-  end
-  object btnAtualizarCadastro: TButton
-    Left = 512
-    Top = 240
-    Width = 105
-    Height = 26
-    Caption = 'Atualizar Cadastro'
-    TabOrder = 4
-    OnClick = btnAtualizarCadastroClick
-  end
-  object btnDeletarCadastro: TButton
-    Left = 512
-    Top = 272
-    Width = 105
-    Height = 25
-    Caption = 'Deletar Cadastro'
-    TabOrder = 5
-    OnClick = btnDeletarCadastroClick
+    object btnAtualizarCadastro: TButton
+      Left = 9
+      Top = 45
+      Width = 105
+      Height = 26
+      Caption = 'Atualizar'
+      TabOrder = 0
+      OnClick = btnAtualizarCadastroClick
+    end
+    object btnCadastrarPessoa: TButton
+      Left = 8
+      Top = 13
+      Width = 105
+      Height = 26
+      Caption = 'Cadastrar'
+      TabOrder = 1
+      OnClick = btnCadastrarPessoaClick
+    end
+    object btnDeletarCadastro: TButton
+      Left = 9
+      Top = 107
+      Width = 105
+      Height = 25
+      Caption = 'Deletar'
+      TabOrder = 2
+      OnClick = btnDeletarCadastroClick
+    end
+    object btnEditarCadastro: TButton
+      Left = 9
+      Top = 77
+      Width = 105
+      Height = 25
+      Caption = 'Editar'
+      TabOrder = 3
+      OnClick = btnEditarCadastroClick
+    end
   end
   object dsPessoas: TDataSource
     Left = 216

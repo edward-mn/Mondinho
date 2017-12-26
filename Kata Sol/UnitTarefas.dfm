@@ -1,9 +1,10 @@
 object FormTarefas: TFormTarefas
   Left = 0
   Top = 0
+  BorderStyle = bsSingle
   Caption = 'Tarefas'
-  ClientHeight = 325
-  ClientWidth = 649
+  ClientHeight = 335
+  ClientWidth = 670
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,50 +16,16 @@ object FormTarefas: TFormTarefas
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object Tarefas: TLabel
-    Left = 530
-    Top = 172
-    Width = 41
-    Height = 13
-    Caption = 'Tarefas:'
-  end
-  object btnDeletarTarefa: TButton
-    Left = 530
-    Top = 292
-    Width = 105
-    Height = 25
-    Caption = 'Deletar Tarefa'
-    TabOrder = 0
-    OnClick = btnDeletarTarefaClick
-  end
-  object btnAtualizarTarefa: TButton
-    Left = 530
-    Top = 260
-    Width = 105
-    Height = 26
-    Caption = 'Atualizar Tarefa'
-    TabOrder = 1
-    OnClick = btnAtualizarTarefaClick
-  end
-  object btnEditarTarefa: TButton
-    Left = 530
-    Top = 228
-    Width = 105
-    Height = 25
-    Caption = 'Editar Tarefa'
-    TabOrder = 2
-    OnClick = btnEditarTarefaClick
-  end
   object GroupBox1: TGroupBox
     Left = 530
     Top = 8
-    Width = 105
+    Width = 119
     Height = 153
     Caption = 'Status'
-    TabOrder = 3
+    TabOrder = 0
     object cbAtrasadas: TCheckBox
       Left = 8
-      Top = 95
+      Top = 92
       Width = 97
       Height = 17
       Caption = 'Atrasadas'
@@ -66,7 +33,7 @@ object FormTarefas: TFormTarefas
     end
     object cbFinalizadas: TCheckBox
       Left = 8
-      Top = 70
+      Top = 67
       Width = 97
       Height = 17
       Caption = 'Finalizadas'
@@ -74,7 +41,7 @@ object FormTarefas: TFormTarefas
     end
     object cbAdiadas: TCheckBox
       Left = 8
-      Top = 44
+      Top = 42
       Width = 97
       Height = 17
       Caption = 'Adiadas'
@@ -91,35 +58,70 @@ object FormTarefas: TFormTarefas
     object btnPesquisar: TButton
       Left = 9
       Top = 121
-      Width = 87
+      Width = 96
       Height = 26
       Caption = 'Pesquisar'
       TabOrder = 4
       OnClick = btnPesquisarClick
     end
   end
-  object btnCriarTarefa: TButton
-    Left = 530
-    Top = 196
-    Width = 105
-    Height = 26
-    Caption = 'Criar'
-    TabOrder = 4
-    OnClick = btnCriarTarefaClick
-  end
   object dbGridTarefas: TDBGrid
     Left = 0
     Top = 0
     Width = 524
-    Height = 325
+    Height = 335
     Align = alLeft
     ReadOnly = True
-    TabOrder = 5
+    TabOrder = 1
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+  end
+  object GroupBox2: TGroupBox
+    Left = 530
+    Top = 167
+    Width = 119
+    Height = 147
+    Caption = 'Tarefas'
+    TabOrder = 2
+    object btnDeletarTarefa: TButton
+      Left = 9
+      Top = 110
+      Width = 105
+      Height = 25
+      Caption = 'Deletar'
+      TabOrder = 0
+      OnClick = btnDeletarTarefaClick
+    end
+    object btnAtualizarTarefa: TButton
+      Left = 9
+      Top = 78
+      Width = 105
+      Height = 26
+      Caption = 'Atualizar'
+      TabOrder = 1
+      OnClick = btnAtualizarTarefaClick
+    end
+    object btnEditarTarefa: TButton
+      Left = 8
+      Top = 15
+      Width = 105
+      Height = 25
+      Caption = 'Editar'
+      TabOrder = 2
+      OnClick = btnEditarTarefaClick
+    end
+    object btnCriarTarefa: TButton
+      Left = 9
+      Top = 46
+      Width = 105
+      Height = 26
+      Caption = 'Cadastrar'
+      TabOrder = 3
+      OnClick = btnCriarTarefaClick
+    end
   end
   object dsTarefas: TDataSource
     Left = 216

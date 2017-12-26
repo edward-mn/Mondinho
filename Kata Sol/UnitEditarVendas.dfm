@@ -1,9 +1,10 @@
 object FormEditarVendas: TFormEditarVendas
   Left = 0
   Top = 0
+  BorderStyle = bsSingle
   Caption = 'Editar/Criar Vendas'
-  ClientHeight = 299
-  ClientWidth = 635
+  ClientHeight = 309
+  ClientWidth = 645
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

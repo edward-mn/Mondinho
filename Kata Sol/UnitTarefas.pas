@@ -10,19 +10,19 @@ uses
 
 type
   TFormTarefas = class(TForm)
-    btnDeletarTarefa: TButton;
-    btnAtualizarTarefa: TButton;
-    btnEditarTarefa: TButton;
     GroupBox1: TGroupBox;
     cbAtrasadas: TCheckBox;
     cbFinalizadas: TCheckBox;
     cbAdiadas: TCheckBox;
     cbAgendada: TCheckBox;
     btnPesquisar: TButton;
-    btnCriarTarefa: TButton;
     dbGridTarefas: TDBGrid;
     dsTarefas: TDataSource;
-    Tarefas: TLabel;
+    GroupBox2: TGroupBox;
+    btnDeletarTarefa: TButton;
+    btnAtualizarTarefa: TButton;
+    btnEditarTarefa: TButton;
+    btnCriarTarefa: TButton;
     procedure btnAtualizarTarefaClick(Sender: TObject);
     procedure btnCriarTarefaClick(Sender: TObject);
     procedure btnDeletarTarefaClick(Sender: TObject);

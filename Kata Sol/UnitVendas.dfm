@@ -1,9 +1,10 @@
 object FormVendas: TFormVendas
   Left = 0
   Top = 0
+  BorderStyle = bsSingle
   Caption = 'Vendas'
-  ClientHeight = 330
-  ClientWidth = 887
+  ClientHeight = 334
+  ClientWidth = 697
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -23,10 +24,11 @@ object FormVendas: TFormVendas
     Caption = 'Vendas:'
   end
   object dbGridVendas: TDBGrid
-    Left = 8
-    Top = 8
-    Width = 756
-    Height = 309
+    Left = 0
+    Top = 0
+    Width = 521
+    Height = 334
+    Align = alLeft
     ReadOnly = True
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
@@ -35,59 +37,32 @@ object FormVendas: TFormVendas
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
   end
-  object btnDeletarTarefa: TButton
-    Left = 770
-    Top = 277
-    Width = 105
-    Height = 25
-    Caption = 'Deletar'
-    TabOrder = 1
-    OnClick = btnDeletarTarefaClick
-  end
-  object btnAtualizarTarefa: TButton
-    Left = 770
-    Top = 245
-    Width = 105
-    Height = 26
-    Caption = 'Atualizar'
-    TabOrder = 2
-    OnClick = btnAtualizarTarefaClick
-  end
-  object btnEditarTarefa: TButton
-    Left = 770
-    Top = 213
-    Width = 105
-    Height = 25
-    Caption = 'Editar'
-    TabOrder = 3
-    OnClick = btnEditarTarefaClick
-  end
   object GroupBox1: TGroupBox
-    Left = 770
-    Top = 16
-    Width = 105
-    Height = 129
+    Left = 527
+    Top = 8
+    Width = 122
+    Height = 121
     Caption = 'Status'
-    TabOrder = 4
+    TabOrder = 1
     object cbExcluida: TCheckBox
-      Left = 8
-      Top = 70
+      Left = 17
+      Top = 61
       Width = 97
       Height = 17
       Caption = 'Excluida'
       TabOrder = 0
     end
     object cbFinalizada: TCheckBox
-      Left = 8
-      Top = 44
+      Left = 17
+      Top = 38
       Width = 97
       Height = 17
       Caption = 'Finalizada'
       TabOrder = 1
     end
     object cbAberta: TCheckBox
-      Left = 8
-      Top = 18
+      Left = 17
+      Top = 15
       Width = 97
       Height = 17
       Caption = 'Aberta'
@@ -95,24 +70,59 @@ object FormVendas: TFormVendas
     end
     object btnPesquisar: TButton
       Left = 10
-      Top = 93
-      Width = 87
+      Top = 89
+      Width = 101
       Height = 26
       Caption = 'Pesquisar'
       TabOrder = 3
     end
   end
-  object btnCriarTarefa: TButton
-    Left = 770
-    Top = 181
-    Width = 105
-    Height = 26
-    Caption = 'Criar'
-    TabOrder = 5
-    OnClick = btnCriarTarefaClick
+  object Vendas: TGroupBox
+    Left = 527
+    Top = 139
+    Width = 122
+    Height = 143
+    Caption = 'Vendas'
+    TabOrder = 2
+    object btnAtualizarVendas: TButton
+      Left = 8
+      Top = 43
+      Width = 105
+      Height = 26
+      Caption = 'Atualizar'
+      TabOrder = 0
+      OnClick = btnAtualizarVendasClick
+    end
+    object btnDeletarVendas: TButton
+      Left = 8
+      Top = 100
+      Width = 105
+      Height = 25
+      Caption = 'Deletar'
+      TabOrder = 1
+      OnClick = btnDeletarVendasClick
+    end
+    object btnEditarVendas: TButton
+      Left = 8
+      Top = 72
+      Width = 105
+      Height = 25
+      Caption = 'Editar'
+      TabOrder = 2
+      OnClick = btnEditarVendasClick
+    end
+    object btnCadastrarVendas: TButton
+      Left = 8
+      Top = 14
+      Width = 105
+      Height = 26
+      Caption = 'Cadastrar'
+      TabOrder = 3
+      OnClick = btnCadastrarVendasClick
+    end
   end
   object dsVendas: TDataSource
-    Left = 704
-    Top = 272
+    Left = 280
+    Top = 128
   end
 end
