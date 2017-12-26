@@ -2,8 +2,8 @@ object FormPessoas: TFormPessoas
   Left = 0
   Top = 0
   Caption = 'FormPessoas'
-  ClientHeight = 309
-  ClientWidth = 637
+  ClientHeight = 339
+  ClientWidth = 647
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,7 +19,7 @@ object FormPessoas: TFormPessoas
     Left = 0
     Top = 0
     Width = 489
-    Height = 309
+    Height = 339
     Align = alLeft
     ReadOnly = True
     TabOrder = 0

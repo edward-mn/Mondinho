@@ -5,8 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DataModuleClientes, DataModuleConexao,
-  Data.DB, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, {UnitCriacaoEdicao,}
-  System.UITypes, UnitEditarTarefas;
+  Data.DB, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, System.UITypes, UnitEditarTarefas;
 
 type
   TFormTarefas = class(TForm)

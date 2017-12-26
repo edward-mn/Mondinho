@@ -1,4 +1,4 @@
-unit UnitCriacaoEdicaoPessoas;
+unit UnitEditarPessoas;
 
 interface
 
