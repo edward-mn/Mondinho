@@ -21,10 +21,10 @@ object FormLogin: TFormLogin
     Top = 187
     Width = 40
     Height = 13
-    Caption = 'Usuario:'
+    Caption = 'Usu'#225'rio:'
   end
   object Label2: TLabel
-    Left = 20
+    Left = 23
     Top = 214
     Width = 34
     Height = 13
