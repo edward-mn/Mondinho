@@ -36,7 +36,6 @@ type
     sqlQueryPessoastelefone: TFMTBCDField;
     sqlQueryPessoascelular: TFMTBCDField;
     sqlQueryPessoasstatus: TWideStringField;
-    sqlQueryPessoasfornecedores: TWideStringField;
     sqlQueryPessoasdata: TDateField;
     sqlProviderCadastro: TDataSetProvider;
     sqlQueryCadastro: TSQLQuery;

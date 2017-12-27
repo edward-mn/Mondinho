@@ -19,7 +19,6 @@ type
     cbFisica: TCheckBox;
     btnPesquisar: TButton;
     btnCadastrarPessoa: TButton;
-    btnEditarCadastro: TButton;
     btnAtualizarCadastro: TButton;
     btnDeletarCadastro: TButton;
     GroupBox2: TGroupBox;
