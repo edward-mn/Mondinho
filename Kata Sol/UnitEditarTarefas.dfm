@@ -20,9 +20,9 @@ object FormEditarTarefas: TFormEditarTarefas
   TextHeight = 13
   object dbGridCriacaoEdicao: TDBGrid
     Left = 0
-    Top = 224
+    Top = 232
     Width = 705
-    Height = 148
+    Height = 140
     Align = alBottom
     ReadOnly = True
     TabOrder = 6
@@ -34,7 +34,7 @@ object FormEditarTarefas: TFormEditarTarefas
   end
   object btnAtualizar: TButton
     Left = 19
-    Top = 99
+    Top = 83
     Width = 105
     Height = 26
     Caption = 'Atualizar'
@@ -43,7 +43,7 @@ object FormEditarTarefas: TFormEditarTarefas
   end
   object btnSalvar: TButton
     Left = 19
-    Top = 175
+    Top = 159
     Width = 105
     Height = 26
     Caption = 'Salvar'
@@ -52,7 +52,7 @@ object FormEditarTarefas: TFormEditarTarefas
   end
   object btnNovo: TButton
     Left = 19
-    Top = 27
+    Top = 11
     Width = 105
     Height = 25
     Caption = 'Novo'
@@ -61,7 +61,7 @@ object FormEditarTarefas: TFormEditarTarefas
   end
   object btnCancelar: TButton
     Left = 19
-    Top = 136
+    Top = 120
     Width = 105
     Height = 25
     Caption = 'Cancelar'
@@ -70,7 +70,7 @@ object FormEditarTarefas: TFormEditarTarefas
   end
   object btnEditar: TButton
     Left = 19
-    Top = 64
+    Top = 48
     Width = 105
     Height = 25
     Caption = 'Editar'
@@ -78,81 +78,100 @@ object FormEditarTarefas: TFormEditarTarefas
     OnClick = btnEditarClick
   end
   object gbFormulario: TGroupBox
-    Left = 132
-    Top = 43
-    Width = 559
-    Height = 126
+    Left = 130
+    Top = 20
+    Width = 551
+    Height = 184
     Caption = 'Formul'#225'rio'
     Enabled = False
     TabOrder = 1
     object Label1: TLabel
-      Left = 16
-      Top = 20
+      Left = 13
+      Top = 84
       Width = 36
       Height = 13
       Caption = '* Nome'
-      FocusControl = DBEdit1
-    end
-    object Label2: TLabel
-      Left = 16
-      Top = 75
-      Width = 41
-      Height = 13
-      Caption = '* Tarefa'
-      FocusControl = DBEdit2
+      FocusControl = edtNome
     end
     object Label3: TLabel
-      Left = 411
-      Top = 20
+      Left = 363
+      Top = 84
       Width = 40
       Height = 13
       Caption = '* Status'
-      FocusControl = DBEdit3
+      FocusControl = edtStatus
     end
     object Label4: TLabel
-      Left = 271
-      Top = 20
+      Left = 13
+      Top = 134
       Width = 32
       Height = 13
       Caption = '* Data'
-      FocusControl = DBEdit4
+      FocusControl = edtData
     end
-    object DBEdit1: TDBEdit
-      Left = 16
-      Top = 40
-      Width = 249
+    object Label2: TLabel
+      Left = 13
+      Top = 30
+      Width = 41
+      Height = 13
+      Caption = '* Tarefa'
+    end
+    object edtNome: TDBEdit
+      Left = 13
+      Top = 103
+      Width = 316
       Height = 21
       DataField = 'nomes'
       DataSource = dsCriarTarefas
-      TabOrder = 0
+      TabOrder = 1
     end
-    object DBEdit2: TDBEdit
-      Left = 16
-      Top = 91
-      Width = 465
+    object edtTarefa: TDBEdit
+      Left = 13
+      Top = 49
+      Width = 524
       Height = 21
       DataField = 'tarefas'
       DataSource = dsCriarTarefas
-      TabOrder = 3
+      TabOrder = 0
     end
-    object DBEdit3: TDBEdit
-      Left = 411
-      Top = 39
-      Width = 145
+    object edtStatus: TDBEdit
+      Left = 363
+      Top = 103
+      Width = 174
       Height = 21
       DataField = 'status'
       DataSource = dsCriarTarefas
       TabOrder = 2
     end
-    object DBEdit4: TDBEdit
-      Left = 271
-      Top = 39
+    object edtData: TDBEdit
+      Left = 13
+      Top = 153
       Width = 134
       Height = 21
       DataField = 'data'
       DataSource = dsCriarTarefas
-      TabOrder = 1
+      TabOrder = 3
+      OnEnter = edtDataEnter
     end
+  end
+  object btnDeletarTarefa: TButton
+    Left = 19
+    Top = 193
+    Width = 105
+    Height = 25
+    Caption = 'Deletar'
+    TabOrder = 7
+    OnClick = btnDeletarTarefaClick
+  end
+  object mCalendar: TMonthCalendar
+    Left = 283
+    Top = 173
+    Width = 225
+    Height = 160
+    Date = 43096.570853483800000000
+    TabOrder = 8
+    OnClick = mCalendarClick
+    OnDblClick = mCalendarDblClick
   end
   object dsCriarTarefas: TDataSource
     Left = 240

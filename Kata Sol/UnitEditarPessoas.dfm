@@ -33,8 +33,8 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     TitleFont.Style = []
   end
   object btnNovaPessoa: TButton
-    Left = 8
-    Top = 34
+    Left = 11
+    Top = 21
     Width = 105
     Height = 25
     Caption = 'Novo'
@@ -42,8 +42,8 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     OnClick = btnNovaPessoaClick
   end
   object btnAtualizarPessoas: TButton
-    Left = 8
-    Top = 96
+    Left = 11
+    Top = 83
     Width = 105
     Height = 26
     Caption = 'Atualizar'
@@ -51,8 +51,8 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     OnClick = btnAtualizarPessoasClick
   end
   object btnCancelarPessoas: TButton
-    Left = 8
-    Top = 128
+    Left = 11
+    Top = 115
     Width = 105
     Height = 25
     Caption = 'Cancelar'
@@ -60,8 +60,8 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     OnClick = btnCancelarPessoasClick
   end
   object btnSalvarPessoas: TButton
-    Left = 8
-    Top = 159
+    Left = 11
+    Top = 146
     Width = 105
     Height = 26
     Caption = 'Salvar'
@@ -137,7 +137,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       Caption = ' * Nome'
     end
     object edtData: TDBEdit
-      Left = 6
+      Left = 3
       Top = 129
       Width = 147
       Height = 21
@@ -145,6 +145,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       DataField = 'data'
       DataSource = dsCriacaoEdicaoPessoas
       TabOrder = 6
+      OnEnter = edtDataEnter
     end
     object edtTelefone: TDBEdit
       Left = 6
@@ -208,13 +209,32 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     end
   end
   object btnEditar: TButton
-    Left = 8
-    Top = 65
+    Left = 11
+    Top = 52
     Width = 105
     Height = 25
     Caption = 'Editar'
     TabOrder = 2
     OnClick = btnEditarClick
+  end
+  object mCalendar: TMonthCalendar
+    Left = 292
+    Top = 157
+    Width = 225
+    Height = 160
+    Date = 43096.568821770830000000
+    TabOrder = 7
+    OnClick = mCalendarClick
+    OnDblClick = mCalendarDblClick
+  end
+  object btnDeletarCadastro: TButton
+    Left = 11
+    Top = 178
+    Width = 105
+    Height = 25
+    Caption = 'Deletar'
+    TabOrder = 8
+    OnClick = btnDeletarCadastroClick
   end
   object dsCriacaoEdicaoPessoas: TDataSource
     Left = 168

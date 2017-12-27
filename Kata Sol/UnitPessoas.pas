@@ -20,11 +20,9 @@ type
     btnPesquisar: TButton;
     btnCadastrarPessoa: TButton;
     btnAtualizarCadastro: TButton;
-    btnDeletarCadastro: TButton;
     GroupBox2: TGroupBox;
     procedure btnAtualizarCadastroClick(Sender: TObject);
     procedure btnCadastrarPessoaClick(Sender: TObject);
-    procedure btnDeletarCadastroClick(Sender: TObject);
     procedure btnEditarCadastroClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
@@ -50,13 +48,6 @@ end;
 procedure TFormPessoas.btnCadastrarPessoaClick(Sender: TObject);
 begin
   CriarFormCriacaoEdicaoPessoas();
-end;
-
-procedure TFormPessoas.btnDeletarCadastroClick(Sender: TObject);
-begin
-  if MessageDlg('Deseja realmete deletar essa tarefa ?', mtInformation, [mbYes , mbNo],0) = mrYes then
-    Clientes.cdsPessoas.Delete;
-    Clientes.cdsPessoas.ApplyUpdates(0);
 end;
 
 procedure TFormPessoas.btnEditarCadastroClick(Sender: TObject);

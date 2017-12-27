@@ -33,7 +33,7 @@ object FormPessoas: TFormPessoas
   end
   object GroupBox1: TGroupBox
     Left = 530
-    Top = 8
+    Top = 24
     Width = 120
     Height = 153
     Caption = 'Status'
@@ -81,9 +81,9 @@ object FormPessoas: TFormPessoas
   end
   object GroupBox2: TGroupBox
     Left = 530
-    Top = 189
+    Top = 207
     Width = 120
-    Height = 116
+    Height = 84
     Caption = 'Pessoas'
     TabOrder = 2
     object btnAtualizarCadastro: TButton
@@ -103,15 +103,6 @@ object FormPessoas: TFormPessoas
       Caption = 'Editar Registros'
       TabOrder = 1
       OnClick = btnCadastrarPessoaClick
-    end
-    object btnDeletarCadastro: TButton
-      Left = 9
-      Top = 78
-      Width = 105
-      Height = 25
-      Caption = 'Deletar'
-      TabOrder = 2
-      OnClick = btnDeletarCadastroClick
     end
   end
   object dsPessoas: TDataSource
