@@ -82,14 +82,14 @@ object FormTarefas: TFormTarefas
   end
   object GroupBox2: TGroupBox
     Left = 530
-    Top = 167
+    Top = 183
     Width = 119
-    Height = 147
+    Height = 130
     Caption = 'Tarefas'
     TabOrder = 2
     object btnDeletarTarefa: TButton
       Left = 9
-      Top = 110
+      Top = 94
       Width = 105
       Height = 25
       Caption = 'Deletar'
@@ -98,29 +98,20 @@ object FormTarefas: TFormTarefas
     end
     object btnAtualizarTarefa: TButton
       Left = 9
-      Top = 78
+      Top = 58
       Width = 105
       Height = 26
       Caption = 'Atualizar'
       TabOrder = 1
       OnClick = btnAtualizarTarefaClick
     end
-    object btnEditarTarefa: TButton
-      Left = 8
-      Top = 15
-      Width = 105
-      Height = 25
-      Caption = 'Editar'
-      TabOrder = 2
-      OnClick = btnEditarTarefaClick
-    end
     object btnCriarTarefa: TButton
       Left = 9
-      Top = 46
+      Top = 22
       Width = 105
       Height = 26
-      Caption = 'Cadastrar'
-      TabOrder = 3
+      Caption = 'Editar Registros'
+      TabOrder = 2
       OnClick = btnCriarTarefaClick
     end
   end

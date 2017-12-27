@@ -31,7 +31,6 @@ type
     cdsPessoastelefone: TFMTBCDField;
     cdsPessoascelular: TFMTBCDField;
     cdsPessoasstatus: TWideStringField;
-    cdsPessoasfornecedores: TWideStringField;
     cdsPessoasdata: TDateField;
     cdsCadastro: TClientDataSet;
     cdsCadastroid: TIntegerField;

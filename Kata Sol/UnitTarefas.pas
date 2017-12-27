@@ -20,7 +20,6 @@ type
     GroupBox2: TGroupBox;
     btnDeletarTarefa: TButton;
     btnAtualizarTarefa: TButton;
-    btnEditarTarefa: TButton;
     btnCriarTarefa: TButton;
     procedure btnAtualizarTarefaClick(Sender: TObject);
     procedure btnCriarTarefaClick(Sender: TObject);

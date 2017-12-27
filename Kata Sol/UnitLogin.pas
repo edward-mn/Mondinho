@@ -21,6 +21,7 @@ type
     procedure btnEntrarClick(Sender: TObject);
     procedure CriarFormCadastro;
     procedure CriarFormToDo;
+    procedure FormShow(Sender: TObject);
     procedure Logar;
   private
     FConexao : TdmConexao;
@@ -85,6 +86,11 @@ finally
   NewForm.Free;
 end;
 
+end;
+
+procedure TFormLogin.FormShow(Sender: TObject);
+begin
+  btnEntrar.SetFocus;
 end;
 
 procedure TFormLogin.Logar;

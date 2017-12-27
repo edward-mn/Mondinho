@@ -178,13 +178,17 @@ object FormView: TFormView
       OnClick = btnTarefasClick
     end
     object btnVendas: TButton
-      Left = 241
-      Top = 2
+      Left = 151
+      Top = 1
       Width = 80
-      Height = 41
+      Height = 44
+      Align = alLeft
       Caption = 'Vendas'
       TabOrder = 2
       OnClick = btnVendasClick
+      ExplicitLeft = 241
+      ExplicitTop = 2
+      ExplicitHeight = 41
     end
     object btnPessoas: TButton
       Left = 76
