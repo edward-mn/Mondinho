@@ -4,7 +4,7 @@ object FormEditarVendas: TFormEditarVendas
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Editar/Criar Vendas'
-  ClientHeight = 541
+  ClientHeight = 492
   ClientWidth = 857
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -20,7 +20,7 @@ object FormEditarVendas: TFormEditarVendas
   TextHeight = 13
   object dbGridEditarVendas: TDBGrid
     Left = 0
-    Top = 280
+    Top = 231
     Width = 857
     Height = 261
     Align = alBottom
@@ -32,8 +32,8 @@ object FormEditarVendas: TFormEditarVendas
     TitleFont.Style = []
   end
   object btnAtualizar: TButton
-    Left = 29
-    Top = 103
+    Left = 21
+    Top = 75
     Width = 105
     Height = 26
     Caption = 'Atualizar'
@@ -41,8 +41,8 @@ object FormEditarVendas: TFormEditarVendas
     OnClick = btnAtualizarClick
   end
   object btnSalvar: TButton
-    Left = 29
-    Top = 179
+    Left = 21
+    Top = 151
     Width = 105
     Height = 26
     Caption = 'Salvar'
@@ -50,8 +50,8 @@ object FormEditarVendas: TFormEditarVendas
     OnClick = btnSalvarClick
   end
   object btnNovo: TButton
-    Left = 29
-    Top = 36
+    Left = 21
+    Top = 8
     Width = 105
     Height = 25
     Caption = 'Novo'
@@ -59,8 +59,8 @@ object FormEditarVendas: TFormEditarVendas
     OnClick = btnNovoClick
   end
   object btnCancelar: TButton
-    Left = 29
-    Top = 140
+    Left = 21
+    Top = 112
     Width = 105
     Height = 25
     Caption = 'Cancelar'
@@ -68,7 +68,7 @@ object FormEditarVendas: TFormEditarVendas
     OnClick = btnCancelarClick
   end
   object GBVendas: TGroupBox
-    Left = 173
+    Left = 165
     Top = 8
     Width = 628
     Height = 177
@@ -196,16 +196,25 @@ object FormEditarVendas: TFormEditarVendas
     end
   end
   object btnEditar: TButton
-    Left = 29
-    Top = 70
+    Left = 21
+    Top = 42
     Width = 105
     Height = 25
     Caption = 'Editar'
     TabOrder = 2
     OnClick = btnEditarClick
   end
+  object btnDeletar: TButton
+    Left = 21
+    Top = 192
+    Width = 105
+    Height = 25
+    Caption = 'Deletar'
+    TabOrder = 7
+    OnClick = btnDeletarClick
+  end
   object dsEditarVendas: TDataSource
-    Left = 66
-    Top = 236
+    Left = 810
+    Top = 180
   end
 end

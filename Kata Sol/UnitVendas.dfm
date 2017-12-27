@@ -40,8 +40,8 @@ object FormVendas: TFormVendas
     TitleFont.Style = []
   end
   object GroupBox1: TGroupBox
-    Left = 527
-    Top = 8
+    Left = 544
+    Top = 40
     Width = 122
     Height = 121
     Caption = 'Status'
@@ -80,10 +80,10 @@ object FormVendas: TFormVendas
     end
   end
   object Vendas: TGroupBox
-    Left = 527
-    Top = 139
+    Left = 544
+    Top = 195
     Width = 122
-    Height = 126
+    Height = 86
     Caption = 'Vendas'
     TabOrder = 2
     object btnAtualizarVendas: TButton
@@ -95,22 +95,13 @@ object FormVendas: TFormVendas
       TabOrder = 0
       OnClick = btnAtualizarVendasClick
     end
-    object btnDeletarVendas: TButton
-      Left = 10
-      Top = 84
-      Width = 105
-      Height = 25
-      Caption = 'Deletar'
-      TabOrder = 1
-      OnClick = btnDeletarVendasClick
-    end
     object btnEditarVendasCadastrar: TButton
       Left = 7
       Top = 19
       Width = 105
       Height = 25
       Caption = 'Editar / Cadastrar'
-      TabOrder = 2
+      TabOrder = 1
       OnClick = btnEditarVendasCadastrarClick
     end
   end

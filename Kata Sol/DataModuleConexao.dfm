@@ -1,7 +1,7 @@
 object DmConexao: TDmConexao
   OldCreateOrder = False
   Height = 253
-  Width = 583
+  Width = 498
   object sqlQueryToDo: TSQLQuery
     MaxBlobSize = -1
     Params = <>
