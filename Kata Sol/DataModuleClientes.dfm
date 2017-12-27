@@ -34,7 +34,7 @@ object DmClientes: TDmClientes
     Params = <>
     ProviderName = 'sqlProviderVendas'
     Left = 107
-    Top = 49
+    Top = 41
     object cdsVendasid_produtos: TIntegerField
       DisplayLabel = 'C'#243'd. Produtos'
       FieldName = 'id_produtos'

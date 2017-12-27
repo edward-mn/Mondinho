@@ -24,6 +24,7 @@ object FormEditarVendas: TFormEditarVendas
     Width = 857
     Height = 261
     Align = alBottom
+    ReadOnly = True
     TabOrder = 6
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
