@@ -18,8 +18,8 @@ object FormTarefas: TFormTarefas
   PixelsPerInch = 96
   TextHeight = 13
   object GroupBox1: TGroupBox
-    Left = 530
-    Top = 8
+    Left = 537
+    Top = 31
     Width = 119
     Height = 153
     Caption = 'Status'
@@ -81,28 +81,19 @@ object FormTarefas: TFormTarefas
     TitleFont.Style = []
   end
   object GroupBox2: TGroupBox
-    Left = 530
-    Top = 183
+    Left = 537
+    Top = 214
     Width = 119
-    Height = 130
+    Height = 98
     Caption = 'Tarefas'
     TabOrder = 2
-    object btnDeletarTarefa: TButton
-      Left = 9
-      Top = 94
-      Width = 105
-      Height = 25
-      Caption = 'Deletar'
-      TabOrder = 0
-      OnClick = btnDeletarTarefaClick
-    end
     object btnAtualizarTarefa: TButton
       Left = 9
       Top = 58
       Width = 105
       Height = 26
       Caption = 'Atualizar'
-      TabOrder = 1
+      TabOrder = 0
       OnClick = btnAtualizarTarefaClick
     end
     object btnCriarTarefa: TButton
@@ -111,7 +102,7 @@ object FormTarefas: TFormTarefas
       Width = 105
       Height = 26
       Caption = 'Editar Registros'
-      TabOrder = 2
+      TabOrder = 1
       OnClick = btnCriarTarefaClick
     end
   end

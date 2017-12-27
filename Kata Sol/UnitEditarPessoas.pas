@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DataModuleClientes, DataModuleConexao,
-  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls;
+  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls,
+  Vcl.ComCtrls, System.UITypes;
 
 type
   TFormCriacaoEdicaoPessoas = class(TForm)
@@ -31,13 +32,19 @@ type
     Label1: TLabel;
     btnEditar: TButton;
     edtData: TDBEdit;
+    mCalendar: TMonthCalendar;
+    btnDeletarCadastro: TButton;
     procedure btnNovaPessoaClick(Sender: TObject);
     procedure btnAtualizarPessoasClick(Sender: TObject);
     procedure btnCancelarPessoasClick(Sender: TObject);
+    procedure btnDeletarCadastroClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure btnSalvarPessoasClick(Sender: TObject);
+    procedure edtDataEnter(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
+    procedure mCalendarClick(Sender: TObject);
+    procedure mCalendarDblClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -70,7 +77,17 @@ procedure TFormCriacaoEdicaoPessoas.btnCancelarPessoasClick(Sender: TObject);
 begin
   Clientes.cdsPessoas.Cancel;
   gbFormulario.Enabled := False;
+  mCalendar.Visible := False;
   dbGridCriacaoEdicaoPessoas.Enabled := True;
+end;
+
+procedure TFormCriacaoEdicaoPessoas.btnDeletarCadastroClick(Sender: TObject);
+begin
+  if MessageDlg('Deseja realmete deletar essa tarefa ?', mtInformation, [mbYes , mbNo],0) = mrYes then
+    begin
+    Clientes.cdsPessoas.Delete;
+    Clientes.cdsPessoas.ApplyUpdates(0);
+    end;
 end;
 
 procedure TFormCriacaoEdicaoPessoas.btnEditarClick(Sender: TObject);
@@ -81,9 +98,15 @@ end;
 
 procedure TFormCriacaoEdicaoPessoas.btnSalvarPessoasClick(Sender: TObject);
 begin
+  dbGridCriacaoEdicaoPessoas.Enabled := True;
   Clientes.cdsPessoas.ApplyUpdates(0);
   gbFormulario.Enabled := False;
-  dbGridCriacaoEdicaoPessoas.Enabled := True;
+  mCalendar.Visible := False;
+end;
+
+procedure TFormCriacaoEdicaoPessoas.edtDataEnter(Sender: TObject);
+begin
+  mCalendar.Visible := True;
 end;
 
 procedure TFormCriacaoEdicaoPessoas.FormClose(Sender: TObject; var Action:
@@ -99,8 +122,18 @@ begin
   Clientes.cdsPessoasid_pessoas.Visible := False;
   dsCriacaoEdicaoPessoas.DataSet := Clientes.cdsPessoas;
   dbGridCriacaoEdicaoPessoas.DataSource := dsCriacaoEdicaoPessoas;
-
+  mCalendar.Visible := False;
 end;
 
+procedure TFormCriacaoEdicaoPessoas.mCalendarClick(Sender: TObject);
+begin
+  Clientes.cdsPessoas.Edit;
+  edtData.Text := FormatDateTime('dd/mm/yyyy', mCalendar.Date);
+end;
+
+procedure TFormCriacaoEdicaoPessoas.mCalendarDblClick(Sender: TObject);
+begin
+  mCalendar.Visible := False;
+end;
 
 end.
