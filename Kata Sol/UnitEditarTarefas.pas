@@ -18,20 +18,26 @@ type
     btnEditar: TButton;
     gbFormulario: TGroupBox;
     Label1: TLabel;
-    DBEdit1: TDBEdit;
-    Label2: TLabel;
-    DBEdit2: TDBEdit;
+    edtNome: TDBEdit;
+    edtTarefa: TDBEdit;
     Label3: TLabel;
-    DBEdit3: TDBEdit;
+    edtStatus: TDBEdit;
     Label4: TLabel;
-    DBEdit4: TDBEdit;
+    edtData: TDBEdit;
+    Label2: TLabel;
+    btnDeletarTarefa: TButton;
+    mCalendar: TMonthCalendar;
     procedure btnNovoClick(Sender: TObject);
     procedure btnAtualizarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
+    procedure btnDeletarTarefaClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
+    procedure edtDataEnter(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
+    procedure mCalendarClick(Sender: TObject);
+    procedure mCalendarDblClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -65,6 +71,16 @@ begin
   Clientes.cdsTodo.Cancel;
   gbFormulario.Enabled := False;
   dbGridCriacaoEdicao.Enabled := True;
+  mCalendar.Visible := False;
+end;
+
+procedure TFormEditarTarefas.btnDeletarTarefaClick(Sender: TObject);
+begin
+   if MessageDlg('Deseja realmete deletar essa tarefa ?', mtInformation, [mbYes , mbNo],0) = mrYes then
+    begin
+    Clientes.cdsToDo.Delete;
+    Clientes.cdsToDo.ApplyUpdates(0);
+    end;
 end;
 
 procedure TFormEditarTarefas.btnEditarClick(Sender: TObject);
@@ -78,6 +94,12 @@ begin
   Clientes.cdsTodo.ApplyUpdates(0);
   gbFormulario.Enabled := False;
   dbGridCriacaoEdicao.Enabled := True;
+  mCalendar.Visible := False;
+end;
+
+procedure TFormEditarTarefas.edtDataEnter(Sender: TObject);
+begin
+  mCalendar.Visible := True;
 end;
 
 procedure TFormEditarTarefas.FormClose(Sender: TObject;
@@ -93,6 +115,18 @@ begin
   Clientes.cdsToDoid_todo.Visible := False;
   dsCriarTarefas.DataSet := Clientes.cdsTodo;
   dbGridCriacaoEdicao.DataSource := dsCriarTarefas;
+  mCalendar.Visible := False;
+end;
+
+procedure TFormEditarTarefas.mCalendarClick(Sender: TObject);
+begin
+  Clientes.cdsToDo.Edit;
+  edtData.Text := FormatDateTime('dd/mm/yyyy', mCalendar.Date);
+end;
+
+procedure TFormEditarTarefas.mCalendarDblClick(Sender: TObject);
+begin
+  mCalendar.Visible := False;
 end;
 
 end.

@@ -18,12 +18,10 @@ type
     dbGridTarefas: TDBGrid;
     dsTarefas: TDataSource;
     GroupBox2: TGroupBox;
-    btnDeletarTarefa: TButton;
     btnAtualizarTarefa: TButton;
     btnCriarTarefa: TButton;
     procedure btnAtualizarTarefaClick(Sender: TObject);
     procedure btnCriarTarefaClick(Sender: TObject);
-    procedure btnDeletarTarefaClick(Sender: TObject);
     procedure btnEditarTarefaClick(Sender: TObject);
     procedure btnPesquisarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -50,13 +48,6 @@ end;
 procedure TFormTarefas.btnCriarTarefaClick(Sender: TObject);
 begin
   CriarFormEditarTarefas();
-end;
-
-procedure TFormTarefas.btnDeletarTarefaClick(Sender: TObject);
-begin
-  if MessageDlg('Deseja realmete deletar essa tarefa ?', mtInformation, [mbYes , mbNo],0) = mrYes then
-    Clientes.cdsToDo.Delete;
-    Clientes.cdsToDo.ApplyUpdates(0);
 end;
 
 procedure TFormTarefas.btnEditarTarefaClick(Sender: TObject);
