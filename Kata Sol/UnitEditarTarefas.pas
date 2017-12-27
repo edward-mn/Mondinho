@@ -40,6 +40,14 @@ type
     procedure mCalendarClick(Sender: TObject);
     procedure mCalendarDblClick(Sender: TObject);
   private
+    procedure AtualizarLista;
+    procedure CancelarTarefa;
+    procedure DefinirDataSet;
+    procedure DeletarTarefa;
+    procedure EditarTarefa;
+    procedure HabilitarComponentes;
+    procedure NovaTarefa;
+    procedure SalvarTarefa;
     { Private declarations }
   public
     Clientes :TDmClientes;
@@ -52,14 +60,7 @@ implementation
 
 {$R *.dfm}
 
-procedure TFormEditarTarefas.btnNovoClick(Sender: TObject);
-begin
-  Clientes.cdsTodo.Insert;
-  gbFormulario.Enabled := True;
-  dbGridCriacaoEdicao.Enabled := False;
-end;
-
-procedure TFormEditarTarefas.btnAtualizarClick(Sender: TObject);
+procedure TFormEditarTarefas.AtualizarLista;
 begin
   Clientes.cdsTodo.ApplyUpdates(0);
   Clientes.cdsTodo.Refresh;
@@ -67,7 +68,37 @@ begin
   dbGridCriacaoEdicao.Enabled := True;
 end;
 
+procedure TFormEditarTarefas.btnNovoClick(Sender: TObject);
+begin
+  NovaTarefa();
+end;
+
+procedure TFormEditarTarefas.btnAtualizarClick(Sender: TObject);
+begin
+  AtualizarLista();
+end;
+
 procedure TFormEditarTarefas.btnCancelarClick(Sender: TObject);
+begin
+  CancelarTarefa();
+end;
+
+procedure TFormEditarTarefas.btnDeletarTarefaClick(Sender: TObject);
+begin
+   DeletarTarefa();
+end;
+
+procedure TFormEditarTarefas.btnEditarClick(Sender: TObject);
+begin
+  EditarTarefa();
+end;
+
+procedure TFormEditarTarefas.btnSalvarClick(Sender: TObject);
+begin
+  SalvarTarefa();
+end;
+
+procedure TFormEditarTarefas.CancelarTarefa;
 begin
   Clientes.cdsTodo.Cancel;
   gbFormulario.Enabled := False;
@@ -75,30 +106,27 @@ begin
   mCalendar.Visible := False;
 end;
 
-procedure TFormEditarTarefas.btnDeletarTarefaClick(Sender: TObject);
+procedure TFormEditarTarefas.DefinirDataSet;
 begin
-   if MessageDlg('Deseja realmete deletar essa tarefa ?', mtInformation, [mbYes , mbNo],0) = mrYes then
-    begin
-    Clientes.cdsToDo.Delete;
-    Clientes.cdsToDo.ApplyUpdates(0);
-    end;
+  Clientes.cdsToDoid_todo.Visible := False;
+  dsCriarTarefas.DataSet := Clientes.cdsTodo;
+  dbGridCriacaoEdicao.DataSource := dsCriarTarefas;
+  mCalendar.Visible := False;
 end;
 
-procedure TFormEditarTarefas.btnEditarClick(Sender: TObject);
+procedure TFormEditarTarefas.DeletarTarefa;
+begin
+  if MessageDlg('Deseja realmete deletar essa tarefa ?', mtInformation, [mbYes , mbNo],0) = mrYes then
+   begin
+   Clientes.cdsToDo.Delete;
+   Clientes.cdsToDo.ApplyUpdates(0);
+   end;
+end;
+
+procedure TFormEditarTarefas.EditarTarefa;
 begin
   gbFormulario.Enabled := True;
   dbGridCriacaoEdicao.Enabled := False;
-end;
-
-procedure TFormEditarTarefas.btnSalvarClick(Sender: TObject);
-begin
-  if (Clientes.cdsVendas.State = dsEdit) or (Clientes.cdsVendas.State = dsInsert) then
-  begin
-  Clientes.cdsTodo.ApplyUpdates(0);
-  gbFormulario.Enabled := False;
-  dbGridCriacaoEdicao.Enabled := True;
-  mCalendar.Visible := False;
-  end;
 end;
 
 procedure TFormEditarTarefas.edtDataEnter(Sender: TObject);
@@ -109,17 +137,19 @@ end;
 procedure TFormEditarTarefas.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
-  Clientes.cdsToDoid_todo.Visible := True;
-  dbGridCriacaoEdicao.Enabled := True;
-  Clientes.cdsToDo.Cancel;
+  HabilitarComponentes();
 end;
 
 procedure TFormEditarTarefas.FormShow(Sender: TObject);
 begin
-  Clientes.cdsToDoid_todo.Visible := False;
-  dsCriarTarefas.DataSet := Clientes.cdsTodo;
-  dbGridCriacaoEdicao.DataSource := dsCriarTarefas;
-  mCalendar.Visible := False;
+  DefinirDataSet();
+end;
+
+procedure TFormEditarTarefas.HabilitarComponentes;
+begin
+  Clientes.cdsToDoid_todo.Visible := True;
+  dbGridCriacaoEdicao.Enabled := True;
+  Clientes.cdsToDo.Cancel;
 end;
 
 procedure TFormEditarTarefas.mCalendarClick(Sender: TObject);
@@ -131,6 +161,24 @@ end;
 procedure TFormEditarTarefas.mCalendarDblClick(Sender: TObject);
 begin
   mCalendar.Visible := False;
+end;
+
+procedure TFormEditarTarefas.NovaTarefa;
+begin
+  Clientes.cdsTodo.Insert;
+  gbFormulario.Enabled := True;
+  dbGridCriacaoEdicao.Enabled := False;
+end;
+
+procedure TFormEditarTarefas.SalvarTarefa;
+begin
+  if (Clientes.cdsVendas.State = dsEdit) or (Clientes.cdsVendas.State = dsInsert) then
+  begin
+  Clientes.cdsTodo.ApplyUpdates(0);
+  gbFormulario.Enabled := False;
+  dbGridCriacaoEdicao.Enabled := True;
+  mCalendar.Visible := False;
+  end;
 end;
 
 end.
