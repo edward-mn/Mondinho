@@ -35,7 +35,7 @@ object DmConexao: TDmConexao
     LoginPrompt = False
     Params.Strings = (
       'BlobSize=-1'
-      'HostName=localhost:5432'
+      'HostName=localhost:5434'
       'DataBase=MiniMonde'
       'SchemaName=mondinho'
       'DriverName=DevartPostgreSQL'
@@ -84,6 +84,7 @@ object DmConexao: TDmConexao
     end
     object sqlQueryVendasdata: TDateField
       FieldName = 'data'
+      EditMask = '!99/99/0000;1;_'
     end
     object sqlQueryVendasvalor_produto: TFMTBCDField
       DisplayLabel = 'Valor do Produto'

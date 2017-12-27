@@ -14,6 +14,7 @@ object FormLogin: TFormLogin
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -530,6 +531,7 @@ object FormLogin: TFormLogin
     Width = 253
     Height = 21
     TabOrder = 0
+    Text = 'Edward'
   end
   object edtSenha: TEdit
     Left = 60
@@ -538,6 +540,7 @@ object FormLogin: TFormLogin
     Height = 21
     PasswordChar = '*'
     TabOrder = 1
+    Text = 'monde'
   end
   object btnEntrar: TButton
     Left = 20
