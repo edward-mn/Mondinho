@@ -215,7 +215,7 @@ object FormEditarVendas: TFormEditarVendas
     OnClick = btnDeletarClick
   end
   object dsEditarVendas: TDataSource
-    Left = 810
-    Top = 180
+    Left = 354
+    Top = 332
   end
 end

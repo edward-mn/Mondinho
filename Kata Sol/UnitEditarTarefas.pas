@@ -92,10 +92,13 @@ end;
 
 procedure TFormEditarTarefas.btnSalvarClick(Sender: TObject);
 begin
+  if (Clientes.cdsVendas.State = dsEdit) or (Clientes.cdsVendas.State = dsInsert) then
+  begin
   Clientes.cdsTodo.ApplyUpdates(0);
   gbFormulario.Enabled := False;
   dbGridCriacaoEdicao.Enabled := True;
   mCalendar.Visible := False;
+  end;
 end;
 
 procedure TFormEditarTarefas.edtDataEnter(Sender: TObject);

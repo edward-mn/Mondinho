@@ -98,10 +98,13 @@ end;
 
 procedure TFormCriacaoEdicaoPessoas.btnSalvarPessoasClick(Sender: TObject);
 begin
+  if (Clientes.cdsVendas.State = dsEdit) or (Clientes.cdsVendas.State = dsInsert) then
+  begin
   dbGridCriacaoEdicaoPessoas.Enabled := True;
   Clientes.cdsPessoas.ApplyUpdates(0);
   gbFormulario.Enabled := False;
   mCalendar.Visible := False;
+  end;
 end;
 
 procedure TFormCriacaoEdicaoPessoas.edtDataEnter(Sender: TObject);

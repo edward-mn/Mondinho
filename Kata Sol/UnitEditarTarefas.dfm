@@ -156,7 +156,7 @@ object FormEditarTarefas: TFormEditarTarefas
   end
   object btnDeletarTarefa: TButton
     Left = 19
-    Top = 193
+    Top = 197
     Width = 105
     Height = 25
     Caption = 'Deletar'
@@ -168,7 +168,7 @@ object FormEditarTarefas: TFormEditarTarefas
     Top = 173
     Width = 225
     Height = 160
-    Date = 43096.584561828710000000
+    Date = 43096.591805474530000000
     TabOrder = 8
     OnClick = mCalendarClick
     OnDblClick = mCalendarDblClick
