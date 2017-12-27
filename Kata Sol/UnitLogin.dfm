@@ -531,7 +531,7 @@ object FormLogin: TFormLogin
     Width = 253
     Height = 21
     TabOrder = 0
-    Text = 'gabriel'
+    Text = 'Edward'
   end
   object edtSenha: TEdit
     Left = 60
@@ -540,7 +540,7 @@ object FormLogin: TFormLogin
     Height = 21
     PasswordChar = '*'
     TabOrder = 1
-    Text = '123456'
+    Text = 'monde'
   end
   object btnEntrar: TButton
     Left = 20

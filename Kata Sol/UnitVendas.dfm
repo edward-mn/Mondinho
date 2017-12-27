@@ -14,6 +14,7 @@ object FormVendas: TFormVendas
   Font.Style = []
   OldCreateOrder = False
   Position = poDesktopCenter
+  OnClose = FormClose
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -82,12 +83,12 @@ object FormVendas: TFormVendas
     Left = 527
     Top = 139
     Width = 122
-    Height = 143
+    Height = 126
     Caption = 'Vendas'
     TabOrder = 2
     object btnAtualizarVendas: TButton
-      Left = 8
-      Top = 43
+      Left = 9
+      Top = 50
       Width = 105
       Height = 26
       Caption = 'Atualizar'
@@ -95,31 +96,22 @@ object FormVendas: TFormVendas
       OnClick = btnAtualizarVendasClick
     end
     object btnDeletarVendas: TButton
-      Left = 8
-      Top = 100
+      Left = 10
+      Top = 84
       Width = 105
       Height = 25
       Caption = 'Deletar'
       TabOrder = 1
       OnClick = btnDeletarVendasClick
     end
-    object btnEditarVendas: TButton
-      Left = 8
-      Top = 72
+    object btnEditarVendasCadastrar: TButton
+      Left = 7
+      Top = 19
       Width = 105
       Height = 25
-      Caption = 'Editar'
+      Caption = 'Editar / Cadastrar'
       TabOrder = 2
-      OnClick = btnEditarVendasClick
-    end
-    object btnCadastrarVendas: TButton
-      Left = 8
-      Top = 14
-      Width = 105
-      Height = 26
-      Caption = 'Cadastrar'
-      TabOrder = 3
-      OnClick = btnCadastrarVendasClick
+      OnClick = btnEditarVendasCadastrarClick
     end
   end
   object dsVendas: TDataSource

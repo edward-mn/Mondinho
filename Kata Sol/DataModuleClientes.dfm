@@ -81,7 +81,7 @@ object DmClientes: TDmClientes
     object cdsVendasdata: TDateField
       DisplayLabel = 'Data'
       FieldName = 'data'
-      EditMask = '!99/99/9999_;1;_'
+      EditMask = '!99/99/0000;'
     end
   end
   object cdsPessoas: TClientDataSet
