@@ -99,17 +99,20 @@ procedure TFormEditarVendas.btnEditarClick(Sender: TObject);
 begin
   dbGridEditarVendas.Enabled := False;
   GBVendas.Enabled := True;
-  Clientes.cdsVendas.Edit;
 end;
 
 procedure TFormEditarVendas.btnSalvarClick(Sender: TObject);
 begin
+  if (Clientes.cdsVendas.State = dsEdit) or (Clientes.cdsVendas.State = dsInsert) then
+  begin
   AtivarEditarAtualizar();
   dbGridEditarVendas.Enabled := True;
   GBVendas.Enabled := False;
   CalcularValorTotal(Clientes.cdsVendasquantidade.Value, Clientes.cdsVendasvalor_produto.AsCurrency);
+  Clientes.cdsVendas.Append;
   Clientes.cdsVendas.ApplyUpdates(0);
   Clientes.cdsVendas.Refresh;
+  end;
 end;
 
 function TFormEditarVendas.CalcularValorTotal(Quantidade: integer; ValorUnit: Currency): Currency;

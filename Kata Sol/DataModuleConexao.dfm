@@ -105,6 +105,7 @@ object DmConexao: TDmConexao
   end
   object sqlProviderVendas: TDataSetProvider
     DataSet = sqlQueryVendas
+    Options = [poPropogateChanges, poUseQuoteChar]
     Left = 168
     Top = 160
   end

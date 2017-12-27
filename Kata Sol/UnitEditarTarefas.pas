@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DataModuleClientes, Data.DB, Vcl.Grids,
-  Vcl.DBGrids, DataModuleConexao, Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls ;
+  Vcl.DBGrids, DataModuleConexao, Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls,
+  Vcl.ComCtrls , System.UITypes;
 
 type
   TFormEditarTarefas = class(TForm)
@@ -91,10 +92,13 @@ end;
 
 procedure TFormEditarTarefas.btnSalvarClick(Sender: TObject);
 begin
+  if (Clientes.cdsVendas.State = dsEdit) or (Clientes.cdsVendas.State = dsInsert) then
+  begin
   Clientes.cdsTodo.ApplyUpdates(0);
   gbFormulario.Enabled := False;
   dbGridCriacaoEdicao.Enabled := True;
   mCalendar.Visible := False;
+  end;
 end;
 
 procedure TFormEditarTarefas.edtDataEnter(Sender: TObject);

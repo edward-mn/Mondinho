@@ -222,7 +222,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     Top = 157
     Width = 225
     Height = 160
-    Date = 43096.568821770830000000
+    Date = 43096.635387743050000000
     TabOrder = 7
     OnClick = mCalendarClick
     OnDblClick = mCalendarDblClick
