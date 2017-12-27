@@ -168,7 +168,7 @@ object FormEditarTarefas: TFormEditarTarefas
     Top = 173
     Width = 225
     Height = 160
-    Date = 43096.591805474530000000
+    Date = 43096.664594803240000000
     TabOrder = 8
     OnClick = mCalendarClick
     OnDblClick = mCalendarDblClick
