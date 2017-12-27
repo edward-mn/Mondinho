@@ -19,11 +19,9 @@ type
     btnPesquisar: TButton;
     Vendas: TGroupBox;
     btnAtualizarVendas: TButton;
-    btnDeletarVendas: TButton;
     btnEditarVendasCadastrar: TButton;
     Tarefas: TLabel;
     procedure btnAtualizarVendasClick(Sender: TObject);
-    procedure btnDeletarVendasClick(Sender: TObject);
     procedure btnEditarVendasCadastrarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
@@ -33,7 +31,6 @@ type
     Clientes : TDmClientes;
     Conexao : TDmConexao;
     procedure CriarFormEditarVendas;
-    //function CalcularValorTotal(Quantidade : integer;ValorUnit,ValorTotal : Currency): Currency;
   end;
 
 
@@ -49,29 +46,10 @@ begin
   Clientes.cdsVendas.Refresh;
 end;
 
-procedure TFormVendas.btnDeletarVendasClick(Sender: TObject);
-begin
-  if MessageDlg('Deseja realmete deletar essa venda ?', mtInformation, [mbYes , mbNo],0) = mrYes then
-    Clientes.cdsVendas.Delete;
-    Clientes.cdsVendas.ApplyUpdates(0);
-end;
-
 procedure TFormVendas.btnEditarVendasCadastrarClick(Sender: TObject);
 begin
   CriarFormEditarVendas();
 end;
-
-//function TFormVendas.CalcularValorTotal(Quantidade: integer ; ValorUnit,ValorTotal: Currency): Currency;
-//begin
-//  Quantidade := Clientes.cdsVendasquantidade.Value;
-//  ValorUnit := Clientes.cdsVendasvalor_produto.AsCurrency;
-//  ValorTotal := Clientes.cdsVendasvalor_total.AsCurrency;
-//  Clientes.cdsVendasvalor_total.AsCurrency := Quantidade * ValorUnit ;
-//  Clientes.cdsVendas.Insert;
-//  Clientes.cdsVendas.ApplyUpdates(0);
-//  Clientes.cdsVendasvalor_total := Result;
-//
-//end;
 
 procedure TFormVendas.CriarFormEditarVendas;
 var
