@@ -35,7 +35,7 @@ object DmConexao: TDmConexao
     LoginPrompt = False
     Params.Strings = (
       'BlobSize=-1'
-      'HostName=localhost:5432'
+      'HostName=localhost:5433'
       'DataBase=MiniMonde'
       'SchemaName=mondinho'
       'DriverName=DevartPostgreSQL'
@@ -129,6 +129,7 @@ object DmConexao: TDmConexao
       Size = 50
     end
     object sqlQueryPessoascpf: TFMTBCDField
+      Alignment = taLeftJustify
       FieldName = 'cpf'
       Precision = 11
       Size = 0
@@ -138,11 +139,13 @@ object DmConexao: TDmConexao
       Size = 100
     end
     object sqlQueryPessoastelefone: TFMTBCDField
+      Alignment = taLeftJustify
       FieldName = 'telefone'
       Precision = 10
       Size = 0
     end
     object sqlQueryPessoascelular: TFMTBCDField
+      Alignment = taLeftJustify
       FieldName = 'celular'
       Precision = 11
       Size = 0
@@ -150,12 +153,9 @@ object DmConexao: TDmConexao
     object sqlQueryPessoasstatus: TWideStringField
       FieldName = 'status'
     end
-    object sqlQueryPessoasfornecedores: TWideStringField
-      FieldName = 'fornecedores'
-      Size = 50
-    end
     object sqlQueryPessoasdata: TDateField
       FieldName = 'data'
+      EditMask = '!99/99/0000;1;_'
     end
   end
   object sqlProviderCadastro: TDataSetProvider

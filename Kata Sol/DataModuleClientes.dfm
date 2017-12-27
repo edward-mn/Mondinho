@@ -100,6 +100,7 @@ object DmClientes: TDmClientes
       Size = 50
     end
     object cdsPessoascpf: TFMTBCDField
+      Alignment = taLeftJustify
       DisplayLabel = 'CPF'
       FieldName = 'cpf'
       Precision = 11
@@ -111,12 +112,14 @@ object DmClientes: TDmClientes
       Size = 100
     end
     object cdsPessoastelefone: TFMTBCDField
+      Alignment = taLeftJustify
       DisplayLabel = 'Telefone'
       FieldName = 'telefone'
       Precision = 10
       Size = 0
     end
     object cdsPessoascelular: TFMTBCDField
+      Alignment = taLeftJustify
       DisplayLabel = 'Celular'
       FieldName = 'celular'
       Precision = 11
@@ -125,11 +128,6 @@ object DmClientes: TDmClientes
     object cdsPessoasstatus: TWideStringField
       DisplayLabel = 'Status'
       FieldName = 'status'
-    end
-    object cdsPessoasfornecedores: TWideStringField
-      DisplayLabel = 'Fornecedores'
-      FieldName = 'fornecedores'
-      Size = 50
     end
     object cdsPessoasdata: TDateField
       DisplayLabel = 'Data'
