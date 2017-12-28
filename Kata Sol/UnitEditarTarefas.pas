@@ -6,11 +6,12 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DataModuleClientes, Data.DB, Vcl.Grids,
   Vcl.DBGrids, DataModuleConexao, Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls,
-  Vcl.ComCtrls , System.UITypes;
+  Vcl.ComCtrls , System.UITypes, cxGraphics, cxControls, cxLookAndFeels,
+  cxLookAndFeelPainters, cxContainer, cxEdit, cxTextEdit, cxMaskEdit,
+  cxDropDownEdit, cxCalendar, cxDBEdit;
 
 type
   TFormEditarTarefas = class(TForm)
-    dbGridCriacaoEdicao: TDBGrid;
     dsCriarTarefas: TDataSource;
     btnAtualizar: TButton;
     btnSalvar: TButton;
@@ -24,21 +25,18 @@ type
     Label3: TLabel;
     edtStatus: TDBEdit;
     Label4: TLabel;
-    edtData: TDBEdit;
     Label2: TLabel;
     btnDeletarTarefa: TButton;
-    mCalendar: TMonthCalendar;
+    cxDBDateEdit1: TcxDBDateEdit;
+    dbGridCriacaoEdicao: TDBGrid;
     procedure btnNovoClick(Sender: TObject);
     procedure btnAtualizarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnDeletarTarefaClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
-    procedure edtDataEnter(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
-    procedure mCalendarClick(Sender: TObject);
-    procedure mCalendarDblClick(Sender: TObject);
   private
     procedure AtualizarLista;
     procedure CancelarTarefa;
@@ -103,7 +101,6 @@ begin
   Clientes.cdsTodo.Cancel;
   gbFormulario.Enabled := False;
   dbGridCriacaoEdicao.Enabled := True;
-  mCalendar.Visible := False;
 end;
 
 procedure TFormEditarTarefas.DefinirDataSet;
@@ -111,7 +108,6 @@ begin
   Clientes.cdsToDoid_todo.Visible := False;
   dsCriarTarefas.DataSet := Clientes.cdsTodo;
   dbGridCriacaoEdicao.DataSource := dsCriarTarefas;
-  mCalendar.Visible := False;
 end;
 
 procedure TFormEditarTarefas.DeletarTarefa;
@@ -129,10 +125,7 @@ begin
   dbGridCriacaoEdicao.Enabled := False;
 end;
 
-procedure TFormEditarTarefas.edtDataEnter(Sender: TObject);
-begin
-  mCalendar.Visible := True;
-end;
+
 
 procedure TFormEditarTarefas.FormClose(Sender: TObject;
   var Action: TCloseAction);
@@ -152,17 +145,6 @@ begin
   Clientes.cdsToDo.Cancel;
 end;
 
-procedure TFormEditarTarefas.mCalendarClick(Sender: TObject);
-begin
-  Clientes.cdsToDo.Edit;
-  edtData.Text := FormatDateTime('dd/mm/yyyy', mCalendar.Date);
-end;
-
-procedure TFormEditarTarefas.mCalendarDblClick(Sender: TObject);
-begin
-  mCalendar.Visible := False;
-end;
-
 procedure TFormEditarTarefas.NovaTarefa;
 begin
   Clientes.cdsTodo.Insert;
@@ -177,7 +159,6 @@ begin
   Clientes.cdsTodo.ApplyUpdates(0);
   gbFormulario.Enabled := False;
   dbGridCriacaoEdicao.Enabled := True;
-  mCalendar.Visible := False;
   end;
 end;
 

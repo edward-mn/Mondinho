@@ -18,20 +18,6 @@ object FormEditarTarefas: TFormEditarTarefas
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object dbGridCriacaoEdicao: TDBGrid
-    Left = 0
-    Top = 232
-    Width = 705
-    Height = 140
-    Align = alBottom
-    ReadOnly = True
-    TabOrder = 6
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
-  end
   object btnAtualizar: TButton
     Left = 19
     Top = 83
@@ -107,7 +93,6 @@ object FormEditarTarefas: TFormEditarTarefas
       Width = 32
       Height = 13
       Caption = '* Data'
-      FocusControl = edtData
     end
     object Label2: TLabel
       Left = 13
@@ -143,15 +128,13 @@ object FormEditarTarefas: TFormEditarTarefas
       DataSource = dsCriarTarefas
       TabOrder = 2
     end
-    object edtData: TDBEdit
+    object cxDBDateEdit1: TcxDBDateEdit
       Left = 13
-      Top = 153
-      Width = 134
-      Height = 21
-      DataField = 'data'
-      DataSource = dsCriarTarefas
+      Top = 150
+      DataBinding.DataField = 'data'
+      DataBinding.DataSource = dsCriarTarefas
       TabOrder = 3
-      OnEnter = edtDataEnter
+      Width = 90
     end
   end
   object btnDeletarTarefa: TButton
@@ -160,18 +143,22 @@ object FormEditarTarefas: TFormEditarTarefas
     Width = 105
     Height = 25
     Caption = 'Deletar'
-    TabOrder = 7
+    TabOrder = 6
     OnClick = btnDeletarTarefaClick
   end
-  object mCalendar: TMonthCalendar
-    Left = 283
-    Top = 173
-    Width = 225
-    Height = 160
-    Date = 43096.664594803240000000
-    TabOrder = 8
-    OnClick = mCalendarClick
-    OnDblClick = mCalendarDblClick
+  object dbGridCriacaoEdicao: TDBGrid
+    Left = 0
+    Top = 232
+    Width = 705
+    Height = 140
+    Align = alBottom
+    ReadOnly = True
+    TabOrder = 7
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
   end
   object dsCriarTarefas: TDataSource
     Left = 240
