@@ -6,7 +6,9 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DataModuleClientes, Data.DB,
   DataModuleConexao, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.Mask,
-  Vcl.DBCtrls, System.UITypes;
+  Vcl.DBCtrls, System.UITypes, cxGraphics, cxControls, cxLookAndFeels,
+  cxLookAndFeelPainters, cxContainer, cxEdit, cxTextEdit, cxMaskEdit,
+  cxDropDownEdit, cxCalendar, cxDBEdit;
 
 type
   TFormEditarVendas = class(TForm)
@@ -30,9 +32,9 @@ type
     edtProdutos: TDBEdit;
     edtPreco: TDBEdit;
     DBEdit16: TDBEdit;
-    DBEdit18: TDBEdit;
     btnEditar: TButton;
     btnDeletar: TButton;
+    cxDBDateEdit1: TcxDBDateEdit;
     procedure btnNovoClick(Sender: TObject);
     procedure btnAtualizarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
