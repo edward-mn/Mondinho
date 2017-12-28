@@ -47,8 +47,10 @@ type
     Clientes : TDmClientes;
     Conexao : TDmConexao;
     function CalcularValorTotal(Quantidade : integer;ValorUnit : Currency): Currency;
-    procedure DesativarBotoes;
-    procedure AtivarBotoes;
+    procedure DesativarBotoesAoAbrirForm;
+    procedure SetarDataSetDataSource;
+    procedure ClicarNovo;
+    procedure ClicarEditar;
   end;
 
 var
@@ -64,20 +66,13 @@ begin
   dbGridEditarVendas.Enabled := False;
   Clientes.cdsVendas.Insert;
   btnSalvar.Enabled := True;
-  DesativarBotoes();
-end;
-
-procedure TFormEditarVendas.AtivarBotoes;
-begin
-  btnEditar.Enabled := True;
-  btnAtualizar.Enabled := True;
-  btnSalvar.Enabled := True;
+  ClicarNovo;
+  //btnCancelar.Cancel := True;
 end;
 
 procedure TFormEditarVendas.btnAtualizarClick(Sender: TObject);
 begin
   Clientes.cdsVendas.Refresh;
-  AtivarBotoes();
 end;
 
 procedure TFormEditarVendas.btnCancelarClick(Sender: TObject);
@@ -85,7 +80,6 @@ begin
   Clientes.cdsVendas.Cancel;
   dbGridEditarVendas.Enabled := True;
   GBVendas.Enabled := False;
-  AtivarBotoes();
 end;
 
 procedure TFormEditarVendas.btnDeletarClick(Sender: TObject);
@@ -101,13 +95,14 @@ procedure TFormEditarVendas.btnEditarClick(Sender: TObject);
 begin
   dbGridEditarVendas.Enabled := False;
   GBVendas.Enabled := True;
+  ClicarEditar();
+ // btnNovo.Enabled := True;
 end;
 
 procedure TFormEditarVendas.btnSalvarClick(Sender: TObject);
 begin
   if (Clientes.cdsVendas.State = dsEdit) or (Clientes.cdsVendas.State = dsInsert) then
   begin
-  AtivarEditarAtualizar();
   dbGridEditarVendas.Enabled := True;
   GBVendas.Enabled := False;
   CalcularValorTotal(Clientes.cdsVendasquantidade.Value, Clientes.cdsVendasvalor_produto.AsCurrency);
@@ -122,24 +117,48 @@ begin
   Clientes.cdsVendasvalor_total.Value := Result;
 end;
 
-procedure TFormEditarVendas.DesativarEditarAtualizarAoClicarEmNovo;
+procedure TFormEditarVendas.ClicarEditar;
 begin
-  btnEditar.Enabled := False;
-  btnAtualizar.Enabled := False;
+  btnCancelar.Enabled := True;
+  btnAtualizar.Enabled := True;
+  btnEditar.Enabled := True;
 end;
 
-procedure TFormEditarVendas.FormClose(Sender: TObject; var Action:
-    TCloseAction);
+procedure TFormEditarVendas.ClicarNovo;
+begin
+  btnAtualizar.Enabled := True;
+  btnNovo.Enabled := True;
+  btnEditar.Enabled := False;
+end;
+
+//procedure TFormEditarVendas.DesativarBotoes;
+//begin
+//  btnEditar.Enabled := False;
+//  btnAtualizar.Enabled := False;
+//end;
+
+procedure TFormEditarVendas.DesativarBotoesAoAbrirForm;
+begin
+  Clientes.cdsVendasid_produtos.Visible := False;
+  Clientes.cdsVendasvalor_total.Visible := False;
+  btnSalvar.Enabled := False;
+  btnCancelar.Enabled := False;
+end;
+
+procedure TFormEditarVendas.FormClose(Sender: TObject; var Action:TCloseAction);
 begin
   Clientes.cdsVendasid_produtos.Visible := True;
   Clientes.cdsVendasvalor_total.Visible := True;
-  AtivarEditarAtualizar();
 end;
 
 procedure TFormEditarVendas.FormShow(Sender: TObject);
 begin
-  Clientes.cdsVendasid_produtos.Visible := False;
-  Clientes.cdsVendasvalor_total.Visible := False;
+  DesativarBotoesAoAbrirForm();
+  SetarDataSetDataSource();
+end;
+
+procedure TFormEditarVendas.SetarDataSetDataSource;
+begin
   dsEditarVendas.DataSet := Clientes.cdsVendas;
   dbGridEditarVendas.DataSource := dsEditarVendas;
 end;
