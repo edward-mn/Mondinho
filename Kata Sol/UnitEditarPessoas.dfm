@@ -82,7 +82,6 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       Width = 32
       Height = 13
       Caption = '* Data'
-      FocusControl = edtData
     end
     object Label4: TLabel
       Left = 6
@@ -135,17 +134,6 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       Width = 39
       Height = 13
       Caption = ' * Nome'
-    end
-    object edtData: TDBEdit
-      Left = 3
-      Top = 129
-      Width = 147
-      Height = 21
-      Align = alCustom
-      DataField = 'data'
-      DataSource = dsCriacaoEdicaoPessoas
-      TabOrder = 6
-      OnEnter = edtDataEnter
     end
     object edtTelefone: TDBEdit
       Left = 6
@@ -217,24 +205,22 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     TabOrder = 2
     OnClick = btnEditarClick
   end
-  object mCalendar: TMonthCalendar
-    Left = 292
-    Top = 157
-    Width = 225
-    Height = 160
-    Date = 43096.635387743050000000
-    TabOrder = 7
-    OnClick = mCalendarClick
-    OnDblClick = mCalendarDblClick
-  end
   object btnDeletarCadastro: TButton
     Left = 11
     Top = 178
     Width = 105
     Height = 25
     Caption = 'Deletar'
-    TabOrder = 8
+    TabOrder = 7
     OnClick = btnDeletarCadastroClick
+  end
+  object cxDBDateEdit1: TcxDBDateEdit
+    Left = 142
+    Top = 157
+    DataBinding.DataField = 'data'
+    DataBinding.DataSource = dsCriacaoEdicaoPessoas
+    TabOrder = 8
+    Width = 147
   end
   object dsCriacaoEdicaoPessoas: TDataSource
     Left = 168

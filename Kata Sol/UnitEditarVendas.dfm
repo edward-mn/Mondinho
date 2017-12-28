@@ -130,7 +130,6 @@ object FormEditarVendas: TFormEditarVendas
       Width = 32
       Height = 13
       Caption = '* Data'
-      FocusControl = DBEdit18
     end
     object edtVendedores: TDBEdit
       Left = 24
@@ -186,14 +185,13 @@ object FormEditarVendas: TFormEditarVendas
       DataSource = dsEditarVendas
       TabOrder = 5
     end
-    object DBEdit18: TDBEdit
-      Left = 488
-      Top = 111
-      Width = 89
-      Height = 21
-      DataField = 'data'
-      DataSource = dsEditarVendas
+    object cxDBDateEdit1: TcxDBDateEdit
+      Left = 486
+      Top = 114
+      DataBinding.DataField = 'data'
+      DataBinding.DataSource = dsEditarVendas
       TabOrder = 6
+      Width = 110
     end
   end
   object btnEditar: TButton
