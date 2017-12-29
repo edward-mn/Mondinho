@@ -47,7 +47,6 @@ object DmConexao: TDmConexao
       'IPVersion=IPv4'
       'UseUnicode=True'
       'Charset=')
-    Connected = True
     Left = 248
     Top = 8
   end
