@@ -49,6 +49,7 @@ type
     { Private declarations }
   public
     Clientes :TDmClientes;
+    ID_Login : Integer;
   end;
 
 var
@@ -148,13 +149,14 @@ end;
 procedure TFormEditarTarefas.NovaTarefa;
 begin
   Clientes.cdsTodo.Insert;
+  Clientes.cdsToDoid_cadastro.Value := ID_Login;
   gbFormulario.Enabled := True;
   dbGridCriacaoEdicao.Enabled := False;
 end;
 
 procedure TFormEditarTarefas.SalvarTarefa;
 begin
-  if (Clientes.cdsVendas.State = dsEdit) or (Clientes.cdsVendas.State = dsInsert) then
+  if (Clientes.cdsToDo.State = dsEdit) or (Clientes.cdsToDo.State = dsInsert) then
   begin
   Clientes.cdsTodo.ApplyUpdates(0);
   gbFormulario.Enabled := False;

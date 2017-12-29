@@ -2,11 +2,29 @@ object DmClientes: TDmClientes
   OldCreateOrder = False
   Height = 130
   Width = 312
+  object cdsCadastro: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'sqlProviderCadastro'
+    Left = 240
+    Top = 46
+    object cdsCadastroid: TIntegerField
+      FieldName = 'id'
+    end
+    object cdsCadastronome_usuario: TWideStringField
+      FieldName = 'nome_usuario'
+      Size = 25
+    end
+    object cdsCadastrosenha: TWideStringField
+      FieldName = 'senha'
+      Size = 25
+    end
+  end
   object cdsToDo: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'sqlProviderToDo'
-    Left = 34
+    Left = 26
     Top = 46
     object cdsToDoid_todo: TIntegerField
       DisplayLabel = 'C'#243'd. Tarefas'
@@ -28,12 +46,15 @@ object DmClientes: TDmClientes
       FieldName = 'data'
       EditMask = '!99/99/9999;1;_'
     end
+    object cdsToDoid_cadastro: TIntegerField
+      FieldName = 'id_cadastro'
+    end
   end
   object cdsVendas: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'sqlProviderVendas'
-    Left = 107
+    Left = 91
     Top = 49
     object cdsVendasid_produtos: TIntegerField
       DisplayLabel = 'C'#243'd. Produtos'
@@ -83,12 +104,15 @@ object DmClientes: TDmClientes
       FieldName = 'data'
       EditMask = '!99/99/0000;'
     end
+    object cdsVendasid_cadastro: TIntegerField
+      FieldName = 'id_cadastro'
+    end
   end
   object cdsPessoas: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'sqlProviderPessoas'
-    Left = 178
+    Left = 170
     Top = 46
     object cdsPessoasid_pessoas: TIntegerField
       DisplayLabel = 'C'#243'd. Pessoas'
@@ -134,23 +158,8 @@ object DmClientes: TDmClientes
       FieldName = 'data'
       EditMask = '!99/99/9999;1;_'
     end
-  end
-  object cdsCadastro: TClientDataSet
-    Aggregates = <>
-    Params = <>
-    ProviderName = 'sqlProviderCadastro'
-    Left = 240
-    Top = 46
-    object cdsCadastroid: TIntegerField
-      FieldName = 'id'
-    end
-    object cdsCadastronome_usuario: TWideStringField
-      FieldName = 'nome_usuario'
-      Size = 25
-    end
-    object cdsCadastrosenha: TWideStringField
-      FieldName = 'senha'
-      Size = 25
+    object cdsPessoasid_cadastro: TIntegerField
+      FieldName = 'id_cadastro'
     end
   end
 end

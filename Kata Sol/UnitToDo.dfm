@@ -15,6 +15,7 @@ object FormView: TFormView
   Position = poDesigned
   WindowState = wsMaximized
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Image1: TImage
@@ -167,7 +168,6 @@ object FormView: TFormView
     Height = 46
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 112
     object btnTarefas: TButton
       Left = 1
       Top = 1
@@ -187,7 +187,6 @@ object FormView: TFormView
       Caption = 'Vendas'
       TabOrder = 2
       OnClick = btnVendasClick
-      ExplicitLeft = 172
     end
     object btnPessoas: TButton
       Left = 76
@@ -198,7 +197,6 @@ object FormView: TFormView
       Caption = 'Pessoas'
       TabOrder = 1
       OnClick = btnPessoasClick
-      ExplicitLeft = 91
     end
   end
   object dsToDo: TDataSource

@@ -29,6 +29,7 @@ type
     { Private declarations }
   public
     Clientes : TDmClientes;
+    ID_Login : Integer;
     procedure CriarFormEditarTarefas;
   end;
 
@@ -67,6 +68,7 @@ begin
   NewForm := TFormEditarTarefas.Create(nil);
 try
   NewForm.Clientes := Clientes;
+  NewForm.ID_Login := ID_Login;
   NewForm.ShowModal;
 
 finally

@@ -30,6 +30,7 @@ type
   public
     Clientes: TDmClientes;
     Conexao : TdmConexao;
+    ID_Login : Integer;
     procedure CriarFormCriacaoEdicaoPessoas;
   end;
 
@@ -62,6 +63,7 @@ begin
   NewForm := TFormCriacaoEdicaoPessoas.Create(nil);
 try
   NewForm.Clientes := Clientes;
+  NewForm.ID_Login := ID_Login;
   NewForm.ShowModal;
 
 finally
@@ -72,9 +74,11 @@ end;
 procedure TFormPessoas.FormShow(Sender: TObject);
 begin
   Clientes.cdsPessoas.SetProvider(Conexao.sqlProviderPessoas);
-  Clientes.cdsPessoas.Open;
   dsPessoas.DataSet := Clientes.cdsPessoas;
   dbGridPessoas.DataSource := dsPessoas;
+  Conexao.sqlQueryPessoas.SQL.CommaText := ('select * from pessoas where id_cadastro =' + IntToStr(ID_Login));
+  Clientes.cdsPessoas.Open;
+  Clientes.cdsPessoasid_cadastro.Visible := False;
 end;
 
 end.
