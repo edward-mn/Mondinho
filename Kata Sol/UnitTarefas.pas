@@ -20,6 +20,7 @@ type
     GroupBox2: TGroupBox;
     btnAtualizarTarefa: TButton;
     btnCriarTarefa: TButton;
+    procedure AdicionarFiltroCorretoTarefas;
     procedure btnAtualizarTarefaClick(Sender: TObject);
     procedure btnCriarTarefaClick(Sender: TObject);
     procedure btnEditarTarefaClick(Sender: TObject);
@@ -29,7 +30,6 @@ type
     { Private declarations }
   public
     Clientes : TDmClientes;
-    ID_Login : Integer;
     procedure CriarFormEditarTarefas;
   end;
 
@@ -40,6 +40,50 @@ implementation
 
 
 {$R *.dfm}
+
+procedure TFormTarefas.AdicionarFiltroCorretoTarefas;
+  var
+  Filtro: String;
+const
+  Ou = ' or ';
+  BoxAdiada = 'Status = ''Adiada''';
+  BoxAgendada = 'Status = ''Agendada''';
+  BoxFinalizada = 'Status = ''Finalizada''';
+  BoxAtrasada = 'Status = ''Atrasada''';
+procedure AdicionarStatus(Box: String);
+  begin
+    if not Filtro.IsEmpty then
+      Filtro := Filtro + Ou;
+    Filtro := Filtro + Box;
+  end;
+
+begin
+  if cbAtrasadas.Checked then
+  begin
+    AdicionarStatus(BoxAtrasada);
+  end;
+  if cbAtrasadas.Checked then
+  begin
+    AdicionarStatus(BoxAtrasada);
+  end;
+  if cbAgendada.Checked then
+  begin
+    AdicionarStatus(BoxAgendada);
+  end;
+
+  if cbAdiadas.Checked then
+  begin
+    AdicionarStatus(BoxAdiada);
+  end;
+
+  if cbFinalizadas.Checked then
+  begin
+    AdicionarStatus(BoxFinalizada);
+  end;
+
+  Clientes.cdsToDo.Filter := Filtro;
+  Clientes.cdsToDo.Filtered := True;
+end;
 
 procedure TFormTarefas.btnAtualizarTarefaClick(Sender: TObject);
 begin
@@ -58,7 +102,7 @@ end;
 
 procedure TFormTarefas.btnPesquisarClick(Sender: TObject);
 begin
-//    TFuncoesToDo.FiltroStatus();
+  AdicionarFiltroCorretoTarefas;
 end;
 
 procedure TFormTarefas.CriarFormEditarTarefas;
@@ -68,7 +112,6 @@ begin
   NewForm := TFormEditarTarefas.Create(nil);
 try
   NewForm.Clientes := Clientes;
-  NewForm.ID_Login := ID_Login;
   NewForm.ShowModal;
 
 finally

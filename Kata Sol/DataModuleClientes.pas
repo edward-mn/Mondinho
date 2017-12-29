@@ -7,28 +7,12 @@ uses
 
 type
   TDmClientes = class(TDataModule)
-    cdsCadastro: TClientDataSet;
-    cdsCadastroid: TIntegerField;
-    cdsCadastronome_usuario: TWideStringField;
-    cdsCadastrosenha: TWideStringField;
     cdsToDo: TClientDataSet;
     cdsToDoid_todo: TIntegerField;
     cdsToDonomes: TWideStringField;
     cdsToDotarefas: TWideStringField;
     cdsToDostatus: TWideStringField;
     cdsToDodata: TDateField;
-    cdsToDoid_cadastro: TIntegerField;
-    cdsVendas: TClientDataSet;
-    cdsVendasid_produtos: TIntegerField;
-    cdsVendasvendedores: TWideStringField;
-    cdsVendasfornecedores: TWideStringField;
-    cdsVendasstatus: TWideStringField;
-    cdsVendasprodutos: TWideStringField;
-    cdsVendasvalor_produto: TFMTBCDField;
-    cdsVendasquantidade: TIntegerField;
-    cdsVendasvalor_total: TFMTBCDField;
-    cdsVendasdata: TDateField;
-    cdsVendasid_cadastro: TIntegerField;
     cdsPessoas: TClientDataSet;
     cdsPessoasid_pessoas: TIntegerField;
     cdsPessoaspessoas: TWideStringField;
@@ -38,7 +22,20 @@ type
     cdsPessoascelular: TFMTBCDField;
     cdsPessoasstatus: TWideStringField;
     cdsPessoasdata: TDateField;
-    cdsPessoasid_cadastro: TIntegerField;
+    cdsCadastro: TClientDataSet;
+    cdsCadastroid: TIntegerField;
+    cdsCadastronome_usuario: TWideStringField;
+    cdsCadastrosenha: TWideStringField;
+    cdsVendas: TClientDataSet;
+    cdsVendasid_produtos: TIntegerField;
+    cdsVendasvendedores: TWideStringField;
+    cdsVendasstatus: TWideStringField;
+    cdsVendasprodutos: TWideStringField;
+    cdsVendasvalor_produto: TFMTBCDField;
+    cdsVendasquantidade: TIntegerField;
+    cdsVendasvalor_total: TFMTBCDField;
+    cdsVendasdata: TDateField;
+    cdsVendasfornecedores: TWideStringField;
   private
     { Private declarations }
   public

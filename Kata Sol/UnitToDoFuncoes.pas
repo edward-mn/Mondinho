@@ -3,18 +3,32 @@ unit UnitToDoFuncoes;
 interface
 
 uses
-  System.SysUtils, System.DateUtils, UnitToDo, UnitEditarTarefas;
+  System.SysUtils, System.DateUtils, UnitToDo, UnitEditarTarefas, UnitTarefas,
+  DataModuleClientes;
 
 type
 
   TFuncoesToDo = class
-  class function OpcoesDeTarefas(Opcao : String) : String;
-  class function StatusToDo(Status : String) : String;
-  class function Calendario(Dia : TDateTime) : String;
-  class function Tarefas(Tarefa : String) : String;
-  class function FiltroStatus(StatusDoFiltro : String) : String;
+    class function OpcoesDeTarefas(Opcao: String): String;
+    class function StatusToDo(Status: String): String;
+    class function Calendario(Dia: TDateTime): String;
+    class function Tarefas(Tarefa: String): String;
+    class function FiltroStatus(StatusDoFiltro: String): Variant;
+  public
+    Clientes: TDMClientes;
 
   end;
+
+var
+  Filtro: String;
+  TTarefas: TFormTarefas;
+
+const
+  Ou = ' or ';
+  BoxAdiada = 'Status = ''Adiada''';
+  BoxAgendada = 'Status = ''Agendada''';
+  BoxFinalizada = 'Status = ''Finalizada''';
+  BoxAtrasada = 'Status = ''Atrasada''';
 
 implementation
 
@@ -33,52 +47,105 @@ begin
     Result := 'DataInvalida';
 end;
 
-class function TFuncoesToDo.FiltroStatus(StatusDoFiltro: String): String;
-var
-  Filtro : String;
-const
-  Ou = ' or ';
-  BoxAdiada = 'Status = ''Adiada''';
-  BoxAgendada = 'Status = ''Agendada''';
-  BoxFinalizada = 'Status = ''Finalizada''';
-  BoxAtrasada = 'Status = ''Atrasada''';
-
-procedure AdicionarStatus(Box : String);
-begin
-  if not Filtro.IsEmpty then
-    Filtro := Filtro + Ou;
+class function TFuncoesToDo.FiltroStatus(StatusDoFiltro: String): Variant;
+  procedure AdicionarStatus(Box: String);
+  begin
+    if not Filtro.IsEmpty then
+      Filtro := Filtro + Ou;
     Filtro := Filtro + Box;
-end;
+  end;
 
 begin
   if StatusDoFiltro = 'Tudo' then
   begin
-    AdicionarStatus(BoxAdiada + Ou + BoxAgendada + Ou + BoxFinalizada + Ou + BoxAtrasada);
+    AdicionarStatus(BoxAdiada + Ou + BoxAgendada + Ou + BoxFinalizada + Ou +
+      BoxAtrasada);
     Result := Filtro;
   end;
+
   if StatusDoFiltro = 'Atrasada' then
   begin
     AdicionarStatus(BoxAtrasada);
     Result := Filtro;
-  end ;
+
+  end;
   if StatusDoFiltro = 'Agendada' then
   begin
     AdicionarStatus(BoxAgendada);
     Result := Filtro;
   end;
+
   if StatusDoFiltro = 'Adiada' then
   begin
     AdicionarStatus(BoxAdiada);
     Result := Filtro;
   end;
+
   if StatusDoFiltro = 'Finalizada' then
   begin
     AdicionarStatus(BoxFinalizada);
     Result := Filtro;
   end;
 
-//    FormCriacaoEdicao.Clientes.cdsClientes.Filter := Filtro;
-//    FormCriacaoEdicao.Clientes.cdsClientes.Filtered := True;
+  if StatusDoFiltro = 'FinalizadaEAdiada' then
+  begin
+    AdicionarStatus(BoxFinalizada + Ou + BoxAdiada);
+    Result := Filtro;
+  end;
+
+  if StatusDoFiltro = 'FinalizadaEAtrasada' then
+  begin
+    AdicionarStatus(BoxFinalizada + Ou + BoxAdiada);
+    Result := Filtro;
+  end;
+
+  if StatusDoFiltro = 'FinalizadaEAgendada' then
+  begin
+    AdicionarStatus(BoxFinalizada + Ou + BoxAgendada);
+    Result := Filtro;
+  end;
+
+  if StatusDoFiltro = 'FinalizadaEAdiadaEAtrasada' then
+  begin
+    AdicionarStatus(BoxFinalizada + Ou + BoxAdiada + Ou + BoxAtrasada);
+    Result := Filtro;
+  end;
+
+  if StatusDoFiltro = 'FinalizadaEAdiadaEAgendada' then
+  begin
+    AdicionarStatus(BoxFinalizada + Ou + BoxAdiada + Ou + BoxAgendada);
+    Result := Filtro;
+  end;
+
+  if StatusDoFiltro = 'FinalizadaEAtrasadaEAgendada' then
+  begin
+    AdicionarStatus(BoxFinalizada + Ou + BoxAtrasada + Ou + BoxAgendada);
+    Result := Filtro;
+  end;
+
+  if StatusDoFiltro = 'AdiadaEAtrasada' then
+  begin
+    AdicionarStatus(BoxAdiada + Ou + BoxAtrasada);
+    Result := Filtro;
+  end;
+
+  if StatusDoFiltro = 'AdiadaEAgendada' then
+  begin
+    AdicionarStatus(BoxAdiada + Ou + BoxAgendada);
+    Result := Filtro;
+  end;
+
+  if StatusDoFiltro = 'AdiadaEAtrasadaEAgendada' then
+  begin
+    AdicionarStatus(BoxAdiada + Ou + BoxAtrasada + Ou + BoxAgendada);
+    Result := Filtro;
+  end;
+
+  if StatusDoFiltro = 'AgendadaEAtrasada' then
+  begin
+    AdicionarStatus(BoxAgendada + Ou + BoxAtrasada);
+    Result := Filtro;
+  end;
 
 end;
 

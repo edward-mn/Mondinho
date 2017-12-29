@@ -40,7 +40,7 @@ object FormPessoas: TFormPessoas
     TabOrder = 1
     object cbEmpresa: TCheckBox
       Left = 8
-      Top = 95
+      Top = 82
       Width = 97
       Height = 17
       Caption = 'Empresa'
@@ -48,7 +48,7 @@ object FormPessoas: TFormPessoas
     end
     object cbVendedor: TCheckBox
       Left = 8
-      Top = 70
+      Top = 60
       Width = 97
       Height = 17
       Caption = 'Vendedor'
@@ -56,7 +56,7 @@ object FormPessoas: TFormPessoas
     end
     object cbJuridica: TCheckBox
       Left = 8
-      Top = 44
+      Top = 39
       Width = 97
       Height = 17
       Caption = 'Jurudica'
@@ -77,6 +77,15 @@ object FormPessoas: TFormPessoas
       Height = 26
       Caption = 'Pesquisar'
       TabOrder = 4
+      OnClick = btnPesquisarClick
+    end
+    object cbUsuarioDoSistema: TCheckBox
+      Left = 8
+      Top = 102
+      Width = 108
+      Height = 17
+      Caption = 'Usuario Do Sistema'
+      TabOrder = 5
     end
   end
   object GroupBox2: TGroupBox

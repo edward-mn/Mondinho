@@ -49,14 +49,15 @@ type
     procedure CriarNovaVenda;
     procedure DefinirDataSet;
     procedure DeletarVenda;
-    procedure EditarVenda;
+    procedure EdtarVenda;
     procedure HabilitarComponentes;
     procedure SalvarVenda;
   public
     Clientes : TDmClientes;
     Conexao : TDmConexao;
-    ID_Login : Integer;
     function CalcularValorTotal(Quantidade : integer;ValorUnit : Currency): Currency;
+    procedure DesativarEditarAtualizarAoClicarEmNovo;
+    procedure AtivarEditarAtualizar;
   end;
 
 var
@@ -71,12 +72,16 @@ begin
   CriarNovaVenda();
 end;
 
+procedure TFormEditarVendas.AtivarEditarAtualizar;
+begin
+  btnEditar.Enabled := True;
+  btnAtualizar.Enabled := True;
+end;
+
 procedure TFormEditarVendas.AtualizarLista;
 begin
-  Clientes.cdsVendas.ApplyUpdates(0);
   Clientes.cdsVendas.Refresh;
-  GBVendas.Enabled := False;
-  dbGridEditarVendas.Enabled := True;
+  AtivarEditarAtualizar();
 end;
 
 procedure TFormEditarVendas.btnAtualizarClick(Sender: TObject);
@@ -96,7 +101,7 @@ end;
 
 procedure TFormEditarVendas.btnEditarClick(Sender: TObject);
 begin
-  EditarVenda();
+  EdtarVenda();
 end;
 
 procedure TFormEditarVendas.btnSalvarClick(Sender: TObject);
@@ -115,14 +120,15 @@ begin
   Clientes.cdsVendas.Cancel;
   dbGridEditarVendas.Enabled := True;
   GBVendas.Enabled := False;
+  AtivarEditarAtualizar();
 end;
 
 procedure TFormEditarVendas.CriarNovaVenda;
 begin
-  Clientes.cdsVendas.Insert;
-  Clientes.cdsVendasid_cadastro.Value := ID_Login;
   GBVendas.Enabled := True;
   dbGridEditarVendas.Enabled := False;
+  Clientes.cdsVendas.Insert;
+  DesativarEditarAtualizarAoClicarEmNovo();
 end;
 
 procedure TFormEditarVendas.DefinirDataSet;
@@ -142,7 +148,13 @@ begin
   end;
 end;
 
-procedure TFormEditarVendas.EditarVenda;
+procedure TFormEditarVendas.DesativarEditarAtualizarAoClicarEmNovo;
+begin
+  btnEditar.Enabled := False;
+  btnAtualizar.Enabled := False;
+end;
+
+procedure TFormEditarVendas.EdtarVenda;
 begin
   dbGridEditarVendas.Enabled := False;
   GBVendas.Enabled := True;
@@ -163,12 +175,14 @@ procedure TFormEditarVendas.HabilitarComponentes;
 begin
   Clientes.cdsVendasid_produtos.Visible := True;
   Clientes.cdsVendasvalor_total.Visible := True;
+  AtivarEditarAtualizar();
 end;
 
 procedure TFormEditarVendas.SalvarVenda;
 begin
   if (Clientes.cdsVendas.State = dsEdit) or (Clientes.cdsVendas.State = dsInsert) then
   begin
+  AtivarEditarAtualizar();
   dbGridEditarVendas.Enabled := True;
   GBVendas.Enabled := False;
   CalcularValorTotal(Clientes.cdsVendasquantidade.Value, Clientes.cdsVendasvalor_produto.AsCurrency);
