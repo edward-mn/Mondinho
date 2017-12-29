@@ -6,7 +6,9 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DataModuleClientes, DataModuleConexao,
   Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, System.UITypes,
-  UnitEditarVendas;
+  UnitEditarVendas, cxGraphics, cxControls, cxLookAndFeels,
+  cxLookAndFeelPainters, cxContainer, cxEdit, cxTextEdit, cxMaskEdit,
+  cxDropDownEdit, cxCalendar, cxDBEdit, frxClass, frxDBSet;
 
 type
   TFormVendas = class(TForm)
@@ -21,6 +23,7 @@ type
     btnAtualizarVendas: TButton;
     btnEditarVendasCadastrar: TButton;
     Tarefas: TLabel;
+    btnCriarRelatorio: TButton;
     procedure btnAtualizarVendasClick(Sender: TObject);
     procedure btnEditarVendasCadastrarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);

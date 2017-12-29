@@ -154,7 +154,7 @@ end;
 
 procedure TFormEditarTarefas.SalvarTarefa;
 begin
-  if (Clientes.cdsVendas.State = dsEdit) or (Clientes.cdsVendas.State = dsInsert) then
+  if (Clientes.cdsToDo.State = dsEdit) or (Clientes.cdsToDo.State = dsInsert) then
   begin
   Clientes.cdsTodo.ApplyUpdates(0);
   gbFormulario.Enabled := False;

@@ -5,7 +5,7 @@ object FormVendas: TFormVendas
   BorderStyle = bsSingle
   Caption = 'Vendas'
   ClientHeight = 334
-  ClientWidth = 697
+  ClientWidth = 678
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -83,11 +83,11 @@ object FormVendas: TFormVendas
     Left = 544
     Top = 195
     Width = 122
-    Height = 86
+    Height = 118
     Caption = 'Vendas'
     TabOrder = 2
     object btnAtualizarVendas: TButton
-      Left = 9
+      Left = 7
       Top = 50
       Width = 105
       Height = 26
@@ -104,9 +104,17 @@ object FormVendas: TFormVendas
       TabOrder = 1
       OnClick = btnEditarVendasCadastrarClick
     end
+    object btnCriarRelatorio: TButton
+      Left = 7
+      Top = 81
+      Width = 106
+      Height = 25
+      Caption = 'Criar Relat'#243'rio'
+      TabOrder = 2
+    end
   end
   object dsVendas: TDataSource
-    Left = 280
-    Top = 128
+    Left = 632
+    Top = 160
   end
 end

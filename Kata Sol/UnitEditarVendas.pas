@@ -56,10 +56,6 @@ type
     Clientes : TDmClientes;
     Conexao : TDmConexao;
     function CalcularValorTotal(Quantidade : integer;ValorUnit : Currency): Currency;
-    procedure DesativarBotoesAoAbrirForm;
-    procedure SetarDataSetDataSource;
-    procedure ClicarNovo;
-    procedure ClicarEditar;
   end;
 
 var
@@ -74,15 +70,12 @@ begin
   CriarNovaVenda();
 end;
 
-procedure TFormEditarVendas.AtivarEditarAtualizar;
-begin
-  btnEditar.Enabled := True;
-  btnAtualizar.Enabled := True;
-end;
-
 procedure TFormEditarVendas.AtualizarLista;
 begin
+  Clientes.cdsVendas.ApplyUpdates(0);
   Clientes.cdsVendas.Refresh;
+  dbGridEditarVendas.Enabled := True;
+  GBVendas.Enabled := False;
 end;
 
 procedure TFormEditarVendas.btnAtualizarClick(Sender: TObject);
@@ -121,7 +114,6 @@ begin
   Clientes.cdsVendas.Cancel;
   dbGridEditarVendas.Enabled := True;
   GBVendas.Enabled := False;
-  AtivarEditarAtualizar();
 end;
 
 procedure TFormEditarVendas.CriarNovaVenda;
@@ -129,7 +121,6 @@ begin
   GBVendas.Enabled := True;
   dbGridEditarVendas.Enabled := False;
   Clientes.cdsVendas.Insert;
-  DesativarEditarAtualizarAoClicarEmNovo();
 end;
 
 procedure TFormEditarVendas.DefinirDataSet;
@@ -149,22 +140,13 @@ begin
   end;
 end;
 
-procedure TFormEditarVendas.ClicarEditar;
+procedure TFormEditarVendas.EdtarVenda;
 begin
-  btnCancelar.Enabled := True;
-  btnAtualizar.Enabled := True;
-  btnEditar.Enabled := True;
+  dbGridEditarVendas.Enabled := False;
+  GBVendas.Enabled := True;
 end;
 
-procedure TFormEditarVendas.ClicarNovo;
-begin
-  btnAtualizar.Enabled := True;
-  btnNovo.Enabled := True;
-  btnEditar.Enabled := False;
-end;
-
-procedure TFormEditarVendas.FormClose(Sender: TObject; var Action:
-    TCloseAction);
+procedure TFormEditarVendas.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   HabilitarComponentes();
 end;
@@ -184,7 +166,6 @@ procedure TFormEditarVendas.SalvarVenda;
 begin
   if (Clientes.cdsVendas.State = dsEdit) or (Clientes.cdsVendas.State = dsInsert) then
   begin
-  AtivarEditarAtualizar();
   dbGridEditarVendas.Enabled := True;
   GBVendas.Enabled := False;
   CalcularValorTotal(Clientes.cdsVendasquantidade.Value, Clientes.cdsVendasvalor_produto.AsCurrency);

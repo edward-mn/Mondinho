@@ -164,7 +164,7 @@ end;
 
 procedure TFormCriacaoEdicaoPessoas.SalvarAlteracoes;
 begin
-  if (Clientes.cdsVendas.State = dsEdit) or (Clientes.cdsVendas.State = dsInsert) then
+  if (Clientes.cdsPessoas.State = dsEdit) or (Clientes.cdsPessoas.State = dsInsert) then
   begin
   dbGridCriacaoEdicaoPessoas.Enabled := True;
   Clientes.cdsPessoas.ApplyUpdates(0);
