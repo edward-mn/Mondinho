@@ -4,7 +4,7 @@ interface
 
 uses
   System.SysUtils, System.Classes, Data.FMTBcd, Datasnap.Provider, Data.DB,
-  Data.SqlExpr, DbxDevartPostgreSQL, Datasnap.DBClient;
+  Data.SqlExpr, Datasnap.DBClient, DbxDevartPostgreSQL;
 
 type
   TDmConexao = class(TDataModule)
@@ -42,6 +42,9 @@ type
     sqlQueryCadastroid: TIntegerField;
     sqlQueryCadastronome_usuario: TWideStringField;
     sqlQueryCadastrosenha: TWideStringField;
+    sqlQueryToDoid_cadastro: TIntegerField;
+    sqlQueryVendasid_cadastro: TIntegerField;
+    sqlQueryPessoasid_cadastro: TIntegerField;
   private
     { Private declarations }
   public

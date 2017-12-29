@@ -49,12 +49,13 @@ type
     procedure CriarNovaVenda;
     procedure DefinirDataSet;
     procedure DeletarVenda;
-    procedure EdtarVenda;
+    procedure EditarVenda;
     procedure HabilitarComponentes;
     procedure SalvarVenda;
   public
     Clientes : TDmClientes;
     Conexao : TDmConexao;
+    ID_Login : Integer;
     function CalcularValorTotal(Quantidade : integer;ValorUnit : Currency): Currency;
   end;
 
@@ -74,8 +75,8 @@ procedure TFormEditarVendas.AtualizarLista;
 begin
   Clientes.cdsVendas.ApplyUpdates(0);
   Clientes.cdsVendas.Refresh;
-  dbGridEditarVendas.Enabled := True;
   GBVendas.Enabled := False;
+  dbGridEditarVendas.Enabled := True;
 end;
 
 procedure TFormEditarVendas.btnAtualizarClick(Sender: TObject);
@@ -95,7 +96,7 @@ end;
 
 procedure TFormEditarVendas.btnEditarClick(Sender: TObject);
 begin
-  EdtarVenda();
+  EditarVenda();
 end;
 
 procedure TFormEditarVendas.btnSalvarClick(Sender: TObject);
@@ -118,9 +119,10 @@ end;
 
 procedure TFormEditarVendas.CriarNovaVenda;
 begin
+  Clientes.cdsVendas.Insert;
+  Clientes.cdsVendasid_cadastro.Value := ID_Login;
   GBVendas.Enabled := True;
   dbGridEditarVendas.Enabled := False;
-  Clientes.cdsVendas.Insert;
 end;
 
 procedure TFormEditarVendas.DefinirDataSet;
@@ -140,7 +142,7 @@ begin
   end;
 end;
 
-procedure TFormEditarVendas.EdtarVenda;
+procedure TFormEditarVendas.EditarVenda;
 begin
   dbGridEditarVendas.Enabled := False;
   GBVendas.Enabled := True;

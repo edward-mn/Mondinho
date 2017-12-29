@@ -49,6 +49,7 @@ type
     { Private declarations }
   public
     Clientes :TDmClientes;
+    ID_Login : Integer;
   end;
 
 var
@@ -148,6 +149,7 @@ end;
 procedure TFormEditarTarefas.NovaTarefa;
 begin
   Clientes.cdsTodo.Insert;
+  Clientes.cdsToDoid_cadastro.Value := ID_Login;
   gbFormulario.Enabled := True;
   dbGridCriacaoEdicao.Enabled := False;
 end;
