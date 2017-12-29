@@ -26,8 +26,8 @@ type
   private
 
   public
-  FClientes :TDmClientes;
-  FConexao : TdmConexao;
+  Clientes :TDmClientes;
+  Conexao : TdmConexao;
   procedure LimparCampos;
   end;
 
@@ -50,8 +50,8 @@ begin
     ShowMessage('A senha não pode ser diferente nos dois campos!')
  else
     begin
-      FConexao.sqlQueryCadastro.Close;
-      FClientes.cdsCadastro.ApplyUpdates(0);
+      Conexao.sqlQueryCadastro.Close;
+      Clientes.cdsCadastro.ApplyUpdates(0);
       ShowMessage('Cadastro Concluido!');
       LimparCampos;
     end;
@@ -59,11 +59,11 @@ end;
 
 procedure TFormCadastro.FormShow(Sender: TObject);
 begin
-  FClientes.cdsCadastro.SetProvider(FConexao.sqlProviderCadastro);
-  FConexao.sqlQueryCadastro.Open;
-  FClientes.cdsCadastro.Open;
-  dsCadastro.DataSet := FClientes.cdsCadastro;
-  FClientes.cdsCadastro.Insert;
+  Clientes.cdsCadastro.SetProvider(Conexao.sqlProviderCadastro);
+  Conexao.sqlQueryCadastro.Open;
+  Clientes.cdsCadastro.Open;
+  dsCadastro.DataSet := Clientes.cdsCadastro;
+  Clientes.cdsCadastro.Insert;
 end;
 
 procedure TFormCadastro.LimparCampos;

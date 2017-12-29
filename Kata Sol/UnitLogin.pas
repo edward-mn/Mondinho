@@ -23,10 +23,9 @@ type
     procedure CriarFormToDo;
     procedure FormShow(Sender: TObject);
     procedure Logar;
-  private
+  public
     FConexao : TdmConexao;
     FClientes : TDmClientes;
-  public
     constructor Create(AOwner: TComponent); override;
   end;
 
@@ -63,8 +62,8 @@ var
 begin
   NewForm := TFormCadastro.Create(nil);
 try
-  NewForm.FClientes := FClientes;
-  NewForm.FConexao := FConexao;
+  NewForm.Clientes := FClientes;
+  NewForm.Conexao := FConexao;
   NewForm.ShowModal;
 
 finally
@@ -80,6 +79,7 @@ begin
   FormLogin.Visible := False;
   NewForm := TFormView.Create(nil);
  try
+  NewForm.ID_Conexao := FConexao;
   NewForm.ShowModal;
 
 finally
