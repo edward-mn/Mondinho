@@ -31,6 +31,19 @@ type
    procedure TelaInicial_FiltroStatus_Agendada;
    procedure TelaInicial_FiltroStatus_Adiada;
    procedure TelaInicial_FiltroStatus_Finalizada;
+
+   procedure TelaInicial_FiltroStatus_FinalizadaEAdiada;
+   procedure TelaInicial_FiltroStatus_FinalizadaEAtrasada;
+   procedure TelaInicial_FiltroStatus_FinalizadaEAgendada;
+   procedure TelaInicial_FiltroStatus_FinalizadaEAdiadaEAtrasada;
+   procedure TelaInicial_FiltroStatus_FinalizadaEAdiadaEAgendada;
+   procedure TelaInicial_FiltroStatus_FinalizadaEAtrasadaEAgendada;
+
+   procedure TelaInicial_FiltroStatus_AdiadaEAtrasada;
+   procedure TelaInicial_FiltroStatus_AdiadaEAgendada;
+   procedure TelaInicial_FiltroStatus_AdiadaEAtrasadaEAgendada;
+
+   procedure TelaInicial_FiltroStatus_AgendadaEAtrasada;
   end;
 
 implementation
@@ -67,29 +80,79 @@ end;
 
 procedure TTestToDo.TelaInicial_FiltroStatus_Adiada;
 begin
-  CheckEquals('Status = ''Adiada''', TFuncoesToDo.FiltroStatus('Adiada'));
+  CheckEqualsString(Filtro, TFuncoesToDo.FiltroStatus('Adiada'));
+end;
+
+procedure TTestToDo.TelaInicial_FiltroStatus_AdiadaEAgendada;
+begin
+  CheckEqualsString(Filtro, TFuncoesToDo.FiltroStatus('AdiadaEAgendada'))
+end;
+
+procedure TTestToDo.TelaInicial_FiltroStatus_AdiadaEAtrasada;
+begin
+  CheckEqualsString(Filtro, TFuncoesToDo.FiltroStatus('AdiadaEAtrasada'))
+end;
+
+procedure TTestToDo.TelaInicial_FiltroStatus_AdiadaEAtrasadaEAgendada;
+begin
+  CheckEqualsString(Filtro, TFuncoesToDo.FiltroStatus('AdiadaEAtrasadaEAgendada'))
+end;
+
+procedure TTestToDo.TelaInicial_FiltroStatus_FinalizadaEAdiada;
+begin
+  CheckEqualsString(Filtro, TFuncoesToDo.FiltroStatus('FinalizadaEAdiada'));
+end;
+
+procedure TTestToDo.TelaInicial_FiltroStatus_FinalizadaEAdiadaEAgendada;
+begin
+  CheckEqualsString(Filtro, TFuncoesToDo.FiltroStatus('FinalizadaEAdiadaEAgendada'))
+end;
+
+procedure TTestToDo.TelaInicial_FiltroStatus_FinalizadaEAdiadaEAtrasada;
+begin
+  CheckEqualsString(Filtro, TFuncoesToDo.FiltroStatus('FinalizadaEAdiadaEAtrasada'))
+end;
+
+procedure TTestToDo.TelaInicial_FiltroStatus_FinalizadaEAgendada;
+begin
+  CheckEqualsString(Filtro, TFuncoesToDo.FiltroStatus('FinalizadaEAgendada'))
+end;
+
+procedure TTestToDo.TelaInicial_FiltroStatus_FinalizadaEAtrasada;
+begin
+  CheckEqualsString(Filtro, TFuncoesToDo.FiltroStatus('FinalizadaEAtrasada'));
+end;
+
+procedure TTestToDo.TelaInicial_FiltroStatus_FinalizadaEAtrasadaEAgendada;
+begin
+  CheckEqualsString(Filtro, TFuncoesToDo.FiltroStatus('FinalizadaEAtrasadaEAgendada'))
 end;
 
 procedure TTestToDo.TelaInicial_FiltroStatus_Agendada;
 begin
-  CheckEquals('Status = ''Agendada''', TFuncoesToDo.FiltroStatus('Agendada'));
+  CheckEqualsString(Filtro, TFuncoesToDo.FiltroStatus('Agendada'));
+end;
+
+procedure TTestToDo.TelaInicial_FiltroStatus_AgendadaEAtrasada;
+begin
+  CheckEqualsString(Filtro, TFuncoesToDo.FiltroStatus('AgendadaEAtrasada'))
 end;
 
 procedure TTestToDo.TelaInicial_FiltroStatus_Atrasada;
 begin
-  CheckEquals('Status = ''Atrasada''', TFuncoesToDo.FiltroStatus('Atrasada'));
+  CheckEqualsString(Filtro, TFuncoesToDo.FiltroStatus('Atrasada'));
 end;
 
 procedure TTestToDo.TelaInicial_FiltroStatus_Finalizada;
 begin
-  CheckEquals('Status = ''Finalizada''', TFuncoesToDo.FiltroStatus('Finalizada'));
+  CheckEqualsString(Filtro, TFuncoesToDo.FiltroStatus('Finalizada'));
 end;
 
 procedure TTestToDo.TelaInicial_FiltroStatus_Todos;
 begin
-  CheckEquals('Status = ''Adiada'' or Status = ''Agendada'' or Status = ''Finalizada'' or Status = ''Atrasada''',
-  TFuncoesToDo.FiltroStatus('Tudo'));
+  CheckEqualsString(Filtro, TFuncoesToDo.FiltroStatus('Tudo'));
 end;
+
 
 procedure TTestToDo.DefinirData_DiaDeAmanha_Amanha;
 begin

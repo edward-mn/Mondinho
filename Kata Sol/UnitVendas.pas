@@ -21,8 +21,10 @@ type
     btnAtualizarVendas: TButton;
     btnEditarVendasCadastrar: TButton;
     Tarefas: TLabel;
+    procedure AdicionarFiltroCorretoVendas;
     procedure btnAtualizarVendasClick(Sender: TObject);
     procedure btnEditarVendasCadastrarClick(Sender: TObject);
+    procedure btnPesquisarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
   private
@@ -30,7 +32,6 @@ type
   public
     Clientes : TDmClientes;
     Conexao : TDmConexao;
-    ID_Login : Integer;
     procedure CriarFormEditarVendas;
   end;
 
@@ -42,6 +43,39 @@ implementation
 
 {$R *.dfm}
 
+procedure TFormVendas.AdicionarFiltroCorretoVendas;
+var
+  Filtro: String;
+const
+  Ou = ' or ';
+  BoxAberta = 'Status = ''Aberta''';
+  BoxFinalizada = 'Status = ''Finalizada''';
+  BoxExcluida = 'Status = ''Excluida''';
+procedure AdicionarStatus(Box: String);
+  begin
+    if not Filtro.IsEmpty then
+      Filtro := Filtro + Ou;
+    Filtro := Filtro + Box;
+  end;
+
+begin
+  if cbAberta.Checked then
+  begin
+    AdicionarStatus(BoxAberta);
+  end;
+  if cbFinalizada.Checked then
+  begin
+    AdicionarStatus(BoxFinalizada);
+  end;
+  if cbExcluida.Checked then
+  begin
+    AdicionarStatus(BoxExcluida);
+  end;
+
+  Clientes.cdsVendas.Filter := Filtro;
+  Clientes.cdsVendas.Filtered := True;
+end;
+
 procedure TFormVendas.btnAtualizarVendasClick(Sender: TObject);
 begin
   Clientes.cdsVendas.Refresh;
@@ -52,6 +86,11 @@ begin
   CriarFormEditarVendas();
 end;
 
+procedure TFormVendas.btnPesquisarClick(Sender: TObject);
+begin
+AdicionarFiltroCorretoVendas;
+end;
+
 procedure TFormVendas.CriarFormEditarVendas;
 var
   NewForm : TFormEditarVendas;
@@ -59,7 +98,6 @@ begin
   NewForm := TFormEditarVendas.Create(nil);
 try
   NewForm.Clientes := Clientes;
-  NewForm.ID_Login := ID_Login;
   NewForm.ShowModal
 finally
   NewForm.Free;
@@ -75,11 +113,9 @@ end;
 procedure TFormVendas.FormShow(Sender: TObject);
 begin
   Clientes.cdsVendas.SetProvider(Conexao.sqlQueryVendas);
+  Clientes.cdsVendas.Open;
   dsVendas.DataSet := Clientes.cdsVendas;
   dbGridVendas.DataSource := dsVendas;
-  Conexao.sqlQueryVendas.SQL.CommaText := ('select * from vendas where id_cadastro =' + IntToStr(ID_Login));
-  Clientes.cdsVendas.Open;
-  Clientes.cdsVendasid_cadastro.Visible := False;
 end;
 
 end.

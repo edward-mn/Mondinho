@@ -21,13 +21,10 @@ type
     procedure btnTarefasClick(Sender: TObject);
     procedure btnVendasClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure FormShow(Sender: TObject);
   private
-    FConexao : TDmConexao;
+    FConexao : TdmConexao;
     FClientes : TDmClientes;
   public
-    ID_Login : Integer;
-    ID_Conexao : TDmConexao;
     constructor Create(AOwner: TComponent); override;
     procedure CriarFormTarefas;
     procedure CriarFormVendas;
@@ -42,16 +39,15 @@ implementation
 {$R *.dfm}
 
 uses
-  UnitToDoFuncoes, UnitLogin;
+  UnitToDoFuncoes;
 
 constructor TFormView.Create(AOwner: TComponent);
 begin
   inherited;
-  FConexao := TDmConexao.Create(Self);
+  FConexao := TdmConexao.Create(Self);
   FClientes := TDmClientes.Create(Self);
 
-  FClientes.cdsToDo.SetProvider(FConexao.sqlProviderToDo);
-  FClientes.cdsToDoid_cadastro.Visible := False;
+  FClientes.cdstodo.SetProvider(FConexao.sqlProviderToDo);
 end;
 
 procedure TFormView.btnPessoasClick(Sender: TObject);
@@ -78,7 +74,6 @@ begin
 try
   NewForm.Clientes := FClientes;
   NewForm.Conexao := FConexao;
-  NewForm.ID_Login := ID_Login;
   NewForm.ShowModal;
 
 finally
@@ -94,7 +89,6 @@ begin
   NewForm := TFormTarefas.Create(nil);
 try
   NewForm.Clientes := FClientes;
-  NewForm.ID_Login := ID_Login;
   NewForm.ShowModal;
 
 finally
@@ -111,7 +105,6 @@ begin
 try
   NewForm.Clientes := FClientes;
   NewForm.Conexao := FConexao;
-  NewForm.ID_Login := ID_Login;
   NewForm.ShowModal;
 finally
   NewForm.Free;
@@ -122,15 +115,9 @@ end;
 
 procedure TFormView.FormCreate(Sender: TObject);
 begin
+  FClientes.cdsToDo.Open;
   dsToDo.DataSet := FClientes.cdsToDo;
   dbGridPrincipal.DataSource := dsToDo;
-end;
-
-procedure TFormView.FormShow(Sender: TObject);
-begin
-  ID_Login := ID_Conexao.sqlQueryCadastroid.Value;
-  FConexao.sqlQueryToDo.SQL.CommaText := ('select * from monde_todo where id_cadastro =' + IntToStr(ID_Login));
-  FClientes.cdsToDo.Open;
 end;
 
 end.

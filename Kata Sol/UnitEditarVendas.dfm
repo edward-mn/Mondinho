@@ -43,7 +43,7 @@ object FormEditarVendas: TFormEditarVendas
   end
   object btnSalvar: TButton
     Left = 21
-    Top = 151
+    Top = 152
     Width = 105
     Height = 26
     Caption = 'Salvar'

@@ -55,7 +55,6 @@ type
     procedure SalvarAlteracoes;
   public
     Clientes : TDmClientes;
-    ID_Login : Integer;
   end;
 
 var
@@ -106,7 +105,6 @@ end;
 procedure TFormCriacaoEdicaoPessoas.CadastrarNovaPessoa;
 begin
   Clientes.cdsPessoas.Insert;
-  Clientes.cdsPessoasid_cadastro.Value := ID_Login;
   gbFormulario.Enabled := True;
   dbGridCriacaoEdicaoPessoas.Enabled := False;
 end;
@@ -168,10 +166,9 @@ procedure TFormCriacaoEdicaoPessoas.SalvarAlteracoes;
 begin
   if (Clientes.cdsPessoas.State = dsEdit) or (Clientes.cdsPessoas.State = dsInsert) then
   begin
-  gbFormulario.Enabled := False;
   dbGridCriacaoEdicaoPessoas.Enabled := True;
   Clientes.cdsPessoas.ApplyUpdates(0);
-  Clientes.cdsPessoas.Refresh;
+  gbFormulario.Enabled := False;
   end;
 end;
 

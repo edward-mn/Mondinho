@@ -6,7 +6,7 @@ object DmConexao: TDmConexao
     MaxBlobSize = -1
     Params = <>
     SQL.Strings = (
-      '')
+      'select * from monde_todo')
     SQLConnection = sqlConexao
     Left = 24
     Top = 88
@@ -28,9 +28,6 @@ object DmConexao: TDmConexao
     object sqlQueryToDodata: TDateField
       FieldName = 'data'
     end
-    object sqlQueryToDoid_cadastro: TIntegerField
-      FieldName = 'id_cadastro'
-    end
   end
   object sqlConexao: TSQLConnection
     ConnectionName = 'Devart PostgreSQL'
@@ -38,7 +35,7 @@ object DmConexao: TDmConexao
     LoginPrompt = False
     Params.Strings = (
       'BlobSize=-1'
-      'HostName=localhost:5433'
+      'HostName=localhost:5432'
       'DataBase=MiniMonde'
       'SchemaName=mondinho'
       'DriverName=DevartPostgreSQL'
@@ -50,7 +47,6 @@ object DmConexao: TDmConexao
       'IPVersion=IPv4'
       'UseUnicode=True'
       'Charset=')
-    Connected = True
     Left = 248
     Top = 8
   end
@@ -64,7 +60,7 @@ object DmConexao: TDmConexao
     MaxBlobSize = -1
     Params = <>
     SQL.Strings = (
-      '')
+      'select * from vendas')
     SQLConnection = sqlConexao
     Left = 168
     Top = 88
@@ -106,9 +102,6 @@ object DmConexao: TDmConexao
       Precision = 11
       Size = 2
     end
-    object sqlQueryVendasid_cadastro: TIntegerField
-      FieldName = 'id_cadastro'
-    end
   end
   object sqlProviderVendas: TDataSetProvider
     DataSet = sqlQueryVendas
@@ -126,7 +119,7 @@ object DmConexao: TDmConexao
     MaxBlobSize = -1
     Params = <>
     SQL.Strings = (
-      '')
+      'select * from pessoas')
     SQLConnection = sqlConexao
     Left = 283
     Top = 89
@@ -165,9 +158,6 @@ object DmConexao: TDmConexao
     object sqlQueryPessoasdata: TDateField
       FieldName = 'data'
       EditMask = '!99/99/0000;1;_'
-    end
-    object sqlQueryPessoasid_cadastro: TIntegerField
-      FieldName = 'id_cadastro'
     end
   end
   object sqlProviderCadastro: TDataSetProvider
