@@ -117,7 +117,6 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       Height = 13
       Align = alCustom
       Caption = '* Status'
-      FocusControl = edtStatus
     end
     object Label3: TLabel
       Left = 323
@@ -175,16 +174,6 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       DataSource = dsCriacaoEdicaoPessoas
       TabOrder = 4
     end
-    object edtStatus: TDBEdit
-      Left = 366
-      Top = 83
-      Width = 154
-      Height = 21
-      Align = alCustom
-      DataField = 'status'
-      DataSource = dsCriacaoEdicaoPessoas
-      TabOrder = 5
-    end
     object edtEndereco: TDBEdit
       Left = 319
       Top = 37
@@ -194,6 +183,21 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       DataField = 'endereco'
       DataSource = dsCriacaoEdicaoPessoas
       TabOrder = 2
+    end
+    object DBcbStatusPessoas: TDBComboBox
+      Left = 369
+      Top = 83
+      Width = 145
+      Height = 21
+      DataField = 'status'
+      DataSource = dsCriacaoEdicaoPessoas
+      Items.Strings = (
+        'Fisica'
+        'Juridica'
+        'Vendedor'
+        'Empresa'
+        'Usuario do Sistema')
+      TabOrder = 5
     end
   end
   object btnEditar: TButton

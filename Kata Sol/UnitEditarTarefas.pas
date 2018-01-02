@@ -24,13 +24,13 @@ type
     edtNome: TDBEdit;
     edtTarefa: TDBEdit;
     Label3: TLabel;
-    edtStatus: TDBEdit;
     Label4: TLabel;
     Label2: TLabel;
     btnDeletarTarefa: TButton;
     cxDBDateEdit1: TcxDBDateEdit;
     dbGridCriacaoEdicao: TDBGrid;
     TimerVerificarAtrazado: TTimer;
+    DBcbTarefas: TDBComboBox;
     procedure AtrazarTarefa;
     procedure btnNovoClick(Sender: TObject);
     procedure btnAtualizarClick(Sender: TObject);
@@ -75,6 +75,8 @@ begin
         begin
             Clientes.cdsToDo.Edit;
           if Now > Clientes.cdsToDodata.Value then
+          if Clientes.cdsToDostatus.text <> 'Finalizada' then
+
           begin
             Clientes.cdsToDostatus.Text := 'Atrazada';
           end;
@@ -82,6 +84,7 @@ begin
           end;
           finally
             Clientes.cdsToDostatus.DataSet.GotoBookmark(BookMarkAtrazar);
+            Clientes.cdsToDo.ApplyUpdates(0);
       end;
 
 end;
@@ -165,6 +168,7 @@ end;
 procedure TFormEditarTarefas.FormShow(Sender: TObject);
 begin
   DefinirDataSet();
+  AtrazarTarefa();
 end;
 
 procedure TFormEditarTarefas.HabilitarComponentes;
@@ -193,9 +197,14 @@ begin
   end;
 end;
 
+
 procedure TFormEditarTarefas.TimerVerificarAtrazadoTimer(Sender: TObject);
+var
+hora : TDateTime;
 begin
-  AtrazarTarefa;
+hora := now;
+if time >= strtoTime('00:00') then
+  AtrazarTarefa();
 end;
 
 end.

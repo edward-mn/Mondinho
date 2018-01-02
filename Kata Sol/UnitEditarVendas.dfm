@@ -98,7 +98,6 @@ object FormEditarVendas: TFormEditarVendas
       Width = 40
       Height = 13
       Caption = '* Status'
-      FocusControl = edtStatus
     end
     object Label5: TLabel
       Left = 24
@@ -149,15 +148,6 @@ object FormEditarVendas: TFormEditarVendas
       DataSource = dsEditarVendas
       TabOrder = 1
     end
-    object edtStatus: TDBEdit
-      Left = 492
-      Top = 57
-      Width = 85
-      Height = 21
-      DataField = 'status'
-      DataSource = dsEditarVendas
-      TabOrder = 2
-    end
     object edtProdutos: TDBEdit
       Left = 24
       Top = 111
@@ -165,7 +155,7 @@ object FormEditarVendas: TFormEditarVendas
       Height = 21
       DataField = 'produtos'
       DataSource = dsEditarVendas
-      TabOrder = 3
+      TabOrder = 2
     end
     object edtPreco: TDBEdit
       Left = 219
@@ -174,7 +164,7 @@ object FormEditarVendas: TFormEditarVendas
       Height = 21
       DataField = 'valor_produto'
       DataSource = dsEditarVendas
-      TabOrder = 4
+      TabOrder = 3
     end
     object DBEdit16: TDBEdit
       Left = 353
@@ -183,15 +173,28 @@ object FormEditarVendas: TFormEditarVendas
       Height = 21
       DataField = 'quantidade'
       DataSource = dsEditarVendas
-      TabOrder = 5
+      TabOrder = 4
     end
     object cxDBDateEdit1: TcxDBDateEdit
       Left = 486
       Top = 114
       DataBinding.DataField = 'data'
       DataBinding.DataSource = dsEditarVendas
-      TabOrder = 6
+      TabOrder = 5
       Width = 110
+    end
+    object DBcbStatusVendas: TDBComboBox
+      Left = 493
+      Top = 60
+      Width = 105
+      Height = 21
+      DataField = 'status'
+      DataSource = dsEditarVendas
+      Items.Strings = (
+        'Aberta'
+        'Finalizada'
+        'Excluida')
+      TabOrder = 6
     end
   end
   object btnEditar: TButton

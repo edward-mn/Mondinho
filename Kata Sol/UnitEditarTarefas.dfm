@@ -85,7 +85,6 @@ object FormEditarTarefas: TFormEditarTarefas
       Width = 40
       Height = 13
       Caption = '* Status'
-      FocusControl = edtStatus
     end
     object Label4: TLabel
       Left = 13
@@ -119,22 +118,27 @@ object FormEditarTarefas: TFormEditarTarefas
       DataSource = dsCriarTarefas
       TabOrder = 0
     end
-    object edtStatus: TDBEdit
-      Left = 363
-      Top = 103
-      Width = 174
-      Height = 21
-      DataField = 'status'
-      DataSource = dsCriarTarefas
-      TabOrder = 2
-    end
     object cxDBDateEdit1: TcxDBDateEdit
       Left = 13
       Top = 150
       DataBinding.DataField = 'data'
       DataBinding.DataSource = dsCriarTarefas
-      TabOrder = 3
+      TabOrder = 2
       Width = 90
+    end
+    object DBcbTarefas: TDBComboBox
+      Left = 363
+      Top = 103
+      Width = 145
+      Height = 21
+      DataField = 'status'
+      DataSource = dsCriarTarefas
+      Items.Strings = (
+        'Agendada'
+        'Finalizada'
+        'Adiada'
+        'Atrasada')
+      TabOrder = 3
     end
   end
   object btnDeletarTarefa: TButton
@@ -165,7 +169,7 @@ object FormEditarTarefas: TFormEditarTarefas
     Top = 264
   end
   object TimerVerificarAtrazado: TTimer
-    Interval = 60000
+    Interval = 59000
     OnTimer = TimerVerificarAtrazadoTimer
     Left = 616
     Top = 200
