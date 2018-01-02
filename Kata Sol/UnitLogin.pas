@@ -18,7 +18,6 @@ type
     btnEntrar: TButton;
     btnCadastrar: TButton;
     Image1: TImage;
-    Image2: TImage;
     procedure btnCadastrarClick(Sender: TObject);
     procedure btnEntrarClick(Sender: TObject);
     procedure CriarFormCadastro;
@@ -55,9 +54,6 @@ end;
 
 procedure TFormLogin.btnEntrarClick(Sender: TObject);
 begin
-if edtUsuario.Text = 'picles' then
-  Image2.Visible := true
-else
   Logar;
 end;
 
