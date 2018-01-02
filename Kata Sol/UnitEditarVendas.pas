@@ -28,13 +28,13 @@ type
     Label9: TLabel;
     edtVendedores: TDBEdit;
     edtFornecedores: TDBEdit;
-    edtStatus: TDBEdit;
     edtProdutos: TDBEdit;
     edtPreco: TDBEdit;
     DBEdit16: TDBEdit;
     btnEditar: TButton;
     btnDeletar: TButton;
     cxDBDateEdit1: TcxDBDateEdit;
+    DBcbStatusVendas: TDBComboBox;
     procedure btnNovoClick(Sender: TObject);
     procedure btnAtualizarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
