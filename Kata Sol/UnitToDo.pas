@@ -17,6 +17,7 @@ type
     btnPessoas: TButton;
     btnVendas: TButton;
     Image1: TImage;
+//    procedure AtrazarTarefa;
     procedure btnPessoasClick(Sender: TObject);
     procedure btnTarefasClick(Sender: TObject);
     procedure btnVendasClick(Sender: TObject);
@@ -53,6 +54,12 @@ begin
   FClientes.cdsToDo.SetProvider(FConexao.sqlProviderToDo);
   FClientes.cdsToDoid_cadastro.Visible := False;
 end;
+
+//procedure TFormView.AtrazarTarefa;
+//begin
+//  if Now > DmClientes.cdsToDodata.Value then
+//    DmClientes.cdsToDostatus.Text := 'Atrazada';
+//end;
 
 procedure TFormView.btnPessoasClick(Sender: TObject);
 begin
