@@ -14,7 +14,6 @@ object FormEditarTarefas: TFormEditarTarefas
   Font.Style = []
   OldCreateOrder = False
   Position = poDesktopCenter
-  OnActivate = FormActivate
   OnClose = FormClose
   OnShow = FormShow
   PixelsPerInch = 96

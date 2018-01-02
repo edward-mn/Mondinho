@@ -38,7 +38,6 @@ type
     procedure btnDeletarTarefaClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
-    procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure TimerVerificarAtrazadoTimer(Sender: TObject);
@@ -103,7 +102,6 @@ end;
 
 procedure TFormEditarTarefas.btnAtualizarClick(Sender: TObject);
 begin
-  AtrazarTarefa;
   AtualizarLista();
 end;
 
@@ -157,10 +155,6 @@ begin
   dbGridCriacaoEdicao.Enabled := False;
 end;
 
-procedure TFormEditarTarefas.FormActivate(Sender: TObject);
-begin
-  AtrazarTarefa;
-end;
 
 procedure TFormEditarTarefas.FormClose(Sender: TObject;
   var Action: TCloseAction);
