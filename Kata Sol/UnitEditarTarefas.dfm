@@ -5,7 +5,7 @@ object FormEditarTarefas: TFormEditarTarefas
   BorderStyle = bsSingle
   Caption = 'Editar/Cadastrar Tarefas'
   ClientHeight = 372
-  ClientWidth = 705
+  ClientWidth = 708
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -149,7 +149,7 @@ object FormEditarTarefas: TFormEditarTarefas
   object dbGridCriacaoEdicao: TDBGrid
     Left = 0
     Top = 232
-    Width = 705
+    Width = 708
     Height = 140
     Align = alBottom
     ReadOnly = True
@@ -163,5 +163,11 @@ object FormEditarTarefas: TFormEditarTarefas
   object dsCriarTarefas: TDataSource
     Left = 240
     Top = 264
+  end
+  object TimerVerificarAtrazado: TTimer
+    Interval = 60000
+    OnTimer = TimerVerificarAtrazadoTimer
+    Left = 616
+    Top = 200
   end
 end
