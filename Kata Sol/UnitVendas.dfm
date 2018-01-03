@@ -34,7 +34,7 @@ object FormVendas: TFormVendas
   end
   object gbStatusVenda: TGroupBox
     Left = 535
-    Top = 40
+    Top = 34
     Width = 122
     Height = 121
     Caption = 'Status'

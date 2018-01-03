@@ -22,11 +22,11 @@ type
     btnAtualizarTarefa: TButton;
     btnCriarTarefa: TButton;
     Timer: TTimer;
-    procedure AtrasarTarefa;
-    procedure AdicionarFiltroCorretoTarefas;
     gbRelatorioTarefas: TGroupBox;
     btnImprimir: TButton;
     btnVisualizar: TButton;
+    procedure AtrasarTarefa;
+    procedure AdicionarFiltroCorretoTarefas;
     procedure btnAtualizarTarefaClick(Sender: TObject);
     procedure btnCriarTarefaClick(Sender: TObject);
     procedure btnEditarTarefaClick(Sender: TObject);

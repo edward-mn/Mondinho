@@ -22,17 +22,15 @@ type
     gbEditarVenda: TGroupBox;
     btnAtualizarVendas: TButton;
     btnEditarVendasCadastrar: TButton;
-    Tarefas: TLabel;
-    procedure AdicionarFiltroCorretoVendas;
     gbRelatorioVendas: TGroupBox;
     btnVisualizarRelatorio: TButton;
     btnImprimirRelatorio: TButton;
-
+    procedure AdicionarFiltroCorretoVendas;
     procedure btnAtualizarVendasClick(Sender: TObject);
     procedure btnEditarVendasCadastrarClick(Sender: TObject);
     procedure btnImprimirRelatorioClick(Sender: TObject);
-    procedure btnVisualizarRelatorioClick(Sender: TObject);
     procedure btnPesquisarClick(Sender: TObject);
+    procedure btnVisualizarRelatorioClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
   private
@@ -93,6 +91,21 @@ end;
 procedure TFormVendas.btnEditarVendasCadastrarClick(Sender: TObject);
 begin
   CriarFormEditarVendas();
+end;
+
+procedure TFormVendas.btnImprimirRelatorioClick(Sender: TObject);
+begin
+  Clientes.frxReportVendas.Print;
+end;
+
+procedure TFormVendas.btnPesquisarClick(Sender: TObject);
+begin
+  AdicionarFiltroCorretoVendas();
+end;
+
+procedure TFormVendas.btnVisualizarRelatorioClick(Sender: TObject);
+begin
+   Clientes.frxReportVendas.ShowReport();
 end;
 
 procedure TFormVendas.CriarFormEditarVendas;

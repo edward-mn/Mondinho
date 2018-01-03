@@ -29,7 +29,7 @@ object FormTarefas: TFormTarefas
       Top = 92
       Width = 97
       Height = 17
-      Caption = 'Atrasadas'
+      Caption = 'Atrasada'
       TabOrder = 0
     end
     object cbFinalizadas: TCheckBox
@@ -37,7 +37,7 @@ object FormTarefas: TFormTarefas
       Top = 67
       Width = 97
       Height = 17
-      Caption = 'Finalizadas'
+      Caption = 'Finalizada'
       TabOrder = 1
     end
     object cbAdiadas: TCheckBox
@@ -45,7 +45,7 @@ object FormTarefas: TFormTarefas
       Top = 42
       Width = 97
       Height = 17
-      Caption = 'Adiadas'
+      Caption = 'Adiada'
       TabOrder = 2
     end
     object cbAgendada: TCheckBox
@@ -133,13 +133,13 @@ object FormTarefas: TFormTarefas
     end
   end
   object dsTarefas: TDataSource
-    Left = 592
+    Left = 608
     Top = 464
   end
   object Timer: TTimer
     Interval = 60000
     OnTimer = TimerTimer
-    Left = 400
-    Top = 216
+    Left = 552
+    Top = 464
   end
 end

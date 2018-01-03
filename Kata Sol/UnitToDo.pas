@@ -8,7 +8,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
   DataModuleConexao, DataModuleClientes, UnitEditarTarefas, Vcl.StdCtrls,
   UnitTarefas, Vcl.ExtCtrls, UnitVendas, UnitPessoas, Vcl.Imaging.pngimage,
-  dxGDIPlusClasses;
+  dxGDIPlusClasses, System.UITypes;
 
 type
   TFormView = class(TForm)

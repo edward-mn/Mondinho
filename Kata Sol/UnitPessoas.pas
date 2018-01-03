@@ -24,8 +24,8 @@ type
     bntVisualizar: TButton;
     btnImprimir: TButton;
     gbRelatorioPessoas: TGroupBox;
-    procedure bntVisualizarClick(Sender: TObject);
     cbUsuarioDoSistema: TCheckBox;
+    procedure bntVisualizarClick(Sender: TObject);
     procedure AdicionarFiltroCorretoPessoas;
     procedure btnAtualizarCadastroClick(Sender: TObject);
     procedure btnCadastrarPessoaClick(Sender: TObject);
