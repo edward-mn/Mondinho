@@ -70,6 +70,7 @@ object FormVendas: TFormVendas
       Height = 26
       Caption = 'Pesquisar'
       TabOrder = 3
+      OnClick = btnPesquisarClick
     end
   end
   object gbEditarVenda: TGroupBox

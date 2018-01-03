@@ -5,7 +5,7 @@ object FormEditarTarefas: TFormEditarTarefas
   BorderStyle = bsSingle
   Caption = 'Editar/Cadastrar Tarefas'
   ClientHeight = 372
-  ClientWidth = 705
+  ClientWidth = 708
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,7 +20,7 @@ object FormEditarTarefas: TFormEditarTarefas
   TextHeight = 13
   object btnAtualizar: TButton
     Left = 19
-    Top = 83
+    Top = 67
     Width = 105
     Height = 26
     Caption = 'Atualizar'
@@ -29,7 +29,7 @@ object FormEditarTarefas: TFormEditarTarefas
   end
   object btnSalvar: TButton
     Left = 19
-    Top = 159
+    Top = 123
     Width = 105
     Height = 26
     Caption = 'Salvar'
@@ -47,7 +47,7 @@ object FormEditarTarefas: TFormEditarTarefas
   end
   object btnCancelar: TButton
     Left = 19
-    Top = 120
+    Top = 96
     Width = 105
     Height = 25
     Caption = 'Cancelar'
@@ -56,7 +56,7 @@ object FormEditarTarefas: TFormEditarTarefas
   end
   object btnEditar: TButton
     Left = 19
-    Top = 48
+    Top = 39
     Width = 105
     Height = 25
     Caption = 'Editar'
@@ -65,7 +65,7 @@ object FormEditarTarefas: TFormEditarTarefas
   end
   object gbFormulario: TGroupBox
     Left = 130
-    Top = 20
+    Top = 19
     Width = 551
     Height = 184
     Caption = 'Formul'#225'rio'
@@ -85,7 +85,6 @@ object FormEditarTarefas: TFormEditarTarefas
       Width = 40
       Height = 13
       Caption = '* Status'
-      FocusControl = edtStatus
     end
     object Label4: TLabel
       Left = 13
@@ -119,46 +118,63 @@ object FormEditarTarefas: TFormEditarTarefas
       DataSource = dsCriarTarefas
       TabOrder = 0
     end
-    object edtStatus: TDBEdit
+    object DBcbTarefas: TDBComboBox
       Left = 363
       Top = 103
-      Width = 174
+      Width = 145
       Height = 21
       DataField = 'status'
       DataSource = dsCriarTarefas
+      Items.Strings = (
+        'Agendada'
+        'Finalizada'
+        'Adiada'
+        'Atrasada')
       TabOrder = 2
-    end
-    object cxDBDateEdit1: TcxDBDateEdit
-      Left = 13
-      Top = 150
-      DataBinding.DataField = 'data'
-      DataBinding.DataSource = dsCriarTarefas
-      TabOrder = 3
-      Width = 90
     end
   end
   object btnDeletarTarefa: TButton
     Left = 19
-    Top = 197
+    Top = 151
     Width = 105
     Height = 25
     Caption = 'Deletar'
     TabOrder = 6
     OnClick = btnDeletarTarefaClick
   end
+  object btnAdiarTarefa: TButton
+    Left = 19
+    Top = 178
+    Width = 105
+    Height = 25
+    Caption = 'Adiar Tarefa'
+    TabOrder = 7
+    OnClick = btnAdiarTarefaClick
+  end
   object dbGridCriacaoEdicao: TDBGrid
     Left = 0
     Top = 232
-    Width = 705
+    Width = 708
     Height = 140
     Align = alBottom
     ReadOnly = True
-    TabOrder = 7
+    TabOrder = 8
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+  end
+  object cxDBDateEdit1: TcxDBDateEdit
+    Left = 143
+    Top = 169
+    Cursor = crArrow
+    DataBinding.DataField = 'data'
+    DataBinding.DataSource = dsCriarTarefas
+    DragCursor = crArrow
+    Properties.View = cavModern
+    TabOrder = 9
+    Width = 90
   end
   object dsCriarTarefas: TDataSource
     Left = 240

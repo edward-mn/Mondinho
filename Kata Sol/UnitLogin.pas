@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Imaging.pngimage,
-  Vcl.ExtCtrls, UnitCadastro, DataModuleClientes, DataModuleConexao, Data.DB;
+  Vcl.ExtCtrls, UnitCadastro, DataModuleClientes, DataModuleConexao, Data.DB,
+  dxGDIPlusClasses;
 
 type
   TFormLogin = class(TForm)
@@ -53,7 +54,7 @@ end;
 
 procedure TFormLogin.btnEntrarClick(Sender: TObject);
 begin
-Logar;
+  Logar;
 end;
 
 procedure TFormLogin.CriarFormCadastro;
@@ -105,7 +106,7 @@ begin
   else
   begin
     CriarFormToDo();
-    FormLogin.Close;
+//    FormLogin.Close;
   end;
 end;
 

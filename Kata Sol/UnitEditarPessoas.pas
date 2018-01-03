@@ -27,7 +27,6 @@ type
     Label2: TLabel;
     Label5: TLabel;
     edtCelular: TDBEdit;
-    edtStatus: TDBEdit;
     Label6: TLabel;
     edtEndereco: TDBEdit;
     Label3: TLabel;
@@ -35,6 +34,7 @@ type
     btnEditar: TButton;
     btnDeletarCadastro: TButton;
     cxDBDateEdit1: TcxDBDateEdit;
+    DBcbStatusPessoas: TDBComboBox;
     procedure btnNovaPessoaClick(Sender: TObject);
     procedure btnAtualizarPessoasClick(Sender: TObject);
     procedure btnCancelarPessoasClick(Sender: TObject);
@@ -127,7 +127,7 @@ end;
 
 procedure TFormCriacaoEdicaoPessoas.DeletarPessoa;
 begin
-  if MessageDlg('Deseja realmete deletar essa tarefa ?', mtInformation, [mbYes , mbNo],0) = mrYes then
+  if MessageDlg('Deseja realmente deletar essa tarefa ?', mtInformation, [mbYes , mbNo],0) = mrYes then
     begin
     Clientes.cdsPessoas.Delete;
     Clientes.cdsPessoas.ApplyUpdates(0);

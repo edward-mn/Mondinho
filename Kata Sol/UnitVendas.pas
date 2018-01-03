@@ -22,13 +22,17 @@ type
     gbEditarVenda: TGroupBox;
     btnAtualizarVendas: TButton;
     btnEditarVendasCadastrar: TButton;
+    Tarefas: TLabel;
+    procedure AdicionarFiltroCorretoVendas;
     gbRelatorioVendas: TGroupBox;
     btnVisualizarRelatorio: TButton;
     btnImprimirRelatorio: TButton;
+
     procedure btnAtualizarVendasClick(Sender: TObject);
     procedure btnEditarVendasCadastrarClick(Sender: TObject);
     procedure btnImprimirRelatorioClick(Sender: TObject);
     procedure btnVisualizarRelatorioClick(Sender: TObject);
+    procedure btnPesquisarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
   private
@@ -48,6 +52,39 @@ implementation
 
 {$R *.dfm}
 
+procedure TFormVendas.AdicionarFiltroCorretoVendas;
+var
+  Filtro: String;
+const
+  Ou = ' or ';
+  BoxAberta = 'Status = ''Aberta''';
+  BoxFinalizada = 'Status = ''Finalizada''';
+  BoxExcluida = 'Status = ''Excluida''';
+procedure AdicionarStatus(Box: String);
+  begin
+    if not Filtro.IsEmpty then
+      Filtro := Filtro + Ou;
+    Filtro := Filtro + Box;
+  end;
+
+begin
+  if cbAberta.Checked then
+  begin
+    AdicionarStatus(BoxAberta);
+  end;
+  if cbFinalizada.Checked then
+  begin
+    AdicionarStatus(BoxFinalizada);
+  end;
+  if cbExcluida.Checked then
+  begin
+    AdicionarStatus(BoxExcluida);
+  end;
+
+  Clientes.cdsVendas.Filter := Filtro;
+  Clientes.cdsVendas.Filtered := True;
+end;
+
 procedure TFormVendas.btnAtualizarVendasClick(Sender: TObject);
 begin
   Clientes.cdsVendas.Refresh;
@@ -56,16 +93,6 @@ end;
 procedure TFormVendas.btnEditarVendasCadastrarClick(Sender: TObject);
 begin
   CriarFormEditarVendas();
-end;
-
-procedure TFormVendas.btnImprimirRelatorioClick(Sender: TObject);
-begin
-  Clientes.frxReportVendas.Print;
-end;
-
-procedure TFormVendas.btnVisualizarRelatorioClick(Sender: TObject);
-begin
-  Clientes.frxReportVendas.ShowReport();
 end;
 
 procedure TFormVendas.CriarFormEditarVendas;
