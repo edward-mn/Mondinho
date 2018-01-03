@@ -12,7 +12,7 @@ type
   TFormPessoas = class(TForm)
     dbGridPessoas: TDBGrid;
     dsPessoas: TDataSource;
-    GroupBox1: TGroupBox;
+    gbStatusPessoas: TGroupBox;
     cbEmpresa: TCheckBox;
     cbVendedor: TCheckBox;
     cbJuridica: TCheckBox;
@@ -20,12 +20,17 @@ type
     btnPesquisar: TButton;
     btnCadastrarPessoa: TButton;
     btnAtualizarCadastro: TButton;
-    GroupBox2: TGroupBox;
+    gbEditarPessoas: TGroupBox;
+    bntVisualizar: TButton;
+    btnImprimir: TButton;
+    gbRelatorioPessoas: TGroupBox;
     cbUsuarioDoSistema: TCheckBox;
+    procedure bntVisualizarClick(Sender: TObject);
     procedure AdicionarFiltroCorretoPessoas;
     procedure btnAtualizarCadastroClick(Sender: TObject);
     procedure btnCadastrarPessoaClick(Sender: TObject);
     procedure btnEditarCadastroClick(Sender: TObject);
+    procedure btnImprimirClick(Sender: TObject);
     procedure btnPesquisarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
@@ -89,6 +94,11 @@ begin
   Clientes.cdsPessoas.Filtered := True;
 end;
 
+procedure TFormPessoas.bntVisualizarClick(Sender: TObject);
+begin
+  Clientes.frxReportPessoas.ShowReport();
+end;
+
 procedure TFormPessoas.btnAtualizarCadastroClick(Sender: TObject);
 begin
   Clientes.cdsPessoas.Refresh;
@@ -107,6 +117,11 @@ end;
 procedure TFormPessoas.btnPesquisarClick(Sender: TObject);
 begin
   AdicionarFiltroCorretoPessoas;
+end;
+
+procedure TFormPessoas.btnImprimirClick(Sender: TObject);
+begin
+  Clientes.frxReportPessoas.Print;
 end;
 
 procedure TFormPessoas.CriarFormCriacaoEdicaoPessoas;

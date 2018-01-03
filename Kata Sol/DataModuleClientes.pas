@@ -3,7 +3,8 @@ unit DataModuleClientes;
 interface
 
 uses
-  System.SysUtils, System.Classes, Data.DB, Datasnap.DBClient;
+  System.SysUtils, System.Classes, Data.DB, Datasnap.DBClient, frxClass,
+  frxDBSet;
 
 type
   TDmClientes = class(TDataModule)
@@ -39,6 +40,14 @@ type
     cdsPessoasstatus: TWideStringField;
     cdsPessoasdata: TDateField;
     cdsPessoasid_cadastro: TIntegerField;
+    frxDBDatasetVendas: TfrxDBDataset;
+    frxDBDatasetToDo: TfrxDBDataset;
+    frxDBDatasetPessoas: TfrxDBDataset;
+    frxDBDatasetCadastro: TfrxDBDataset;
+    frxReportCadastro: TfrxReport;
+    frxReportVendas: TfrxReport;
+    frxReportToDo: TfrxReport;
+    frxReportPessoas: TfrxReport;
   private
     { Private declarations }
   public
