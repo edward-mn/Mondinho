@@ -110,4 +110,10 @@ object FormTarefas: TFormTarefas
     Left = 216
     Top = 160
   end
+  object Timer: TTimer
+    Interval = 60000
+    OnTimer = TimerTimer
+    Left = 400
+    Top = 216
+  end
 end
