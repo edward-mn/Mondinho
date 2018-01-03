@@ -6,25 +6,31 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DataModuleClientes, DataModuleConexao,
   Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, System.UITypes,
-  UnitEditarVendas;
+  UnitEditarVendas, cxGraphics, cxControls, cxLookAndFeels,
+  cxLookAndFeelPainters, cxContainer, cxEdit, cxTextEdit, cxMaskEdit,
+  cxDropDownEdit, cxCalendar, cxDBEdit;
 
 type
   TFormVendas = class(TForm)
     dbGridVendas: TDBGrid;
     dsVendas: TDataSource;
-    GroupBox1: TGroupBox;
+    gbStatusVenda: TGroupBox;
     cbExcluida: TCheckBox;
     cbFinalizada: TCheckBox;
     cbAberta: TCheckBox;
     btnPesquisar: TButton;
-    Vendas: TGroupBox;
+    gbEditarVenda: TGroupBox;
     btnAtualizarVendas: TButton;
     btnEditarVendasCadastrar: TButton;
-    Tarefas: TLabel;
+    gbRelatorioVendas: TGroupBox;
+    btnVisualizarRelatorio: TButton;
+    btnImprimirRelatorio: TButton;
     procedure AdicionarFiltroCorretoVendas;
     procedure btnAtualizarVendasClick(Sender: TObject);
     procedure btnEditarVendasCadastrarClick(Sender: TObject);
+    procedure btnImprimirRelatorioClick(Sender: TObject);
     procedure btnPesquisarClick(Sender: TObject);
+    procedure btnVisualizarRelatorioClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
   private
@@ -87,9 +93,19 @@ begin
   CriarFormEditarVendas();
 end;
 
+procedure TFormVendas.btnImprimirRelatorioClick(Sender: TObject);
+begin
+  Clientes.frxReportVendas.Print;
+end;
+
 procedure TFormVendas.btnPesquisarClick(Sender: TObject);
 begin
-  AdicionarFiltroCorretoVendas;
+  AdicionarFiltroCorretoVendas();
+end;
+
+procedure TFormVendas.btnVisualizarRelatorioClick(Sender: TObject);
+begin
+   Clientes.frxReportVendas.ShowReport();
 end;
 
 procedure TFormVendas.CriarFormEditarVendas;

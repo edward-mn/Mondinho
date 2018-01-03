@@ -148,8 +148,7 @@ begin
   GBVendas.Enabled := True;
 end;
 
-procedure TFormEditarVendas.FormClose(Sender: TObject; var Action:
-    TCloseAction);
+procedure TFormEditarVendas.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   HabilitarComponentes();
 end;
@@ -163,6 +162,7 @@ procedure TFormEditarVendas.HabilitarComponentes;
 begin
   Clientes.cdsVendasid_produtos.Visible := True;
   Clientes.cdsVendasvalor_total.Visible := True;
+  Clientes.cdsVendas.Cancel;
 end;
 
 procedure TFormEditarVendas.SalvarVenda;

@@ -4,8 +4,8 @@ object FormVendas: TFormVendas
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Vendas'
-  ClientHeight = 334
-  ClientWidth = 697
+  ClientHeight = 435
+  ClientWidth = 671
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,18 +18,11 @@ object FormVendas: TFormVendas
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object Tarefas: TLabel
-    Left = 772
-    Top = 160
-    Width = 39
-    Height = 13
-    Caption = 'Vendas:'
-  end
   object dbGridVendas: TDBGrid
     Left = 0
     Top = 0
     Width = 521
-    Height = 334
+    Height = 435
     Align = alLeft
     ReadOnly = True
     TabOrder = 0
@@ -39,9 +32,9 @@ object FormVendas: TFormVendas
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
   end
-  object GroupBox1: TGroupBox
-    Left = 544
-    Top = 40
+  object gbStatusVenda: TGroupBox
+    Left = 535
+    Top = 34
     Width = 122
     Height = 121
     Caption = 'Status'
@@ -80,15 +73,15 @@ object FormVendas: TFormVendas
       OnClick = btnPesquisarClick
     end
   end
-  object Vendas: TGroupBox
-    Left = 544
-    Top = 195
+  object gbEditarVenda: TGroupBox
+    Left = 535
+    Top = 161
     Width = 122
-    Height = 86
-    Caption = 'Vendas'
+    Height = 88
+    Caption = 'Venda'
     TabOrder = 2
     object btnAtualizarVendas: TButton
-      Left = 9
+      Left = 7
       Top = 50
       Width = 105
       Height = 26
@@ -106,8 +99,34 @@ object FormVendas: TFormVendas
       OnClick = btnEditarVendasCadastrarClick
     end
   end
+  object gbRelatorioVendas: TGroupBox
+    Left = 535
+    Top = 264
+    Width = 122
+    Height = 105
+    Caption = 'Relat'#243'rio'
+    TabOrder = 3
+    object btnVisualizarRelatorio: TButton
+      Left = 7
+      Top = 23
+      Width = 106
+      Height = 25
+      Caption = 'Visualizar'
+      TabOrder = 0
+      OnClick = btnVisualizarRelatorioClick
+    end
+    object btnImprimirRelatorio: TButton
+      Left = 9
+      Top = 57
+      Width = 104
+      Height = 25
+      Caption = 'Imprimir'
+      TabOrder = 1
+      OnClick = btnImprimirRelatorioClick
+    end
+  end
   object dsVendas: TDataSource
-    Left = 280
-    Top = 128
+    Left = 584
+    Top = 384
   end
 end

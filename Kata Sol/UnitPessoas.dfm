@@ -4,8 +4,8 @@ object FormPessoas: TFormPessoas
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Pessoas'
-  ClientHeight = 319
-  ClientWidth = 666
+  ClientHeight = 422
+  ClientWidth = 665
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,7 +21,7 @@ object FormPessoas: TFormPessoas
     Left = 0
     Top = 0
     Width = 524
-    Height = 319
+    Height = 422
     Align = alLeft
     ReadOnly = True
     TabOrder = 0
@@ -31,7 +31,7 @@ object FormPessoas: TFormPessoas
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
   end
-  object GroupBox1: TGroupBox
+  object gbStatusPessoas: TGroupBox
     Left = 530
     Top = 24
     Width = 120
@@ -88,9 +88,9 @@ object FormPessoas: TFormPessoas
       TabOrder = 5
     end
   end
-  object GroupBox2: TGroupBox
+  object gbEditarPessoas: TGroupBox
     Left = 530
-    Top = 207
+    Top = 183
     Width = 120
     Height = 84
     Caption = 'Pessoas'
@@ -114,8 +114,34 @@ object FormPessoas: TFormPessoas
       OnClick = btnCadastrarPessoaClick
     end
   end
+  object gbRelatorioPessoas: TGroupBox
+    Left = 530
+    Top = 273
+    Width = 120
+    Height = 104
+    Caption = 'Relat'#243'rio'
+    TabOrder = 3
+    object bntVisualizar: TButton
+      Left = 10
+      Top = 24
+      Width = 102
+      Height = 25
+      Caption = 'Visualizar'
+      TabOrder = 0
+      OnClick = bntVisualizarClick
+    end
+    object btnImprimir: TButton
+      Left = 10
+      Top = 57
+      Width = 102
+      Height = 26
+      Caption = 'Imprimir'
+      TabOrder = 1
+      OnClick = btnImprimirClick
+    end
+  end
   object dsPessoas: TDataSource
-    Left = 216
-    Top = 160
+    Left = 584
+    Top = 384
   end
 end
