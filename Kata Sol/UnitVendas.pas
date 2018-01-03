@@ -8,7 +8,7 @@ uses
   Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, System.UITypes,
   UnitEditarVendas, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, cxTextEdit, cxMaskEdit,
-  cxDropDownEdit, cxCalendar, cxDBEdit, UnitRelatorios;
+  cxDropDownEdit, cxCalendar, cxDBEdit;
 
 type
   TFormVendas = class(TForm)
