@@ -127,7 +127,7 @@ end;
 
 procedure TFormCriacaoEdicaoPessoas.DeletarPessoa;
 begin
-  if MessageDlg('Deseja realmete deletar essa tarefa ?', mtInformation, [mbYes , mbNo],0) = mrYes then
+  if MessageDlg('Deseja realmente deletar essa tarefa ?', mtInformation, [mbYes , mbNo],0) = mrYes then
     begin
     Clientes.cdsPessoas.Delete;
     Clientes.cdsPessoas.ApplyUpdates(0);

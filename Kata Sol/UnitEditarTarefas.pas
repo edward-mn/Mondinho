@@ -27,11 +27,11 @@ type
     Label4: TLabel;
     Label2: TLabel;
     btnDeletarTarefa: TButton;
-    cxDBDateEdit1: TcxDBDateEdit;
-    dbGridCriacaoEdicao: TDBGrid;
-    TimerVerificarAtrazado: TTimer;
     DBcbTarefas: TDBComboBox;
-    procedure AtrazarTarefa;
+    btnAdiarTarefa: TButton;
+    dbGridCriacaoEdicao: TDBGrid;
+    cxDBDateEdit1: TcxDBDateEdit;
+    procedure btnAdiarTarefaClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure btnAtualizarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
@@ -40,8 +40,9 @@ type
     procedure btnSalvarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
-    procedure TimerVerificarAtrazadoTimer(Sender: TObject);
   private
+    procedure ConfirmarAdiarTarefa;
+    procedure AdiarTarefa;
     procedure AtualizarLista;
     procedure CancelarTarefa;
     procedure DefinirDataSet;
@@ -52,8 +53,10 @@ type
     procedure SalvarTarefa;
     { Private declarations }
   public
+    DataAntiga : TDateTime;
     Clientes: TDmClientes;
     ID_Login: Integer;
+    Trigger : Boolean;
   end;
 
 var
@@ -63,39 +66,36 @@ implementation
 
 {$R *.dfm}
 
-procedure TFormEditarTarefas.AtrazarTarefa;
-var
-  BookMarkAtrazar: TBookmark;
+
+
+procedure TFormEditarTarefas.AdiarTarefa;
 begin
-  try
-    BookMarkAtrazar := Clientes.cdsToDodata.DataSet.GetBookmark;
+  Clientes.cdsToDo.Edit;
+  cxDBDateEdit1.SetFocus;
+  gbFormulario.Enabled := False;
 
-    Clientes.cdsToDostatus.DataSet.First;
-    while not Clientes.cdsToDostatus.DataSet.Eof do
-        begin
-            Clientes.cdsToDo.Edit;
-          if Now > Clientes.cdsToDodata.Value then
-          if Clientes.cdsToDostatus.text <> 'Finalizada' then
+  btnNovo.Enabled := False;
+  btnEditar.Enabled := False;
+  btnDeletarTarefa.Enabled := False;
+  btnAdiarTarefa.Enabled := False;
 
-          begin
-            Clientes.cdsToDostatus.Text := 'Atrazada';
-          end;
-            Clientes.cdsToDostatus.DataSet.Next;
-          end;
-          finally
-            Clientes.cdsToDostatus.DataSet.GotoBookmark(BookMarkAtrazar);
-            Clientes.cdsToDo.ApplyUpdates(0);
-      end;
+  Trigger := True;
 
+  DataAntiga := cxDBDateEdit1.Date;
 end;
-
 
 procedure TFormEditarTarefas.AtualizarLista;
 begin
   Clientes.cdsToDo.ApplyUpdates(0);
   Clientes.cdsToDo.Refresh;
   gbFormulario.Enabled := False;
+  cxDBDateEdit1.Enabled := False;
   dbGridCriacaoEdicao.Enabled := True;
+end;
+
+procedure TFormEditarTarefas.btnAdiarTarefaClick(Sender: TObject);
+begin
+  AdiarTarefa;
 end;
 
 procedure TFormEditarTarefas.btnNovoClick(Sender: TObject);
@@ -125,14 +125,41 @@ end;
 
 procedure TFormEditarTarefas.btnSalvarClick(Sender: TObject);
 begin
+  ConfirmarAdiarTarefa();
   SalvarTarefa();
 end;
 
 procedure TFormEditarTarefas.CancelarTarefa;
 begin
+  edtNome.Enabled := True;
+  edtTarefa.Enabled := True;
+  DBcbTarefas.Enabled := True;
   Clientes.cdsToDo.Cancel;
   gbFormulario.Enabled := False;
+  cxDBDateEdit1.Enabled := False;
   dbGridCriacaoEdicao.Enabled := True;
+end;
+
+procedure TFormEditarTarefas.ConfirmarAdiarTarefa;
+begin
+  if Trigger = True then
+    begin
+
+  if DataAntiga <> cxDBDateEdit1.Date then
+    begin
+    Clientes.cdsToDostatus.text := 'Adiada';
+    gbFormulario.Enabled := True;
+
+    btnNovo.Enabled := True;
+    btnEditar.Enabled := True;
+    btnDeletarTarefa.Enabled := True;
+    btnAdiarTarefa.Enabled := True;
+
+    Trigger := False;
+    end
+  else
+  ShowMessage('É necessario Colocar uma data diferente!');
+end
 end;
 
 procedure TFormEditarTarefas.DefinirDataSet;
@@ -144,7 +171,7 @@ end;
 
 procedure TFormEditarTarefas.DeletarTarefa;
 begin
-  if MessageDlg('Deseja realmete deletar essa tarefa ?', mtInformation,
+  if MessageDlg('Deseja realmente deletar essa tarefa ?', mtInformation,
     [mbYes, mbNo], 0) = mrYes then
   begin
     Clientes.cdsToDo.Delete;
@@ -155,6 +182,7 @@ end;
 procedure TFormEditarTarefas.EditarTarefa;
 begin
   gbFormulario.Enabled := True;
+  cxDBDateEdit1.Enabled := True;
   dbGridCriacaoEdicao.Enabled := False;
 end;
 
@@ -168,7 +196,6 @@ end;
 procedure TFormEditarTarefas.FormShow(Sender: TObject);
 begin
   DefinirDataSet();
-  AtrazarTarefa();
 end;
 
 procedure TFormEditarTarefas.HabilitarComponentes;
@@ -182,6 +209,7 @@ procedure TFormEditarTarefas.NovaTarefa;
 begin
   Clientes.cdsToDo.Insert;
   Clientes.cdsToDoid_cadastro.Value := ID_Login;
+  cxDBDateEdit1.Enabled := True;
   gbFormulario.Enabled := True;
   dbGridCriacaoEdicao.Enabled := False;
 end;
@@ -194,17 +222,7 @@ begin
     Clientes.cdsToDo.ApplyUpdates(0);
     gbFormulario.Enabled := False;
     dbGridCriacaoEdicao.Enabled := True;
+    cxDBDateEdit1.Enabled := True;
   end;
 end;
-
-
-procedure TFormEditarTarefas.TimerVerificarAtrazadoTimer(Sender: TObject);
-var
-hora : TDateTime;
-begin
-hora := now;
-if time >= strtoTime('00:00') then
-  AtrazarTarefa();
-end;
-
 end.

@@ -69,8 +69,8 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     OnClick = btnSalvarPessoasClick
   end
   object gbFormulario: TGroupBox
-    Left = 136
-    Top = 28
+    Left = 142
+    Top = 34
     Width = 544
     Height = 169
     Caption = 'Formul'#225'rio'
@@ -136,7 +136,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     end
     object edtTelefone: TDBEdit
       Left = 6
-      Top = 83
+      Top = 79
       Width = 147
       Height = 21
       Align = alCustom
@@ -146,7 +146,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     end
     object edtNome: TDBEdit
       Left = 6
-      Top = 37
+      Top = 32
       Width = 147
       Height = 21
       Align = alCustom
@@ -219,8 +219,8 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     OnClick = btnDeletarCadastroClick
   end
   object cxDBDateEdit1: TcxDBDateEdit
-    Left = 142
-    Top = 157
+    Left = 148
+    Top = 158
     DataBinding.DataField = 'data'
     DataBinding.DataSource = dsCriacaoEdicaoPessoas
     TabOrder = 8

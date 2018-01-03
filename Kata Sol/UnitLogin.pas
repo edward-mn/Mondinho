@@ -106,7 +106,7 @@ begin
   else
   begin
     CriarFormToDo();
-    FormLogin.Close;
+//    FormLogin.Close;
   end;
 end;
 

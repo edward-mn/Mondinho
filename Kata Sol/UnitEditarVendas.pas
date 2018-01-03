@@ -135,7 +135,7 @@ end;
 
 procedure TFormEditarVendas.DeletarVenda;
 begin
-  if MessageDlg('Deseja realmete deletar essa venda ?', mtInformation, [mbYes , mbNo],0) = mrYes then
+  if MessageDlg('Deseja realmente deletar essa venda ?', mtInformation, [mbYes , mbNo],0) = mrYes then
   begin
     Clientes.cdsVendas.Delete;
     Clientes.cdsVendas.ApplyUpdates(0);
