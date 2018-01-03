@@ -175,7 +175,7 @@ object FormView: TFormView
     Height = 33
     Align = alBottom
     TabOrder = 2
-    object Button1: TButton
+    object btnLogout: TButton
       Left = 1010
       Top = 1
       Width = 73
@@ -189,7 +189,7 @@ object FormView: TFormView
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
-      OnClick = Button1Click
+      OnClick = btnLogoutClick
     end
   end
   object dsToDo: TDataSource
