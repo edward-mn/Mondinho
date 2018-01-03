@@ -73,6 +73,7 @@ begin
   Clientes.cdsToDo.Edit;
   cxDBDateEdit1.SetFocus;
   gbFormulario.Enabled := False;
+  dbGridCriacaoEdicao.Enabled := False;
 
   btnNovo.Enabled := False;
   btnEditar.Enabled := False;
@@ -149,6 +150,7 @@ begin
     begin
     Clientes.cdsToDostatus.text := 'Adiada';
     gbFormulario.Enabled := True;
+    dbGridCriacaoEdicao.Enabled := True;
 
     btnNovo.Enabled := True;
     btnEditar.Enabled := True;

@@ -18,14 +18,14 @@ type
     btnTarefas: TButton;
     btnVendas: TButton;
     btnPessoas: TButton;
-    Button1: TButton;
+    btnLogout: TButton;
     Image1: TImage;
     Panel2: TPanel;
     procedure Logout;
     procedure btnPessoasClick(Sender: TObject);
     procedure btnTarefasClick(Sender: TObject);
     procedure btnVendasClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure btnLogoutClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -77,7 +77,7 @@ begin
   CriarFormVendas();
 end;
 
-procedure TFormView.Button1Click(Sender: TObject);
+procedure TFormView.btnLogoutClick(Sender: TObject);
 begin
   Logout;
 end;
