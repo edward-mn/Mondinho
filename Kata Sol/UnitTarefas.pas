@@ -9,7 +9,7 @@ uses
 
 type
   TFormTarefas = class(TForm)
-    GroupBox1: TGroupBox;
+    gbStatusTarefas: TGroupBox;
     cbAtrasadas: TCheckBox;
     cbFinalizadas: TCheckBox;
     cbAdiadas: TCheckBox;
@@ -17,13 +17,18 @@ type
     btnPesquisar: TButton;
     dbGridTarefas: TDBGrid;
     dsTarefas: TDataSource;
-    GroupBox2: TGroupBox;
+    gbEditarTarefas: TGroupBox;
     btnAtualizarTarefa: TButton;
     btnCriarTarefa: TButton;
+    gbRelatorioTarefas: TGroupBox;
+    btnImprimir: TButton;
+    btnVisualizar: TButton;
     procedure btnAtualizarTarefaClick(Sender: TObject);
     procedure btnCriarTarefaClick(Sender: TObject);
     procedure btnEditarTarefaClick(Sender: TObject);
+    procedure btnImprimirClick(Sender: TObject);
     procedure btnPesquisarClick(Sender: TObject);
+    procedure btnVisualizarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
     { Private declarations }
@@ -56,9 +61,19 @@ begin
   CriarFormEditarTarefas();
 end;
 
+procedure TFormTarefas.btnImprimirClick(Sender: TObject);
+begin
+  Clientes.frxReportToDo.Print;
+end;
+
 procedure TFormTarefas.btnPesquisarClick(Sender: TObject);
 begin
 //    TFuncoesToDo.FiltroStatus();
+end;
+
+procedure TFormTarefas.btnVisualizarClick(Sender: TObject);
+begin
+  Clientes.frxReportToDo.ShowReport();
 end;
 
 procedure TFormTarefas.CriarFormEditarTarefas;

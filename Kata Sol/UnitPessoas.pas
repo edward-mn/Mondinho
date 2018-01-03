@@ -12,7 +12,7 @@ type
   TFormPessoas = class(TForm)
     dbGridPessoas: TDBGrid;
     dsPessoas: TDataSource;
-    GroupBox1: TGroupBox;
+    gbStatusPessoas: TGroupBox;
     cbEmpresa: TCheckBox;
     cbVendedor: TCheckBox;
     cbJuridica: TCheckBox;
@@ -20,10 +20,15 @@ type
     btnPesquisar: TButton;
     btnCadastrarPessoa: TButton;
     btnAtualizarCadastro: TButton;
-    GroupBox2: TGroupBox;
+    gbEditarPessoas: TGroupBox;
+    bntVisualizar: TButton;
+    btnImprimir: TButton;
+    gbRelatorioPessoas: TGroupBox;
+    procedure bntVisualizarClick(Sender: TObject);
     procedure btnAtualizarCadastroClick(Sender: TObject);
     procedure btnCadastrarPessoaClick(Sender: TObject);
     procedure btnEditarCadastroClick(Sender: TObject);
+    procedure btnImprimirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
     { Private declarations }
@@ -41,6 +46,11 @@ implementation
 
 {$R *.dfm}
 
+procedure TFormPessoas.bntVisualizarClick(Sender: TObject);
+begin
+  Clientes.frxReportPessoas.ShowReport();
+end;
+
 procedure TFormPessoas.btnAtualizarCadastroClick(Sender: TObject);
 begin
   Clientes.cdsPessoas.Refresh;
@@ -54,6 +64,11 @@ end;
 procedure TFormPessoas.btnEditarCadastroClick(Sender: TObject);
 begin
   CriarFormCriacaoEdicaoPessoas();
+end;
+
+procedure TFormPessoas.btnImprimirClick(Sender: TObject);
+begin
+  Clientes.frxReportPessoas.Print;
 end;
 
 procedure TFormPessoas.CriarFormCriacaoEdicaoPessoas;

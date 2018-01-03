@@ -4,8 +4,8 @@ object FormTarefas: TFormTarefas
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Tarefas'
-  ClientHeight = 335
-  ClientWidth = 670
+  ClientHeight = 530
+  ClientWidth = 673
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,7 +17,7 @@ object FormTarefas: TFormTarefas
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object GroupBox1: TGroupBox
+  object gbStatusTarefas: TGroupBox
     Left = 537
     Top = 31
     Width = 119
@@ -70,7 +70,7 @@ object FormTarefas: TFormTarefas
     Left = 0
     Top = 0
     Width = 524
-    Height = 335
+    Height = 530
     Align = alLeft
     ReadOnly = True
     TabOrder = 1
@@ -80,7 +80,7 @@ object FormTarefas: TFormTarefas
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
   end
-  object GroupBox2: TGroupBox
+  object gbEditarTarefas: TGroupBox
     Left = 537
     Top = 214
     Width = 119
@@ -106,8 +106,34 @@ object FormTarefas: TFormTarefas
       OnClick = btnCriarTarefaClick
     end
   end
+  object gbRelatorioTarefas: TGroupBox
+    Left = 537
+    Top = 336
+    Width = 119
+    Height = 97
+    Caption = 'Relat'#243'rio'
+    TabOrder = 3
+    object btnImprimir: TButton
+      Left = 14
+      Top = 56
+      Width = 97
+      Height = 25
+      Caption = 'Imprimir'
+      TabOrder = 0
+      OnClick = btnImprimirClick
+    end
+    object btnVisualizar: TButton
+      Left = 12
+      Top = 23
+      Width = 99
+      Height = 25
+      Caption = 'Visualizar'
+      TabOrder = 1
+      OnClick = btnVisualizarClick
+    end
+  end
   object dsTarefas: TDataSource
-    Left = 216
-    Top = 160
+    Left = 592
+    Top = 464
   end
 end

@@ -12,8 +12,7 @@ uses
   UnitEditarTarefas in 'UnitEditarTarefas.pas' {FormEditarTarefas},
   UnitEditarPessoas in 'UnitEditarPessoas.pas' {FormCriacaoEdicaoPessoas},
   UnitLogin in 'UnitLogin.pas' {FormLogin},
-  UnitCadastro in 'UnitCadastro.pas' {FormCadastro},
-  UnitRelatorios in 'UnitRelatorios.pas' {FormRelatorios};
+  UnitCadastro in 'UnitCadastro.pas' {FormCadastro};
 
 {$R *.res}
 
@@ -23,6 +22,5 @@ begin
   Application.CreateForm(TFormLogin, FormLogin);
   Application.CreateForm(TDmConexao, DmConexao);
   Application.CreateForm(TDmClientes, DmClientes);
-  Application.CreateForm(TFormRelatorios, FormRelatorios);
   Application.Run;
 end.
