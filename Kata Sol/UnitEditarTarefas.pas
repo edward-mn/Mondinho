@@ -73,6 +73,7 @@ begin
   Clientes.cdsToDo.Edit;
   gbFormulario.Enabled := False;
   dbGridCriacaoEdicao.Enabled := False;
+  cxDBDateEdit1.SetFocus;
 
   btnNovo.Enabled := False;
   btnEditar.Enabled := False;
@@ -189,6 +190,11 @@ end;
 
 procedure TFormEditarTarefas.EditarTarefa;
 begin
+  btnNovo.Enabled := False;
+  btnEditar.Enabled := False;
+  btnDeletarTarefa.Enabled := False;
+  btnAdiarTarefa.Enabled := False;
+
   gbFormulario.Enabled := True;
   cxDBDateEdit1.Enabled := True;
   dbGridCriacaoEdicao.Enabled := False;
@@ -215,6 +221,12 @@ end;
 
 procedure TFormEditarTarefas.NovaTarefa;
 begin
+  btnNovo.Enabled := False;
+  btnEditar.Enabled := False;
+  btnDeletarTarefa.Enabled := False;
+  btnAdiarTarefa.Enabled := False;
+
+
   Clientes.cdsToDo.Insert;
   Clientes.cdsToDoid_cadastro.Value := ID_Login;
   cxDBDateEdit1.Enabled := True;

@@ -112,6 +112,10 @@ end;
 
 procedure TFormEditarVendas.CancelarVenda;
 begin
+  btnNovo.Enabled := True;
+  btnEditar.Enabled := True;
+  btnDeletar.Enabled := True;
+
   Clientes.cdsVendas.Cancel;
   dbGridEditarVendas.Enabled := True;
   GBVendas.Enabled := False;
@@ -119,6 +123,10 @@ end;
 
 procedure TFormEditarVendas.CriarNovaVenda;
 begin
+  btnNovo.Enabled := False;
+  btnEditar.Enabled := False;
+  btnDeletar.Enabled := False;
+
   Clientes.cdsVendas.Insert;
   Clientes.cdsVendasid_cadastro.Value := ID_Login;
   GBVendas.Enabled := True;
@@ -144,6 +152,10 @@ end;
 
 procedure TFormEditarVendas.EditarVenda;
 begin
+  btnNovo.Enabled := False;
+  btnEditar.Enabled := False;
+  btnDeletar.Enabled := False;
+
   dbGridEditarVendas.Enabled := False;
   GBVendas.Enabled := True;
 end;
