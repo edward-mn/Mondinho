@@ -105,6 +105,10 @@ end;
 
 procedure TFormCriacaoEdicaoPessoas.CadastrarNovaPessoa;
 begin
+  btnNovaPessoa.Enabled := False;
+  btnEditar.Enabled := False;
+  btnDeletarCadastro.Enabled := False;
+
   Clientes.cdsPessoas.Insert;
   Clientes.cdsPessoasid_cadastro.Value := ID_Login;
   gbFormulario.Enabled := True;
@@ -113,6 +117,10 @@ end;
 
 procedure TFormCriacaoEdicaoPessoas.CancelarAcao;
 begin
+  btnNovaPessoa.Enabled := True;
+  btnEditar.Enabled := True;
+  btnDeletarCadastro.Enabled := True;
+
   Clientes.cdsPessoas.Cancel;
   gbFormulario.Enabled := False;
   dbGridCriacaoEdicaoPessoas.Enabled := True;
@@ -136,6 +144,10 @@ end;
 
 procedure TFormCriacaoEdicaoPessoas.EditarPessoa;
 begin
+  btnNovaPessoa.Enabled := False;
+  btnEditar.Enabled := False;
+  btnDeletarCadastro.Enabled := False;
+
   gbFormulario.Enabled := True;
   dbGridCriacaoEdicaoPessoas.Enabled := False;
 end;
