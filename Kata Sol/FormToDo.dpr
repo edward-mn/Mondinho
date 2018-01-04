@@ -12,15 +12,26 @@ uses
   UnitEditarTarefas in 'UnitEditarTarefas.pas' {FormEditarTarefas},
   UnitEditarPessoas in 'UnitEditarPessoas.pas' {FormCriacaoEdicaoPessoas},
   UnitLogin in 'UnitLogin.pas' {FormLogin},
-  UnitCadastro in 'UnitCadastro.pas' {FormCadastro};
+  UnitCadastro in 'UnitCadastro.pas' {FormCadastro},
+  Vcl.Controls;
 
 {$R *.res}
 
+var
+  Login: TFormLogin;
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TFormLogin, FormLogin);
-  Application.CreateForm(TDmConexao, DmConexao);
-  Application.CreateForm(TDmClientes, DmClientes);
+
+  Login := TFormLogin.Create(nil);
+  try
+    if Login.ShowModal <> mrOk then
+      Exit;
+
+  finally
+    Login.Free;
+  end;
+
+  Application.CreateForm(TFormView, FormView);
   Application.Run;
 end.

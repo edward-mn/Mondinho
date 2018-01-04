@@ -48,6 +48,9 @@ var
 
 implementation
 
+uses
+  UnitToDoFuncoes;
+
 
 {$R *.dfm}
 
@@ -60,65 +63,38 @@ begin
 
     Clientes.cdsToDostatus.DataSet.First;
     while not Clientes.cdsToDostatus.DataSet.Eof do
-        begin
-            Clientes.cdsToDo.Edit;
-          if Now > Clientes.cdsToDodata.Value then
-          if Clientes.cdsToDostatus.text <> 'Finalizada' then
-
-          begin
-            Clientes.cdsToDostatus.Text := 'Atrasada';
-          end;
-            Clientes.cdsToDostatus.DataSet.Next;
-          end;
-          finally
-            Clientes.cdsToDostatus.DataSet.GotoBookmark(BookMarkAtrazar);
-            Clientes.cdsToDo.ApplyUpdates(0);
-      end;
-
+    begin
+      Clientes.cdsToDo.Edit;
+      if (Now > Clientes.cdsToDodata.Value) and (Clientes.cdsToDostatus.text <> 'Finalizada') then
+        Clientes.cdsToDostatus.text := 'Atrasada';
+      Clientes.cdsToDostatus.DataSet.Next;
+    end;
+    Clientes.cdsToDo.ApplyUpdates(0);
+  finally
+    Clientes.cdsToDostatus.DataSet.GotoBookmark(BookMarkAtrazar);
+  end;
 end;
 
 procedure TFormTarefas.AdicionarFiltroCorretoTarefas;
-  var
+var
   Filtro: String;
-const
-  Ou = ' or ';
-  BoxAdiada = 'Status = ''Adiada''';
-  BoxAgendada = 'Status = ''Agendada''';
-  BoxFinalizada = 'Status = ''Finalizada''';
-  BoxAtrasada = 'Status = ''Atrasada''';
-procedure AdicionarStatus(Box: String);
-  begin
-    if not Filtro.IsEmpty then
-      Filtro := Filtro + Ou;
-    Filtro := Filtro + Box;
-  end;
-
 begin
+  Filtro := '';
+
   if cbAtrasadas.Checked then
-  begin
-    AdicionarStatus(BoxAtrasada);
-  end;
-  if cbAtrasadas.Checked then
-  begin
-    AdicionarStatus(BoxAtrasada);
-  end;
+    Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAtrasada);
+
   if cbAgendada.Checked then
-  begin
-    AdicionarStatus(BoxAgendada);
-  end;
+    Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAgendada);
 
   if cbAdiadas.Checked then
-  begin
-    AdicionarStatus(BoxAdiada);
-  end;
+    Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAdiada);
 
   if cbFinalizadas.Checked then
-  begin
-    AdicionarStatus(BoxFinalizada);
-  end;
+    Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusFinalizada);
 
   Clientes.cdsToDo.Filter := Filtro;
-  Clientes.cdsToDo.Filtered := True;
+  Clientes.cdsToDo.Filtered := not Filtro.IsEmpty;
 end;
 
 procedure TFormTarefas.btnAtualizarTarefaClick(Sender: TObject);
@@ -180,5 +156,3 @@ if Now = strtoTime('00:00') then
 end;
 
 end.
-
-

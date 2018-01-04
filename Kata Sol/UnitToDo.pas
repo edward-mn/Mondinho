@@ -30,11 +30,9 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
-    FConexao: TDmConexao;
     FClientes: TDmClientes;
   public
     ID_Login: Integer;
-    ID_Conexao: TDmConexao;
     constructor Create(AOwner: TComponent); override;
     procedure CriarFormTarefas;
     procedure CriarFormVendas;
@@ -55,10 +53,9 @@ uses
 constructor TFormView.Create(AOwner: TComponent);
 begin
   inherited;
-  FConexao := TDmConexao.Create(Self);
   FClientes := TDmClientes.Create(Self);
 
-  FClientes.cdsToDo.SetProvider(FConexao.sqlProviderToDo);
+  FClientes.cdsToDo.SetProvider(Conexao.sqlProviderToDo);
   FClientes.cdsToDoid_cadastro.Visible := False;
 end;
 
@@ -89,7 +86,6 @@ begin
   NewForm := TFormPessoas.Create(nil);
   try
     NewForm.Clientes := FClientes;
-    NewForm.Conexao := FConexao;
     NewForm.ID_Login := ID_Login;
     NewForm.ShowModal;
 
@@ -122,7 +118,6 @@ begin
   NewForm := TFormVendas.Create(nil);
   try
     NewForm.Clientes := FClientes;
-    NewForm.Conexao := FConexao;
     NewForm.ID_Login := ID_Login;
     NewForm.ShowModal;
   finally
@@ -144,8 +139,8 @@ end;
 
 procedure TFormView.FormShow(Sender: TObject);
 begin
-  ID_Login := ID_Conexao.sqlQueryCadastroid.Value;
-  FConexao.sqlQueryToDo.SQL.CommaText :=
+  ID_Login := Conexao.sqlQueryCadastroid.Value;
+  Conexao.sqlQueryToDo.SQL.CommaText :=
     ('select * from monde_todo where id_cadastro =' + IntToStr(ID_Login));
   FClientes.cdsToDo.Open;
 end;
@@ -154,11 +149,7 @@ procedure TFormView.Logout;
 begin
   if MessageDlg('Deseja realmente fazer Logout ?', mtInformation, [mbYes, mbNo],
     0) = mrYes then
-  begin
-    FormLogin.Visible := True;
-    FConexao.sqlQueryToDo.Close;
-    Self.Hide;
-  end;
+    Conexao.sqlQueryToDo.Close;
 end;
 
 end.

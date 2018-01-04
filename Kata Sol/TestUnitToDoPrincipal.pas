@@ -109,8 +109,16 @@ begin
 end;
 
 procedure TTestToDo.TelaInicial_FiltroStatus_FinalizadaEAdiadaEAtrasada;
+var
+  Filtro, Esperado: string;
 begin
-  CheckEqualsString(Filtro, TFuncoesToDo.FiltroStatus('FinalizadaEAdiadaEAtrasada'))
+  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusFinalizada);
+  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAdiada);
+  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAtrasada);
+
+  Esperado := 'status = ''Finalizada'' or status = ''Adiada'' or status = ''Atrasada''';
+
+  CheckEqualsString(Esperado, Filtro)
 end;
 
 procedure TTestToDo.TelaInicial_FiltroStatus_FinalizadaEAgendada;
