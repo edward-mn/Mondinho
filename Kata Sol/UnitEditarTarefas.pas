@@ -71,7 +71,6 @@ implementation
 procedure TFormEditarTarefas.AdiarTarefa;
 begin
   Clientes.cdsToDo.Edit;
-  cxDBDateEdit1.SetFocus;
   gbFormulario.Enabled := False;
   dbGridCriacaoEdicao.Enabled := False;
 
@@ -137,8 +136,15 @@ begin
   DBcbTarefas.Enabled := True;
   Clientes.cdsToDo.Cancel;
   gbFormulario.Enabled := False;
-  cxDBDateEdit1.Enabled := False;
+  cxDBDateEdit1.Enabled := True;
   dbGridCriacaoEdicao.Enabled := True;
+
+  Trigger := False;
+
+  btnNovo.Enabled := True;
+  btnEditar.Enabled := True;
+  btnDeletarTarefa.Enabled := True;
+  btnAdiarTarefa.Enabled := True;
 end;
 
 procedure TFormEditarTarefas.ConfirmarAdiarTarefa;
