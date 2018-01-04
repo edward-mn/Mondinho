@@ -21,11 +21,9 @@ type
     procedure btnCadastrarClick(Sender: TObject);
     procedure btnEntrarClick(Sender: TObject);
     procedure CriarFormCadastro;
-    procedure CriarFormToDo;
     procedure FormShow(Sender: TObject);
     procedure Logar;
   public
-    FConexao : TdmConexao;
     FClientes : TDmClientes;
     constructor Create(AOwner: TComponent); override;
   end;
@@ -42,14 +40,13 @@ uses UnitToDo;
 constructor TFormLogin.Create(AOwner: TComponent);
 begin
   inherited;
-  FConexao := TdmConexao.Create(Self);
   FClientes := TDmClientes.Create(Self);
-  FClientes.cdsCadastro.SetProvider(FConexao.sqlProviderCadastro);
+  FClientes.cdsCadastro.SetProvider(Conexao.sqlProviderCadastro);
 end;
 
 procedure TFormLogin.btnCadastrarClick(Sender: TObject);
 begin
-  CriarFormCadastro();
+  CriarFormCadastro;
 end;
 
 procedure TFormLogin.btnEntrarClick(Sender: TObject);
@@ -62,31 +59,12 @@ var
   NewForm : TFormCadastro;
 begin
   NewForm := TFormCadastro.Create(nil);
-try
-  NewForm.Clientes := FClientes;
-  NewForm.Conexao := FConexao;
-  NewForm.ShowModal;
-
-finally
-  NewForm.Free;
-end;
-
-end;
-
-procedure TFormLogin.CriarFormToDo;
-var
-  NewForm : TFormView;
-begin
-  FormLogin.Visible := False;
-  NewForm := TFormView.Create(nil);
- try
-  NewForm.ID_Conexao := FConexao;
-  NewForm.ShowModal;
-
-finally
-  NewForm.Free;
-end;
-
+  try
+    NewForm.Clientes := FClientes;
+    NewForm.ShowModal;
+  finally
+    NewForm.Free;
+  end;
 end;
 
 procedure TFormLogin.FormShow(Sender: TObject);
@@ -96,18 +74,15 @@ end;
 
 procedure TFormLogin.Logar;
 begin
-  FConexao.sqlQueryCadastro.Close;
-  FConexao.sqlQueryCadastro.ParambyName('usuario').AsString := edtUsuario.Text;
-  FConexao.sqlQueryCadastro.ParambyName('senha').AsString := edtSenha.Text;
-  FConexao.sqlQueryCadastro.Open;
+  Conexao.sqlQueryCadastro.Close;
+  Conexao.sqlQueryCadastro.ParambyName('usuario').AsString := edtUsuario.Text;
+  Conexao.sqlQueryCadastro.ParambyName('senha').AsString := edtSenha.Text;
+  Conexao.sqlQueryCadastro.Open;
 
-  if FConexao.sqlQueryCadastro.IsEmpty then
-    ShowMessage('Usuario ou Senha Invalida!')
+  if Conexao.sqlQueryCadastro.IsEmpty then
+    ShowMessage('Usuario ou Senha Invalida.')
   else
-  begin
-    CriarFormToDo();
-//    FormLogin.Close;
-  end;
+    ModalResult := mrOk;
 end;
 
 end.

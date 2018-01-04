@@ -51,13 +51,27 @@ type
     { Public declarations }
   end;
 
-var
-  DmConexao: TDmConexao;
+function Conexao: TDmConexao;
 
 implementation
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
+
+var
+  DmConexao: TDmConexao;
+
+function Conexao: TDmConexao;
+begin
+  if DmConexao = nil then
+    DmConexao := TDmConexao.Create(nil);
+
+  Result := DmConexao;
+end;
+
+initialization
+finalization
+  DmConexao.Free;
 
 end.

@@ -2,7 +2,7 @@ object FormLogin: TFormLogin
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
-  BorderStyle = bsSingle
+  BorderStyle = bsDialog
   Caption = 'Login'
   ClientHeight = 345
   ClientWidth = 339
@@ -548,6 +548,7 @@ object FormLogin: TFormLogin
     Width = 293
     Height = 25
     Caption = 'Entrar'
+    Default = True
     TabOrder = 2
     OnClick = btnEntrarClick
   end
