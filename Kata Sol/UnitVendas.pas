@@ -8,7 +8,7 @@ uses
   Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, System.UITypes,
   UnitEditarVendas, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, cxTextEdit, cxMaskEdit,
-  cxDropDownEdit, cxCalendar, cxDBEdit;
+  cxDropDownEdit, cxCalendar, cxDBEdit, VendasUtils;
 
 type
   TFormVendas = class(TForm)
@@ -51,35 +51,21 @@ implementation
 
 procedure TFormVendas.AdicionarFiltroCorretoVendas;
 var
-  Filtro: String;
-const
-  Ou = ' or ';
-  BoxAberta = 'Status = ''Aberta''';
-  BoxFinalizada = 'Status = ''Finalizada''';
-  BoxExcluida = 'Status = ''Excluida''';
-procedure AdicionarStatus(Box: String);
-  begin
-    if not Filtro.IsEmpty then
-      Filtro := Filtro + Ou;
-    Filtro := Filtro + Box;
-  end;
-
+  FiltroVendas: String;
 begin
-  if cbAberta.Checked then
-  begin
-    AdicionarStatus(BoxAberta);
-  end;
-  if cbFinalizada.Checked then
-  begin
-    AdicionarStatus(BoxFinalizada);
-  end;
-  if cbExcluida.Checked then
-  begin
-    AdicionarStatus(BoxExcluida);
-  end;
+  FiltroVendas := '';
 
-  Clientes.cdsVendas.Filter := Filtro;
-  Clientes.cdsVendas.Filtered := True;
+  if cbAberta.Checked then
+    FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusAberta);
+
+  if cbFinalizada.Checked then
+    FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusFinalizada);
+
+  if cbExcluida.Checked then
+    FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusExcluida);
+
+  Clientes.cdsVendas.Filter := FiltroVendas;
+  Clientes.cdsVendas.Filtered := not FiltroVendas.IsEmpty;
 end;
 
 procedure TFormVendas.btnAtualizarVendasClick(Sender: TObject);

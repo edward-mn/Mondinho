@@ -82,8 +82,11 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="UnitToDoFuncoes.pas"/>
+        <DCCReference Include="TarefaUtils.pas"/>
         <DCCReference Include="TestUnitToDoPrincipal.pas"/>
+        <DCCReference Include="PessoasUtils.pas"/>
+        <DCCReference Include="VendasUtils.pas"/>
+        <DCCReference Include="TestVendas.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
