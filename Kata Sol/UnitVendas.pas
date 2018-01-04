@@ -132,7 +132,7 @@ begin
   Clientes.cdsVendas.SetProvider(Conexao.sqlQueryVendas);
   dsVendas.DataSet := Clientes.cdsVendas;
   dbGridVendas.DataSource := dsVendas;
-  Conexao.sqlQueryVendas.SQL.CommaText := ('select * from vendas where id_cadastro =' + IntToStr(ID_Login));
+  DataModuleConexao.Conexao.DefinirIDdoUsuarioVendas;
   Clientes.cdsVendas.Open;
   Clientes.cdsVendasid_cadastro.Visible := False;
 end;
