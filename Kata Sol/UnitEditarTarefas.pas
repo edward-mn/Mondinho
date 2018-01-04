@@ -47,7 +47,9 @@ type
     procedure CancelarTarefa;
     procedure DefinirDataSet;
     procedure DeletarTarefa;
+    procedure DesabilitarBotoes;
     procedure EditarTarefa;
+    procedure HabilitarBotoes;
     procedure HabilitarComponentes;
     procedure NovaTarefa;
     procedure SalvarTarefa;
@@ -132,9 +134,8 @@ end;
 
 procedure TFormEditarTarefas.CancelarTarefa;
 begin
-  edtNome.Enabled := True;
-  edtTarefa.Enabled := True;
-  DBcbTarefas.Enabled := True;
+  HabilitarBotoes;
+
   Clientes.cdsToDo.Cancel;
   gbFormulario.Enabled := False;
   cxDBDateEdit1.Enabled := True;
@@ -188,12 +189,17 @@ begin
   end;
 end;
 
-procedure TFormEditarTarefas.EditarTarefa;
+procedure TFormEditarTarefas.DesabilitarBotoes;
 begin
   btnNovo.Enabled := False;
   btnEditar.Enabled := False;
   btnDeletarTarefa.Enabled := False;
   btnAdiarTarefa.Enabled := False;
+end;
+
+procedure TFormEditarTarefas.EditarTarefa;
+begin
+  DesabilitarBotoes;
 
   gbFormulario.Enabled := True;
   cxDBDateEdit1.Enabled := True;
@@ -212,6 +218,14 @@ begin
   DefinirDataSet();
 end;
 
+procedure TFormEditarTarefas.HabilitarBotoes;
+begin
+  btnNovo.Enabled := True;
+  btnEditar.Enabled := True;
+  btnDeletarTarefa.Enabled := True;
+  btnAdiarTarefa.Enabled := True;
+end;
+
 procedure TFormEditarTarefas.HabilitarComponentes;
 begin
   Clientes.cdsToDoid_todo.Visible := True;
@@ -221,10 +235,7 @@ end;
 
 procedure TFormEditarTarefas.NovaTarefa;
 begin
-  btnNovo.Enabled := False;
-  btnEditar.Enabled := False;
-  btnDeletarTarefa.Enabled := False;
-  btnAdiarTarefa.Enabled := False;
+  DesabilitarBotoes;
 
 
   Clientes.cdsToDo.Insert;
@@ -243,6 +254,7 @@ begin
     gbFormulario.Enabled := False;
     dbGridCriacaoEdicao.Enabled := True;
     cxDBDateEdit1.Enabled := True;
+    HabilitarBotoes;
   end;
 end;
 end.

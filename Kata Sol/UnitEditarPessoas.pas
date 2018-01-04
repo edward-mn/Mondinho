@@ -50,7 +50,9 @@ type
     procedure CancelarAcao;
     procedure DefinirDataSet;
     procedure DeletarPessoa;
+    procedure DesabilitarBotoes;
     procedure EditarPessoa;
+    procedure HabilitarBotoes;
     procedure HabilitarComponentes;
     procedure SalvarAlteracoes;
   public
@@ -105,9 +107,7 @@ end;
 
 procedure TFormCriacaoEdicaoPessoas.CadastrarNovaPessoa;
 begin
-  btnNovaPessoa.Enabled := False;
-  btnEditar.Enabled := False;
-  btnDeletarCadastro.Enabled := False;
+  DesabilitarBotoes;
 
   Clientes.cdsPessoas.Insert;
   Clientes.cdsPessoasid_cadastro.Value := ID_Login;
@@ -117,9 +117,7 @@ end;
 
 procedure TFormCriacaoEdicaoPessoas.CancelarAcao;
 begin
-  btnNovaPessoa.Enabled := True;
-  btnEditar.Enabled := True;
-  btnDeletarCadastro.Enabled := True;
+  HabilitarBotoes;
 
   Clientes.cdsPessoas.Cancel;
   gbFormulario.Enabled := False;
@@ -142,11 +140,16 @@ begin
     end;
 end;
 
-procedure TFormCriacaoEdicaoPessoas.EditarPessoa;
+procedure TFormCriacaoEdicaoPessoas.DesabilitarBotoes;
 begin
   btnNovaPessoa.Enabled := False;
   btnEditar.Enabled := False;
   btnDeletarCadastro.Enabled := False;
+end;
+
+procedure TFormCriacaoEdicaoPessoas.EditarPessoa;
+begin
+  DesabilitarBotoes;
 
   gbFormulario.Enabled := True;
   dbGridCriacaoEdicaoPessoas.Enabled := False;
@@ -161,6 +164,13 @@ end;
 procedure TFormCriacaoEdicaoPessoas.FormShow(Sender: TObject);
 begin
   DefinirDataSet();
+end;
+
+procedure TFormCriacaoEdicaoPessoas.HabilitarBotoes;
+begin
+  btnNovaPessoa.Enabled := True;
+  btnEditar.Enabled := True;
+  btnDeletarCadastro.Enabled := True;
 end;
 
 procedure TFormCriacaoEdicaoPessoas.HabilitarComponentes;
@@ -184,6 +194,7 @@ begin
   dbGridCriacaoEdicaoPessoas.Enabled := True;
   Clientes.cdsPessoas.ApplyUpdates(0);
   Clientes.cdsPessoas.Refresh;
+  HabilitarBotoes;
   end;
 end;
 
