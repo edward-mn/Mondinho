@@ -14,7 +14,6 @@ object FormView: TFormView
   OldCreateOrder = False
   Position = poDesigned
   WindowState = wsMaximized
-  OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96

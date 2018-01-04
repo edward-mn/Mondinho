@@ -37,7 +37,6 @@ type
     { Private declarations }
   public
     Clientes : TDmClientes;
-    Conexao : TDmConexao;
     ID_Login : Integer;
     procedure CriarFormEditarVendas;
   end;
