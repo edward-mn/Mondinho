@@ -126,7 +126,7 @@ begin
   Clientes.cdsPessoas.SetProvider(Conexao.sqlProviderPessoas);
   dsPessoas.DataSet := Clientes.cdsPessoas;
   dbGridPessoas.DataSource := dsPessoas;
-  Conexao.sqlQueryPessoas.SQL.CommaText := ('select * from pessoas where id_cadastro =' + IntToStr(ID_Login));
+  DataModuleConexao.Conexao.DefinirIDdoUsuarioPessoas;
   Clientes.cdsPessoas.Open;
   Clientes.cdsPessoasid_cadastro.Visible := False;
 end;

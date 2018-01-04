@@ -146,9 +146,7 @@ end;
 
 procedure TFormView.FormShow(Sender: TObject);
 begin
-  ID_Login := Conexao.sqlQueryCadastroid.Value;
-  Conexao.sqlQueryToDo.SQL.CommaText :=
-    ('select * from monde_todo where id_cadastro =' + IntToStr(ID_Login));
+  DataModuleConexao.Conexao.DefinirIDdoUsuarioTarefas;
   FClientes.cdsToDo.Open;
 end;
 
@@ -157,7 +155,6 @@ begin
   if MessageDlg('Deseja realmente fazer Logout ?', mtInformation, [mbYes, mbNo],
     0) = mrYes then
   begin
-    Conexao.sqlQueryToDo.Close;
     Self.Close;
   end;
 end;

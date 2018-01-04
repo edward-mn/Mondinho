@@ -48,7 +48,10 @@ type
   private
     { Private declarations }
   public
-    { Public declarations }
+    ID_Login : Integer;
+    procedure DefinirIDdoUsuarioTarefas;
+    procedure DefinirIDdoUsuarioPessoas;
+    procedure DefinirIDdoUsuarioVendas;
   end;
 
 function Conexao: TDmConexao;
@@ -68,6 +71,27 @@ begin
     DmConexao := TDmConexao.Create(nil);
 
   Result := DmConexao;
+end;
+
+{ TDmConexao }
+
+procedure TDmConexao.DefinirIDdoUsuarioPessoas;
+begin
+  ID_Login := Conexao.sqlQueryCadastroid.Value;
+  Conexao.sqlQueryPessoas.SQL.CommaText := ('select * from pessoas where id_cadastro =' + IntToStr(ID_Login));
+end;
+
+procedure TDmConexao.DefinirIDdoUsuarioTarefas;
+begin
+  ID_Login := Conexao.sqlQueryCadastroid.Value;
+  Conexao.sqlQueryToDo.SQL.CommaText :=
+    ('select * from monde_todo where id_cadastro =' + IntToStr(ID_Login));
+end;
+
+procedure TDmConexao.DefinirIDdoUsuarioVendas;
+begin
+  ID_Login := Conexao.sqlQueryCadastroid.Value;
+  Conexao.sqlQueryVendas.SQL.CommaText := ('select * from vendas where id_cadastro =' + IntToStr(ID_Login));
 end;
 
 initialization
