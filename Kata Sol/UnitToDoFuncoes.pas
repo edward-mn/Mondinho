@@ -69,12 +69,6 @@ class function TFuncoesToDo.FiltroStatus(const FiltroAtual: string;
 begin
   Result := FiltroAtual;
 
-//  if StatusDoFiltro = 'Tudo' then
-//    AdicionarStatus(BoxAdiada + Ou + BoxAgendada + Ou + BoxFinalizada + Ou +
-//      BoxAtrasada);
-//    Result := Filtro;
-//  end;
-
   if StatusDoFiltro = StatusAtrasada then
     AdicionarStatus(BoxAtrasada);
 
@@ -86,66 +80,6 @@ begin
 
   if StatusDoFiltro = StatusFinalizada then
     AdicionarStatus(BoxFinalizada);
-
-//  if StatusDoFiltro = 'FinalizadaEAdiada' then
-//  begin
-//    AdicionarStatus(BoxFinalizada + Ou + BoxAdiada);
-//    Result := Filtro;
-//  end;
-//
-//  if StatusDoFiltro = 'FinalizadaEAtrasada' then
-//  begin
-//    AdicionarStatus(BoxFinalizada + Ou + BoxAdiada);
-//    Result := Filtro;
-//  end;
-//
-//  if StatusDoFiltro = 'FinalizadaEAgendada' then
-//  begin
-//    AdicionarStatus(BoxFinalizada + Ou + BoxAgendada);
-//    Result := Filtro;
-//  end;
-//
-//  if StatusDoFiltro = 'FinalizadaEAdiadaEAtrasada' then
-//  begin
-//    AdicionarStatus(BoxFinalizada + Ou + BoxAdiada + Ou + BoxAtrasada);
-//    Result := Filtro;
-//  end;
-//
-//  if StatusDoFiltro = 'FinalizadaEAdiadaEAgendada' then
-//  begin
-//    AdicionarStatus(BoxFinalizada + Ou + BoxAdiada + Ou + BoxAgendada);
-//    Result := Filtro;
-//  end;
-//
-//  if StatusDoFiltro = 'FinalizadaEAtrasadaEAgendada' then
-//  begin
-//    AdicionarStatus(BoxFinalizada + Ou + BoxAtrasada + Ou + BoxAgendada);
-//    Result := Filtro;
-//  end;
-//
-//  if StatusDoFiltro = 'AdiadaEAtrasada' then
-//  begin
-//    AdicionarStatus(BoxAdiada + Ou + BoxAtrasada);
-//    Result := Filtro;
-//  end;
-//
-//  if StatusDoFiltro = 'AdiadaEAgendada' then
-//  begin
-//    AdicionarStatus(BoxAdiada + Ou + BoxAgendada);
-//    Result := Filtro;
-//  end;
-//
-//  if StatusDoFiltro = 'AdiadaEAtrasadaEAgendada' then
-//  begin
-//    AdicionarStatus(BoxAdiada + Ou + BoxAtrasada + Ou + BoxAgendada);
-//    Result := Filtro;
-//  end;
-//
-//  if StatusDoFiltro = 'AgendadaEAtrasada' then
-//  begin
-//    AdicionarStatus(BoxAgendada + Ou + BoxAtrasada);
-//    Result := Filtro;
-//  end;
 
 end;
 
