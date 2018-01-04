@@ -26,7 +26,7 @@ type
     gbRelatorioPessoas: TGroupBox;
     cbUsuarioDoSistema: TCheckBox;
     procedure bntVisualizarClick(Sender: TObject);
-    procedure AdicionarFiltroCorretoPessoas;
+//    procedure AdicionarFiltroCorretoPessoas;
     procedure btnAtualizarCadastroClick(Sender: TObject);
     procedure btnCadastrarPessoaClick(Sender: TObject);
     procedure btnEditarCadastroClick(Sender: TObject);
@@ -37,7 +37,6 @@ type
     { Private declarations }
   public
     Clientes: TDmClientes;
-    Conexao : TdmConexao;
     ID_Login : Integer;
     procedure CriarFormCriacaoEdicaoPessoas;
   end;
@@ -47,52 +46,35 @@ var
 
 implementation
 
+uses
+  UnitToDoFuncoes;
+
 {$R *.dfm}
 
-procedure TFormPessoas.AdicionarFiltroCorretoPessoas;
-var
-  Filtro: String;
-const
-  Ou = ' or ';
-  BoxFisica = 'Status = ''Fisica''';
-  BoxJuridica = 'Status = ''Juridica''';
-  BoxVendedor = 'Status = ''Vendedor''';
-  BoxEmpresa = 'Status = ''Empresa''';
-  BoxUsuarioDoSistema = 'Status = ''Usuario do Sistema''';
-procedure AdicionarStatus(Box: String);
-  begin
-    if not Filtro.IsEmpty then
-      Filtro := Filtro + Ou;
-    Filtro := Filtro + Box;
-  end;
-
-begin
-  if cbFisica.Checked then
-  begin
-    AdicionarStatus(BoxFisica);
-  end;
-  if cbJuridica.Checked then
-  begin
-    AdicionarStatus(BoxJuridica);
-  end;
-  if cbVendedor.Checked then
-  begin
-    AdicionarStatus(BoxVendedor);
-  end;
-
-  if cbEmpresa.Checked then
-  begin
-    AdicionarStatus(BoxEmpresa);
-  end;
-
-  if cbUsuarioDoSistema.Checked then
-  begin
-    AdicionarStatus(BoxUsuarioDoSistema);
-  end;
-
-  Clientes.cdsPessoas.Filter := Filtro;
-  Clientes.cdsPessoas.Filtered := True;
-end;
+//procedure TFormPessoas.AdicionarFiltroCorretoPessoas;
+//var
+//  Filtro: String;
+//begin
+//  Filtro := '';
+//
+//  if cbEmpresa.Checked then
+//    Filtro := TFuncoesToDo.FiltroStatus(Filtro, );
+//
+//  if cbVendedor.Checked then
+//    Filtro := TFuncoesToDo.FiltroStatus(Filtro, );
+//
+//  if cbJuridica.Checked then
+//    Filtro := TFuncoesToDo.FiltroStatus(Filtro,;
+//
+//  if cbFisica.Checked then
+//    Filtro := TFuncoesToDo.FiltroStatus(Filtro,);
+//
+//  if cbUsuarioDoSistema.Checked then
+//    Filtro := TFuncoesToDo.FiltroStatus(Filtro, );
+//
+//  Clientes.cdsPessoas.Filter := Filtro;
+//  Clientes.cdsPessoas.Filtered := not Filtro.IsEmpty;
+//end;
 
 procedure TFormPessoas.bntVisualizarClick(Sender: TObject);
 begin
@@ -116,7 +98,7 @@ end;
 
 procedure TFormPessoas.btnPesquisarClick(Sender: TObject);
 begin
-  AdicionarFiltroCorretoPessoas;
+//  AdicionarFiltroCorretoPessoas;
 end;
 
 procedure TFormPessoas.btnImprimirClick(Sender: TObject);

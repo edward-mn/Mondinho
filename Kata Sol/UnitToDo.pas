@@ -26,7 +26,6 @@ type
     procedure btnTarefasClick(Sender: TObject);
     procedure btnVendasClick(Sender: TObject);
     procedure btnLogoutClick(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
@@ -37,6 +36,7 @@ type
     procedure CriarFormTarefas;
     procedure CriarFormVendas;
     procedure CriarFormPessoas;
+    procedure CriarFormLogout;
 
   end;
 
@@ -77,6 +77,18 @@ end;
 procedure TFormView.btnLogoutClick(Sender: TObject);
 begin
   Logout;
+end;
+
+procedure TFormView.CriarFormLogout;
+var
+  NewForm : TFormLogin;
+begin
+   NewForm := TFormLogin.Create(nil);
+   try
+    NewForm.ShowModal;
+   finally
+    NewForm.Free;
+   end;
 end;
 
 procedure TFormView.CriarFormPessoas;
@@ -126,11 +138,6 @@ begin
 
 end;
 
-procedure TFormView.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  FormLogin.Close;
-end;
-
 procedure TFormView.FormCreate(Sender: TObject);
 begin
   dsToDo.DataSet := FClientes.cdsToDo;
@@ -149,7 +156,10 @@ procedure TFormView.Logout;
 begin
   if MessageDlg('Deseja realmente fazer Logout ?', mtInformation, [mbYes, mbNo],
     0) = mrYes then
+  begin
     Conexao.sqlQueryToDo.Close;
+    Self.Close;
+  end;
 end;
 
 end.

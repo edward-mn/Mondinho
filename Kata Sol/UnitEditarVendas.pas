@@ -50,6 +50,8 @@ type
     procedure DefinirDataSet;
     procedure DeletarVenda;
     procedure EditarVenda;
+    procedure DesabilitarBotoes;
+    procedure HabilitarBotoes;
     procedure HabilitarComponentes;
     procedure SalvarVenda;
   public
@@ -112,9 +114,7 @@ end;
 
 procedure TFormEditarVendas.CancelarVenda;
 begin
-  btnNovo.Enabled := True;
-  btnEditar.Enabled := True;
-  btnDeletar.Enabled := True;
+  HabilitarBotoes;
 
   Clientes.cdsVendas.Cancel;
   dbGridEditarVendas.Enabled := True;
@@ -123,9 +123,7 @@ end;
 
 procedure TFormEditarVendas.CriarNovaVenda;
 begin
-  btnNovo.Enabled := False;
-  btnEditar.Enabled := False;
-  btnDeletar.Enabled := False;
+  DesabilitarBotoes;
 
   Clientes.cdsVendas.Insert;
   Clientes.cdsVendasid_cadastro.Value := ID_Login;
@@ -152,9 +150,7 @@ end;
 
 procedure TFormEditarVendas.EditarVenda;
 begin
-  btnNovo.Enabled := False;
-  btnEditar.Enabled := False;
-  btnDeletar.Enabled := False;
+  DesabilitarBotoes;
 
   dbGridEditarVendas.Enabled := False;
   GBVendas.Enabled := True;
@@ -168,6 +164,20 @@ end;
 procedure TFormEditarVendas.FormShow(Sender: TObject);
 begin
   DefinirDataSet();
+end;
+
+procedure TFormEditarVendas.DesabilitarBotoes;
+begin
+  btnNovo.Enabled := False;
+  btnEditar.Enabled := False;
+  btnDeletar.Enabled := False;
+end;
+
+procedure TFormEditarVendas.HabilitarBotoes;
+begin
+  btnNovo.Enabled := True;
+  btnEditar.Enabled := True;
+  btnDeletar.Enabled := True;
 end;
 
 procedure TFormEditarVendas.HabilitarComponentes;
@@ -186,6 +196,7 @@ begin
   CalcularValorTotal(Clientes.cdsVendasquantidade.Value, Clientes.cdsVendasvalor_produto.AsCurrency);
   Clientes.cdsVendas.ApplyUpdates(0);
   Clientes.cdsVendas.Refresh;
+  HabilitarBotoes;
   end;
 end;
 
