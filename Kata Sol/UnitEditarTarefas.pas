@@ -71,9 +71,9 @@ implementation
 procedure TFormEditarTarefas.AdiarTarefa;
 begin
   Clientes.cdsToDo.Edit;
-  cxDBDateEdit1.SetFocus;
   gbFormulario.Enabled := False;
   dbGridCriacaoEdicao.Enabled := False;
+  cxDBDateEdit1.SetFocus;
 
   btnNovo.Enabled := False;
   btnEditar.Enabled := False;
@@ -137,8 +137,15 @@ begin
   DBcbTarefas.Enabled := True;
   Clientes.cdsToDo.Cancel;
   gbFormulario.Enabled := False;
-  cxDBDateEdit1.Enabled := False;
+  cxDBDateEdit1.Enabled := True;
   dbGridCriacaoEdicao.Enabled := True;
+
+  Trigger := False;
+
+  btnNovo.Enabled := True;
+  btnEditar.Enabled := True;
+  btnDeletarTarefa.Enabled := True;
+  btnAdiarTarefa.Enabled := True;
 end;
 
 procedure TFormEditarTarefas.ConfirmarAdiarTarefa;
@@ -183,6 +190,11 @@ end;
 
 procedure TFormEditarTarefas.EditarTarefa;
 begin
+  btnNovo.Enabled := False;
+  btnEditar.Enabled := False;
+  btnDeletarTarefa.Enabled := False;
+  btnAdiarTarefa.Enabled := False;
+
   gbFormulario.Enabled := True;
   cxDBDateEdit1.Enabled := True;
   dbGridCriacaoEdicao.Enabled := False;
@@ -209,6 +221,12 @@ end;
 
 procedure TFormEditarTarefas.NovaTarefa;
 begin
+  btnNovo.Enabled := False;
+  btnEditar.Enabled := False;
+  btnDeletarTarefa.Enabled := False;
+  btnAdiarTarefa.Enabled := False;
+
+
   Clientes.cdsToDo.Insert;
   Clientes.cdsToDoid_cadastro.Value := ID_Login;
   cxDBDateEdit1.Enabled := True;
