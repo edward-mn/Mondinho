@@ -4,11 +4,11 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DataModuleClientes, Data.DB,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB,
   DataModuleConexao, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.Mask,
   Vcl.DBCtrls, System.UITypes, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, cxTextEdit, cxMaskEdit,
-  cxDropDownEdit, cxCalendar, cxDBEdit;
+  cxDropDownEdit, cxCalendar, cxDBEdit, DataModuleClientesVendas;
 
 type
   TFormEditarVendas = class(TForm)
@@ -55,7 +55,7 @@ type
     procedure HabilitarComponentes;
     procedure SalvarVenda;
   public
-    Clientes : TDmClientes;
+    ClientesVendas : TDmClienteVendas;
     Conexao : TDmConexao;
     ID_Login : Integer;
     function CalcularValorTotal(Quantidade : integer;ValorUnit : Currency): Currency;
@@ -75,8 +75,8 @@ end;
 
 procedure TFormEditarVendas.AtualizarLista;
 begin
-  Clientes.cdsVendas.ApplyUpdates(0);
-  Clientes.cdsVendas.Refresh;
+  ClientesVendas.cdsVendas.ApplyUpdates(0);
+  ClientesVendas.cdsVendas.Refresh;
   GBVendas.Enabled := False;
   dbGridEditarVendas.Enabled := True;
 end;
@@ -109,14 +109,14 @@ end;
 function TFormEditarVendas.CalcularValorTotal(Quantidade: integer; ValorUnit: Currency): Currency;
 begin
   Result := Quantidade * ValorUnit ;
-  Clientes.cdsVendasvalor_total.Value := Result;
+  ClientesVendas.cdsVendasvalor_total.Value := Result;
 end;
 
 procedure TFormEditarVendas.CancelarVenda;
 begin
   HabilitarBotoes;
 
-  Clientes.cdsVendas.Cancel;
+  ClientesVendas.cdsVendas.Cancel;
   dbGridEditarVendas.Enabled := True;
   GBVendas.Enabled := False;
 end;
@@ -125,17 +125,17 @@ procedure TFormEditarVendas.CriarNovaVenda;
 begin
   DesabilitarBotoes;
 
-  Clientes.cdsVendas.Insert;
-  Clientes.cdsVendasid_cadastro.Value := ID_Login;
+  ClientesVendas.cdsVendas.Insert;
+  ClientesVendas.cdsVendasid_cadastro.Value := ID_Login;
   GBVendas.Enabled := True;
   dbGridEditarVendas.Enabled := False;
 end;
 
 procedure TFormEditarVendas.DefinirDataSet;
 begin
-  Clientes.cdsVendasid_produtos.Visible := False;
-  Clientes.cdsVendasvalor_total.Visible := False;
-  dsEditarVendas.DataSet := Clientes.cdsVendas;
+  ClientesVendas.cdsVendasid_produtos.Visible := False;
+  ClientesVendas.cdsVendasvalor_total.Visible := False;
+  dsEditarVendas.DataSet := ClientesVendas.cdsVendas;
   dbGridEditarVendas.DataSource := dsEditarVendas;
 end;
 
@@ -143,8 +143,8 @@ procedure TFormEditarVendas.DeletarVenda;
 begin
   if MessageDlg('Deseja realmente deletar essa venda ?', mtInformation, [mbYes , mbNo],0) = mrYes then
   begin
-    Clientes.cdsVendas.Delete;
-    Clientes.cdsVendas.ApplyUpdates(0);
+    ClientesVendas.cdsVendas.Delete;
+    ClientesVendas.cdsVendas.ApplyUpdates(0);
   end;
 end;
 
@@ -182,20 +182,20 @@ end;
 
 procedure TFormEditarVendas.HabilitarComponentes;
 begin
-  Clientes.cdsVendasid_produtos.Visible := True;
-  Clientes.cdsVendasvalor_total.Visible := True;
-  Clientes.cdsVendas.Cancel;
+  ClientesVendas.cdsVendasid_produtos.Visible := True;
+  ClientesVendas.cdsVendasvalor_total.Visible := True;
+  ClientesVendas.cdsVendas.Cancel;
 end;
 
 procedure TFormEditarVendas.SalvarVenda;
 begin
-  if (Clientes.cdsVendas.State = dsEdit) or (Clientes.cdsVendas.State = dsInsert) then
+  if (ClientesVendas.cdsVendas.State = dsEdit) or (ClientesVendas.cdsVendas.State = dsInsert) then
   begin
   dbGridEditarVendas.Enabled := True;
   GBVendas.Enabled := False;
-  CalcularValorTotal(Clientes.cdsVendasquantidade.Value, Clientes.cdsVendasvalor_produto.AsCurrency);
-  Clientes.cdsVendas.ApplyUpdates(0);
-  Clientes.cdsVendas.Refresh;
+  CalcularValorTotal(ClientesVendas.cdsVendasquantidade.Value, ClientesVendas.cdsVendasvalor_produto.AsCurrency);
+  ClientesVendas.cdsVendas.ApplyUpdates(0);
+  ClientesVendas.cdsVendas.Refresh;
   HabilitarBotoes;
   end;
 end;

@@ -4,11 +4,11 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DataModuleClientes, DataModuleConexao,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DataModuleConexao,
   Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls,
   Vcl.ComCtrls, System.UITypes, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, cxTextEdit, cxMaskEdit,
-  cxDropDownEdit, cxCalendar, cxDBEdit;
+  cxDropDownEdit, cxCalendar, cxDBEdit, DataModuleClientesPessoas;
 
 type
   TFormCriacaoEdicaoPessoas = class(TForm)
@@ -56,7 +56,7 @@ type
     procedure HabilitarComponentes;
     procedure SalvarAlteracoes;
   public
-    Clientes : TDmClientes;
+    ClientesPessoas : TDmClientesPessoas;
     ID_Login : Integer;
   end;
 
@@ -69,8 +69,8 @@ implementation
 
 procedure TFormCriacaoEdicaoPessoas.AtualizarLista;
 begin
-  Clientes.cdsPessoas.ApplyUpdates(0);
-  Clientes.cdsPessoas.Refresh;
+  ClientesPessoas.cdsPessoas.ApplyUpdates(0);
+  ClientesPessoas.cdsPessoas.Refresh;
   gbFormulario.Enabled := False;
   dbGridCriacaoEdicaoPessoas.Enabled := True;
 end;
@@ -109,8 +109,8 @@ procedure TFormCriacaoEdicaoPessoas.CadastrarNovaPessoa;
 begin
   DesabilitarBotoes;
 
-  Clientes.cdsPessoas.Insert;
-  Clientes.cdsPessoasid_cadastro.Value := ID_Login;
+  ClientesPessoas.cdsPessoas.Insert;
+  ClientesPessoas.cdsPessoasid_cadastro.Value := ID_Login;
   gbFormulario.Enabled := True;
   dbGridCriacaoEdicaoPessoas.Enabled := False;
 end;
@@ -119,15 +119,15 @@ procedure TFormCriacaoEdicaoPessoas.CancelarAcao;
 begin
   HabilitarBotoes;
 
-  Clientes.cdsPessoas.Cancel;
+  ClientesPessoas.cdsPessoas.Cancel;
   gbFormulario.Enabled := False;
   dbGridCriacaoEdicaoPessoas.Enabled := True;
 end;
 
 procedure TFormCriacaoEdicaoPessoas.DefinirDataSet;
 begin
-  Clientes.cdsPessoasid_pessoas.Visible := False;
-  dsCriacaoEdicaoPessoas.DataSet := Clientes.cdsPessoas;
+  ClientesPessoas.cdsPessoasid_pessoas.Visible := False;
+  dsCriacaoEdicaoPessoas.DataSet := ClientesPessoas.cdsPessoas;
   dbGridCriacaoEdicaoPessoas.DataSource := dsCriacaoEdicaoPessoas;
 end;
 
@@ -135,8 +135,8 @@ procedure TFormCriacaoEdicaoPessoas.DeletarPessoa;
 begin
   if MessageDlg('Deseja realmente deletar essa tarefa ?', mtInformation, [mbYes , mbNo],0) = mrYes then
     begin
-    Clientes.cdsPessoas.Delete;
-    Clientes.cdsPessoas.ApplyUpdates(0);
+    ClientesPessoas.cdsPessoas.Delete;
+    ClientesPessoas.cdsPessoas.ApplyUpdates(0);
     end;
 end;
 
@@ -175,25 +175,25 @@ end;
 
 procedure TFormCriacaoEdicaoPessoas.HabilitarComponentes;
 begin
-  Clientes.cdsPessoasid_pessoas.Visible := True;
+  ClientesPessoas.cdsPessoasid_pessoas.Visible := True;
   dbGridCriacaoEdicaoPessoas.Enabled := True;
-  Clientes.cdsPessoas.Cancel;
+  ClientesPessoas.cdsPessoas.Cancel;
 end;
 
 procedure TFormCriacaoEdicaoPessoas.mCalendarClick(Sender: TObject);
 begin
-  Clientes.cdsPessoas.Edit;
+  ClientesPessoas.cdsPessoas.Edit;
 end;
 
 
 procedure TFormCriacaoEdicaoPessoas.SalvarAlteracoes;
 begin
-  if (Clientes.cdsPessoas.State = dsEdit) or (Clientes.cdsPessoas.State = dsInsert) then
+  if (ClientesPessoas.cdsPessoas.State = dsEdit) or (ClientesPessoas.cdsPessoas.State = dsInsert) then
   begin
   gbFormulario.Enabled := False;
   dbGridCriacaoEdicaoPessoas.Enabled := True;
-  Clientes.cdsPessoas.ApplyUpdates(0);
-  Clientes.cdsPessoas.Refresh;
+  ClientesPessoas.cdsPessoas.ApplyUpdates(0);
+  ClientesPessoas.cdsPessoas.Refresh;
   HabilitarBotoes;
   end;
 end;

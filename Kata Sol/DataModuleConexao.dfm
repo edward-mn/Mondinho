@@ -1,14 +1,14 @@
 object DmConexao: TDmConexao
   OldCreateOrder = False
-  Height = 253
-  Width = 498
+  Height = 250
+  Width = 444
   object sqlQueryToDo: TSQLQuery
     MaxBlobSize = -1
     Params = <>
     SQL.Strings = (
       '')
     SQLConnection = sqlConexao
-    Left = 24
+    Left = 32
     Top = 88
     object sqlQueryToDoid_todo: TIntegerField
       FieldName = 'id_todo'
@@ -38,7 +38,7 @@ object DmConexao: TDmConexao
     LoginPrompt = False
     Params.Strings = (
       'BlobSize=-1'
-      'HostName=localhost:5432'
+      'HostName=localhost:5434'
       'DataBase=MiniMonde'
       'SchemaName=mondinho'
       'DriverName=DevartPostgreSQL'
@@ -50,13 +50,13 @@ object DmConexao: TDmConexao
       'IPVersion=IPv4'
       'UseUnicode=True'
       'Charset=')
-    Left = 248
-    Top = 8
+    Left = 224
+    Top = 16
   end
   object sqlProviderToDo: TDataSetProvider
     DataSet = sqlQueryToDo
     Options = [poPropogateChanges, poUseQuoteChar]
-    Left = 24
+    Left = 32
     Top = 160
   end
   object sqlQueryVendas: TSQLQuery
@@ -65,7 +65,7 @@ object DmConexao: TDmConexao
     SQL.Strings = (
       '')
     SQLConnection = sqlConexao
-    Left = 168
+    Left = 120
     Top = 88
     object sqlQueryVendasid_produtos: TIntegerField
       FieldName = 'id_produtos'
@@ -112,13 +112,13 @@ object DmConexao: TDmConexao
   object sqlProviderVendas: TDataSetProvider
     DataSet = sqlQueryVendas
     Options = [poPropogateChanges, poUseQuoteChar]
-    Left = 168
+    Left = 120
     Top = 160
   end
   object sqlProviderPessoas: TDataSetProvider
     DataSet = sqlQueryPessoas
     Options = [poPropogateChanges, poUseQuoteChar]
-    Left = 283
+    Left = 235
     Top = 161
   end
   object sqlQueryPessoas: TSQLQuery
@@ -127,7 +127,7 @@ object DmConexao: TDmConexao
     SQL.Strings = (
       '')
     SQLConnection = sqlConexao
-    Left = 283
+    Left = 235
     Top = 89
     object sqlQueryPessoasid_pessoas: TIntegerField
       FieldName = 'id_pessoas'
@@ -172,7 +172,7 @@ object DmConexao: TDmConexao
   object sqlProviderCadastro: TDataSetProvider
     DataSet = sqlQueryCadastro
     Options = [poPropogateChanges, poUseQuoteChar]
-    Left = 416
+    Left = 368
     Top = 158
   end
   object sqlQueryCadastro: TSQLQuery
@@ -193,7 +193,7 @@ object DmConexao: TDmConexao
         'select  * from monde_cadastro  where nome_usuario = :usuario and' +
         ' senha = :senha')
     SQLConnection = sqlConexao
-    Left = 416
+    Left = 368
     Top = 88
     object sqlQueryCadastroid: TIntegerField
       FieldName = 'id'

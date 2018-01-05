@@ -104,8 +104,8 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="DataModuleClientes.pas">
-            <Form>DmClientes</Form>
+        <DCCReference Include="DataModuleClientesCadastro.pas">
+            <Form>DmClientesCadastro</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
@@ -132,6 +132,21 @@
         </DCCReference>
         <DCCReference Include="UnitCadastro.pas">
             <Form>FormCadastro</Form>
+        </DCCReference>
+        <DCCReference Include="DataModuleClientesVendas.pas">
+            <Form>DmClienteVendas</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="DataModuleClientesPessoas.pas">
+            <Form>DmClientesPessoas</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="DataModuleClientesTarefas.pas">
+            <Form>DmClientesTarefas</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

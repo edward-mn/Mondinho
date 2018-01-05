@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Datasnap.DBClient,
-  Vcl.StdCtrls, Vcl.DBCtrls, DataModuleClientes, DataModuleConexao, Vcl.Mask,
+  Vcl.StdCtrls, Vcl.DBCtrls, DataModuleClientesCadastro, DataModuleConexao, Vcl.Mask,
   DataModuleCadastro, UnitToDo, Vcl.Imaging.pngimage, Vcl.ExtCtrls;
 
 type
@@ -24,9 +24,10 @@ type
     procedure FormShow(Sender: TObject);
     procedure Cadastrar;
   private
+    procedure DefinirDataSet;
 
   public
-  Clientes :TDmClientes;
+  ClientesCadastro :TDmClientesCadastro;
   Conexao : TdmConexao;
   procedure LimparCampos;
   end;
@@ -51,7 +52,7 @@ begin
  else
     begin
       Conexao.sqlQueryCadastro.Close;
-      Clientes.cdsCadastro.ApplyUpdates(0);
+      ClientesCadastro.cdsCadastro.ApplyUpdates(0);
       ShowMessage('Cadastro Concluido!');
       LimparCampos;
     end;
@@ -59,11 +60,7 @@ end;
 
 procedure TFormCadastro.FormShow(Sender: TObject);
 begin
-  Clientes.cdsCadastro.SetProvider(Conexao.sqlProviderCadastro);
-  Conexao.sqlQueryCadastro.Open;
-  Clientes.cdsCadastro.Open;
-  dsCadastro.DataSet := Clientes.cdsCadastro;
-  Clientes.cdsCadastro.Insert;
+  DefinirDataSet;
 end;
 
 procedure TFormCadastro.LimparCampos;
@@ -71,6 +68,15 @@ begin
   DBEdtUsuario.Text := '';
   DBEdtSenha.Text := '';
   edtSenhaNovamente.Text := '';
+end;
+
+procedure TFormCadastro.DefinirDataSet;
+begin
+  ClientesCadastro.cdsCadastro.SetProvider(Conexao.sqlProviderCadastro);
+  Conexao.sqlQueryCadastro.Open;
+  ClientesCadastro.cdsCadastro.Open;
+  dsCadastro.DataSet := ClientesCadastro.cdsCadastro;
+  ClientesCadastro.cdsCadastro.Insert;
 end;
 
 end.

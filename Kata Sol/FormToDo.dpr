@@ -4,7 +4,7 @@ uses
   Vcl.Forms,
   UnitToDo in 'UnitToDo.pas' {FormView},
   DataModuleConexao in 'DataModuleConexao.pas' {DmConexao: TDataModule},
-  DataModuleClientes in 'DataModuleClientes.pas' {DmClientes: TDataModule},
+  DataModuleClientesCadastro in 'DataModuleClientesCadastro.pas' {DmClientesCadastro: TDataModule},
   UnitTarefas in 'UnitTarefas.pas' {FormTarefas},
   UnitVendas in 'UnitVendas.pas' {FormVendas},
   UnitPessoas in 'UnitPessoas.pas' {FormPessoas},
@@ -13,7 +13,10 @@ uses
   UnitEditarPessoas in 'UnitEditarPessoas.pas' {FormCriacaoEdicaoPessoas},
   UnitLogin in 'UnitLogin.pas' {FormLogin},
   UnitCadastro in 'UnitCadastro.pas' {FormCadastro},
-  Vcl.Controls;
+  Vcl.Controls,
+  DataModuleClientesVendas in 'DataModuleClientesVendas.pas' {DmClienteVendas: TDataModule},
+  DataModuleClientesPessoas in 'DataModuleClientesPessoas.pas' {DmClientesPessoas: TDataModule},
+  DataModuleClientesTarefas in 'DataModuleClientesTarefas.pas' {DmClientesTarefas: TDataModule};
 
 {$R *.res}
 
@@ -33,5 +36,8 @@ begin
   end;
 
   Application.CreateForm(TFormView, FormView);
+  Application.CreateForm(TDmClienteVendas, DmClienteVendas);
+  Application.CreateForm(TDmClientesPessoas, DmClientesPessoas);
+  Application.CreateForm(TDmClientesTarefas, DmClientesTarefas);
   Application.Run;
 end.

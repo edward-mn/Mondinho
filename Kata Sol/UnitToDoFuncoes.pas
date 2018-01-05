@@ -4,7 +4,7 @@ interface
 
 uses
   System.SysUtils, System.DateUtils, UnitToDo, UnitEditarTarefas, UnitTarefas,
-  DataModuleClientes;
+  DataModuleClientesTarefas;
 
 const
   StatusFinalizada = 'Finalizada';
@@ -22,7 +22,7 @@ type
     class function FiltroStatus(const FiltroAtual: string; StatusDoFiltro: String):
         string;
   public
-    Clientes: TDMClientes;
+    Clientes: TDmClientesTarefas;
 
 
   end;
