@@ -51,7 +51,7 @@ var
 implementation
 
 uses
-  UnitToDoFuncoes, System.DateUtils;
+  System.DateUtils, TarefaUtils;
 
 { TestTtesteToDo }
 

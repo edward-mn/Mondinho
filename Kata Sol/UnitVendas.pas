@@ -65,8 +65,8 @@ begin
   if cbExcluida.Checked then
     FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusExcluida);
 
-  FClientes.cdsVendas.Filter := FiltroVendas;
-  FClientes.cdsVendas.Filtered := not FiltroVendas.IsEmpty;
+  FClientesVendas.cdsVendas.Filter := FiltroVendas;
+  FClientesVendas.cdsVendas.Filtered := not FiltroVendas.IsEmpty;
 end;
 
 procedure TFormVendas.btnAtualizarVendasClick(Sender: TObject);
@@ -121,7 +121,7 @@ begin
   FClientesVendas.cdsVendas.SetProvider(Conexao.sqlQueryVendas);
   dsVendas.DataSet := FClientesVendas.cdsVendas;
   dbGridVendas.DataSource := dsVendas;
- DataModuleConexao.Conexao.DefinirIDdoUsuarioVendas;
+  DataModuleConexao.Conexao.DefinirIDdoUsuarioVendas;
   FClientesVendas.cdsVendas.Open;
   FClientesVendas.cdsVendasid_cadastro.Visible := False;
 end;

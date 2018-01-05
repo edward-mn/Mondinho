@@ -52,6 +52,8 @@ type
     procedure DefinirIDdoUsuarioTarefas;
     procedure DefinirIDdoUsuarioPessoas;
     procedure DefinirIDdoUsuarioVendas;
+    procedure DefinirUsuario(Usuario : String);
+    procedure DefinirSenha(Senha : String);
   end;
 
 function Conexao: TDmConexao;
@@ -92,6 +94,16 @@ procedure TDmConexao.DefinirIDdoUsuarioVendas;
 begin
   ID_Login := Conexao.sqlQueryCadastroid.Value;
   Conexao.sqlQueryVendas.SQL.CommaText := ('select * from vendas where id_cadastro =' + IntToStr(ID_Login));
+end;
+
+procedure TDmConexao.DefinirSenha(Senha : String);
+begin
+  Conexao.sqlQueryCadastro.ParambyName('senha').AsString := Senha;
+end;
+
+procedure TDmConexao.DefinirUsuario(Usuario : String);
+begin
+  Conexao.sqlQueryCadastro.ParambyName('usuario').AsString := Usuario;
 end;
 
 initialization

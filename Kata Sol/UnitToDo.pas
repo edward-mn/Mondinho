@@ -144,8 +144,7 @@ end;
 procedure TFormView.FormShow(Sender: TObject);
 begin
   DataModuleConexao.Conexao.DefinirIDdoUsuarioTarefas;
-//FClientes.cdsToDo.Open;  
-FClientes.cdsToDo.Open;
+//FClientes.cdsToDo.Open;
 end;
 
 procedure TFormView.Logout;
