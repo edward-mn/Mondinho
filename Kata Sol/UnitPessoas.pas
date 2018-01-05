@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, DataModuleClientes, DataModuleConexao,
   Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, UnitEditarPessoas,
-  System.UITypes, PessoasUtils;
+  System.UITypes;
 
 type
   TFormPessoas = class(TForm)
@@ -47,7 +47,7 @@ var
 implementation
 
 uses
-  UnitToDoFuncoes;
+  PessoasUtils;
 
 {$R *.dfm}
 
