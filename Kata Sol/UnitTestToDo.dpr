@@ -24,7 +24,8 @@ uses
   TestUnitToDoPrincipal in 'TestUnitToDoPrincipal.pas',
   PessoasUtils in 'PessoasUtils.pas',
   VendasUtils in 'VendasUtils.pas',
-  TestVendas in 'TestVendas.pas';
+  TestVendas in 'TestVendas.pas',
+  TestPessoas in 'TestPessoas.pas';
 
 {R *.RES}
 
