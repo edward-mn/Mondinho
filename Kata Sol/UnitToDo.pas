@@ -29,7 +29,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
-    //FClientes: TDmClientes;
+   
   public
     ID_Login: Integer;
     constructor Create(AOwner: TComponent); override;
@@ -48,7 +48,7 @@ implementation
 {$R *.dfm}
 
 uses
-  {UnitToDoFuncoes,} UnitLogin;
+ UnitLogin;
 
 constructor TFormView.Create(AOwner: TComponent);
 begin
@@ -143,10 +143,9 @@ end;
 
 procedure TFormView.FormShow(Sender: TObject);
 begin
-  ID_Login := Conexao.sqlQueryCadastroid.Value;
-  Conexao.sqlQueryToDo.SQL.CommaText :=
-    ('select * from monde_todo where id_cadastro =' + IntToStr(ID_Login));
-  //FClientes.cdsToDo.Open;
+  DataModuleConexao.Conexao.DefinirIDdoUsuarioTarefas;
+//FClientes.cdsToDo.Open;  
+FClientes.cdsToDo.Open;
 end;
 
 procedure TFormView.Logout;
@@ -154,7 +153,6 @@ begin
   if MessageDlg('Deseja realmente fazer Logout ?', mtInformation, [mbYes, mbNo],
     0) = mrYes then
   begin
-    Conexao.sqlQueryToDo.Close;
     Self.Close;
   end;
 end;

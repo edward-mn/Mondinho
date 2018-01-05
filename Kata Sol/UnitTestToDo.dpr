@@ -20,8 +20,12 @@ program UnitTestToDo;
 
 uses
   DUnitTestRunner,
-  UnitToDoFuncoes in 'UnitToDoFuncoes.pas',
-  TestUnitToDoPrincipal in 'TestUnitToDoPrincipal.pas';
+  TarefaUtils in 'TarefaUtils.pas',
+  TestUnitToDoPrincipal in 'TestUnitToDoPrincipal.pas',
+  PessoasUtils in 'PessoasUtils.pas',
+  VendasUtils in 'VendasUtils.pas',
+  TestVendas in 'TestVendas.pas',
+  TestPessoas in 'TestPessoas.pas';
 
 {R *.RES}
 

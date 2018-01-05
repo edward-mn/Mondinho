@@ -50,7 +50,7 @@ var
 implementation
 
 uses
-  UnitToDoFuncoes;
+  VendasUtils, TarefaUtils;
 
 
 {$R *.dfm}

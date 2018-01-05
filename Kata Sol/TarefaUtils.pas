@@ -1,4 +1,4 @@
-unit UnitToDoFuncoes;
+unit TarefaUtils;
 
 interface
 
@@ -19,11 +19,9 @@ type
     class function StatusToDo(Status : String) : String;
     class function Calendario(Dia : TDateTime) : String;
     class function Tarefas(Tarefa : String) : String;
-    class function FiltroStatus(const FiltroAtual: string; StatusDoFiltro: String):
-        string;
+    class function FiltroStatus(const FiltroAtual: string; StatusDoFiltro: String) : string;
   public
     Clientes: TDmClientesTarefas;
-
 
   end;
 
