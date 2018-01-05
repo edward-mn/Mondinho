@@ -192,7 +192,7 @@ object FormView: TFormView
     end
   end
   object dsToDo: TDataSource
-    Left = 552
-    Top = 336
+    Left = 576
+    Top = 8
   end
 end

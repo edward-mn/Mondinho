@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
-  DataModuleConexao, DataModuleClientes, UnitEditarTarefas, Vcl.StdCtrls,
+  DataModuleConexao, UnitEditarTarefas, Vcl.StdCtrls,
   UnitTarefas, Vcl.ExtCtrls, UnitVendas, UnitPessoas, Vcl.Imaging.pngimage,
   dxGDIPlusClasses, System.UITypes;
 
@@ -29,7 +29,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
-    FClientes: TDmClientes;
+   
   public
     ID_Login: Integer;
     constructor Create(AOwner: TComponent); override;
@@ -48,15 +48,15 @@ implementation
 {$R *.dfm}
 
 uses
-  UnitLogin, TarefaUtils;
+ UnitLogin;
 
 constructor TFormView.Create(AOwner: TComponent);
 begin
   inherited;
-  FClientes := TDmClientes.Create(Self);
-
-  FClientes.cdsToDo.SetProvider(Conexao.sqlProviderToDo);
-  FClientes.cdsToDoid_cadastro.Visible := False;
+//  FClientes := TDmClientes.Create(Self);
+//
+//  FClientes.cdsToDo.SetProvider(Conexao.sqlProviderToDo);
+//  FClientes.cdsToDoid_cadastro.Visible := False;
 end;
 
 procedure TFormView.btnPessoasClick(Sender: TObject);
@@ -97,7 +97,6 @@ var
 begin
   NewForm := TFormPessoas.Create(nil);
   try
-    NewForm.Clientes := FClientes;
     NewForm.ID_Login := ID_Login;
     NewForm.ShowModal;
 
@@ -113,7 +112,6 @@ var
 begin
   NewForm := TFormTarefas.Create(nil);
   try
-    NewForm.Clientes := FClientes;
     NewForm.ID_Login := ID_Login;
     NewForm.ShowModal;
 
@@ -129,7 +127,6 @@ var
 begin
   NewForm := TFormVendas.Create(nil);
   try
-    NewForm.Clientes := FClientes;
     NewForm.ID_Login := ID_Login;
     NewForm.ShowModal;
   finally
@@ -140,14 +137,15 @@ end;
 
 procedure TFormView.FormCreate(Sender: TObject);
 begin
-  dsToDo.DataSet := FClientes.cdsToDo;
-  dbGridPrincipal.DataSource := dsToDo;
+//  dsToDo.DataSet := FClientes.cdsToDo;
+//  dbGridPrincipal.DataSource := dsToDo;
 end;
 
 procedure TFormView.FormShow(Sender: TObject);
 begin
   DataModuleConexao.Conexao.DefinirIDdoUsuarioTarefas;
-  FClientes.cdsToDo.Open;
+//FClientes.cdsToDo.Open;  
+FClientes.cdsToDo.Open;
 end;
 
 procedure TFormView.Logout;

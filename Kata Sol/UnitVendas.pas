@@ -4,11 +4,11 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DataModuleClientes, DataModuleConexao,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DataModuleConexao,
   Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, System.UITypes,
   UnitEditarVendas, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, cxTextEdit, cxMaskEdit,
-  cxDropDownEdit, cxCalendar, cxDBEdit, VendasUtils;
+  cxDropDownEdit, cxCalendar, cxDBEdit, DataModuleClientesVendas, VendasUtils;
 
 type
   TFormVendas = class(TForm)
@@ -34,11 +34,12 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
   private
-    { Private declarations }
+    FClientesVendas : TDmClienteVendas;
+    procedure DefinirDataSet;
   public
-    Clientes : TDmClientes;
     ID_Login : Integer;
     procedure CriarFormEditarVendas;
+    constructor Create(AOwner: TComponent); override;
   end;
 
 
@@ -64,13 +65,13 @@ begin
   if cbExcluida.Checked then
     FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusExcluida);
 
-  Clientes.cdsVendas.Filter := FiltroVendas;
-  Clientes.cdsVendas.Filtered := not FiltroVendas.IsEmpty;
+  FClientes.cdsVendas.Filter := FiltroVendas;
+  FClientes.cdsVendas.Filtered := not FiltroVendas.IsEmpty;
 end;
 
 procedure TFormVendas.btnAtualizarVendasClick(Sender: TObject);
 begin
-  Clientes.cdsVendas.Refresh;
+  FClientesVendas.cdsVendas.Refresh;
 end;
 
 procedure TFormVendas.btnEditarVendasCadastrarClick(Sender: TObject);
@@ -80,7 +81,7 @@ end;
 
 procedure TFormVendas.btnImprimirRelatorioClick(Sender: TObject);
 begin
-  Clientes.frxReportVendas.Print;
+  FClientesVendas.frxReportVendas.Print;
 end;
 
 procedure TFormVendas.btnPesquisarClick(Sender: TObject);
@@ -90,7 +91,14 @@ end;
 
 procedure TFormVendas.btnVisualizarRelatorioClick(Sender: TObject);
 begin
-   Clientes.frxReportVendas.ShowReport();
+   FClientesVendas.frxReportVendas.ShowReport();
+end;
+
+constructor TFormVendas.Create(AOwner: TComponent);
+begin
+  inherited;
+  FClientesVendas := TDmClienteVendas.Create(Self);
+  FClientesVendas.cdsVendas.SetProvider(Conexao.sqlQueryVendas);
 end;
 
 procedure TFormVendas.CriarFormEditarVendas;
@@ -99,13 +107,23 @@ var
 begin
   NewForm := TFormEditarVendas.Create(nil);
 try
-  NewForm.Clientes := Clientes;
+  NewForm.ClientesVendas := FClientesVendas;
   NewForm.ID_Login := ID_Login;
   NewForm.ShowModal
 finally
   NewForm.Free;
 end;
 
+end;
+
+procedure TFormVendas.DefinirDataSet;
+begin
+  FClientesVendas.cdsVendas.SetProvider(Conexao.sqlQueryVendas);
+  dsVendas.DataSet := FClientesVendas.cdsVendas;
+  dbGridVendas.DataSource := dsVendas;
+ DataModuleConexao.Conexao.DefinirIDdoUsuarioVendas;
+  FClientesVendas.cdsVendas.Open;
+  FClientesVendas.cdsVendasid_cadastro.Visible := False;
 end;
 
 procedure TFormVendas.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -115,12 +133,7 @@ end;
 
 procedure TFormVendas.FormShow(Sender: TObject);
 begin
-  Clientes.cdsVendas.SetProvider(Conexao.sqlQueryVendas);
-  dsVendas.DataSet := Clientes.cdsVendas;
-  dbGridVendas.DataSource := dsVendas;
-  DataModuleConexao.Conexao.DefinirIDdoUsuarioVendas;
-  Clientes.cdsVendas.Open;
-  Clientes.cdsVendasid_cadastro.Visible := False;
+  DefinirDataSet;
 end;
 
 end.

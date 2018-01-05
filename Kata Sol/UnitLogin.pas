@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Imaging.pngimage,
-  Vcl.ExtCtrls, UnitCadastro, DataModuleClientes, DataModuleConexao, Data.DB,
+  Vcl.ExtCtrls, UnitCadastro, DataModuleClientesCadastro, DataModuleConexao, Data.DB,
   dxGDIPlusClasses;
 
 type
@@ -24,7 +24,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure Logar;
   public
-    FClientes : TDmClientes;
+    FClientes : TDmClientesCadastro;
     constructor Create(AOwner: TComponent); override;
   end;
 
@@ -40,7 +40,7 @@ uses UnitToDo;
 constructor TFormLogin.Create(AOwner: TComponent);
 begin
   inherited;
-  FClientes := TDmClientes.Create(Self);
+  FClientes := TDmClientesCadastro.Create(Self);
   FClientes.cdsCadastro.SetProvider(Conexao.sqlProviderCadastro);
 end;
 
@@ -60,7 +60,7 @@ var
 begin
   NewForm := TFormCadastro.Create(nil);
   try
-    NewForm.Clientes := FClientes;
+    NewForm.ClientesCadastro := FClientes;
     NewForm.ShowModal;
   finally
     NewForm.Free;

@@ -4,9 +4,9 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DataModuleClientes, DataModuleConexao,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DataModuleConexao,
   Data.DB, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, System.UITypes, UnitEditarTarefas,
-  Vcl.ExtCtrls;
+  Vcl.ExtCtrls, DataModuleClientesTarefas;
 
 type
   TFormTarefas = class(TForm)
@@ -36,11 +36,12 @@ type
     procedure FormShow(Sender: TObject);
     procedure TimerTimer(Sender: TObject);
   private
-    { Private declarations }
+    FClientesTarefas : TDmClientesTarefas;
+    procedure DefinirDataSet;
   public
-    Clientes : TDmClientes;
     ID_Login : Integer;
     procedure CriarFormEditarTarefas;
+    constructor Create(AOwner: TComponent); override;
   end;
 
 var
@@ -59,19 +60,19 @@ var
   BookMarkAtrazar: TBookmark;
 begin
   try
-    BookMarkAtrazar := Clientes.cdsToDodata.DataSet.GetBookmark;
+    BookMarkAtrazar := FClientesTarefas.cdsToDodata.DataSet.GetBookmark;
 
-    Clientes.cdsToDostatus.DataSet.First;
-    while not Clientes.cdsToDostatus.DataSet.Eof do
+    FClientesTarefas.cdsToDostatus.DataSet.First;
+    while not FClientesTarefas.cdsToDostatus.DataSet.Eof do
     begin
-      Clientes.cdsToDo.Edit;
-      if (Now > Clientes.cdsToDodata.Value) and (Clientes.cdsToDostatus.text <> 'Finalizada') then
-        Clientes.cdsToDostatus.text := 'Atrasada';
-      Clientes.cdsToDostatus.DataSet.Next;
+      FClientesTarefas.cdsToDo.Edit;
+      if (Now > FClientesTarefas.cdsToDodata.Value) and (FClientesTarefas.cdsToDostatus.text <> 'Finalizada') then
+        FClientesTarefas.cdsToDostatus.text := 'Atrasada';
+      FClientesTarefas.cdsToDostatus.DataSet.Next;
     end;
-    Clientes.cdsToDo.ApplyUpdates(0);
+    FClientesTarefas.cdsToDo.ApplyUpdates(0);
   finally
-    Clientes.cdsToDostatus.DataSet.GotoBookmark(BookMarkAtrazar);
+    FClientesTarefas.cdsToDostatus.DataSet.GotoBookmark(BookMarkAtrazar);
   end;
 end;
 
@@ -93,13 +94,13 @@ begin
   if cbFinalizadas.Checked then
     Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusFinalizada);
 
-  Clientes.cdsToDo.Filter := Filtro;
-  Clientes.cdsToDo.Filtered := not Filtro.IsEmpty;
+  FClientesTarefas.cdsToDo.Filter := Filtro;
+  FClientesTarefas.cdsToDo.Filtered := not Filtro.IsEmpty;
 end;
 
 procedure TFormTarefas.btnAtualizarTarefaClick(Sender: TObject);
 begin
-  Clientes.cdsToDo.Refresh;
+  FClientesTarefas.cdsToDo.Refresh;
 end;
 
 procedure TFormTarefas.btnCriarTarefaClick(Sender: TObject);
@@ -114,7 +115,7 @@ end;
 
 procedure TFormTarefas.btnImprimirClick(Sender: TObject);
 begin
-  Clientes.frxReportToDo.Print;
+  FClientesTarefas.frxReportToDo.Print;
 end;
 
 procedure TFormTarefas.btnPesquisarClick(Sender: TObject);
@@ -124,7 +125,14 @@ end;
 
 procedure TFormTarefas.btnVisualizarClick(Sender: TObject);
 begin
-  Clientes.frxReportToDo.ShowReport();
+  FClientesTarefas.frxReportToDo.ShowReport();
+end;
+
+constructor TFormTarefas.Create(AOwner: TComponent);
+begin
+  inherited;
+  FClientesTarefas := TDmClientesTarefas.Create(Self);
+  FClientesTarefas.cdsToDo.SetProvider(Conexao.sqlQueryToDo);
 end;
 
 procedure TFormTarefas.CriarFormEditarTarefas;
@@ -133,7 +141,7 @@ var
 begin
   NewForm := TFormEditarTarefas.Create(nil);
 try
-  NewForm.Clientes := Clientes;
+  NewForm.ClientesTarefas := FClientesTarefas;
   NewForm.ID_Login := ID_Login;
   NewForm.ShowModal;
 
@@ -142,11 +150,18 @@ finally
 end;
 end;
 
+procedure TFormTarefas.DefinirDataSet;
+begin
+  dsTarefas.DataSet := FClientesTarefas.cdsToDo;
+  dbGridTarefas.DataSource := dsTarefas;
+  FClientesTarefas.cdsToDo.Open;
+  FClientesTarefas.cdsToDoid_cadastro.Visible := False;
+end;
+
 procedure TFormTarefas.FormShow(Sender: TObject);
 begin
-  dsTarefas.DataSet := Clientes.cdsToDo;
-  dbGridTarefas.DataSource := dsTarefas;
-  AtrasarTarefa();
+  DefinirDataSet;
+  AtrasarTarefa;
 end;
 
 procedure TFormTarefas.TimerTimer(Sender: TObject);

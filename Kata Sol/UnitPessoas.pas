@@ -4,9 +4,9 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, DataModuleClientes, DataModuleConexao,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, DataModuleConexao,
   Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, UnitEditarPessoas,
-  System.UITypes;
+  System.UITypes, DataModuleClientesPessoas;
 
 type
   TFormPessoas = class(TForm)
@@ -34,11 +34,12 @@ type
     procedure btnPesquisarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
-    { Private declarations }
+    FClientes : TDmClientesPessoas;
+    procedure DefinirDataSet;
   public
-    Clientes: TDmClientes;
     ID_Login : Integer;
     procedure CriarFormCriacaoEdicaoPessoas;
+    constructor Create(AOwner: TComponent); override;
   end;
 
 var
@@ -78,12 +79,12 @@ end;
 
 procedure TFormPessoas.bntVisualizarClick(Sender: TObject);
 begin
-  Clientes.frxReportPessoas.ShowReport();
+  FClientes.frxReportPessoas.ShowReport();
 end;
 
 procedure TFormPessoas.btnAtualizarCadastroClick(Sender: TObject);
 begin
-  Clientes.cdsPessoas.Refresh;
+  FClientes.cdsPessoas.Refresh;
 end;
 
 procedure TFormPessoas.btnCadastrarPessoaClick(Sender: TObject);
@@ -103,7 +104,14 @@ end;
 
 procedure TFormPessoas.btnImprimirClick(Sender: TObject);
 begin
-  Clientes.frxReportPessoas.Print;
+  FClientes.frxReportPessoas.Print;
+end;
+
+constructor TFormPessoas.Create(AOwner: TComponent);
+begin
+  inherited;
+  FClientes := TDmClientesPessoas.Create(Self);
+  FClientes.cdsPessoas.SetProvider(Conexao.sqlQueryPessoas);
 end;
 
 procedure TFormPessoas.CriarFormCriacaoEdicaoPessoas;
@@ -112,7 +120,7 @@ var
 begin
   NewForm := TFormCriacaoEdicaoPessoas.Create(nil);
 try
-  NewForm.Clientes := Clientes;
+  NewForm.ClientesPessoas := FClientes;
   NewForm.ID_Login := ID_Login;
   NewForm.ShowModal;
 
@@ -121,14 +129,18 @@ finally
 end;
 end;
 
-procedure TFormPessoas.FormShow(Sender: TObject);
+procedure TFormPessoas.DefinirDataSet;
 begin
-  Clientes.cdsPessoas.SetProvider(Conexao.sqlProviderPessoas);
-  dsPessoas.DataSet := Clientes.cdsPessoas;
+  dsPessoas.DataSet := FClientes.cdsPessoas;
   dbGridPessoas.DataSource := dsPessoas;
   DataModuleConexao.Conexao.DefinirIDdoUsuarioPessoas;
-  Clientes.cdsPessoas.Open;
-  Clientes.cdsPessoasid_cadastro.Visible := False;
+  FClientes.cdsPessoas.Open;
+  FClientes.cdsPessoasid_cadastro.Visible := False;
+end;
+
+procedure TFormPessoas.FormShow(Sender: TObject);
+begin
+  DefinirDataSet;
 end;
 
 end.

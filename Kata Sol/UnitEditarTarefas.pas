@@ -5,11 +5,11 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DataModuleClientes, Data.DB, Vcl.Grids,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids,
   Vcl.DBGrids, DataModuleConexao, Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls,
   Vcl.ComCtrls, System.UITypes, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, cxTextEdit, cxMaskEdit,
-  cxDropDownEdit, cxCalendar, cxDBEdit, Vcl.ExtCtrls;
+  cxDropDownEdit, cxCalendar, cxDBEdit, Vcl.ExtCtrls, DataModuleClientesTarefas;
 
 type
   TFormEditarTarefas = class(TForm)
@@ -55,8 +55,8 @@ type
     procedure SalvarTarefa;
     { Private declarations }
   public
+    ClientesTarefas : TDmClientesTarefas;
     DataAntiga : TDateTime;
-    Clientes: TDmClientes;
     ID_Login: Integer;
     Trigger : Boolean;
   end;
@@ -72,7 +72,7 @@ implementation
 
 procedure TFormEditarTarefas.AdiarTarefa;
 begin
-  Clientes.cdsToDo.Edit;
+  ClientesTarefas.cdsToDo.Edit;
   gbFormulario.Enabled := False;
   dbGridCriacaoEdicao.Enabled := False;
   cxDBDateEdit1.SetFocus;
@@ -89,8 +89,8 @@ end;
 
 procedure TFormEditarTarefas.AtualizarLista;
 begin
-  Clientes.cdsToDo.ApplyUpdates(0);
-  Clientes.cdsToDo.Refresh;
+  ClientesTarefas.cdsToDo.ApplyUpdates(0);
+  ClientesTarefas.cdsToDo.Refresh;
   gbFormulario.Enabled := False;
   cxDBDateEdit1.Enabled := False;
   dbGridCriacaoEdicao.Enabled := True;
@@ -136,7 +136,7 @@ procedure TFormEditarTarefas.CancelarTarefa;
 begin
   HabilitarBotoes;
 
-  Clientes.cdsToDo.Cancel;
+  ClientesTarefas.cdsToDo.Cancel;
   gbFormulario.Enabled := False;
   cxDBDateEdit1.Enabled := True;
   dbGridCriacaoEdicao.Enabled := True;
@@ -156,7 +156,7 @@ begin
 
   if DataAntiga <> cxDBDateEdit1.Date then
     begin
-    Clientes.cdsToDostatus.text := 'Adiada';
+    ClientesTarefas.cdsToDostatus.text := 'Adiada';
     gbFormulario.Enabled := True;
     dbGridCriacaoEdicao.Enabled := True;
 
@@ -174,8 +174,8 @@ end;
 
 procedure TFormEditarTarefas.DefinirDataSet;
 begin
-  Clientes.cdsToDoid_todo.Visible := False;
-  dsCriarTarefas.DataSet := Clientes.cdsToDo;
+  ClientesTarefas.cdsToDoid_todo.Visible := False;
+  dsCriarTarefas.DataSet := ClientesTarefas.cdsToDo;
   dbGridCriacaoEdicao.DataSource := dsCriarTarefas;
 end;
 
@@ -184,8 +184,8 @@ begin
   if MessageDlg('Deseja realmente deletar essa tarefa ?', mtInformation,
     [mbYes, mbNo], 0) = mrYes then
   begin
-    Clientes.cdsToDo.Delete;
-    Clientes.cdsToDo.ApplyUpdates(0);
+    ClientesTarefas.cdsToDo.Delete;
+    ClientesTarefas.cdsToDo.ApplyUpdates(0);
   end;
 end;
 
@@ -228,9 +228,9 @@ end;
 
 procedure TFormEditarTarefas.HabilitarComponentes;
 begin
-  Clientes.cdsToDoid_todo.Visible := True;
+  ClientesTarefas.cdsToDoid_todo.Visible := True;
   dbGridCriacaoEdicao.Enabled := True;
-  Clientes.cdsToDo.Cancel;
+  ClientesTarefas.cdsToDo.Cancel;
 end;
 
 procedure TFormEditarTarefas.NovaTarefa;
@@ -238,8 +238,8 @@ begin
   DesabilitarBotoes;
 
 
-  Clientes.cdsToDo.Insert;
-  Clientes.cdsToDoid_cadastro.Value := ID_Login;
+  ClientesTarefas.cdsToDo.Insert;
+  ClientesTarefas.cdsToDoid_cadastro.Value := ID_Login;
   cxDBDateEdit1.Enabled := True;
   gbFormulario.Enabled := True;
   dbGridCriacaoEdicao.Enabled := False;
@@ -247,13 +247,14 @@ end;
 
 procedure TFormEditarTarefas.SalvarTarefa;
 begin
-  if (Clientes.cdsToDo.State = dsEdit) or (Clientes.cdsToDo.State = dsInsert)
+  if (ClientesTarefas.cdsToDo.State = dsEdit) or (ClientesTarefas.cdsToDo.State = dsInsert)
   then
   begin
-    Clientes.cdsToDo.ApplyUpdates(0);
+    ClientesTarefas.cdsToDo.ApplyUpdates(0);
     gbFormulario.Enabled := False;
     dbGridCriacaoEdicao.Enabled := True;
     cxDBDateEdit1.Enabled := True;
+    ClientesTarefas.cdsToDo.Refresh;
     HabilitarBotoes;
   end;
 end;
