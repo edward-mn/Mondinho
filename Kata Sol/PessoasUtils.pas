@@ -3,7 +3,7 @@ unit PessoasUtils;
 interface
 
 uses
-  System.SysUtils, System.DateUtils, DataModuleClientes;
+  System.SysUtils, System.DateUtils, DataModuleClientesPessoas;
 
 const
   StatusFisica = 'Fisica';
@@ -27,7 +27,7 @@ type
     BoxUsuarioDoSistema = 'Status = ''Usuario do Sistema''';
 
   public
-    Clientes: TDMClientes;
+    Clientes: TDmClientesPessoas;
 
   end;
 

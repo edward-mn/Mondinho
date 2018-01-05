@@ -20,7 +20,7 @@ type
   private
     { Private declarations }
   public
-    { Public declarations }
+    procedure AtrasarTarefas;
   end;
 
 var
@@ -32,4 +32,27 @@ implementation
 
 {$R *.dfm}
 
+{ TDmClientesTarefas }
+
+procedure TDmClientesTarefas.AtrasarTarefas;
+var
+  BookMarkAtrazar: TBookmark;
+begin
+  try
+    BookMarkAtrazar := cdsToDodata.DataSet.GetBookmark;
+
+    cdsToDostatus.DataSet.First;
+    while not cdsToDostatus.DataSet.Eof do
+    begin
+      cdsToDo.Edit;
+      if (Now > cdsToDodata.Value) and (cdsToDostatus.text <> 'Finalizada') then
+        cdsToDostatus.text := 'Atrasada';
+     cdsToDostatus.DataSet.Next;
+    end;
+   cdsToDo.ApplyUpdates(0);
+  finally
+    cdsToDostatus.DataSet.GotoBookmark(BookMarkAtrazar);
+  end;
+
+end;
 end.

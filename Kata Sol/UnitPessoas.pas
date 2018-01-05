@@ -73,8 +73,8 @@ begin
   if cbUsuarioDoSistema.Checked then
     FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusUsuarioDoSistema);
 
-  Clientes.cdsPessoas.Filter := FiltroPessoas;
-  Clientes.cdsPessoas.Filtered := not FiltroPessoas.IsEmpty;
+  FClientes.cdsPessoas.Filter := FiltroPessoas;
+  FClientes.cdsPessoas.Filtered := not FiltroPessoas.IsEmpty;
 end;
 
 procedure TFormPessoas.bntVisualizarClick(Sender: TObject);

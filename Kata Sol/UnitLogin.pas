@@ -75,8 +75,8 @@ end;
 procedure TFormLogin.Logar;
 begin
   Conexao.sqlQueryCadastro.Close;
-  Conexao.sqlQueryCadastro.ParambyName('usuario').AsString := edtUsuario.Text;
-  Conexao.sqlQueryCadastro.ParambyName('senha').AsString := edtSenha.Text;
+  Conexao.DefinirUsuario(edtUsuario.Text);
+  Conexao.DefinirSenha(edtSenha.Text);
   Conexao.sqlQueryCadastro.Open;
 
   if Conexao.sqlQueryCadastro.IsEmpty then
