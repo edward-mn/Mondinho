@@ -16,7 +16,8 @@ uses
   Vcl.Controls,
   DataModuleClientesVendas in 'DataModuleClientesVendas.pas' {DmClienteVendas: TDataModule},
   DataModuleClientesPessoas in 'DataModuleClientesPessoas.pas' {DmClientesPessoas: TDataModule},
-  DataModuleClientesTarefas in 'DataModuleClientesTarefas.pas' {DmClientesTarefas: TDataModule};
+  DataModuleClientesTarefas in 'DataModuleClientesTarefas.pas' {DmClientesTarefas: TDataModule},
+  DataModuleControleDeUsuario in 'DataModuleControleDeUsuario.pas' {DmControleDeUsuario: TDataModule};
 
 {$R *.res}
 
@@ -39,5 +40,6 @@ begin
   Application.CreateForm(TDmClienteVendas, DmClienteVendas);
   Application.CreateForm(TDmClientesPessoas, DmClientesPessoas);
   Application.CreateForm(TDmClientesTarefas, DmClientesTarefas);
+  Application.CreateForm(TDmControleDeUsuario, DmControleDeUsuario);
   Application.Run;
 end.

@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Imaging.pngimage,
   Vcl.ExtCtrls, UnitCadastro, DataModuleClientesCadastro, DataModuleConexao, Data.DB,
-  dxGDIPlusClasses;
+  dxGDIPlusClasses, DataModuleControleDeUsuario;
 
 type
   TFormLogin = class(TForm)
@@ -82,9 +82,6 @@ begin
   if Conexao.sqlQueryCadastro.IsEmpty then
     ShowMessage('Usuario ou Senha Invalida.')
   else
-//    FClientes.cdsCadastro.Close;
-//    FClientes.cdsCadastro.SetProvider(Conexao.sqlProviderControle);
-//    FClientes.cdsCadastro.Open;
     ModalResult := mrOk;
 end;
 

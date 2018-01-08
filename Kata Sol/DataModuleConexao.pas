@@ -47,10 +47,8 @@ type
     sqlQueryPessoasid_cadastro: TIntegerField;
     sqlQueryControle: TSQLQuery;
     sqlProviderControle: TDataSetProvider;
-    sqlQueryControlelogin: TWideStringField;
-    sqlQueryControletodo: TWideStringField;
-    sqlQueryControlepessoas: TWideStringField;
-    sqlQueryControlevendas: TWideStringField;
+    sqlQueryControleid_controle: TIntegerField;
+    sqlQueryControlecontrole_de_usuario: TWideStringField;
   private
     { Private declarations }
   public
@@ -61,6 +59,7 @@ type
     procedure MostrarVendas(ID_Login : Integer);
     procedure DefinirUsuario(Usuario : String);
     procedure DefinirSenha(Senha : String);
+    procedure Login;
   end;
 
 function Conexao: TDmConexao;
@@ -115,6 +114,11 @@ end;
 procedure TDmConexao.DefinirUsuario(Usuario : String);
 begin
   Conexao.sqlQueryCadastro.ParambyName('usuario').AsString := Usuario;
+end;
+
+procedure TDmConexao.Login;
+begin
+//
 end;
 
 initialization
