@@ -1,7 +1,7 @@
 object DmConexao: TDmConexao
   OldCreateOrder = False
-  Height = 250
-  Width = 444
+  Height = 247
+  Width = 506
   object sqlQueryToDo: TSQLQuery
     MaxBlobSize = -1
     Params = <>
@@ -50,6 +50,7 @@ object DmConexao: TDmConexao
       'IPVersion=IPv4'
       'UseUnicode=True'
       'Charset=')
+    Connected = True
     Left = 224
     Top = 16
   end
@@ -172,7 +173,7 @@ object DmConexao: TDmConexao
   object sqlProviderCadastro: TDataSetProvider
     DataSet = sqlQueryCadastro
     Options = [poPropogateChanges, poUseQuoteChar]
-    Left = 368
+    Left = 336
     Top = 158
   end
   object sqlQueryCadastro: TSQLQuery
@@ -193,7 +194,7 @@ object DmConexao: TDmConexao
         'select  * from monde_cadastro  where nome_usuario = :usuario and' +
         ' senha = :senha')
     SQLConnection = sqlConexao
-    Left = 368
+    Left = 336
     Top = 88
     object sqlQueryCadastroid: TIntegerField
       FieldName = 'id'
@@ -206,5 +207,36 @@ object DmConexao: TDmConexao
       FieldName = 'senha'
       Size = 25
     end
+  end
+  object sqlQueryControle: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'select * from controledeusuario')
+    SQLConnection = sqlConexao
+    Left = 440
+    Top = 88
+    object sqlQueryControlelogin: TWideStringField
+      FieldName = 'login'
+      Size = 50
+    end
+    object sqlQueryControletodo: TWideStringField
+      FieldName = 'todo'
+      Size = 50
+    end
+    object sqlQueryControlepessoas: TWideStringField
+      FieldName = 'pessoas'
+      Size = 50
+    end
+    object sqlQueryControlevendas: TWideStringField
+      FieldName = 'vendas'
+      Size = 50
+    end
+  end
+  object sqlProviderControle: TDataSetProvider
+    DataSet = sqlQueryControle
+    Options = [poPropogateChanges, poUseQuoteChar]
+    Left = 440
+    Top = 160
   end
 end
