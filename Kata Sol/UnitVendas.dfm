@@ -34,14 +34,14 @@ object FormVendas: TFormVendas
   end
   object gbStatusVenda: TGroupBox
     Left = 535
-    Top = 34
+    Top = 24
     Width = 122
-    Height = 121
+    Height = 131
     Caption = 'Status'
     TabOrder = 1
     object cbExcluida: TCheckBox
       Left = 17
-      Top = 61
+      Top = 56
       Width = 97
       Height = 17
       Caption = 'Excluida'
@@ -49,7 +49,7 @@ object FormVendas: TFormVendas
     end
     object cbFinalizada: TCheckBox
       Left = 17
-      Top = 38
+      Top = 35
       Width = 97
       Height = 17
       Caption = 'Finalizada'
@@ -65,12 +65,20 @@ object FormVendas: TFormVendas
     end
     object btnPesquisar: TButton
       Left = 10
-      Top = 89
+      Top = 97
       Width = 101
       Height = 26
       Caption = 'Pesquisar'
       TabOrder = 3
       OnClick = btnPesquisarClick
+    end
+    object cbCancelada: TCheckBox
+      Left = 17
+      Top = 77
+      Width = 97
+      Height = 17
+      Caption = 'Cancelada'
+      TabOrder = 4
     end
   end
   object gbEditarVenda: TGroupBox

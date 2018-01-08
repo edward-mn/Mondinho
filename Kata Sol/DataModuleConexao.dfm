@@ -38,7 +38,7 @@ object DmConexao: TDmConexao
     LoginPrompt = False
     Params.Strings = (
       'BlobSize=-1'
-      'HostName=localhost:5433'
+      'HostName=localhost:5432'
       'DataBase=MiniMonde'
       'SchemaName=mondinho'
       'DriverName=DevartPostgreSQL'
@@ -178,21 +178,9 @@ object DmConexao: TDmConexao
   end
   object sqlQueryCadastro: TSQLQuery
     MaxBlobSize = -1
-    Params = <
-      item
-        DataType = ftUnknown
-        Name = 'usuario'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftUnknown
-        Name = 'senha'
-        ParamType = ptInput
-      end>
+    Params = <>
     SQL.Strings = (
-      
-        'select  * from monde_cadastro  where nome_usuario = :usuario and' +
-        ' senha = :senha')
+      'select  * from monde_cadastro')
     SQLConnection = sqlConexao
     Left = 336
     Top = 88
