@@ -25,6 +25,7 @@ type
     gbRelatorioVendas: TGroupBox;
     btnVisualizarRelatorio: TButton;
     btnImprimirRelatorio: TButton;
+    cbCancelada: TCheckBox;
     procedure AdicionarFiltroCorretoVendas;
     procedure btnAtualizarVendasClick(Sender: TObject);
     procedure btnEditarVendasCadastrarClick(Sender: TObject);
@@ -64,6 +65,9 @@ begin
 
   if cbExcluida.Checked then
     FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusExcluida);
+
+  if cbCancelada.Checked then
+    FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusCancelada);
 
   FClientesVendas.cdsVendas.Filter := FiltroVendas;
   FClientesVendas.cdsVendas.Filtered := not FiltroVendas.IsEmpty;
@@ -121,7 +125,6 @@ begin
   FClientesVendas.cdsVendas.SetProvider(Conexao.sqlQueryVendas);
   dsVendas.DataSet := FClientesVendas.cdsVendas;
   dbGridVendas.DataSource := dsVendas;
-  DataModuleConexao.Conexao.DefinirIDdoUsuarioVendas;
   FClientesVendas.cdsVendas.Open;
   FClientesVendas.cdsVendasid_cadastro.Visible := False;
 end;
@@ -133,6 +136,7 @@ end;
 
 procedure TFormVendas.FormShow(Sender: TObject);
 begin
+  Conexao.MostrarVendas(ID_Login);
   DefinirDataSet;
 end;
 

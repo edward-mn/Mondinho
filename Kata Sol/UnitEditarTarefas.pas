@@ -142,11 +142,6 @@ begin
   dbGridCriacaoEdicao.Enabled := True;
 
   Trigger := False;
-
-  btnNovo.Enabled := True;
-  btnEditar.Enabled := True;
-  btnDeletarTarefa.Enabled := True;
-  btnAdiarTarefa.Enabled := True;
 end;
 
 procedure TFormEditarTarefas.ConfirmarAdiarTarefa;
@@ -160,10 +155,7 @@ begin
     gbFormulario.Enabled := True;
     dbGridCriacaoEdicao.Enabled := True;
 
-    btnNovo.Enabled := True;
-    btnEditar.Enabled := True;
-    btnDeletarTarefa.Enabled := True;
-    btnAdiarTarefa.Enabled := True;
+    HabilitarBotoes;
 
     Trigger := False;
     end

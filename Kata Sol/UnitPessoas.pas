@@ -34,7 +34,7 @@ type
     procedure btnPesquisarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
-    FClientesPessoas : TDmClientesPessoas;
+    FClientes : TDmClientesPessoas;
     procedure DefinirDataSet;
   public
     ID_Login : Integer;
@@ -73,18 +73,18 @@ begin
   if cbUsuarioDoSistema.Checked then
     FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusUsuarioDoSistema);
 
-  FClientesPessoas.cdsPessoas.Filter := FiltroPessoas;
-  FClientesPessoas.cdsPessoas.Filtered := not FiltroPessoas.IsEmpty;
+  FClientes.cdsPessoas.Filter := FiltroPessoas;
+  FClientes.cdsPessoas.Filtered := not FiltroPessoas.IsEmpty;
 end;
 
 procedure TFormPessoas.bntVisualizarClick(Sender: TObject);
 begin
-  FClientesPessoas.frxReportPessoas.ShowReport();
+  FClientes.frxReportPessoas.ShowReport();
 end;
 
 procedure TFormPessoas.btnAtualizarCadastroClick(Sender: TObject);
 begin
-  FClientesPessoas.cdsPessoas.Refresh;
+  FClientes.cdsPessoas.Refresh;
 end;
 
 procedure TFormPessoas.btnCadastrarPessoaClick(Sender: TObject);
@@ -104,14 +104,14 @@ end;
 
 procedure TFormPessoas.btnImprimirClick(Sender: TObject);
 begin
-  FClientesPessoas.frxReportPessoas.Print;
+  FClientes.frxReportPessoas.Print;
 end;
 
 constructor TFormPessoas.Create(AOwner: TComponent);
 begin
   inherited;
-  FClientesPessoas := TDmClientesPessoas.Create(Self);
-  FClientesPessoas.cdsPessoas.SetProvider(Conexao.sqlQueryPessoas);
+  FClientes := TDmClientesPessoas.Create(Self);
+  FClientes.cdsPessoas.SetProvider(Conexao.sqlQueryPessoas);
 end;
 
 procedure TFormPessoas.CriarFormCriacaoEdicaoPessoas;
@@ -120,7 +120,7 @@ var
 begin
   NewForm := TFormCriacaoEdicaoPessoas.Create(nil);
 try
-  NewForm.ClientesPessoas := FClientesPessoas;
+  NewForm.ClientesPessoas := FClientes;
   NewForm.ID_Login := ID_Login;
   NewForm.ShowModal;
 
@@ -131,15 +131,15 @@ end;
 
 procedure TFormPessoas.DefinirDataSet;
 begin
-  dsPessoas.DataSet := FClientesPessoas.cdsPessoas;
+  dsPessoas.DataSet := FClientes.cdsPessoas;
   dbGridPessoas.DataSource := dsPessoas;
-  DataModuleConexao.Conexao.DefinirIDdoUsuarioPessoas;
-  FClientesPessoas.cdsPessoas.Open;
-  FClientesPessoas.cdsPessoasid_cadastro.Visible := False;
+  FClientes.cdsPessoas.Open;
+  FClientes.cdsPessoasid_cadastro.Visible := False;
 end;
 
 procedure TFormPessoas.FormShow(Sender: TObject);
 begin
+  Conexao.MostrarPessoas(ID_Login);
   DefinirDataSet;
 end;
 

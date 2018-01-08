@@ -45,13 +45,20 @@ type
     sqlQueryToDoid_cadastro: TIntegerField;
     sqlQueryVendasid_cadastro: TIntegerField;
     sqlQueryPessoasid_cadastro: TIntegerField;
+    sqlQueryControle: TSQLQuery;
+    sqlProviderControle: TDataSetProvider;
+    sqlQueryControlelogin: TWideStringField;
+    sqlQueryControletodo: TWideStringField;
+    sqlQueryControlepessoas: TWideStringField;
+    sqlQueryControlevendas: TWideStringField;
   private
     { Private declarations }
   public
     ID_Login : Integer;
-    procedure DefinirIDdoUsuarioTarefas;
-    procedure DefinirIDdoUsuarioPessoas;
-    procedure DefinirIDdoUsuarioVendas;
+    procedure MostrarTarefasID(ID_Login : Integer);
+    function DefinirID(ID_Login : Integer): Integer;
+    procedure MostrarPessoas(ID_Login : Integer);
+    procedure MostrarVendas(ID_Login : Integer);
   end;
 
 function Conexao: TDmConexao;
@@ -75,24 +82,29 @@ end;
 
 { TDmConexao }
 
-procedure TDmConexao.DefinirIDdoUsuarioPessoas;
+procedure TDmConexao.MostrarPessoas;
 begin
   ID_Login := Conexao.sqlQueryCadastroid.Value;
   Conexao.sqlQueryPessoas.SQL.CommaText := ('select * from pessoas where id_cadastro =' + IntToStr(ID_Login));
 end;
 
-procedure TDmConexao.DefinirIDdoUsuarioTarefas;
+procedure TDmConexao.MostrarTarefasID(ID_Login : Integer);
 begin
-  ID_Login := Conexao.sqlQueryCadastroid.Value;
-  Conexao.sqlQueryToDo.SQL.CommaText :=
-    ('select * from monde_todo where id_cadastro =' + IntToStr(ID_Login));
+  Conexao.sqlQueryToDo.SQL.CommaText := ('select * from monde_todo where id_cadastro =' + IntToStr(ID_Login));
 end;
 
-procedure TDmConexao.DefinirIDdoUsuarioVendas;
+function TDmConexao.DefinirID(ID_Login : Integer): Integer;
+begin
+  ID_Login := Conexao.sqlQueryCadastroid.Value;
+  Result := ID_Login;
+end;
+
+procedure TDmConexao.MostrarVendas;
 begin
   ID_Login := Conexao.sqlQueryCadastroid.Value;
   Conexao.sqlQueryVendas.SQL.CommaText := ('select * from vendas where id_cadastro =' + IntToStr(ID_Login));
 end;
+
 
 initialization
 finalization

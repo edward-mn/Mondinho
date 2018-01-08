@@ -137,14 +137,13 @@ end;
 
 procedure TFormView.FormCreate(Sender: TObject);
 begin
+  ID_Login := Conexao.DefinirID(ID_Login);
 //  dsToDo.DataSet := FClientes.cdsToDo;
 //  dbGridPrincipal.DataSource := dsToDo;
 end;
 
 procedure TFormView.FormShow(Sender: TObject);
 begin
-  DataModuleConexao.Conexao.DefinirIDdoUsuarioTarefas;
-//FClientes.cdsToDo.Open;  
 //FClientes.cdsToDo.Open;
 end;
 

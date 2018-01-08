@@ -20,9 +20,9 @@ object FormEditarVendas: TFormEditarVendas
   TextHeight = 13
   object dbGridEditarVendas: TDBGrid
     Left = 0
-    Top = 231
+    Top = 240
     Width = 857
-    Height = 261
+    Height = 252
     Align = alBottom
     ReadOnly = True
     TabOrder = 6
@@ -193,7 +193,8 @@ object FormEditarVendas: TFormEditarVendas
       Items.Strings = (
         'Aberta'
         'Finalizada'
-        'Excluida')
+        'Excluida'
+        'Cancelada')
       TabOrder = 6
     end
   end

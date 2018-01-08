@@ -25,7 +25,6 @@ type
     gbRelatorioTarefas: TGroupBox;
     btnImprimir: TButton;
     btnVisualizar: TButton;
-    procedure AtrasarTarefa;
     procedure AdicionarFiltroCorretoTarefas;
     procedure btnAtualizarTarefaClick(Sender: TObject);
     procedure btnCriarTarefaClick(Sender: TObject);
@@ -39,7 +38,7 @@ type
     FClientesTarefas : TDmClientesTarefas;
     procedure DefinirDataSet;
   public
-    ID_Login : Integer;
+    ID_Login: Integer;
     procedure CriarFormEditarTarefas;
     constructor Create(AOwner: TComponent); override;
   end;
@@ -54,27 +53,6 @@ uses
 
 
 {$R *.dfm}
-
-procedure TFormTarefas.AtrasarTarefa;
-var
-  BookMarkAtrazar: TBookmark;
-begin
-  try
-    BookMarkAtrazar := FClientesTarefas.cdsToDodata.DataSet.GetBookmark;
-
-    FClientesTarefas.cdsToDostatus.DataSet.First;
-    while not FClientesTarefas.cdsToDostatus.DataSet.Eof do
-    begin
-      FClientesTarefas.cdsToDo.Edit;
-      if (Now > FClientesTarefas.cdsToDodata.Value) and (FClientesTarefas.cdsToDostatus.text <> 'Finalizada') then
-        FClientesTarefas.cdsToDostatus.text := 'Atrasada';
-      FClientesTarefas.cdsToDostatus.DataSet.Next;
-    end;
-    FClientesTarefas.cdsToDo.ApplyUpdates(0);
-  finally
-    FClientesTarefas.cdsToDostatus.DataSet.GotoBookmark(BookMarkAtrazar);
-  end;
-end;
 
 procedure TFormTarefas.AdicionarFiltroCorretoTarefas;
 var
@@ -160,14 +138,15 @@ end;
 
 procedure TFormTarefas.FormShow(Sender: TObject);
 begin
+  Conexao.MostrarTarefasID(ID_Login);
   DefinirDataSet;
-  AtrasarTarefa;
+  FClientesTarefas.AtrasarTarefas;
 end;
 
 procedure TFormTarefas.TimerTimer(Sender: TObject);
 begin
 if Now = strtoTime('00:00') then
-  AtrasarTarefa();
+  FClientesTarefas.AtrasarTarefas;
 end;
 
 end.

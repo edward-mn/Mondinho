@@ -3,12 +3,13 @@ unit VendasUtils;
 interface
 
 uses
-  System.SysUtils, System.DateUtils,DataModuleClientesVendas;
+  System.SysUtils, System.DateUtils, DataModuleClientesVendas;
 
 const
   StatusAberta = 'Aberta';
   StatusFinalizada = 'Finalizada';
   StatusExcluida = 'Excluida';
+  StatusCancelada = 'Cancelada';
 
 type
 
@@ -21,6 +22,7 @@ type
     BoxAberta = 'Status = ''Aberta''';
     BoxFinalizada = 'Status = ''Finalizada''';
     BoxExcluida = 'Status = ''Excluida''';
+    BoxCancelada = 'Status = ''Cancelada''';
 
   public
     Clientes: TDmClienteVendas;
@@ -53,6 +55,9 @@ begin
 
   if StatusDoFiltroVendas = StatusExcluida then
     AdicionarStatus(BoxExcluida);
+
+  if StatusDoFiltroVendas = StatusCancelada then
+    AdicionarStatus(BoxCancelada);
 
 end;
 

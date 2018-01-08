@@ -24,8 +24,6 @@ type
     procedure FormShow(Sender: TObject);
     procedure Logar;
   public
-    FClientes : TDmClientesCadastro;
-    constructor Create(AOwner: TComponent); override;
   end;
 
 var
@@ -36,13 +34,6 @@ implementation
 {$R *.dfm}
 
 uses UnitToDo;
-
-constructor TFormLogin.Create(AOwner: TComponent);
-begin
-  inherited;
-  FClientes := TDmClientesCadastro.Create(Self);
-  FClientes.cdsCadastro.SetProvider(Conexao.sqlProviderCadastro);
-end;
 
 procedure TFormLogin.btnCadastrarClick(Sender: TObject);
 begin
@@ -60,7 +51,6 @@ var
 begin
   NewForm := TFormCadastro.Create(nil);
   try
-    NewForm.ClientesCadastro := FClientes;
     NewForm.ShowModal;
   finally
     NewForm.Free;
@@ -75,13 +65,14 @@ end;
 procedure TFormLogin.Logar;
 begin
   Conexao.sqlQueryCadastro.Close;
-  Conexao.sqlQueryCadastro.ParambyName('usuario').AsString := edtUsuario.Text;
-  Conexao.sqlQueryCadastro.ParambyName('senha').AsString := edtSenha.Text;
   Conexao.sqlQueryCadastro.Open;
 
   if Conexao.sqlQueryCadastro.IsEmpty then
     ShowMessage('Usuario ou Senha Invalida.')
   else
+//    FClientes.cdsCadastro.Close;
+//    FClientes.cdsCadastro.SetProvider(Conexao.sqlProviderControle);
+//    FClientes.cdsCadastro.Open;
     ModalResult := mrOk;
 end;
 
