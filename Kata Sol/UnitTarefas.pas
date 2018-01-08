@@ -38,7 +38,7 @@ type
     FClientesTarefas : TDmClientesTarefas;
     procedure DefinirDataSet;
   public
-    ID_Login : Integer;
+    ID_Login: Integer;
     procedure CriarFormEditarTarefas;
     constructor Create(AOwner: TComponent); override;
   end;
@@ -138,6 +138,7 @@ end;
 
 procedure TFormTarefas.FormShow(Sender: TObject);
 begin
+  Conexao.MostrarTarefasID(ID_Login);
   DefinirDataSet;
   FClientesTarefas.AtrasarTarefas;
 end;

@@ -82,6 +82,9 @@ begin
   if Conexao.sqlQueryCadastro.IsEmpty then
     ShowMessage('Usuario ou Senha Invalida.')
   else
+//    FClientes.cdsCadastro.Close;
+//    FClientes.cdsCadastro.SetProvider(Conexao.sqlProviderControle);
+//    FClientes.cdsCadastro.Open;
     ModalResult := mrOk;
 end;
 

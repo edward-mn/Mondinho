@@ -133,13 +133,13 @@ procedure TFormPessoas.DefinirDataSet;
 begin
   dsPessoas.DataSet := FClientes.cdsPessoas;
   dbGridPessoas.DataSource := dsPessoas;
-  DataModuleConexao.Conexao.DefinirIDdoUsuarioPessoas;
   FClientes.cdsPessoas.Open;
   FClientes.cdsPessoasid_cadastro.Visible := False;
 end;
 
 procedure TFormPessoas.FormShow(Sender: TObject);
 begin
+  Conexao.MostrarPessoas(ID_Login);
   DefinirDataSet;
 end;
 

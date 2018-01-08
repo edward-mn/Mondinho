@@ -121,7 +121,6 @@ begin
   FClientesVendas.cdsVendas.SetProvider(Conexao.sqlQueryVendas);
   dsVendas.DataSet := FClientesVendas.cdsVendas;
   dbGridVendas.DataSource := dsVendas;
-  DataModuleConexao.Conexao.DefinirIDdoUsuarioVendas;
   FClientesVendas.cdsVendas.Open;
   FClientesVendas.cdsVendasid_cadastro.Visible := False;
 end;
@@ -133,6 +132,7 @@ end;
 
 procedure TFormVendas.FormShow(Sender: TObject);
 begin
+  Conexao.MostrarVendas(ID_Login);
   DefinirDataSet;
 end;
 
