@@ -3,10 +3,12 @@ A Monde Prototype
 
 ## Getting Started
 Create a DataBase on pgAdmin and restore the Backup with the file on the Folder(Backup's).
-Just open the ProjectGroup on Delphi.
-Change the HostName port on sqlConexao(Params) to your own port.
 
-## Prerequisites
+Just open the ProjectGroup on Delphi.
+
+Change the HostName port on sqlConexao(Params) to your own port. 
+
+### Prerequisites
 ```
 - Delphi XE7
 - PostgreSQL III
