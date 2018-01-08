@@ -3,7 +3,7 @@ unit VendasUtils;
 interface
 
 uses
-  System.SysUtils, System.DateUtils, DataModuleClientes;
+  System.SysUtils, System.DateUtils,DataModuleClientesVendas;
 
 const
   StatusAberta = 'Aberta';
@@ -23,7 +23,7 @@ type
     BoxExcluida = 'Status = ''Excluida''';
 
   public
-    Clientes: TDMClientes;
+    Clientes: TDmClienteVendas;
 
   end;
 
