@@ -20,20 +20,21 @@ type
     Label1: TLabel;
     Label4: TLabel;
     Image1: TImage;
+    function UsuarioJaCadastrado: Boolean;
     procedure btnCadastrarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Cadastrar;
   private
+    FCadastro: TDmClientesCadastro;
     procedure DefinirDataSet;
-
   public
-  ClientesCadastro :TDmClientesCadastro;
-  Conexao : TdmConexao;
-  procedure LimparCampos;
+    procedure LimparCampos;
+    constructor Create(AOwner: TComponent); override;
   end;
 
 var
   FormCadastro: TFormCadastro;
+
 
 implementation
 
@@ -42,25 +43,45 @@ implementation
 
 procedure TFormCadastro.btnCadastrarClick(Sender: TObject);
 begin
+  UsuarioJaCadastrado;
   Cadastrar;
 end;
 
 procedure TFormCadastro.Cadastrar;
 begin
   if DBEdtSenha.Text <> edtSenhaNovamente.Text then
-    ShowMessage('A senha não pode ser diferente nos dois campos!')
- else
-    begin
-      Conexao.sqlQueryCadastro.Close;
-      ClientesCadastro.cdsCadastro.ApplyUpdates(0);
-      ShowMessage('Cadastro Concluido!');
-      LimparCampos;
-    end;
+    raise Exception.Create('A senha não pode ser diferente nos dois campos!');
+
+  if UsuarioJaCadastrado then
+    raise Exception.Create('Usuario já Existente.');
+
+  FCadastro.cdsCadastro.ApplyUpdates(0);
+  ShowMessage('Cadastro Concluido!');
+  LimparCampos;
+end;
+
+constructor TFormCadastro.Create(AOwner: TComponent);
+begin
+  inherited;
+  FCadastro := TDmClientesCadastro.Create(Self);
 end;
 
 procedure TFormCadastro.FormShow(Sender: TObject);
 begin
   DefinirDataSet;
+end;
+
+function TFormCadastro.UsuarioJaCadastrado: Boolean;
+var
+  JaCadastrados: TDmClientesCadastro;
+begin
+  JaCadastrados := TDmClientesCadastro.Create(nil);
+  try
+    JaCadastrados.cdsCadastro.Open;
+    Result := JaCadastrados.cdsCadastro.Locate(JaCadastrados.cdsCadastronome_usuario.FieldName, DBEdtUsuario.Text, [loCaseInsensitive]);
+  finally
+    JaCadastrados.Free;
+  end;
 end;
 
 procedure TFormCadastro.LimparCampos;
@@ -72,11 +93,11 @@ end;
 
 procedure TFormCadastro.DefinirDataSet;
 begin
-  ClientesCadastro.cdsCadastro.SetProvider(Conexao.sqlProviderCadastro);
-  Conexao.sqlQueryCadastro.Open;
-  ClientesCadastro.cdsCadastro.Open;
-  dsCadastro.DataSet := ClientesCadastro.cdsCadastro;
-  ClientesCadastro.cdsCadastro.Insert;
+//  FCadastro.cdsCadastro.SetProvider(Conexao.sqlProviderCadastro);
+//  Conexao.sqlQueryCadastro.Open;
+  FCadastro.cdsCadastro.Open;
+  dsCadastro.DataSet := FCadastro.cdsCadastro;
+  FCadastro.cdsCadastro.Insert;
 end;
 
 end.

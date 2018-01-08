@@ -5,7 +5,7 @@ object FormLogin: TFormLogin
   BorderStyle = bsDialog
   Caption = 'Login'
   ClientHeight = 345
-  ClientWidth = 339
+  ClientWidth = 351
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

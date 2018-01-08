@@ -17,16 +17,24 @@ type
   private
     { Private declarations }
   public
-    { Public declarations }
+    constructor Create(AOwner: TComponent); override;
   end;
 
-var
-  DmClientesCadastro: TDmClientesCadastro;
-
 implementation
+
+uses
+  DataModuleConexao;
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
+
+{ TDmClientesCadastro }
+
+constructor TDmClientesCadastro.Create(AOwner: TComponent);
+begin
+  inherited;
+  cdsCadastro.SetProvider(Conexao.sqlproviderCadastro);
+end;
 
 end.
