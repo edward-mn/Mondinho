@@ -50,7 +50,7 @@ type
     sqlQueryControleid_controle: TIntegerField;
     sqlQueryControlecontrole_de_usuario: TWideStringField;
   public
-    function DefinirID(ID_Login : Integer): Integer;
+    function DefinirID: Integer;
     procedure MostrarTarefas(ID_Login : Integer);
     procedure MostrarPessoas(ID_Login : Integer);
     procedure MostrarVendas(ID_Login : Integer);
@@ -85,10 +85,9 @@ begin
   Conexao.sqlQueryToDo.SQL.CommaText := ('select * from monde_todo where id_cadastro =' + IntToStr(ID_Login));
 end;
 
-function TDmConexao.DefinirID(ID_Login : Integer): Integer;
+function TDmConexao.DefinirID: Integer;
 begin
-  ID_Login := Conexao.sqlQueryCadastroid.Value;
-  Result := ID_Login;
+  Result := Conexao.sqlQueryCadastroid.Value;
 end;
 
 procedure TDmConexao.MostrarVendas;

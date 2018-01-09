@@ -47,7 +47,6 @@ type
     procedure mCalendarClick(Sender: TObject);
   private
     FClientesControle : TDmControleDeUsuario;
-    ClientesPessoas : TDmClientesPessoas;
     procedure AtualizarLista;
     procedure CadastrarNovaPessoa;
     procedure CancelarAcao;
@@ -62,6 +61,7 @@ type
     procedure ControleDeUsuarioDeletarPessoa;
     procedure ProviderCdsControle;
   public
+    ClientesPessoas : TDmClientesPessoas;
     ID_Login : Integer;
     constructor Create(AOwner: TComponent); override;
   end;

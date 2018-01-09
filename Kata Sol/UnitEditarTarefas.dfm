@@ -149,6 +149,7 @@ object FormEditarTarefas: TFormEditarTarefas
     Height = 25
     Caption = 'Adiar Tarefa'
     TabOrder = 7
+    OnClick = btnAdiarTarefaClick
   end
   object dbGridCriacaoEdicao: TDBGrid
     Left = 0
