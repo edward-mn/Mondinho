@@ -54,16 +54,17 @@ type
     procedure EditarVenda;
     procedure DesabilitarBotoes;
     procedure HabilitarBotoes;
-    procedure HabilitarComponentes;
+    procedure DeixarCamposInvisiveis;
+    procedure DeixarCamposVisiveis;
     procedure SalvarVenda;
     procedure ControleDeUsuarioNovaVenda;
     procedure ControleDeUsuarioEditarVenda;
     procedure ControleDeUsuarioDeletarVenda;
     procedure ProviderCdsControle;
+    function CalcularValorTotal(Quantidade : integer;ValorUnit : Currency): Currency;
   public
     ClientesVendas : TDmClienteVendas;
     ID_Login : Integer;
-    function CalcularValorTotal(Quantidade : integer;ValorUnit : Currency): Currency;
     constructor Create(AOwner: TComponent); override;
   end;
 
@@ -173,10 +174,15 @@ end;
 
 procedure TFormEditarVendas.DefinirDataSet;
 begin
-  ClientesVendas.cdsVendasid_produtos.Visible := False;
-  ClientesVendas.cdsVendasvalor_total.Visible := False;
+  DeixarCamposInvisiveis;
   dsEditarVendas.DataSet := ClientesVendas.cdsVendas;
   dbGridEditarVendas.DataSource := dsEditarVendas;
+end;
+
+procedure TFormEditarVendas.DeixarCamposInvisiveis;
+begin
+  ClientesVendas.cdsVendasid_produtos.Visible := False;
+  ClientesVendas.cdsVendasvalor_total.Visible := False;
 end;
 
 procedure TFormEditarVendas.DeletarVenda;
@@ -201,7 +207,8 @@ end;
 
 procedure TFormEditarVendas.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  HabilitarComponentes();
+  DeixarCamposVisiveis();
+  ClientesVendas.cdsVendas.Cancel;
   FClientesControle.cdsControleDeUsuario.Close;
 end;
 
@@ -224,11 +231,10 @@ begin
   btnDeletar.Enabled := True;
 end;
 
-procedure TFormEditarVendas.HabilitarComponentes;
+procedure TFormEditarVendas.DeixarCamposVisiveis;
 begin
   ClientesVendas.cdsVendasid_produtos.Visible := True;
   ClientesVendas.cdsVendasvalor_total.Visible := True;
-  ClientesVendas.cdsVendas.Cancel;
 end;
 
 procedure TFormEditarVendas.ProviderCdsControle;

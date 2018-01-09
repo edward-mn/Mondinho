@@ -34,8 +34,8 @@ type
     Label1: TLabel;
     btnEditar: TButton;
     btnDeletarCadastro: TButton;
-    cxDBDateEdit1: TcxDBDateEdit;
-    DBcbStatusPessoas: TDBComboBox;
+    cbData: TcxDBDateEdit;
+    cbStatusPessoas: TDBComboBox;
     procedure btnNovaPessoaClick(Sender: TObject);
     procedure btnAtualizarPessoasClick(Sender: TObject);
     procedure btnCancelarPessoasClick(Sender: TObject);
@@ -47,6 +47,7 @@ type
     procedure mCalendarClick(Sender: TObject);
   private
     FClientesControle : TDmControleDeUsuario;
+    ClientesPessoas : TDmClientesPessoas;
     procedure AtualizarLista;
     procedure CadastrarNovaPessoa;
     procedure CancelarAcao;
@@ -55,14 +56,12 @@ type
     procedure DesabilitarBotoes;
     procedure EditarPessoa;
     procedure HabilitarBotoes;
-    procedure HabilitarComponentes;
     procedure SalvarAlteracoes;
     procedure ControleDeUsuarioNovaPessoa;
     procedure ControleDeUsuarioEditarPessoa;
     procedure ControleDeUsuarioDeletarPessoa;
     procedure ProviderCdsControle;
   public
-    ClientesPessoas : TDmClientesPessoas;
     ID_Login : Integer;
     constructor Create(AOwner: TComponent); override;
   end;
@@ -202,7 +201,9 @@ end;
 procedure TFormCriacaoEdicaoPessoas.FormClose(Sender: TObject; var Action:
     TCloseAction);
 begin
-    HabilitarComponentes();
+    ClientesPessoas.cdsPessoas.Cancel;
+    ClientesPessoas.cdsPessoasid_pessoas.Visible := True;
+    dbGridCriacaoEdicaoPessoas.Enabled := True;
     FClientesControle.cdsControleDeUsuario.Close;
 end;
 
@@ -216,13 +217,6 @@ begin
   btnNovaPessoa.Enabled := True;
   btnEditar.Enabled := True;
   btnDeletarCadastro.Enabled := True;
-end;
-
-procedure TFormCriacaoEdicaoPessoas.HabilitarComponentes;
-begin
-  ClientesPessoas.cdsPessoasid_pessoas.Visible := True;
-  dbGridCriacaoEdicaoPessoas.Enabled := True;
-  ClientesPessoas.cdsPessoas.Cancel;
 end;
 
 procedure TFormCriacaoEdicaoPessoas.mCalendarClick(Sender: TObject);

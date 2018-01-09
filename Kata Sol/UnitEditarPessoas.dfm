@@ -184,7 +184,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       DataSource = dsCriacaoEdicaoPessoas
       TabOrder = 2
     end
-    object DBcbStatusPessoas: TDBComboBox
+    object cbStatusPessoas: TDBComboBox
       Left = 369
       Top = 83
       Width = 145
@@ -218,7 +218,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     TabOrder = 7
     OnClick = btnDeletarCadastroClick
   end
-  object cxDBDateEdit1: TcxDBDateEdit
+  object cbData: TcxDBDateEdit
     Left = 148
     Top = 158
     DataBinding.DataField = 'data'
@@ -227,7 +227,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     Width = 147
   end
   object dsCriacaoEdicaoPessoas: TDataSource
-    Left = 168
-    Top = 288
+    Left = 184
+    Top = 296
   end
 end
