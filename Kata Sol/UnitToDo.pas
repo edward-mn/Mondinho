@@ -8,7 +8,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
   DataModuleConexao, UnitEditarTarefas, Vcl.StdCtrls,
   UnitTarefas, Vcl.ExtCtrls, UnitVendas, UnitPessoas, Vcl.Imaging.pngimage,
-  dxGDIPlusClasses, System.UITypes;
+  dxGDIPlusClasses, System.UITypes, DataModuleClientesCadastro;
 
 type
   TFormView = class(TForm)
@@ -27,9 +27,9 @@ type
     procedure btnVendasClick(Sender: TObject);
     procedure btnLogoutClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure FormShow(Sender: TObject);
   private
-   
+    FClientesCadastro : TDmClientesCadastro;
+    procedure DefinirDataSet;
   public
     ID_Login: Integer;
     constructor Create(AOwner: TComponent); override;
@@ -37,7 +37,6 @@ type
     procedure CriarFormVendas;
     procedure CriarFormPessoas;
     procedure CriarFormLogout;
-
   end;
 
 var
@@ -53,10 +52,8 @@ uses
 constructor TFormView.Create(AOwner: TComponent);
 begin
   inherited;
-//  FClientes := TDmClientes.Create(Self);
-//
-//  FClientes.cdsToDo.SetProvider(Conexao.sqlProviderToDo);
-//  FClientes.cdsToDoid_cadastro.Visible := False;
+  FClientesCadastro := TDmClientesCadastro.Create(Self);
+  FClientesCadastro.cdsCadastro.SetProvider(Conexao.sqlQueryCadastro);
 end;
 
 procedure TFormView.btnPessoasClick(Sender: TObject);
@@ -135,16 +132,18 @@ begin
 
 end;
 
-procedure TFormView.FormCreate(Sender: TObject);
+procedure TFormView.DefinirDataSet;
 begin
   ID_Login := Conexao.DefinirID(ID_Login);
-//  dsToDo.DataSet := FClientes.cdsToDo;
-//  dbGridPrincipal.DataSource := dsToDo;
+  dsToDo.DataSet := FClientesCadastro.cdsCadastro;
+  dbGridPrincipal.DataSource := dsToDo;
+  FClientesCadastro.cdsCadastrosenha.Visible := False;
 end;
 
-procedure TFormView.FormShow(Sender: TObject);
+procedure TFormView.FormCreate(Sender: TObject);
 begin
-//FClientes.cdsToDo.Open;
+  FClientesCadastro.cdsCadastro.Open;
+  DefinirDataSet;
 end;
 
 procedure TFormView.Logout;
