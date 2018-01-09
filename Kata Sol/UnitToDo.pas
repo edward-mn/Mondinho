@@ -8,7 +8,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
   DataModuleConexao, UnitEditarTarefas, Vcl.StdCtrls,
   UnitTarefas, Vcl.ExtCtrls, UnitVendas, UnitPessoas, Vcl.Imaging.pngimage,
-  dxGDIPlusClasses, System.UITypes, DataModuleControleDeUsuario;
+  dxGDIPlusClasses, System.UITypes, DataModuleControleDeUsuario, DataModuleClientesCadastro;
 
 type
   TFormView = class(TForm)
@@ -31,10 +31,12 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
+    FClientesCadastro : TDmClientesCadastro;
     FClientesControle : TDmControleDeUsuario;
     procedure ControleDeUsuarioLogin;
     procedure ControleDeUsuarioLogout;
     procedure ProviderControle;
+    procedure DefinirDataSet;
   public
     ID_Login: Integer;
     constructor Create(AOwner: TComponent); override;
@@ -42,7 +44,6 @@ type
     procedure CriarFormVendas;
     procedure CriarFormPessoas;
     procedure CriarFormLogout;
-
   end;
 
 var
@@ -58,13 +59,11 @@ uses
 constructor TFormView.Create(AOwner: TComponent);
 begin
   inherited;
+  FClientesCadastro := TDmClientesCadastro.Create(Self);
   FClientesControle := TDmControleDeUsuario.Create(Self);
   ProviderControle;
   FClientesControle.cdsControleDeUsuario.Open;
-
-//  FClientes := TDmClientes.Create(Self);
-//  FClientes.cdsToDo.SetProvider(Conexao.sqlProviderToDo);
-//  FClientes.cdsToDoid_cadastro.Visible := False;
+  FClientesCadastro.cdsCadastro.SetProvider(Conexao.sqlQueryCadastro);
 end;
 
 procedure TFormView.btnPessoasClick(Sender: TObject);
@@ -163,21 +162,30 @@ end;
 
 procedure TFormView.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  ControleDeUsuarioLogout;
+   ControleDeUsuarioLogout;
 end;
+
+procedure TFormView.DefinirDataSet;
+begin
+  ID_Login := Conexao.DefinirID(ID_Login);
+  dsToDo.DataSet := FClientesCadastro.cdsCadastro;
+  dbGridPrincipal.DataSource := dsToDo;
+  FClientesCadastro.cdsCadastrosenha.Visible := False;
+end;
+
 
 procedure TFormView.FormCreate(Sender: TObject);
 begin
   ID_Login := Conexao.DefinirID(ID_Login);
-
-//  dsToDo.DataSet := FClientes.cdsToDo;
-//  dbGridPrincipal.DataSource := dsToDo;
+  FClientesCadastro.cdsCadastro.Open;
+//  DataModuleConexao.Conexao.DefinirIDdoUsuarioTarefas;
+//  FClientes.cdsToDo.Open;
+  DefinirDataSet;
 end;
 
 procedure TFormView.FormShow(Sender: TObject);
 begin
   ControleDeUsuarioLogin;
-//FClientes.cdsToDo.Open;
 end;
 
 procedure TFormView.Logout;

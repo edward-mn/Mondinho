@@ -99,6 +99,7 @@ begin
   Conexao.sqlQueryVendas.SQL.CommaText := ('select * from vendas where id_cadastro =' + IntToStr(ID_Login));
 end;
 
+
 initialization
 finalization
   DmConexao.Free;
