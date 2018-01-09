@@ -47,10 +47,8 @@ type
     sqlQueryPessoasid_cadastro: TIntegerField;
     sqlQueryControle: TSQLQuery;
     sqlProviderControle: TDataSetProvider;
-    sqlQueryControlelogin: TWideStringField;
-    sqlQueryControletodo: TWideStringField;
-    sqlQueryControlepessoas: TWideStringField;
-    sqlQueryControlevendas: TWideStringField;
+    sqlQueryControleid_controle: TIntegerField;
+    sqlQueryControlecontrole_de_usuario: TWideStringField;
   private
     { Private declarations }
   public
@@ -80,11 +78,8 @@ begin
   Result := DmConexao;
 end;
 
-{ TDmConexao }
-
 procedure TDmConexao.MostrarPessoas;
 begin
-  ID_Login := Conexao.sqlQueryCadastroid.Value;
   Conexao.sqlQueryPessoas.SQL.CommaText := ('select * from pessoas where id_cadastro =' + IntToStr(ID_Login));
 end;
 
@@ -101,10 +96,8 @@ end;
 
 procedure TDmConexao.MostrarVendas;
 begin
-  ID_Login := Conexao.sqlQueryCadastroid.Value;
   Conexao.sqlQueryVendas.SQL.CommaText := ('select * from vendas where id_cadastro =' + IntToStr(ID_Login));
 end;
-
 
 initialization
 finalization
