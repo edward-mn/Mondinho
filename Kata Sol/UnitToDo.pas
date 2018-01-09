@@ -8,7 +8,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
   DataModuleConexao, UnitEditarTarefas, Vcl.StdCtrls,
   UnitTarefas, Vcl.ExtCtrls, UnitVendas, UnitPessoas, Vcl.Imaging.pngimage,
-  dxGDIPlusClasses, System.UITypes;
+  dxGDIPlusClasses, System.UITypes, DataModuleControleDeUsuario, DataModuleClientesCadastro;
 
 type
   TFormView = class(TForm)
@@ -21,23 +21,28 @@ type
     btnLogout: TButton;
     Image1: TImage;
     Panel2: TPanel;
-    procedure Logout;
+    DataSource1: TDataSource;
     procedure btnPessoasClick(Sender: TObject);
     procedure btnTarefasClick(Sender: TObject);
     procedure btnVendasClick(Sender: TObject);
     procedure btnLogoutClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
-   
-  public
-    ID_Login: Integer;
-    constructor Create(AOwner: TComponent); override;
+    FClientesCadastro : TDmClientesCadastro;
+    FClientesControle : TDmControleDeUsuario;
+    procedure Logout;
+    procedure ControleDeUsuarioLogin;
+    procedure ControleDeUsuarioLogout;
+    procedure ProviderControle;
+    procedure DefinirDataSet;
     procedure CriarFormTarefas;
     procedure CriarFormVendas;
     procedure CriarFormPessoas;
-    procedure CriarFormLogout;
-
+  public
+    ID_Login: Integer;
+    constructor Create(AOwner: TComponent); override;
   end;
 
 var
@@ -53,10 +58,11 @@ uses
 constructor TFormView.Create(AOwner: TComponent);
 begin
   inherited;
-//  FClientes := TDmClientes.Create(Self);
-//
-//  FClientes.cdsToDo.SetProvider(Conexao.sqlProviderToDo);
-//  FClientes.cdsToDoid_cadastro.Visible := False;
+  FClientesCadastro := TDmClientesCadastro.Create(Self);
+  FClientesControle := TDmControleDeUsuario.Create(Self);
+  ProviderControle;
+  FClientesControle.cdsControleDeUsuario.Open;
+  FClientesCadastro.cdsCadastro.SetProvider(Conexao.sqlQueryCadastro);
 end;
 
 procedure TFormView.btnPessoasClick(Sender: TObject);
@@ -79,16 +85,22 @@ begin
   Logout;
 end;
 
-procedure TFormView.CriarFormLogout;
-var
-  NewForm : TFormLogin;
+procedure TFormView.ControleDeUsuarioLogin;
 begin
-   NewForm := TFormLogin.Create(nil);
-   try
-    NewForm.ShowModal;
-   finally
-    NewForm.Free;
-   end;
+  FClientesControle.cdsControleDeUsuario.Insert;
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(ID_Login)) + ' Se Conectou' + (DateTimeToStr(Now)));
+  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
+  FClientesControle.cdsControleDeUsuario.Close;
+end;
+
+procedure TFormView.ControleDeUsuarioLogout;
+begin
+  ProviderControle;
+  FClientesControle.cdsControleDeUsuario.Open;
+  FClientesControle.cdsControleDeUsuario.Insert;
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(ID_Login)) + ' Se Desconectou' + (DateTimeToStr(Now)));
+  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
+  FClientesControle.cdsControleDeUsuario.Close;
 end;
 
 procedure TFormView.CriarFormPessoas;
@@ -135,16 +147,30 @@ begin
 
 end;
 
+procedure TFormView.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+   ControleDeUsuarioLogout;
+end;
+
+procedure TFormView.DefinirDataSet;
+begin
+  ID_Login := Conexao.DefinirID(ID_Login);
+  dsToDo.DataSet := FClientesCadastro.cdsCadastro;
+  dbGridPrincipal.DataSource := dsToDo;
+  FClientesCadastro.cdsCadastrosenha.Visible := False;
+end;
+
+
 procedure TFormView.FormCreate(Sender: TObject);
 begin
   ID_Login := Conexao.DefinirID(ID_Login);
-//  dsToDo.DataSet := FClientes.cdsToDo;
-//  dbGridPrincipal.DataSource := dsToDo;
+  FClientesCadastro.cdsCadastro.Open;
+  DefinirDataSet;
 end;
 
 procedure TFormView.FormShow(Sender: TObject);
 begin
-//FClientes.cdsToDo.Open;
+  ControleDeUsuarioLogin;
 end;
 
 procedure TFormView.Logout;
@@ -154,6 +180,11 @@ begin
   begin
     Self.Close;
   end;
+end;
+
+procedure TFormView.ProviderControle;
+begin
+  FClientesControle.cdsControleDeUsuario.SetProvider(Conexao.sqlProviderControle);
 end;
 
 end.

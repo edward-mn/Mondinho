@@ -8,7 +8,8 @@ uses
   DataModuleConexao, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.Mask,
   Vcl.DBCtrls, System.UITypes, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, cxTextEdit, cxMaskEdit,
-  cxDropDownEdit, cxCalendar, cxDBEdit, DataModuleClientesVendas;
+  cxDropDownEdit, cxCalendar, cxDBEdit, DataModuleClientesVendas,
+  DataModuleControleDeUsuario;
 
 type
   TFormEditarVendas = class(TForm)
@@ -44,6 +45,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
   private
+    FClientesControle : TDmControleDeUsuario;
     procedure AtualizarLista;
     procedure CancelarVenda;
     procedure CriarNovaVenda;
@@ -52,13 +54,18 @@ type
     procedure EditarVenda;
     procedure DesabilitarBotoes;
     procedure HabilitarBotoes;
-    procedure HabilitarComponentes;
+    procedure DeixarCamposInvisiveis;
+    procedure DeixarCamposVisiveis;
     procedure SalvarVenda;
+    procedure ControleDeUsuarioNovaVenda;
+    procedure ControleDeUsuarioEditarVenda;
+    procedure ControleDeUsuarioDeletarVenda;
+    procedure ProviderCdsControle;
+    function CalcularValorTotal(Quantidade : integer;ValorUnit : Currency): Currency;
   public
     ClientesVendas : TDmClienteVendas;
-    Conexao : TDmConexao;
     ID_Login : Integer;
-    function CalcularValorTotal(Quantidade : integer;ValorUnit : Currency): Currency;
+    constructor Create(AOwner: TComponent); override;
   end;
 
 var
@@ -121,9 +128,43 @@ begin
   GBVendas.Enabled := False;
 end;
 
+procedure TFormEditarVendas.ControleDeUsuarioDeletarVenda;
+begin
+  FClientesControle.cdsControleDeUsuario.Insert;
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(ID_Login)) +
+     ' Deletou Venda ' + (DateTimeToStr(Now)));
+  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
+end;
+
+procedure TFormEditarVendas.ControleDeUsuarioEditarVenda;
+begin
+  FClientesControle.cdsControleDeUsuario.Insert;
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(ID_Login)) +
+     ' Editou Venda ' + (DateTimeToStr(Now)));
+  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
+end;
+
+procedure TFormEditarVendas.ControleDeUsuarioNovaVenda;
+begin
+  FClientesControle.cdsControleDeUsuario.Insert;
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(ID_Login)) +
+     ' Adicionou Nova Venda ' + (DateTimeToStr(Now)));
+  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
+end;
+
+constructor TFormEditarVendas.Create(AOwner: TComponent);
+begin
+  inherited;
+  FClientesControle := TDmControleDeUsuario.Create(Self);
+  ProviderCdsControle;
+  FClientesControle.cdsControleDeUsuario.Open;
+end;
+
 procedure TFormEditarVendas.CriarNovaVenda;
 begin
   DesabilitarBotoes;
+
+  ControleDeUsuarioNovaVenda;
 
   ClientesVendas.cdsVendas.Insert;
   ClientesVendas.cdsVendasid_cadastro.Value := ID_Login;
@@ -133,10 +174,15 @@ end;
 
 procedure TFormEditarVendas.DefinirDataSet;
 begin
-  ClientesVendas.cdsVendasid_produtos.Visible := False;
-  ClientesVendas.cdsVendasvalor_total.Visible := False;
+  DeixarCamposInvisiveis;
   dsEditarVendas.DataSet := ClientesVendas.cdsVendas;
   dbGridEditarVendas.DataSource := dsEditarVendas;
+end;
+
+procedure TFormEditarVendas.DeixarCamposInvisiveis;
+begin
+  ClientesVendas.cdsVendasid_produtos.Visible := False;
+  ClientesVendas.cdsVendasvalor_total.Visible := False;
 end;
 
 procedure TFormEditarVendas.DeletarVenda;
@@ -145,6 +191,7 @@ begin
   begin
     ClientesVendas.cdsVendas.Delete;
     ClientesVendas.cdsVendas.ApplyUpdates(0);
+    ControleDeUsuarioDeletarVenda;
   end;
 end;
 
@@ -152,13 +199,17 @@ procedure TFormEditarVendas.EditarVenda;
 begin
   DesabilitarBotoes;
 
+  ControleDeUsuarioEditarVenda;
+
   dbGridEditarVendas.Enabled := False;
   GBVendas.Enabled := True;
 end;
 
 procedure TFormEditarVendas.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  HabilitarComponentes();
+  DeixarCamposVisiveis();
+  ClientesVendas.cdsVendas.Cancel;
+  FClientesControle.cdsControleDeUsuario.Close;
 end;
 
 procedure TFormEditarVendas.FormShow(Sender: TObject);
@@ -180,11 +231,15 @@ begin
   btnDeletar.Enabled := True;
 end;
 
-procedure TFormEditarVendas.HabilitarComponentes;
+procedure TFormEditarVendas.DeixarCamposVisiveis;
 begin
   ClientesVendas.cdsVendasid_produtos.Visible := True;
   ClientesVendas.cdsVendasvalor_total.Visible := True;
-  ClientesVendas.cdsVendas.Cancel;
+end;
+
+procedure TFormEditarVendas.ProviderCdsControle;
+begin
+  FClientesControle.cdsControleDeUsuario.SetProvider(Conexao.sqlQueryControle);
 end;
 
 procedure TFormEditarVendas.SalvarVenda;

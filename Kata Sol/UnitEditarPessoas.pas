@@ -8,7 +8,8 @@ uses
   Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls,
   Vcl.ComCtrls, System.UITypes, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, cxTextEdit, cxMaskEdit,
-  cxDropDownEdit, cxCalendar, cxDBEdit, DataModuleClientesPessoas;
+  cxDropDownEdit, cxCalendar, cxDBEdit, DataModuleClientesPessoas,
+  DataModuleControleDeUsuario;
 
 type
   TFormCriacaoEdicaoPessoas = class(TForm)
@@ -33,8 +34,8 @@ type
     Label1: TLabel;
     btnEditar: TButton;
     btnDeletarCadastro: TButton;
-    cxDBDateEdit1: TcxDBDateEdit;
-    DBcbStatusPessoas: TDBComboBox;
+    cbData: TcxDBDateEdit;
+    cbStatusPessoas: TDBComboBox;
     procedure btnNovaPessoaClick(Sender: TObject);
     procedure btnAtualizarPessoasClick(Sender: TObject);
     procedure btnCancelarPessoasClick(Sender: TObject);
@@ -45,6 +46,8 @@ type
     procedure FormShow(Sender: TObject);
     procedure mCalendarClick(Sender: TObject);
   private
+    FClientesControle : TDmControleDeUsuario;
+    ClientesPessoas : TDmClientesPessoas;
     procedure AtualizarLista;
     procedure CadastrarNovaPessoa;
     procedure CancelarAcao;
@@ -53,11 +56,14 @@ type
     procedure DesabilitarBotoes;
     procedure EditarPessoa;
     procedure HabilitarBotoes;
-    procedure HabilitarComponentes;
     procedure SalvarAlteracoes;
+    procedure ControleDeUsuarioNovaPessoa;
+    procedure ControleDeUsuarioEditarPessoa;
+    procedure ControleDeUsuarioDeletarPessoa;
+    procedure ProviderCdsControle;
   public
-    ClientesPessoas : TDmClientesPessoas;
     ID_Login : Integer;
+    constructor Create(AOwner: TComponent); override;
   end;
 
 var
@@ -109,6 +115,8 @@ procedure TFormCriacaoEdicaoPessoas.CadastrarNovaPessoa;
 begin
   DesabilitarBotoes;
 
+  ControleDeUsuarioNovaPessoa;
+
   ClientesPessoas.cdsPessoas.Insert;
   ClientesPessoas.cdsPessoasid_cadastro.Value := ID_Login;
   gbFormulario.Enabled := True;
@@ -124,6 +132,38 @@ begin
   dbGridCriacaoEdicaoPessoas.Enabled := True;
 end;
 
+procedure TFormCriacaoEdicaoPessoas.ControleDeUsuarioDeletarPessoa;
+begin
+  FClientesControle.cdsControleDeUsuario.Insert;
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(ID_Login)) +
+     ' Deletou Pessoa ' + (DateTimeToStr(Now)));
+  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
+end;
+
+procedure TFormCriacaoEdicaoPessoas.ControleDeUsuarioEditarPessoa;
+begin
+  FClientesControle.cdsControleDeUsuario.Insert;
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(ID_Login)) +
+     ' Editou Pessoa ' + (DateTimeToStr(Now)));
+  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
+end;
+
+procedure TFormCriacaoEdicaoPessoas.ControleDeUsuarioNovaPessoa;
+begin
+  FClientesControle.cdsControleDeUsuario.Insert;
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(ID_Login)) +
+     ' Adicionou Nova Pessoa ' + (DateTimeToStr(Now)));
+  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
+end;
+
+constructor TFormCriacaoEdicaoPessoas.Create(AOwner: TComponent);
+begin
+  inherited;
+  FClientesControle := TDmControleDeUsuario.Create(Self);
+  ProviderCdsControle;
+  FClientesControle.cdsControleDeUsuario.Open;
+end;
+
 procedure TFormCriacaoEdicaoPessoas.DefinirDataSet;
 begin
   ClientesPessoas.cdsPessoasid_pessoas.Visible := False;
@@ -137,6 +177,7 @@ begin
     begin
     ClientesPessoas.cdsPessoas.Delete;
     ClientesPessoas.cdsPessoas.ApplyUpdates(0);
+    ControleDeUsuarioDeletarPessoa;
     end;
 end;
 
@@ -151,6 +192,8 @@ procedure TFormCriacaoEdicaoPessoas.EditarPessoa;
 begin
   DesabilitarBotoes;
 
+  ControleDeUsuarioEditarPessoa;
+
   gbFormulario.Enabled := True;
   dbGridCriacaoEdicaoPessoas.Enabled := False;
 end;
@@ -158,7 +201,10 @@ end;
 procedure TFormCriacaoEdicaoPessoas.FormClose(Sender: TObject; var Action:
     TCloseAction);
 begin
-    HabilitarComponentes();
+    ClientesPessoas.cdsPessoas.Cancel;
+    ClientesPessoas.cdsPessoasid_pessoas.Visible := True;
+    dbGridCriacaoEdicaoPessoas.Enabled := True;
+    FClientesControle.cdsControleDeUsuario.Close;
 end;
 
 procedure TFormCriacaoEdicaoPessoas.FormShow(Sender: TObject);
@@ -173,16 +219,14 @@ begin
   btnDeletarCadastro.Enabled := True;
 end;
 
-procedure TFormCriacaoEdicaoPessoas.HabilitarComponentes;
-begin
-  ClientesPessoas.cdsPessoasid_pessoas.Visible := True;
-  dbGridCriacaoEdicaoPessoas.Enabled := True;
-  ClientesPessoas.cdsPessoas.Cancel;
-end;
-
 procedure TFormCriacaoEdicaoPessoas.mCalendarClick(Sender: TObject);
 begin
   ClientesPessoas.cdsPessoas.Edit;
+end;
+
+procedure TFormCriacaoEdicaoPessoas.ProviderCdsControle;
+begin
+  FClientesControle.cdsControleDeUsuario.SetProvider(Conexao.sqlQueryControle);
 end;
 
 
