@@ -3,8 +3,7 @@ unit PessoasUtils;
 interface
 
 uses
-  System.SysUtils, System.DateUtils,
-  DataModuleClientesPessoas;
+  System.SysUtils, System.DateUtils, DataModuleClientesPessoas;
 
 const
   StatusFisica = 'Fisica';

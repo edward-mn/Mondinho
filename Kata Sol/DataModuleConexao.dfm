@@ -38,7 +38,7 @@ object DmConexao: TDmConexao
     LoginPrompt = False
     Params.Strings = (
       'BlobSize=-1'
-      'HostName=localhost:5434'
+      'HostName=localhost:5433'
       'DataBase=MiniMonde'
       'SchemaName=mondinho'
       'DriverName=DevartPostgreSQL'
@@ -203,20 +203,11 @@ object DmConexao: TDmConexao
     SQLConnection = sqlConexao
     Left = 440
     Top = 88
-    object sqlQueryControlelogin: TWideStringField
-      FieldName = 'login'
-      Size = 50
+    object sqlQueryControleid_controle: TIntegerField
+      FieldName = 'id_controle'
     end
-    object sqlQueryControletodo: TWideStringField
-      FieldName = 'todo'
-      Size = 50
-    end
-    object sqlQueryControlepessoas: TWideStringField
-      FieldName = 'pessoas'
-      Size = 50
-    end
-    object sqlQueryControlevendas: TWideStringField
-      FieldName = 'vendas'
+    object sqlQueryControlecontrole_de_usuario: TWideStringField
+      FieldName = 'controle_de_usuario'
       Size = 50
     end
   end

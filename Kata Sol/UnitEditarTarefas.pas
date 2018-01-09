@@ -9,7 +9,8 @@ uses
   Vcl.DBGrids, DataModuleConexao, Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls,
   Vcl.ComCtrls, System.UITypes, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, cxTextEdit, cxMaskEdit,
-  cxDropDownEdit, cxCalendar, cxDBEdit, Vcl.ExtCtrls, DataModuleClientesTarefas;
+  cxDropDownEdit, cxCalendar, cxDBEdit, Vcl.ExtCtrls,
+  DataModuleClientesTarefas, DataModuleControleDeUsuario;
 
 type
   TFormEditarTarefas = class(TForm)
@@ -41,10 +42,15 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
   private
+    FClientesControle : TDmControleDeUsuario;
     procedure ConfirmarAdiarTarefa;
     procedure AdiarTarefa;
     procedure AtualizarLista;
     procedure CancelarTarefa;
+    procedure ControleDeUsuarioNovaTarefa;
+    procedure ControleDeUsuarioEditarTarefa;
+    procedure ControleDeUsuarioDeletarTarefa;
+    procedure ProviderCdsControle;
     procedure DefinirDataSet;
     procedure DeletarTarefa;
     procedure DesabilitarBotoes;
@@ -53,12 +59,12 @@ type
     procedure HabilitarComponentes;
     procedure NovaTarefa;
     procedure SalvarTarefa;
-    { Private declarations }
   public
     ClientesTarefas : TDmClientesTarefas;
     DataAntiga : TDateTime;
     ID_Login: Integer;
     Trigger : Boolean;
+    constructor Create(AOwner: TComponent); override;
   end;
 
 var
@@ -164,6 +170,43 @@ begin
 end
 end;
 
+constructor TFormEditarTarefas.Create(AOwner: TComponent);
+begin
+  inherited;
+  FClientesControle := TDmControleDeUsuario.Create(Self);
+  ProviderCdsControle;
+  FClientesControle.cdsControleDeUsuario.Open;
+end;
+
+procedure TFormEditarTarefas.ControleDeUsuarioDeletarTarefa;
+begin
+  FClientesControle.cdsControleDeUsuario.Insert;
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(ID_Login)) +
+     ' Deletou Tarefa ' + (DateTimeToStr(Now)));
+  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
+end;
+
+procedure TFormEditarTarefas.ControleDeUsuarioEditarTarefa;
+begin
+  FClientesControle.cdsControleDeUsuario.Insert;
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(ID_Login)) +
+     ' Editou Tarefa ' + (DateTimeToStr(Now)));
+  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
+end;
+
+procedure TFormEditarTarefas.ControleDeUsuarioNovaTarefa;
+begin
+  FClientesControle.cdsControleDeUsuario.Insert;
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(ID_Login)) +
+     ' Adicionou Nova Tarefa ' + (DateTimeToStr(Now)));
+  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
+end;
+
+procedure TFormEditarTarefas.ProviderCdsControle;
+begin
+  FClientesControle.cdsControleDeUsuario.SetProvider(Conexao.sqlQueryControle);
+end;
+
 procedure TFormEditarTarefas.DefinirDataSet;
 begin
   ClientesTarefas.cdsToDoid_todo.Visible := False;
@@ -178,6 +221,7 @@ begin
   begin
     ClientesTarefas.cdsToDo.Delete;
     ClientesTarefas.cdsToDo.ApplyUpdates(0);
+    ControleDeUsuarioDeletarTarefa;
   end;
 end;
 
@@ -193,6 +237,8 @@ procedure TFormEditarTarefas.EditarTarefa;
 begin
   DesabilitarBotoes;
 
+  ControleDeUsuarioEditarTarefa;
+
   gbFormulario.Enabled := True;
   cxDBDateEdit1.Enabled := True;
   dbGridCriacaoEdicao.Enabled := False;
@@ -203,6 +249,7 @@ procedure TFormEditarTarefas.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   HabilitarComponentes();
+  FClientesControle.cdsControleDeUsuario.Close;
 end;
 
 procedure TFormEditarTarefas.FormShow(Sender: TObject);
@@ -229,6 +276,7 @@ procedure TFormEditarTarefas.NovaTarefa;
 begin
   DesabilitarBotoes;
 
+  ControleDeUsuarioNovaTarefa;
 
   ClientesTarefas.cdsToDo.Insert;
   ClientesTarefas.cdsToDoid_cadastro.Value := ID_Login;
@@ -239,8 +287,7 @@ end;
 
 procedure TFormEditarTarefas.SalvarTarefa;
 begin
-  if (ClientesTarefas.cdsToDo.State = dsEdit) or (ClientesTarefas.cdsToDo.State = dsInsert)
-  then
+  if (ClientesTarefas.cdsToDo.State = dsEdit) or (ClientesTarefas.cdsToDo.State = dsInsert) then
   begin
     ClientesTarefas.cdsToDo.ApplyUpdates(0);
     gbFormulario.Enabled := False;

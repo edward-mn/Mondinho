@@ -8,7 +8,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
   DataModuleConexao, UnitEditarTarefas, Vcl.StdCtrls,
   UnitTarefas, Vcl.ExtCtrls, UnitVendas, UnitPessoas, Vcl.Imaging.pngimage,
-  dxGDIPlusClasses, System.UITypes, DataModuleClientesCadastro;
+  dxGDIPlusClasses, System.UITypes, DataModuleControleDeUsuario, DataModuleClientesCadastro;
 
 type
   TFormView = class(TForm)
@@ -21,14 +21,20 @@ type
     btnLogout: TButton;
     Image1: TImage;
     Panel2: TPanel;
+    DataSource1: TDataSource;
     procedure Logout;
     procedure btnPessoasClick(Sender: TObject);
     procedure btnTarefasClick(Sender: TObject);
     procedure btnVendasClick(Sender: TObject);
     procedure btnLogoutClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
   private
     FClientesCadastro : TDmClientesCadastro;
+    FClientesControle : TDmControleDeUsuario;
+    procedure ControleDeUsuarioLogin;
+    procedure ControleDeUsuarioLogout;
+    procedure ProviderControle;
     procedure DefinirDataSet;
   public
     ID_Login: Integer;
@@ -53,6 +59,9 @@ constructor TFormView.Create(AOwner: TComponent);
 begin
   inherited;
   FClientesCadastro := TDmClientesCadastro.Create(Self);
+  FClientesControle := TDmControleDeUsuario.Create(Self);
+  ProviderControle;
+  FClientesControle.cdsControleDeUsuario.Open;
   FClientesCadastro.cdsCadastro.SetProvider(Conexao.sqlQueryCadastro);
 end;
 
@@ -74,6 +83,24 @@ end;
 procedure TFormView.btnLogoutClick(Sender: TObject);
 begin
   Logout;
+end;
+
+procedure TFormView.ControleDeUsuarioLogin;
+begin
+  FClientesControle.cdsControleDeUsuario.Insert;
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(ID_Login)) + ' Se Conectou' + (DateTimeToStr(Now)));
+  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
+  FClientesControle.cdsControleDeUsuario.Close;
+end;
+
+procedure TFormView.ControleDeUsuarioLogout;
+begin
+  ProviderControle;
+  FClientesControle.cdsControleDeUsuario.Open;
+  FClientesControle.cdsControleDeUsuario.Insert;
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(ID_Login)) + ' Se Desconectou' + (DateTimeToStr(Now)));
+  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
+  FClientesControle.cdsControleDeUsuario.Close;
 end;
 
 procedure TFormView.CriarFormLogout;
@@ -132,6 +159,11 @@ begin
 
 end;
 
+procedure TFormView.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  ControleDeUsuarioLogout;
+end;
+
 procedure TFormView.DefinirDataSet;
 begin
   ID_Login := Conexao.DefinirID(ID_Login);
@@ -140,10 +172,20 @@ begin
   FClientesCadastro.cdsCadastrosenha.Visible := False;
 end;
 
+
 procedure TFormView.FormCreate(Sender: TObject);
 begin
-  FClientesCadastro.cdsCadastro.Open;
+    ID_Login := Conexao.DefinirID(ID_Login);
+     FClientesCadastro.cdsCadastro.Open;
+  DataModuleConexao.Conexao.DefinirIDdoUsuarioTarefas;
+FClientes.cdsToDo.Open;
   DefinirDataSet;
+
+end;
+
+procedure TFormView.FormShow(Sender: TObject);
+begin
+  ControleDeUsuarioLogin;
 end;
 
 procedure TFormView.Logout;
@@ -153,6 +195,11 @@ begin
   begin
     Self.Close;
   end;
+end;
+
+procedure TFormView.ProviderControle;
+begin
+  FClientesControle.cdsControleDeUsuario.SetProvider(Conexao.sqlProviderControle);
 end;
 
 end.
