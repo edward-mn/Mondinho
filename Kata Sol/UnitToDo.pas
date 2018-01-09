@@ -29,6 +29,7 @@ type
     procedure btnLogoutClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     FClientesCadastro : TDmClientesCadastro;
     FClientesControle : TDmControleDeUsuario;
@@ -161,7 +162,7 @@ end;
 
 procedure TFormView.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  ControleDeUsuarioLogout;
+   ControleDeUsuarioLogout;
 end;
 
 procedure TFormView.DefinirDataSet;
@@ -175,12 +176,11 @@ end;
 
 procedure TFormView.FormCreate(Sender: TObject);
 begin
-    ID_Login := Conexao.DefinirID(ID_Login);
-     FClientesCadastro.cdsCadastro.Open;
-  DataModuleConexao.Conexao.DefinirIDdoUsuarioTarefas;
-FClientes.cdsToDo.Open;
+  ID_Login := Conexao.DefinirID(ID_Login);
+  FClientesCadastro.cdsCadastro.Open;
+//  DataModuleConexao.Conexao.DefinirIDdoUsuarioTarefas;
+//  FClientes.cdsToDo.Open;
   DefinirDataSet;
-
 end;
 
 procedure TFormView.FormShow(Sender: TObject);
