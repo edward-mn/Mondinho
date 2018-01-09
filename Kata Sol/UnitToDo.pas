@@ -21,7 +21,6 @@ type
     btnLogout: TButton;
     Image1: TImage;
     Panel2: TPanel;
-    DataSource1: TDataSource;
     procedure btnPessoasClick(Sender: TObject);
     procedure btnTarefasClick(Sender: TObject);
     procedure btnVendasClick(Sender: TObject);
@@ -154,7 +153,6 @@ end;
 
 procedure TFormView.DefinirDataSet;
 begin
-  ID_Login := Conexao.DefinirID(ID_Login);
   dsToDo.DataSet := FClientesCadastro.cdsCadastro;
   dbGridPrincipal.DataSource := dsToDo;
   FClientesCadastro.cdsCadastrosenha.Visible := False;
@@ -163,7 +161,7 @@ end;
 
 procedure TFormView.FormCreate(Sender: TObject);
 begin
-  ID_Login := Conexao.DefinirID(ID_Login);
+  ID_Login := Conexao.DefinirID;
   FClientesCadastro.cdsCadastro.Open;
   DefinirDataSet;
 end;
