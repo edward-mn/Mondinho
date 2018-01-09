@@ -118,7 +118,7 @@ object FormEditarTarefas: TFormEditarTarefas
       DataSource = dsCriarTarefas
       TabOrder = 0
     end
-    object DBcbTarefas: TDBComboBox
+    object cbTarefas: TDBComboBox
       Left = 363
       Top = 103
       Width = 145
@@ -149,7 +149,6 @@ object FormEditarTarefas: TFormEditarTarefas
     Height = 25
     Caption = 'Adiar Tarefa'
     TabOrder = 7
-    OnClick = btnAdiarTarefaClick
   end
   object dbGridCriacaoEdicao: TDBGrid
     Left = 0
@@ -165,7 +164,7 @@ object FormEditarTarefas: TFormEditarTarefas
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
   end
-  object cxDBDateEdit1: TcxDBDateEdit
+  object cbData: TcxDBDateEdit
     Left = 143
     Top = 169
     Cursor = crArrow

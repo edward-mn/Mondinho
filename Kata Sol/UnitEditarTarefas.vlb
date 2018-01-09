@@ -1,9 +1,6 @@
 ﻿[DmClientes.cdsToDo]
 Coordinates=332,10,136,190
 
-[DBcbTarefas]
-Coordinates=86,434,89,36
-
 [btnAtualizar]
 Coordinates=446,298,83,58
 
@@ -64,4 +61,7 @@ Coordinates=10,298,100,58
 []
 Coordinates=321,366,102,36
 Visible=True
+
+[cbTarefas]
+Coordinates=86,434,89,36
 

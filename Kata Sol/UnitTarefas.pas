@@ -25,7 +25,6 @@ type
     gbRelatorioTarefas: TGroupBox;
     btnImprimir: TButton;
     btnVisualizar: TButton;
-    procedure AdicionarFiltroCorretoTarefas;
     procedure btnAtualizarTarefaClick(Sender: TObject);
     procedure btnCriarTarefaClick(Sender: TObject);
     procedure btnEditarTarefaClick(Sender: TObject);
@@ -36,10 +35,11 @@ type
     procedure TimerTimer(Sender: TObject);
   private
     FClientesTarefas : TDmClientesTarefas;
+    procedure FiltroTarefas;
     procedure DefinirDataSet;
+    procedure CriarFormEditarTarefas;
   public
     ID_Login: Integer;
-    procedure CriarFormEditarTarefas;
     constructor Create(AOwner: TComponent); override;
   end;
 
@@ -54,7 +54,7 @@ uses
 
 {$R *.dfm}
 
-procedure TFormTarefas.AdicionarFiltroCorretoTarefas;
+procedure TFormTarefas.FiltroTarefas;
 var
   Filtro: String;
 begin
@@ -98,7 +98,7 @@ end;
 
 procedure TFormTarefas.btnPesquisarClick(Sender: TObject);
 begin
-  AdicionarFiltroCorretoTarefas;
+  FiltroTarefas;
 end;
 
 procedure TFormTarefas.btnVisualizarClick(Sender: TObject);
@@ -138,7 +138,7 @@ end;
 
 procedure TFormTarefas.FormShow(Sender: TObject);
 begin
-  Conexao.MostrarTarefasID(ID_Login);
+  Conexao.MostrarTarefas(ID_Login);
   DefinirDataSet;
   FClientesTarefas.AtrasarTarefas;
 end;
