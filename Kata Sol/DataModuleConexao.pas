@@ -57,8 +57,6 @@ type
     function DefinirID(ID_Login : Integer): Integer;
     procedure MostrarPessoas(ID_Login : Integer);
     procedure MostrarVendas(ID_Login : Integer);
-    procedure DefinirUsuario(Usuario : String);
-    procedure DefinirSenha(Senha : String);
   end;
 
 function Conexao: TDmConexao;
@@ -80,11 +78,8 @@ begin
   Result := DmConexao;
 end;
 
-{ TDmConexao }
-
 procedure TDmConexao.MostrarPessoas;
 begin
-  ID_Login := Conexao.sqlQueryCadastroid.Value;
   Conexao.sqlQueryPessoas.SQL.CommaText := ('select * from pessoas where id_cadastro =' + IntToStr(ID_Login));
 end;
 
@@ -101,14 +96,7 @@ end;
 
 procedure TDmConexao.MostrarVendas;
 begin
-  ID_Login := Conexao.sqlQueryCadastroid.Value;
   Conexao.sqlQueryVendas.SQL.CommaText := ('select * from vendas where id_cadastro =' + IntToStr(ID_Login));
-end;
-
-
-procedure TDmConexao.Login;
-begin
-//
 end;
 
 initialization
