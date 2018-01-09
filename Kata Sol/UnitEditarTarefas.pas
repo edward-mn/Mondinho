@@ -32,6 +32,7 @@ type
     btnAdiarTarefa: TButton;
     dbGridCriacaoEdicao: TDBGrid;
     cbData: TcxDBDateEdit;
+    procedure btnAdiarTarefaClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure btnAtualizarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
@@ -167,6 +168,11 @@ begin
   FClientesControle := TDmControleDeUsuario.Create(Self);
   ProviderCdsControle;
   FClientesControle.cdsControleDeUsuario.Open;
+end;
+
+procedure TFormEditarTarefas.btnAdiarTarefaClick(Sender: TObject);
+begin
+  ArmazenarDataAnterior;
 end;
 
 procedure TFormEditarTarefas.ControleDeUsuarioDeletarTarefa;
