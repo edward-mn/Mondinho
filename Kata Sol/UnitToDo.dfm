@@ -72,7 +72,6 @@ object FormView: TFormView
     Height = 57
     Align = alTop
     TabOrder = 3
-    ExplicitTop = -6
     object Image1: TImage
       Left = 1018
       Top = 1
@@ -181,8 +180,6 @@ object FormView: TFormView
       Caption = 'Pessoas'
       TabOrder = 0
       OnClick = btnPessoasClick
-      ExplicitLeft = 177
-      ExplicitTop = 17
     end
     object Button1: TButton
       Left = 1
@@ -193,7 +190,6 @@ object FormView: TFormView
       Caption = 'Tarefas'
       TabOrder = 1
       OnClick = btnTarefasClick
-      ExplicitLeft = 180
     end
     object btnVendas: TButton
       Left = 151
@@ -204,8 +200,6 @@ object FormView: TFormView
       Caption = 'Vendas'
       TabOrder = 2
       OnClick = btnVendasClick
-      ExplicitLeft = 217
-      ExplicitTop = -4
     end
   end
   object PageControl: TcxPageControl
@@ -217,10 +211,6 @@ object FormView: TFormView
     TabOrder = 4
     Properties.CloseButtonMode = cbmActiveTab
     Properties.CustomButtons.Buttons = <>
-    ExplicitLeft = 112
-    ExplicitTop = 56
-    ExplicitWidth = 289
-    ExplicitHeight = 193
     ClientRectBottom = 365
     ClientRectLeft = 4
     ClientRectRight = 1080

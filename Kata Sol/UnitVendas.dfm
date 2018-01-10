@@ -4,8 +4,8 @@ object FormVendas: TFormVendas
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Vendas'
-  ClientHeight = 435
-  ClientWidth = 671
+  ClientHeight = 608
+  ClientWidth = 730
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,9 +21,9 @@ object FormVendas: TFormVendas
   object dbGridVendas: TDBGrid
     Left = 0
     Top = 0
-    Width = 521
-    Height = 435
-    Align = alLeft
+    Width = 603
+    Height = 608
+    Align = alClient
     ReadOnly = True
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
@@ -33,14 +33,17 @@ object FormVendas: TFormVendas
     TitleFont.Style = []
   end
   object gbStatusVenda: TGroupBox
-    Left = 535
-    Top = 24
-    Width = 122
-    Height = 131
+    Left = 603
+    Top = 0
+    Width = 127
+    Height = 608
+    Align = alRight
     Caption = 'Status'
     TabOrder = 1
+    ExplicitLeft = 544
+    ExplicitHeight = 435
     object cbExcluida: TCheckBox
-      Left = 17
+      Left = 6
       Top = 56
       Width = 97
       Height = 17
@@ -48,7 +51,7 @@ object FormVendas: TFormVendas
       TabOrder = 0
     end
     object cbFinalizada: TCheckBox
-      Left = 17
+      Left = 6
       Top = 35
       Width = 97
       Height = 17
@@ -56,9 +59,9 @@ object FormVendas: TFormVendas
       TabOrder = 1
     end
     object cbAberta: TCheckBox
-      Left = 17
+      Left = 6
       Top = 15
-      Width = 97
+      Width = 96
       Height = 17
       Caption = 'Aberta'
       TabOrder = 2
@@ -73,68 +76,72 @@ object FormVendas: TFormVendas
       OnClick = btnPesquisarClick
     end
     object cbCancelada: TCheckBox
-      Left = 17
+      Left = 6
       Top = 77
       Width = 97
       Height = 17
       Caption = 'Cancelada'
       TabOrder = 4
     end
-  end
-  object gbEditarVenda: TGroupBox
-    Left = 535
-    Top = 161
-    Width = 122
-    Height = 88
-    Caption = 'Venda'
-    TabOrder = 2
-    object btnAtualizarVendas: TButton
-      Left = 7
-      Top = 50
-      Width = 105
-      Height = 26
-      Caption = 'Atualizar'
-      TabOrder = 0
-      OnClick = btnAtualizarVendasClick
+    object gbEditarVenda: TGroupBox
+      Left = 2
+      Top = 129
+      Width = 122
+      Height = 88
+      Caption = 'Venda'
+      TabOrder = 5
+      object btnAtualizarVendas: TButton
+        Left = 7
+        Top = 50
+        Width = 105
+        Height = 26
+        Caption = 'Atualizar'
+        TabOrder = 0
+        OnClick = btnAtualizarVendasClick
+      end
+      object btnEditarVendasCadastrar: TButton
+        Left = 7
+        Top = 19
+        Width = 105
+        Height = 25
+        Caption = 'Editar / Cadastrar'
+        TabOrder = 1
+        OnClick = btnEditarVendasCadastrarClick
+      end
     end
-    object btnEditarVendasCadastrar: TButton
-      Left = 7
-      Top = 19
-      Width = 105
-      Height = 25
-      Caption = 'Editar / Cadastrar'
-      TabOrder = 1
-      OnClick = btnEditarVendasCadastrarClick
-    end
-  end
-  object gbRelatorioVendas: TGroupBox
-    Left = 535
-    Top = 264
-    Width = 122
-    Height = 105
-    Caption = 'Relat'#243'rio'
-    TabOrder = 3
-    object btnVisualizarRelatorio: TButton
-      Left = 7
-      Top = 23
-      Width = 106
-      Height = 25
-      Caption = 'Visualizar'
-      TabOrder = 0
-      OnClick = btnVisualizarRelatorioClick
-    end
-    object btnImprimirRelatorio: TButton
-      Left = 9
-      Top = 57
-      Width = 104
-      Height = 25
-      Caption = 'Imprimir'
-      TabOrder = 1
-      OnClick = btnImprimirRelatorioClick
+    object gbRelatorioVendas: TGroupBox
+      Left = 2
+      Top = 501
+      Width = 123
+      Height = 105
+      Align = alBottom
+      Caption = 'Relat'#243'rio'
+      TabOrder = 6
+      ExplicitLeft = 5
+      ExplicitTop = 232
+      ExplicitWidth = 122
+      object btnVisualizarRelatorio: TButton
+        Left = 7
+        Top = 23
+        Width = 106
+        Height = 25
+        Caption = 'Visualizar'
+        TabOrder = 0
+        OnClick = btnVisualizarRelatorioClick
+      end
+      object btnImprimirRelatorio: TButton
+        Left = 9
+        Top = 57
+        Width = 104
+        Height = 25
+        Caption = 'Imprimir'
+        TabOrder = 1
+        OnClick = btnImprimirRelatorioClick
+      end
     end
   end
   object dsVendas: TDataSource
-    Left = 584
-    Top = 384
+    Left = 240
+    Top = 320
   end
 end

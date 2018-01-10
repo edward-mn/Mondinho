@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, DataModuleConexao,
   Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, UnitEditarPessoas,
-  System.UITypes, DataModuleClientesPessoas;
+  System.UITypes, DataModuleClientesPessoas, Vcl.ExtCtrls;
 
 type
   TFormPessoas = class(TForm)
@@ -18,13 +18,13 @@ type
     cbJuridica: TCheckBox;
     cbFisica: TCheckBox;
     btnPesquisar: TButton;
-    btnCadastrarPessoa: TButton;
-    btnAtualizarCadastro: TButton;
+    cbUsuarioDoSistema: TCheckBox;
     gbEditarPessoas: TGroupBox;
+    btnAtualizarCadastro: TButton;
+    btnCadastrarPessoa: TButton;
+    gbRelatorioPessoas: TGroupBox;
     bntVisualizar: TButton;
     btnImprimir: TButton;
-    gbRelatorioPessoas: TGroupBox;
-    cbUsuarioDoSistema: TCheckBox;
     procedure bntVisualizarClick(Sender: TObject);
     procedure btnAtualizarCadastroClick(Sender: TObject);
     procedure btnCadastrarPessoaClick(Sender: TObject);

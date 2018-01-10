@@ -19,13 +19,13 @@ type
     cbFinalizada: TCheckBox;
     cbAberta: TCheckBox;
     btnPesquisar: TButton;
+    cbCancelada: TCheckBox;
     gbEditarVenda: TGroupBox;
     btnAtualizarVendas: TButton;
     btnEditarVendasCadastrar: TButton;
     gbRelatorioVendas: TGroupBox;
     btnVisualizarRelatorio: TButton;
     btnImprimirRelatorio: TButton;
-    cbCancelada: TCheckBox;
     procedure btnAtualizarVendasClick(Sender: TObject);
     procedure btnEditarVendasCadastrarClick(Sender: TObject);
     procedure btnImprimirRelatorioClick(Sender: TObject);

@@ -4,8 +4,8 @@ object FormTarefas: TFormTarefas
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Tarefas'
-  ClientHeight = 530
-  ClientWidth = 673
+  ClientHeight = 588
+  ClientWidth = 732
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,12 +18,15 @@ object FormTarefas: TFormTarefas
   PixelsPerInch = 96
   TextHeight = 13
   object gbStatusTarefas: TGroupBox
-    Left = 537
-    Top = 31
-    Width = 119
-    Height = 153
+    Left = 603
+    Top = 0
+    Width = 129
+    Height = 588
+    Align = alRight
     Caption = 'Status'
     TabOrder = 0
+    ExplicitLeft = 544
+    ExplicitHeight = 530
     object cbAtrasadas: TCheckBox
       Left = 8
       Top = 92
@@ -65,13 +68,69 @@ object FormTarefas: TFormTarefas
       TabOrder = 4
       OnClick = btnPesquisarClick
     end
+    object gbEditarTarefas: TGroupBox
+      Left = 5
+      Top = 179
+      Width = 119
+      Height = 98
+      Caption = 'Tarefas'
+      TabOrder = 5
+      object btnAtualizarTarefa: TButton
+        Left = 9
+        Top = 58
+        Width = 105
+        Height = 26
+        Caption = 'Atualizar'
+        TabOrder = 0
+        OnClick = btnAtualizarTarefaClick
+      end
+      object btnCriarTarefa: TButton
+        Left = 9
+        Top = 22
+        Width = 105
+        Height = 26
+        Caption = 'Editar Registros'
+        TabOrder = 1
+        OnClick = btnCriarTarefaClick
+      end
+    end
+    object gbRelatorioTarefas: TGroupBox
+      Left = 2
+      Top = 489
+      Width = 125
+      Height = 97
+      Align = alBottom
+      Caption = 'Relat'#243'rio'
+      TabOrder = 6
+      ExplicitLeft = 10
+      ExplicitTop = 320
+      ExplicitWidth = 119
+      object btnImprimir: TButton
+        Left = 14
+        Top = 56
+        Width = 97
+        Height = 25
+        Caption = 'Imprimir'
+        TabOrder = 0
+        OnClick = btnImprimirClick
+      end
+      object btnVisualizar: TButton
+        Left = 12
+        Top = 23
+        Width = 99
+        Height = 25
+        Caption = 'Visualizar'
+        TabOrder = 1
+        OnClick = btnVisualizarClick
+      end
+    end
   end
   object dbGridTarefas: TDBGrid
     Left = 0
     Top = 0
-    Width = 524
-    Height = 530
-    Align = alLeft
+    Width = 603
+    Height = 588
+    Align = alClient
     ReadOnly = True
     TabOrder = 1
     TitleFont.Charset = DEFAULT_CHARSET
@@ -80,66 +139,14 @@ object FormTarefas: TFormTarefas
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
   end
-  object gbEditarTarefas: TGroupBox
-    Left = 537
-    Top = 214
-    Width = 119
-    Height = 98
-    Caption = 'Tarefas'
-    TabOrder = 2
-    object btnAtualizarTarefa: TButton
-      Left = 9
-      Top = 58
-      Width = 105
-      Height = 26
-      Caption = 'Atualizar'
-      TabOrder = 0
-      OnClick = btnAtualizarTarefaClick
-    end
-    object btnCriarTarefa: TButton
-      Left = 9
-      Top = 22
-      Width = 105
-      Height = 26
-      Caption = 'Editar Registros'
-      TabOrder = 1
-      OnClick = btnCriarTarefaClick
-    end
-  end
-  object gbRelatorioTarefas: TGroupBox
-    Left = 537
-    Top = 336
-    Width = 119
-    Height = 97
-    Caption = 'Relat'#243'rio'
-    TabOrder = 3
-    object btnImprimir: TButton
-      Left = 14
-      Top = 56
-      Width = 97
-      Height = 25
-      Caption = 'Imprimir'
-      TabOrder = 0
-      OnClick = btnImprimirClick
-    end
-    object btnVisualizar: TButton
-      Left = 12
-      Top = 23
-      Width = 99
-      Height = 25
-      Caption = 'Visualizar'
-      TabOrder = 1
-      OnClick = btnVisualizarClick
-    end
-  end
   object dsTarefas: TDataSource
-    Left = 608
-    Top = 464
+    Left = 304
+    Top = 480
   end
   object Timer: TTimer
     Interval = 60000
     OnTimer = TimerTimer
-    Left = 552
-    Top = 464
+    Left = 264
+    Top = 480
   end
 end
