@@ -26,7 +26,6 @@ type
     btnVisualizarRelatorio: TButton;
     btnImprimirRelatorio: TButton;
     cbCancelada: TCheckBox;
-    procedure AdicionarFiltroCorretoVendas;
     procedure btnAtualizarVendasClick(Sender: TObject);
     procedure btnEditarVendasCadastrarClick(Sender: TObject);
     procedure btnImprimirRelatorioClick(Sender: TObject);
@@ -36,13 +35,13 @@ type
     procedure FormShow(Sender: TObject);
   private
     FClientesVendas : TDmClienteVendas;
+    procedure FiltroVendas;
     procedure DefinirDataSet;
+    procedure CriarFormEditarVendas;
   public
     ID_Login : Integer;
-    procedure CriarFormEditarVendas;
     constructor Create(AOwner: TComponent); override;
   end;
-
 
 var
   FormVendas: TFormVendas;
@@ -51,7 +50,7 @@ implementation
 
 {$R *.dfm}
 
-procedure TFormVendas.AdicionarFiltroCorretoVendas;
+procedure TFormVendas.FiltroVendas;
 var
   FiltroVendas: String;
 begin
@@ -90,7 +89,7 @@ end;
 
 procedure TFormVendas.btnPesquisarClick(Sender: TObject);
 begin
-  AdicionarFiltroCorretoVendas();
+  FiltroVendas();
 end;
 
 procedure TFormVendas.btnVisualizarRelatorioClick(Sender: TObject);

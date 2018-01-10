@@ -49,12 +49,9 @@ type
     sqlProviderControle: TDataSetProvider;
     sqlQueryControleid_controle: TIntegerField;
     sqlQueryControlecontrole_de_usuario: TWideStringField;
-  private
-    { Private declarations }
   public
-    ID_Login : Integer;
-    procedure MostrarTarefasID(ID_Login : Integer);
-    function DefinirID(ID_Login : Integer): Integer;
+    function DefinirID: Integer;
+    procedure MostrarTarefas(ID_Login : Integer);
     procedure MostrarPessoas(ID_Login : Integer);
     procedure MostrarVendas(ID_Login : Integer);
   end;
@@ -83,15 +80,14 @@ begin
   Conexao.sqlQueryPessoas.SQL.CommaText := ('select * from pessoas where id_cadastro =' + IntToStr(ID_Login));
 end;
 
-procedure TDmConexao.MostrarTarefasID(ID_Login : Integer);
+procedure TDmConexao.MostrarTarefas(ID_Login : Integer);
 begin
   Conexao.sqlQueryToDo.SQL.CommaText := ('select * from monde_todo where id_cadastro =' + IntToStr(ID_Login));
 end;
 
-function TDmConexao.DefinirID(ID_Login : Integer): Integer;
+function TDmConexao.DefinirID: Integer;
 begin
-  ID_Login := Conexao.sqlQueryCadastroid.Value;
-  Result := ID_Login;
+  Result := Conexao.sqlQueryCadastroid.Value;
 end;
 
 procedure TDmConexao.MostrarVendas;

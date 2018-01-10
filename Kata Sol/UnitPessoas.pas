@@ -26,7 +26,6 @@ type
     gbRelatorioPessoas: TGroupBox;
     cbUsuarioDoSistema: TCheckBox;
     procedure bntVisualizarClick(Sender: TObject);
-    procedure AdicionarFiltroCorretoPessoas;
     procedure btnAtualizarCadastroClick(Sender: TObject);
     procedure btnCadastrarPessoaClick(Sender: TObject);
     procedure btnEditarCadastroClick(Sender: TObject);
@@ -35,10 +34,11 @@ type
     procedure FormShow(Sender: TObject);
   private
     FClientes : TDmClientesPessoas;
+    procedure FiltroPessoas;
     procedure DefinirDataSet;
+    procedure CriarFormCriacaoEdicaoPessoas;
   public
     ID_Login : Integer;
-    procedure CriarFormCriacaoEdicaoPessoas;
     constructor Create(AOwner: TComponent); override;
   end;
 
@@ -52,7 +52,7 @@ uses
 
 {$R *.dfm}
 
-procedure TFormPessoas.AdicionarFiltroCorretoPessoas;
+procedure TFormPessoas.FiltroPessoas;
 var
   FiltroPessoas: String;
 begin
@@ -99,7 +99,7 @@ end;
 
 procedure TFormPessoas.btnPesquisarClick(Sender: TObject);
 begin
-  AdicionarFiltroCorretoPessoas;
+  FiltroPessoas;
 end;
 
 procedure TFormPessoas.btnImprimirClick(Sender: TObject);

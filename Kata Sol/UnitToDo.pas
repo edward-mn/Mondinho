@@ -32,17 +32,17 @@ type
   private
     FClientesCadastro : TDmClientesCadastro;
     FClientesControle : TDmControleDeUsuario;
+    procedure Logout;
     procedure ControleDeUsuarioLogin;
     procedure ControleDeUsuarioLogout;
     procedure ProviderControle;
     procedure DefinirDataSet;
-  public
-    ID_Login: Integer;
-    constructor Create(AOwner: TComponent); override;
     procedure CriarFormTarefas;
     procedure CriarFormVendas;
     procedure CriarFormPessoas;
-    procedure CriarFormLogout;
+  public
+    ID_Login: Integer;
+    constructor Create(AOwner: TComponent); override;
   end;
 
 var
@@ -101,18 +101,6 @@ begin
   FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(ID_Login)) + ' Se Desconectou' + (DateTimeToStr(Now)));
   FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
   FClientesControle.cdsControleDeUsuario.Close;
-end;
-
-procedure TFormView.CriarFormLogout;
-var
-  NewForm : TFormLogin;
-begin
-   NewForm := TFormLogin.Create(nil);
-   try
-    NewForm.ShowModal;
-   finally
-    NewForm.Free;
-   end;
 end;
 
 procedure TFormView.CriarFormPessoas;
@@ -174,7 +162,7 @@ end;
 
 procedure TFormView.FormCreate(Sender: TObject);
 begin
-  ID_Login := Conexao.DefinirID(ID_Login);
+  ID_Login := Conexao.DefinirID;
   FClientesCadastro.cdsCadastro.Open;
   DefinirDataSet;
 end;

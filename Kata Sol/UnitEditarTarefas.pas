@@ -28,10 +28,10 @@ type
     Label4: TLabel;
     Label2: TLabel;
     btnDeletarTarefa: TButton;
-    DBcbTarefas: TDBComboBox;
+    cbTarefas: TDBComboBox;
     btnAdiarTarefa: TButton;
     dbGridCriacaoEdicao: TDBGrid;
-    cxDBDateEdit1: TcxDBDateEdit;
+    cbData: TcxDBDateEdit;
     procedure btnAdiarTarefaClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure btnAtualizarClick(Sender: TObject);
@@ -43,8 +43,8 @@ type
     procedure FormShow(Sender: TObject);
   private
     FClientesControle : TDmControleDeUsuario;
-    procedure ConfirmarAdiarTarefa;
     procedure AdiarTarefa;
+    procedure ArmazenarDataAnterior;
     procedure AtualizarLista;
     procedure CancelarTarefa;
     procedure ControleDeUsuarioNovaTarefa;
@@ -54,9 +54,8 @@ type
     procedure DefinirDataSet;
     procedure DeletarTarefa;
     procedure DesabilitarBotoes;
-    procedure EditarTarefa;
     procedure HabilitarBotoes;
-    procedure HabilitarComponentes;
+    procedure EditarTarefa;
     procedure NovaTarefa;
     procedure SalvarTarefa;
   public
@@ -74,14 +73,12 @@ implementation
 
 {$R *.dfm}
 
-
-
-procedure TFormEditarTarefas.AdiarTarefa;
+procedure TFormEditarTarefas.ArmazenarDataAnterior;
 begin
   ClientesTarefas.cdsToDo.Edit;
   gbFormulario.Enabled := False;
   dbGridCriacaoEdicao.Enabled := False;
-  cxDBDateEdit1.SetFocus;
+  cbData.SetFocus;
 
   btnNovo.Enabled := False;
   btnEditar.Enabled := False;
@@ -90,7 +87,7 @@ begin
 
   Trigger := True;
 
-  DataAntiga := cxDBDateEdit1.Date;
+  DataAntiga := cbData.Date;
 end;
 
 procedure TFormEditarTarefas.AtualizarLista;
@@ -98,13 +95,8 @@ begin
   ClientesTarefas.cdsToDo.ApplyUpdates(0);
   ClientesTarefas.cdsToDo.Refresh;
   gbFormulario.Enabled := False;
-  cxDBDateEdit1.Enabled := False;
+  cbData.Enabled := False;
   dbGridCriacaoEdicao.Enabled := True;
-end;
-
-procedure TFormEditarTarefas.btnAdiarTarefaClick(Sender: TObject);
-begin
-  AdiarTarefa;
 end;
 
 procedure TFormEditarTarefas.btnNovoClick(Sender: TObject);
@@ -134,7 +126,7 @@ end;
 
 procedure TFormEditarTarefas.btnSalvarClick(Sender: TObject);
 begin
-  ConfirmarAdiarTarefa();
+  AdiarTarefa();
   SalvarTarefa();
 end;
 
@@ -144,18 +136,18 @@ begin
 
   ClientesTarefas.cdsToDo.Cancel;
   gbFormulario.Enabled := False;
-  cxDBDateEdit1.Enabled := True;
+  cbData.Enabled := True;
   dbGridCriacaoEdicao.Enabled := True;
 
   Trigger := False;
 end;
 
-procedure TFormEditarTarefas.ConfirmarAdiarTarefa;
+procedure TFormEditarTarefas.AdiarTarefa;
 begin
   if Trigger = True then
     begin
 
-  if DataAntiga <> cxDBDateEdit1.Date then
+  if DataAntiga <> cbData.Date then
     begin
     ClientesTarefas.cdsToDostatus.text := 'Adiada';
     gbFormulario.Enabled := True;
@@ -176,6 +168,11 @@ begin
   FClientesControle := TDmControleDeUsuario.Create(Self);
   ProviderCdsControle;
   FClientesControle.cdsControleDeUsuario.Open;
+end;
+
+procedure TFormEditarTarefas.btnAdiarTarefaClick(Sender: TObject);
+begin
+  ArmazenarDataAnterior;
 end;
 
 procedure TFormEditarTarefas.ControleDeUsuarioDeletarTarefa;
@@ -240,7 +237,7 @@ begin
   ControleDeUsuarioEditarTarefa;
 
   gbFormulario.Enabled := True;
-  cxDBDateEdit1.Enabled := True;
+  cbData.Enabled := True;
   dbGridCriacaoEdicao.Enabled := False;
 end;
 
@@ -248,7 +245,9 @@ end;
 procedure TFormEditarTarefas.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
-  HabilitarComponentes();
+  ClientesTarefas.cdsToDoid_todo.Visible := True;
+  ClientesTarefas.cdsToDo.Cancel;
+  dbGridCriacaoEdicao.Enabled := True;
   FClientesControle.cdsControleDeUsuario.Close;
 end;
 
@@ -265,13 +264,6 @@ begin
   btnAdiarTarefa.Enabled := True;
 end;
 
-procedure TFormEditarTarefas.HabilitarComponentes;
-begin
-  ClientesTarefas.cdsToDoid_todo.Visible := True;
-  dbGridCriacaoEdicao.Enabled := True;
-  ClientesTarefas.cdsToDo.Cancel;
-end;
-
 procedure TFormEditarTarefas.NovaTarefa;
 begin
   DesabilitarBotoes;
@@ -280,7 +272,7 @@ begin
 
   ClientesTarefas.cdsToDo.Insert;
   ClientesTarefas.cdsToDoid_cadastro.Value := ID_Login;
-  cxDBDateEdit1.Enabled := True;
+  cbData.Enabled := True;
   gbFormulario.Enabled := True;
   dbGridCriacaoEdicao.Enabled := False;
 end;
@@ -292,7 +284,7 @@ begin
     ClientesTarefas.cdsToDo.ApplyUpdates(0);
     gbFormulario.Enabled := False;
     dbGridCriacaoEdicao.Enabled := True;
-    cxDBDateEdit1.Enabled := True;
+    cbData.Enabled := True;
     ClientesTarefas.cdsToDo.Refresh;
     HabilitarBotoes;
   end;

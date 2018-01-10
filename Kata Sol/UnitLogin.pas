@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Imaging.pngimage,
   Vcl.ExtCtrls, UnitCadastro, DataModuleClientesCadastro, DataModuleConexao, Data.DB,
-  dxGDIPlusClasses, DataModuleControleDeUsuario;
+  dxGDIPlusClasses, DataModuleControleDeUsuario, System.UITypes;
 
 type
   TFormLogin = class(TForm)
@@ -23,7 +23,6 @@ type
     procedure CriarFormCadastro;
     procedure FormShow(Sender: TObject);
     procedure Logar;
-  public
   end;
 
 var
@@ -67,13 +66,14 @@ begin
   Conexao.sqlQueryCadastro.Close;
   Conexao.sqlQueryCadastro.Open;
 
-  if Conexao.sqlQueryCadastro.IsEmpty then
-    ShowMessage('Usuario ou Senha Invalida.')
+  if (Conexao.sqlQueryCadastro.Locate('nome_usuario',edtUsuario.Text,[loCaseInsensitive])) and
+    (Conexao.sqlQueryCadastro.Locate('senha',edtSenha.Text,[loCaseInsensitive])) then
+    begin
+      ModalResult := mrOk;
+    end
   else
-//    FClientes.cdsCadastro.Close;
-//    FClientes.cdsCadastro.SetProvider(Conexao.sqlProviderControle);
-//    FClientes.cdsCadastro.Open;
-    ModalResult := mrOk;
+    MessageDlg('Login e senha São invalidos.', mtError, [mbOk], 0);
+
 end;
 
 end.
