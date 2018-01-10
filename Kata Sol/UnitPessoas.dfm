@@ -1,11 +1,12 @@
 object FormPessoas: TFormPessoas
   Left = 0
   Top = 0
+  Align = alClient
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Pessoas'
-  ClientHeight = 422
-  ClientWidth = 665
+  ClientHeight = 576
+  ClientWidth = 750
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,9 +21,9 @@ object FormPessoas: TFormPessoas
   object dbGridPessoas: TDBGrid
     Left = 0
     Top = 0
-    Width = 524
-    Height = 422
-    Align = alLeft
+    Width = 619
+    Height = 576
+    Align = alClient
     ReadOnly = True
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
@@ -32,14 +33,17 @@ object FormPessoas: TFormPessoas
     TitleFont.Style = []
   end
   object gbStatusPessoas: TGroupBox
-    Left = 530
-    Top = 24
-    Width = 120
-    Height = 153
+    Left = 619
+    Top = 0
+    Width = 131
+    Height = 576
+    Align = alRight
     Caption = 'Status'
     TabOrder = 1
+    ExplicitLeft = 534
+    ExplicitHeight = 422
     object cbEmpresa: TCheckBox
-      Left = 8
+      Left = 5
       Top = 79
       Width = 97
       Height = 17
@@ -47,7 +51,7 @@ object FormPessoas: TFormPessoas
       TabOrder = 0
     end
     object cbVendedor: TCheckBox
-      Left = 8
+      Left = 5
       Top = 58
       Width = 97
       Height = 17
@@ -55,7 +59,7 @@ object FormPessoas: TFormPessoas
       TabOrder = 1
     end
     object cbJuridica: TCheckBox
-      Left = 8
+      Left = 5
       Top = 38
       Width = 97
       Height = 17
@@ -63,15 +67,15 @@ object FormPessoas: TFormPessoas
       TabOrder = 2
     end
     object cbFisica: TCheckBox
-      Left = 8
-      Top = 18
+      Left = 5
+      Top = 17
       Width = 97
       Height = 17
       Caption = 'Fisica'
       TabOrder = 3
     end
     object btnPesquisar: TButton
-      Left = 9
+      Left = 6
       Top = 121
       Width = 87
       Height = 26
@@ -80,68 +84,73 @@ object FormPessoas: TFormPessoas
       OnClick = btnPesquisarClick
     end
     object cbUsuarioDoSistema: TCheckBox
-      Left = 8
+      Left = 5
       Top = 100
       Width = 109
       Height = 17
       Caption = 'Usuario do Sistema'
       TabOrder = 5
     end
-  end
-  object gbEditarPessoas: TGroupBox
-    Left = 530
-    Top = 183
-    Width = 120
-    Height = 84
-    Caption = 'Pessoas'
-    TabOrder = 2
-    object btnAtualizarCadastro: TButton
-      Left = 9
-      Top = 45
-      Width = 105
-      Height = 26
-      Caption = 'Atualizar'
-      TabOrder = 0
-      OnClick = btnAtualizarCadastroClick
+    object gbEditarPessoas: TGroupBox
+      Left = 6
+      Top = 153
+      Width = 129
+      Height = 79
+      Align = alCustom
+      Caption = 'Pessoas'
+      TabOrder = 6
+      object btnAtualizarCadastro: TButton
+        Left = 9
+        Top = 45
+        Width = 105
+        Height = 26
+        Caption = 'Atualizar'
+        TabOrder = 0
+        OnClick = btnAtualizarCadastroClick
+      end
+      object btnCadastrarPessoa: TButton
+        Left = 8
+        Top = 13
+        Width = 105
+        Height = 26
+        Caption = 'Editar Registros'
+        TabOrder = 1
+        OnClick = btnCadastrarPessoaClick
+      end
     end
-    object btnCadastrarPessoa: TButton
-      Left = 8
-      Top = 13
-      Width = 105
-      Height = 26
-      Caption = 'Editar Registros'
-      TabOrder = 1
-      OnClick = btnCadastrarPessoaClick
-    end
-  end
-  object gbRelatorioPessoas: TGroupBox
-    Left = 530
-    Top = 273
-    Width = 120
-    Height = 104
-    Caption = 'Relat'#243'rio'
-    TabOrder = 3
-    object bntVisualizar: TButton
-      Left = 10
-      Top = 24
-      Width = 102
-      Height = 25
-      Caption = 'Visualizar'
-      TabOrder = 0
-      OnClick = bntVisualizarClick
-    end
-    object btnImprimir: TButton
-      Left = 10
-      Top = 57
-      Width = 102
-      Height = 26
-      Caption = 'Imprimir'
-      TabOrder = 1
-      OnClick = btnImprimirClick
+    object gbRelatorioPessoas: TGroupBox
+      Left = 2
+      Top = 475
+      Width = 127
+      Height = 99
+      Align = alBottom
+      Caption = 'Relat'#243'rio'
+      TabOrder = 7
+      ExplicitLeft = 9
+      ExplicitTop = 323
+      ExplicitWidth = 120
+      object bntVisualizar: TButton
+        Left = 10
+        Top = 24
+        Width = 102
+        Height = 25
+        Caption = 'Visualizar'
+        TabOrder = 0
+        OnClick = bntVisualizarClick
+      end
+      object btnImprimir: TButton
+        Left = 10
+        Top = 57
+        Width = 102
+        Height = 26
+        Caption = 'Imprimir'
+        TabOrder = 1
+        OnClick = btnImprimirClick
+      end
     end
   end
   object dsPessoas: TDataSource
-    Left = 584
-    Top = 384
+    Left = 72
+    Top = 328
   end
 end

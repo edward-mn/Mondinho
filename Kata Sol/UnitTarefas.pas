@@ -18,10 +18,10 @@ type
     btnPesquisar: TButton;
     dbGridTarefas: TDBGrid;
     dsTarefas: TDataSource;
+    Timer: TTimer;
     gbEditarTarefas: TGroupBox;
     btnAtualizarTarefa: TButton;
     btnCriarTarefa: TButton;
-    Timer: TTimer;
     gbRelatorioTarefas: TGroupBox;
     btnImprimir: TButton;
     btnVisualizar: TButton;
