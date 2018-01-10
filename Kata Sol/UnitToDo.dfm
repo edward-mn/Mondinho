@@ -40,36 +40,6 @@ object FormView: TFormView
     Height = 46
     Align = alBottom
     TabOrder = 1
-    object btnTarefas: TButton
-      Left = 1
-      Top = 1
-      Width = 75
-      Height = 44
-      Align = alLeft
-      Caption = 'Tarefas'
-      TabOrder = 0
-      OnClick = btnTarefasClick
-    end
-    object btnVendas: TButton
-      Left = 151
-      Top = 1
-      Width = 80
-      Height = 44
-      Align = alLeft
-      Caption = 'Vendas'
-      TabOrder = 2
-      OnClick = btnVendasClick
-    end
-    object btnPessoas: TButton
-      Left = 76
-      Top = 1
-      Width = 75
-      Height = 44
-      Align = alLeft
-      Caption = 'Pessoas'
-      TabOrder = 1
-      OnClick = btnPessoasClick
-    end
   end
   object Panel2: TPanel
     Left = 0
@@ -95,14 +65,14 @@ object FormView: TFormView
       OnClick = btnLogoutClick
     end
   end
-  object Panel3: TPanel
+  object TPanel
     Left = 0
     Top = 0
     Width = 1084
     Height = 57
     Align = alTop
-    Caption = 'Panel3'
     TabOrder = 3
+    ExplicitTop = -6
     object Image1: TImage
       Left = 1018
       Top = 1
@@ -202,6 +172,18 @@ object FormView: TFormView
       ExplicitTop = 0
       ExplicitHeight = 60
     end
+    object btnPessoas: TButton
+      Left = 76
+      Top = 1
+      Width = 75
+      Height = 55
+      Align = alLeft
+      Caption = 'Pessoas'
+      TabOrder = 0
+      OnClick = btnPessoasClick
+      ExplicitLeft = 177
+      ExplicitTop = 17
+    end
     object Button1: TButton
       Left = 1
       Top = 1
@@ -209,8 +191,21 @@ object FormView: TFormView
       Height = 55
       Align = alLeft
       Caption = 'Tarefas'
-      TabOrder = 0
+      TabOrder = 1
       OnClick = btnTarefasClick
+      ExplicitLeft = 180
+    end
+    object btnVendas: TButton
+      Left = 151
+      Top = 1
+      Width = 80
+      Height = 55
+      Align = alLeft
+      Caption = 'Vendas'
+      TabOrder = 2
+      OnClick = btnVendasClick
+      ExplicitLeft = 217
+      ExplicitTop = -4
     end
   end
   object PageControl: TcxPageControl
@@ -232,7 +227,7 @@ object FormView: TFormView
     ClientRectTop = 4
   end
   object dsToDo: TDataSource
-    Left = 576
-    Top = 8
+    Left = 488
+    Top = 128
   end
 end

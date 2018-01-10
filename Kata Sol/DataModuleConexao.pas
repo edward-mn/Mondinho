@@ -51,7 +51,6 @@ type
     sqlQueryControlecontrole_de_usuario: TWideStringField;
   public
     Usuario: TUsuario;
-    function DefinirID: Integer;
     procedure MostrarTarefas(ID_Login : Integer);
     procedure MostrarPessoas(ID_Login : Integer);
     procedure MostrarVendas(ID_Login : Integer);
@@ -98,11 +97,6 @@ constructor TDmConexao.Create(AOwner: TComponent);
 begin
   inherited;
   Usuario := TUsuario.Create;
-end;
-
-function TDmConexao.DefinirID: Integer;
-begin
-  Result := Conexao.sqlQueryCadastroid.Value;
 end;
 
 procedure TDmConexao.MostrarVendas;

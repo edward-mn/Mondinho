@@ -62,7 +62,6 @@ type
     procedure ProviderCdsControle;
   public
     ClientesPessoas : TDmClientesPessoas;
-    ID_Login : Integer;
     constructor Create(AOwner: TComponent); override;
   end;
 
@@ -118,7 +117,7 @@ begin
   ControleDeUsuarioNovaPessoa;
 
   ClientesPessoas.cdsPessoas.Insert;
-  ClientesPessoas.cdsPessoasid_cadastro.Value := ID_Login;
+  ClientesPessoas.cdsPessoasid_cadastro.Value := Conexao.Usuario.Id;
   gbFormulario.Enabled := True;
   dbGridCriacaoEdicaoPessoas.Enabled := False;
 end;
@@ -135,7 +134,7 @@ end;
 procedure TFormCriacaoEdicaoPessoas.ControleDeUsuarioDeletarPessoa;
 begin
   FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(ID_Login)) +
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(Conexao.Usuario.Id)) +
      ' Deletou Pessoa ' + (DateTimeToStr(Now)));
   FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
 end;
@@ -143,7 +142,7 @@ end;
 procedure TFormCriacaoEdicaoPessoas.ControleDeUsuarioEditarPessoa;
 begin
   FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(ID_Login)) +
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(Conexao.Usuario.Id)) +
      ' Editou Pessoa ' + (DateTimeToStr(Now)));
   FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
 end;
@@ -151,7 +150,7 @@ end;
 procedure TFormCriacaoEdicaoPessoas.ControleDeUsuarioNovaPessoa;
 begin
   FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(ID_Login)) +
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(Conexao.Usuario.Id)) +
      ' Adicionou Nova Pessoa ' + (DateTimeToStr(Now)));
   FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
 end;

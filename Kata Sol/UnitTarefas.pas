@@ -39,7 +39,6 @@ type
     procedure DefinirDataSet;
     procedure CriarFormEditarTarefas;
   public
-    ID_Login: Integer;
     constructor Create(AOwner: TComponent); override;
   end;
 
@@ -120,7 +119,6 @@ begin
   NewForm := TFormEditarTarefas.Create(nil);
 try
   NewForm.ClientesTarefas := FClientesTarefas;
-  NewForm.ID_Login := ID_Login;
   NewForm.ShowModal;
 
 finally
@@ -138,7 +136,7 @@ end;
 
 procedure TFormTarefas.FormShow(Sender: TObject);
 begin
-  Conexao.MostrarTarefas(ID_Login);
+  Conexao.MostrarTarefas(Conexao.Usuario.Id);
   DefinirDataSet;
   FClientesTarefas.AtrasarTarefas;
 end;

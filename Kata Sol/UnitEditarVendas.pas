@@ -64,7 +64,6 @@ type
     function CalcularValorTotal(Quantidade : integer;ValorUnit : Currency): Currency;
   public
     ClientesVendas : TDmClienteVendas;
-    ID_Login : Integer;
     constructor Create(AOwner: TComponent); override;
   end;
 
@@ -131,7 +130,7 @@ end;
 procedure TFormEditarVendas.ControleDeUsuarioDeletarVenda;
 begin
   FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(ID_Login)) +
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(Conexao.Usuario.Id)) +
      ' Deletou Venda ' + (DateTimeToStr(Now)));
   FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
 end;
@@ -139,7 +138,7 @@ end;
 procedure TFormEditarVendas.ControleDeUsuarioEditarVenda;
 begin
   FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(ID_Login)) +
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(Conexao.Usuario.Id)) +
      ' Editou Venda ' + (DateTimeToStr(Now)));
   FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
 end;
@@ -147,7 +146,7 @@ end;
 procedure TFormEditarVendas.ControleDeUsuarioNovaVenda;
 begin
   FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(ID_Login)) +
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(Conexao.Usuario.Id)) +
      ' Adicionou Nova Venda ' + (DateTimeToStr(Now)));
   FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
 end;
@@ -167,7 +166,7 @@ begin
   ControleDeUsuarioNovaVenda;
 
   ClientesVendas.cdsVendas.Insert;
-  ClientesVendas.cdsVendasid_cadastro.Value := ID_Login;
+  ClientesVendas.cdsVendasid_cadastro.Value := Conexao.Usuario.Id;
   GBVendas.Enabled := True;
   dbGridEditarVendas.Enabled := False;
 end;

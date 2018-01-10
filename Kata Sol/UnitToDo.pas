@@ -17,15 +17,13 @@ type
     dbGridPrincipal: TDBGrid;
     dsToDo: TDataSource;
     Panel1: TPanel;
-    btnTarefas: TButton;
-    btnVendas: TButton;
-    btnPessoas: TButton;
     btnLogout: TButton;
     Panel2: TPanel;
-    Panel3: TPanel;
     Image1: TImage;
-    Button1: TButton;
     PageControl: TcxPageControl;
+    btnPessoas: TButton;
+    Button1: TButton;
+    btnVendas: TButton;
     procedure btnPessoasClick(Sender: TObject);
     procedure btnTarefasClick(Sender: TObject);
     procedure btnVendasClick(Sender: TObject);
@@ -67,7 +65,7 @@ begin
   FClientesControle := TDmControleDeUsuario.Create(Self);
   ProviderControle;
   FClientesControle.cdsControleDeUsuario.Open;
-  ID_Login := Conexao.DefinirID;
+  ID_Login := Conexao.Usuario.Id;
 
   Conexao.sqlQueryCadastro.Close;
   Conexao.sqlQueryCadastro.Open;
@@ -115,7 +113,22 @@ end;
 function TFormView.CriarFormEmAba(ClasseForm: TFormClass): TForm;
 var
   Aba: TcxTabSheet;
+  Form: TForm;
+  I : Integer;
 begin
+  for I := 0 to PageControl.PageCount -1 do
+  begin
+    Form := PageControl.Pages[I].Controls[0] as TForm;
+
+    if Form.ClassName = ClasseForm.ClassName then
+    begin
+      PageControl.ActivePage := PageControl.Pages[I];
+      Form.SetFocus;
+      Result := Form;
+      Exit; 
+    end;
+  end;
+    
   Aba := TcxTabSheet.Create(PageControl);
   Aba.PageControl := PageControl;
   PageControl.ActivePage := Aba;
@@ -135,26 +148,13 @@ begin
 end;
 
 procedure TFormView.CriarFormTarefas;
-var
-  Form: TForm;
 begin
-  Form := CriarFormEmAba(TFormTarefas);
-
-  (Form as TFormTarefas).ID_Login := ID_Login;
+  CriarFormEmAba(TFormTarefas);
 end;
 
 procedure TFormView.CriarFormVendas;
-var
-  NewForm: TFormVendas;
 begin
-  NewForm := TFormVendas.Create(nil);
-  try
-    NewForm.ID_Login := ID_Login;
-    NewForm.ShowModal;
-  finally
-    NewForm.Free;
-  end;
-
+  CriarFormEmAba(TFormVendas);
 end;
 
 procedure TFormView.FormClose(Sender: TObject; var Action: TCloseAction);

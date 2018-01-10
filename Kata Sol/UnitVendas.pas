@@ -39,7 +39,6 @@ type
     procedure DefinirDataSet;
     procedure CriarFormEditarVendas;
   public
-    ID_Login : Integer;
     constructor Create(AOwner: TComponent); override;
   end;
 
@@ -111,7 +110,6 @@ begin
   NewForm := TFormEditarVendas.Create(nil);
 try
   NewForm.ClientesVendas := FClientesVendas;
-  NewForm.ID_Login := ID_Login;
   NewForm.ShowModal
 finally
   NewForm.Free;
@@ -135,7 +133,7 @@ end;
 
 procedure TFormVendas.FormShow(Sender: TObject);
 begin
-  Conexao.MostrarVendas(ID_Login);
+  Conexao.MostrarVendas(Conexao.Usuario.Id);
   DefinirDataSet;
 end;
 
