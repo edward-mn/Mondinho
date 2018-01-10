@@ -196,8 +196,4 @@ object FormView: TFormView
     Left = 576
     Top = 8
   end
-  object DataSource1: TDataSource
-    Left = 528
-    Top = 328
-  end
 end
