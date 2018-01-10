@@ -61,7 +61,6 @@ type
   public
     ClientesTarefas : TDmClientesTarefas;
     DataAntiga : TDateTime;
-    ID_Login: Integer;
     Trigger : Boolean;
     constructor Create(AOwner: TComponent); override;
   end;
@@ -178,7 +177,7 @@ end;
 procedure TFormEditarTarefas.ControleDeUsuarioDeletarTarefa;
 begin
   FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(ID_Login)) +
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(Conexao.Usuario.Id)) +
      ' Deletou Tarefa ' + (DateTimeToStr(Now)));
   FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
 end;
@@ -186,7 +185,7 @@ end;
 procedure TFormEditarTarefas.ControleDeUsuarioEditarTarefa;
 begin
   FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(ID_Login)) +
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(Conexao.Usuario.Id)) +
      ' Editou Tarefa ' + (DateTimeToStr(Now)));
   FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
 end;
@@ -194,7 +193,7 @@ end;
 procedure TFormEditarTarefas.ControleDeUsuarioNovaTarefa;
 begin
   FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(ID_Login)) +
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(Conexao.Usuario.Id)) +
      ' Adicionou Nova Tarefa ' + (DateTimeToStr(Now)));
   FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
 end;
@@ -271,7 +270,7 @@ begin
   ControleDeUsuarioNovaTarefa;
 
   ClientesTarefas.cdsToDo.Insert;
-  ClientesTarefas.cdsToDoid_cadastro.Value := ID_Login;
+  ClientesTarefas.cdsToDoid_cadastro.Value := Conexao.Usuario.Id;
   cbData.Enabled := True;
   gbFormulario.Enabled := True;
   dbGridCriacaoEdicao.Enabled := False;
