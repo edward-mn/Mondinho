@@ -7,9 +7,14 @@ uses
   Data.DB;
 
 type
-  TLogin = class
+  TUsuario = class
+  private
+    FId: Integer;
+    FNome: string;
   public
-    class function LogarUsuario(const Usuario, Senha: string): Boolean;
+    function Logar(const Usuario, Senha: string): Boolean;
+    property Nome: string read FNome;
+    property Id: Integer read FId;
   end;
 
 implementation
@@ -19,13 +24,20 @@ uses
 
 { TLogin }
 
-class function TLogin.LogarUsuario(const Usuario, Senha: string): Boolean;
+function TUsuario.Logar(const Usuario, Senha: string): Boolean;
 begin
   Conexao.sqlQueryCadastro.Close;
   Conexao.sqlQueryCadastro.Open;
 
   Result := (Conexao.sqlQueryCadastro.Locate('nome_usuario;senha',
     VarArrayOf([Usuario, Senha]),[loCaseInsensitive]));
+
+  if Result then
+  begin
+    FId := Conexao.sqlQueryCadastroid.Value;
+    FNome := Conexao.sqlQueryCadastronome_usuario.Value;
+  end;
 end;
+
 
 end.

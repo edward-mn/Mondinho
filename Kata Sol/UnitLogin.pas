@@ -33,8 +33,7 @@ implementation
 {$R *.dfm}
 
 uses
-  UnitToDo,
-  Login;
+  UnitToDo;
 
 procedure TFormLogin.btnCadastrarClick(Sender: TObject);
 begin
@@ -65,7 +64,7 @@ end;
 
 procedure TFormLogin.Logar;
 begin
-  if not TLogin.LogarUsuario(edtUsuario.Text, edtSenha.Text) then
+  if not Conexao.Usuario.Logar(edtUsuario.Text, edtSenha.Text) then
   begin
     MessageDlg('Login e senha São invalidos.', mtError, [mbOk], 0);
     Exit;

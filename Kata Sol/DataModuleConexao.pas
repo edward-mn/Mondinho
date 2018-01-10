@@ -4,7 +4,7 @@ interface
 
 uses
   System.SysUtils, System.Classes, Data.FMTBcd, Datasnap.Provider, Data.DB,
-  Data.SqlExpr, Datasnap.DBClient, DbxDevartPostgreSQL;
+  Data.SqlExpr, Datasnap.DBClient, DbxDevartPostgreSQL, Login;
 
 type
   TDmConexao = class(TDataModule)
@@ -50,10 +50,13 @@ type
     sqlQueryControleid_controle: TIntegerField;
     sqlQueryControlecontrole_de_usuario: TWideStringField;
   public
+    Usuario: TUsuario;
     function DefinirID: Integer;
     procedure MostrarTarefas(ID_Login : Integer);
     procedure MostrarPessoas(ID_Login : Integer);
     procedure MostrarVendas(ID_Login : Integer);
+    constructor Create(AOwner: TComponent); override;
+    destructor Destroy; override;
   end;
 
 function Conexao: TDmConexao;
@@ -75,6 +78,12 @@ begin
   Result := DmConexao;
 end;
 
+destructor TDmConexao.Destroy;
+begin
+  Usuario.Free;
+  inherited;
+end;
+
 procedure TDmConexao.MostrarPessoas;
 begin
   Conexao.sqlQueryPessoas.SQL.CommaText := ('select * from pessoas where id_cadastro =' + IntToStr(ID_Login));
@@ -83,6 +92,12 @@ end;
 procedure TDmConexao.MostrarTarefas(ID_Login : Integer);
 begin
   Conexao.sqlQueryToDo.SQL.CommaText := ('select * from monde_todo where id_cadastro =' + IntToStr(ID_Login));
+end;
+
+constructor TDmConexao.Create(AOwner: TComponent);
+begin
+  inherited;
+  Usuario := TUsuario.Create;
 end;
 
 function TDmConexao.DefinirID: Integer;

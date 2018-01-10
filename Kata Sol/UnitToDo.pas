@@ -8,7 +8,9 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
   DataModuleConexao, UnitEditarTarefas, Vcl.StdCtrls,
   UnitTarefas, Vcl.ExtCtrls, UnitVendas, UnitPessoas, Vcl.Imaging.pngimage,
-  dxGDIPlusClasses, System.UITypes, DataModuleControleDeUsuario, DataModuleClientesCadastro;
+  dxGDIPlusClasses, System.UITypes, DataModuleControleDeUsuario, DataModuleClientesCadastro,
+  Vcl.ComCtrls, cxGraphics, cxControls, cxLookAndFeels, cxLookAndFeelPainters,
+  dxBarBuiltInMenu, cxPC;
 
 type
   TFormView = class(TForm)
@@ -19,8 +21,11 @@ type
     btnVendas: TButton;
     btnPessoas: TButton;
     btnLogout: TButton;
-    Image1: TImage;
     Panel2: TPanel;
+    Panel3: TPanel;
+    Image1: TImage;
+    Button1: TButton;
+    PageControl: TcxPageControl;
     procedure btnPessoasClick(Sender: TObject);
     procedure btnTarefasClick(Sender: TObject);
     procedure btnVendasClick(Sender: TObject);
@@ -39,6 +44,7 @@ type
     procedure CriarFormTarefas;
     procedure CriarFormVendas;
     procedure CriarFormPessoas;
+    function CriarFormEmAba(ClasseForm: TFormClass): TForm;
   public
     ID_Login: Integer;
     constructor Create(AOwner: TComponent); override;
@@ -106,34 +112,35 @@ begin
   FClientesControle.cdsControleDeUsuario.Close;
 end;
 
-procedure TFormView.CriarFormPessoas;
+function TFormView.CriarFormEmAba(ClasseForm: TFormClass): TForm;
 var
-  NewForm: TFormPessoas;
+  Aba: TcxTabSheet;
 begin
-  NewForm := TFormPessoas.Create(nil);
-  try
-    NewForm.ID_Login := ID_Login;
-    NewForm.ShowModal;
+  Aba := TcxTabSheet.Create(PageControl);
+  Aba.PageControl := PageControl;
+  PageControl.ActivePage := Aba;
 
-  finally
-    NewForm.Free;
-  end;
+  Result := ClasseForm.Create(Aba);
+  Result.Parent := Aba;
+  Result.Align := alClient;
+  Result.BorderStyle := bsNone;
+  Result.Show;
 
+  Aba.Caption := Result.Caption;
+end;
+
+procedure TFormView.CriarFormPessoas;
+begin
+  CriarFormEmAba(TFormPessoas);
 end;
 
 procedure TFormView.CriarFormTarefas;
 var
-  NewForm: TFormTarefas;
+  Form: TForm;
 begin
-  NewForm := TFormTarefas.Create(nil);
-  try
-    NewForm.ID_Login := ID_Login;
-    NewForm.ShowModal;
+  Form := CriarFormEmAba(TFormTarefas);
 
-  finally
-    NewForm.Free;
-  end;
-
+  (Form as TFormTarefas).ID_Login := ID_Login;
 end;
 
 procedure TFormView.CriarFormVendas;
