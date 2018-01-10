@@ -17,7 +17,8 @@ uses
   DataModuleClientesVendas in 'DataModuleClientesVendas.pas' {DmClienteVendas: TDataModule},
   DataModuleClientesPessoas in 'DataModuleClientesPessoas.pas' {DmClientesPessoas: TDataModule},
   DataModuleClientesTarefas in 'DataModuleClientesTarefas.pas' {DmClientesTarefas: TDataModule},
-  DataModuleControleDeUsuario in 'DataModuleControleDeUsuario.pas' {DmControleDeUsuario: TDataModule};
+  DataModuleControleDeUsuario in 'DataModuleControleDeUsuario.pas' {DmControleDeUsuario: TDataModule},
+  Login in 'Login.pas';
 
 {$R *.res}
 
@@ -31,7 +32,6 @@ begin
   try
     if Login.ShowModal <> mrOk then
       Exit;
-
   finally
     Login.Free;
   end;

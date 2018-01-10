@@ -61,6 +61,10 @@ begin
   FClientesControle := TDmControleDeUsuario.Create(Self);
   ProviderControle;
   FClientesControle.cdsControleDeUsuario.Open;
+  ID_Login := Conexao.DefinirID;
+
+  Conexao.sqlQueryCadastro.Close;
+  Conexao.sqlQueryCadastro.Open;
   FClientesCadastro.cdsCadastro.SetProvider(Conexao.sqlQueryCadastro);
 end;
 
@@ -161,7 +165,7 @@ end;
 
 procedure TFormView.FormCreate(Sender: TObject);
 begin
-  ID_Login := Conexao.DefinirID;
+  FClientesCadastro.cdsCadastro.Close;
   FClientesCadastro.cdsCadastro.Open;
   DefinirDataSet;
 end;

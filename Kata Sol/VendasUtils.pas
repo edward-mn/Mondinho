@@ -26,7 +26,6 @@ type
 
   public
     Clientes: TDmClienteVendas;
-
   end;
 
 implementation
