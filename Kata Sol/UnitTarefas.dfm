@@ -25,8 +25,6 @@ object FormTarefas: TFormTarefas
     Align = alRight
     Caption = 'Status'
     TabOrder = 0
-    ExplicitLeft = 544
-    ExplicitHeight = 530
     object cbAtrasadas: TCheckBox
       Left = 8
       Top = 92
@@ -102,9 +100,6 @@ object FormTarefas: TFormTarefas
       Align = alBottom
       Caption = 'Relat'#243'rio'
       TabOrder = 6
-      ExplicitLeft = 10
-      ExplicitTop = 320
-      ExplicitWidth = 119
       object btnImprimir: TButton
         Left = 14
         Top = 56
@@ -140,13 +135,13 @@ object FormTarefas: TFormTarefas
     TitleFont.Style = []
   end
   object dsTarefas: TDataSource
-    Left = 304
-    Top = 480
+    Left = 648
+    Top = 288
   end
   object Timer: TTimer
     Interval = 60000
     OnTimer = TimerTimer
-    Left = 264
-    Top = 480
+    Left = 608
+    Top = 288
   end
 end
