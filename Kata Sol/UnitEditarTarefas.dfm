@@ -4,8 +4,8 @@ object FormEditarTarefas: TFormEditarTarefas
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Editar/Cadastrar Tarefas'
-  ClientHeight = 372
-  ClientWidth = 708
+  ClientHeight = 421
+  ClientWidth = 900
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -144,9 +144,9 @@ object FormEditarTarefas: TFormEditarTarefas
   end
   object dbGridCriacaoEdicao: TDBGrid
     Left = 0
-    Top = 232
-    Width = 708
-    Height = 140
+    Top = 236
+    Width = 900
+    Height = 185
     Align = alBottom
     ReadOnly = True
     TabOrder = 7

@@ -4,8 +4,8 @@ object FormEditarVendas: TFormEditarVendas
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Editar/Criar Vendas'
-  ClientHeight = 492
-  ClientWidth = 857
+  ClientHeight = 421
+  ClientWidth = 900
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,9 +20,9 @@ object FormEditarVendas: TFormEditarVendas
   TextHeight = 13
   object dbGridEditarVendas: TDBGrid
     Left = 0
-    Top = 240
-    Width = 857
-    Height = 252
+    Top = 223
+    Width = 900
+    Height = 198
     Align = alBottom
     ReadOnly = True
     TabOrder = 5

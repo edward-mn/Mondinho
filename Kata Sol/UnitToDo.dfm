@@ -48,6 +48,20 @@ object FormView: TFormView
     Height = 33
     Align = alBottom
     TabOrder = 2
+    object lblNome: TLabel
+      Left = 68
+      Top = 9
+      Width = 29
+      Height = 13
+      Caption = 'NOME'
+    end
+    object Label1: TLabel
+      Left = 15
+      Top = 9
+      Width = 43
+      Height = 13
+      Caption = 'Usu'#225'rio :'
+    end
     object btnLogout: TButton
       Left = 1010
       Top = 1

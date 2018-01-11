@@ -24,6 +24,8 @@ type
     btnPessoas: TButton;
     Button1: TButton;
     btnVendas: TButton;
+    lblNome: TLabel;
+    Label1: TLabel;
     procedure btnPessoasClick(Sender: TObject);
     procedure btnTarefasClick(Sender: TObject);
     procedure btnVendasClick(Sender: TObject);
@@ -180,6 +182,7 @@ end;
 procedure TFormView.FormShow(Sender: TObject);
 begin
   ControleDeUsuarioLogin;
+  lblNome.Caption := Conexao.Usuario.Nome;
 end;
 
 procedure TFormView.Logout;
