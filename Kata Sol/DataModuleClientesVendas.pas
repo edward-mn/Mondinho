@@ -8,6 +8,8 @@ uses
 
 type
   TDmClienteVendas = class(TDataModule)
+    frxDBDatasetVendas: TfrxDBDataset;
+    frxReportVendas: TfrxReport;
     cdsVendas: TClientDataSet;
     cdsVendasid_produtos: TIntegerField;
     cdsVendasvendedores: TWideStringField;
@@ -19,8 +21,7 @@ type
     cdsVendasvalor_total: TFMTBCDField;
     cdsVendasdata: TDateField;
     cdsVendasid_cadastro: TIntegerField;
-    frxDBDatasetVendas: TfrxDBDataset;
-    frxReportVendas: TfrxReport;
+    cdsVendasid_vendedor: TIntegerField;
   private
     { Private declarations }
   public

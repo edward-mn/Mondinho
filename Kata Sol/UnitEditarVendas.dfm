@@ -73,7 +73,6 @@ object FormEditarVendas: TFormEditarVendas
       Width = 66
       Height = 13
       Caption = '* Vendedores'
-      FocusControl = edtVendedores
     end
     object Label3: TLabel
       Left = 264
@@ -121,15 +120,6 @@ object FormEditarVendas: TFormEditarVendas
       Height = 13
       Caption = '* Data'
     end
-    object edtVendedores: TDBEdit
-      Left = 24
-      Top = 57
-      Width = 217
-      Height = 21
-      DataField = 'vendedores'
-      DataSource = dsEditarVendas
-      TabOrder = 0
-    end
     object edtFornecedores: TDBEdit
       Left = 264
       Top = 57
@@ -137,7 +127,7 @@ object FormEditarVendas: TFormEditarVendas
       Height = 21
       DataField = 'fornecedores'
       DataSource = dsEditarVendas
-      TabOrder = 1
+      TabOrder = 0
     end
     object edtProdutos: TDBEdit
       Left = 24
@@ -146,7 +136,7 @@ object FormEditarVendas: TFormEditarVendas
       Height = 21
       DataField = 'produtos'
       DataSource = dsEditarVendas
-      TabOrder = 2
+      TabOrder = 1
     end
     object edtPreco: TDBEdit
       Left = 219
@@ -155,7 +145,7 @@ object FormEditarVendas: TFormEditarVendas
       Height = 21
       DataField = 'valor_produto'
       DataSource = dsEditarVendas
-      TabOrder = 3
+      TabOrder = 2
     end
     object DBEdit16: TDBEdit
       Left = 353
@@ -164,14 +154,14 @@ object FormEditarVendas: TFormEditarVendas
       Height = 21
       DataField = 'quantidade'
       DataSource = dsEditarVendas
-      TabOrder = 4
+      TabOrder = 3
     end
     object cxDBDateEdit1: TcxDBDateEdit
       Left = 486
       Top = 111
       DataBinding.DataField = 'data'
       DataBinding.DataSource = dsEditarVendas
-      TabOrder = 5
+      TabOrder = 4
       Width = 110
     end
     object DBcbStatusVendas: TDBComboBox
@@ -186,6 +176,15 @@ object FormEditarVendas: TFormEditarVendas
         'Finalizada'
         'Excluida'
         'Cancelada')
+      TabOrder = 5
+    end
+    object cbVendedores: TDBComboBox
+      Left = 24
+      Top = 60
+      Width = 161
+      Height = 21
+      DataField = 'vendedores'
+      DataSource = dsEditarVendas
       TabOrder = 6
     end
   end

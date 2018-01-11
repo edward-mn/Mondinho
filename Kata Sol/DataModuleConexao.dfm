@@ -1,12 +1,12 @@
 object DmConexao: TDmConexao
   OldCreateOrder = False
-  Height = 247
-  Width = 506
+  Height = 241
+  Width = 622
   object sqlQueryToDo: TSQLQuery
     MaxBlobSize = -1
     Params = <>
     SQL.Strings = (
-      '')
+      'select * from monde_todo')
     SQLConnection = sqlConexao
     Left = 32
     Top = 88
@@ -50,8 +50,9 @@ object DmConexao: TDmConexao
       'IPVersion=IPv4'
       'UseUnicode=True'
       'Charset=')
-    Left = 224
-    Top = 16
+    Connected = True
+    Left = 288
+    Top = 24
   end
   object sqlProviderToDo: TDataSetProvider
     DataSet = sqlQueryToDo
@@ -63,7 +64,7 @@ object DmConexao: TDmConexao
     MaxBlobSize = -1
     Params = <>
     SQL.Strings = (
-      '')
+      'select * from vendas')
     SQLConnection = sqlConexao
     Left = 120
     Top = 88
@@ -108,6 +109,9 @@ object DmConexao: TDmConexao
     object sqlQueryVendasid_cadastro: TIntegerField
       FieldName = 'id_cadastro'
     end
+    object sqlQueryVendasid_vendedor: TIntegerField
+      FieldName = 'id_vendedor'
+    end
   end
   object sqlProviderVendas: TDataSetProvider
     DataSet = sqlQueryVendas
@@ -125,7 +129,7 @@ object DmConexao: TDmConexao
     MaxBlobSize = -1
     Params = <>
     SQL.Strings = (
-      '')
+      'select * from pessoas')
     SQLConnection = sqlConexao
     Left = 235
     Top = 89
@@ -216,5 +220,31 @@ object DmConexao: TDmConexao
     Options = [poPropogateChanges, poUseQuoteChar]
     Left = 440
     Top = 160
+  end
+  object sqlProviderVendedores: TDataSetProvider
+    DataSet = sqlQueryVendedores
+    Left = 544
+    Top = 160
+  end
+  object sqlQueryVendedores: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'select * from vendedores')
+    SQLConnection = sqlConexao
+    Left = 544
+    Top = 88
+    object sqlQueryVendedoresid_vendedor: TIntegerField
+      FieldName = 'id_vendedor'
+    end
+    object sqlQueryVendedoresnome: TWideStringField
+      FieldName = 'nome'
+      Size = 50
+    end
+    object sqlQueryVendedorescpf: TFMTBCDField
+      FieldName = 'cpf'
+      Precision = 11
+      Size = 0
+    end
   end
 end

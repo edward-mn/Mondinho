@@ -49,6 +49,12 @@ type
     sqlProviderControle: TDataSetProvider;
     sqlQueryControleid_controle: TIntegerField;
     sqlQueryControlecontrole_de_usuario: TWideStringField;
+    sqlQueryVendasid_vendedor: TIntegerField;
+    sqlProviderVendedores: TDataSetProvider;
+    sqlQueryVendedores: TSQLQuery;
+    sqlQueryVendedoresid_vendedor: TIntegerField;
+    sqlQueryVendedoresnome: TWideStringField;
+    sqlQueryVendedorescpf: TFMTBCDField;
   public
     Usuario: TUsuario;
     procedure MostrarTarefas(ID_Login : Integer);
