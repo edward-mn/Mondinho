@@ -15,7 +15,6 @@ uses
 type
   TFormEditarTarefas = class(TForm)
     dsCriarTarefas: TDataSource;
-    btnAtualizar: TButton;
     btnSalvar: TButton;
     btnNovo: TButton;
     btnCancelar: TButton;

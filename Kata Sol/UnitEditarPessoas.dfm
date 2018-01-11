@@ -25,7 +25,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     Height = 137
     Align = alBottom
     ReadOnly = True
-    TabOrder = 6
+    TabOrder = 5
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -41,31 +41,22 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     TabOrder = 1
     OnClick = btnNovaPessoaClick
   end
-  object btnAtualizarPessoas: TButton
-    Left = 11
-    Top = 83
-    Width = 105
-    Height = 26
-    Caption = 'Atualizar'
-    TabOrder = 3
-    OnClick = btnAtualizarPessoasClick
-  end
   object btnCancelarPessoas: TButton
     Left = 11
-    Top = 115
+    Top = 82
     Width = 105
     Height = 25
     Caption = 'Cancelar'
-    TabOrder = 4
+    TabOrder = 3
     OnClick = btnCancelarPessoasClick
   end
   object btnSalvarPessoas: TButton
     Left = 11
-    Top = 146
+    Top = 113
     Width = 105
     Height = 26
     Caption = 'Salvar'
-    TabOrder = 5
+    TabOrder = 4
     OnClick = btnSalvarPessoasClick
   end
   object gbFormulario: TGroupBox
@@ -156,7 +147,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     end
     object edtCpf: TDBEdit
       Left = 177
-      Top = 37
+      Top = 32
       Width = 105
       Height = 21
       Align = alCustom
@@ -166,7 +157,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     end
     object edtCelular: TDBEdit
       Left = 177
-      Top = 83
+      Top = 79
       Width = 160
       Height = 21
       Align = alCustom
@@ -176,7 +167,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     end
     object edtEndereco: TDBEdit
       Left = 319
-      Top = 37
+      Top = 32
       Width = 201
       Height = 21
       Align = alCustom
@@ -186,7 +177,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     end
     object cbStatusPessoas: TDBComboBox
       Left = 369
-      Top = 83
+      Top = 79
       Width = 145
       Height = 21
       DataField = 'status'
@@ -211,11 +202,11 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
   end
   object btnDeletarCadastro: TButton
     Left = 11
-    Top = 178
+    Top = 143
     Width = 105
     Height = 25
     Caption = 'Deletar'
-    TabOrder = 7
+    TabOrder = 6
     OnClick = btnDeletarCadastroClick
   end
   object cbData: TcxDBDateEdit
@@ -223,7 +214,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     Top = 158
     DataBinding.DataField = 'data'
     DataBinding.DataSource = dsCriacaoEdicaoPessoas
-    TabOrder = 8
+    TabOrder = 7
     Width = 147
   end
   object dsCriacaoEdicaoPessoas: TDataSource
