@@ -25,29 +25,20 @@ object FormEditarVendas: TFormEditarVendas
     Height = 198
     Align = alBottom
     ReadOnly = True
-    TabOrder = 6
+    TabOrder = 5
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
   end
-  object btnAtualizar: TButton
-    Left = 21
-    Top = 75
-    Width = 105
-    Height = 26
-    Caption = 'Atualizar'
-    TabOrder = 3
-    OnClick = btnAtualizarClick
-  end
   object btnSalvar: TButton
     Left = 21
-    Top = 151
+    Top = 95
     Width = 105
     Height = 26
     Caption = 'Salvar'
-    TabOrder = 5
+    TabOrder = 4
     OnClick = btnSalvarClick
   end
   object btnNovo: TButton
@@ -61,11 +52,11 @@ object FormEditarVendas: TFormEditarVendas
   end
   object btnCancelar: TButton
     Left = 21
-    Top = 112
+    Top = 66
     Width = 105
     Height = 25
     Caption = 'Cancelar'
-    TabOrder = 4
+    TabOrder = 3
     OnClick = btnCancelarClick
   end
   object GBVendas: TGroupBox
@@ -101,7 +92,7 @@ object FormEditarVendas: TFormEditarVendas
     end
     object Label5: TLabel
       Left = 24
-      Top = 92
+      Top = 93
       Width = 52
       Height = 13
       Caption = '* Produtos'
@@ -125,14 +116,14 @@ object FormEditarVendas: TFormEditarVendas
     end
     object Label9: TLabel
       Left = 486
-      Top = 95
+      Top = 93
       Width = 32
       Height = 13
       Caption = '* Data'
     end
     object edtVendedores: TDBEdit
       Left = 24
-      Top = 60
+      Top = 57
       Width = 217
       Height = 21
       DataField = 'vendedores'
@@ -177,7 +168,7 @@ object FormEditarVendas: TFormEditarVendas
     end
     object cxDBDateEdit1: TcxDBDateEdit
       Left = 486
-      Top = 114
+      Top = 111
       DataBinding.DataField = 'data'
       DataBinding.DataSource = dsEditarVendas
       TabOrder = 5
@@ -185,7 +176,7 @@ object FormEditarVendas: TFormEditarVendas
     end
     object DBcbStatusVendas: TDBComboBox
       Left = 493
-      Top = 60
+      Top = 57
       Width = 105
       Height = 21
       DataField = 'status'
@@ -200,7 +191,7 @@ object FormEditarVendas: TFormEditarVendas
   end
   object btnEditar: TButton
     Left = 21
-    Top = 42
+    Top = 38
     Width = 105
     Height = 25
     Caption = 'Editar'
@@ -209,12 +200,21 @@ object FormEditarVendas: TFormEditarVendas
   end
   object btnDeletar: TButton
     Left = 21
-    Top = 192
+    Top = 127
     Width = 105
     Height = 25
     Caption = 'Deletar'
-    TabOrder = 7
+    TabOrder = 6
     OnClick = btnDeletarClick
+  end
+  object btnFinalizarVenda: TButton
+    Left = 21
+    Top = 157
+    Width = 105
+    Height = 25
+    Caption = 'Finalizar Venda'
+    TabOrder = 7
+    OnClick = btnFinalizarVendaClick
   end
   object dsEditarVendas: TDataSource
     Left = 354

@@ -18,22 +18,13 @@ object FormEditarTarefas: TFormEditarTarefas
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object btnAtualizar: TButton
-    Left = 19
-    Top = 67
-    Width = 105
-    Height = 26
-    Caption = 'Atualizar'
-    TabOrder = 3
-    OnClick = btnAtualizarClick
-  end
   object btnSalvar: TButton
     Left = 19
-    Top = 123
+    Top = 94
     Width = 105
     Height = 26
     Caption = 'Salvar'
-    TabOrder = 5
+    TabOrder = 4
     OnClick = btnSalvarClick
   end
   object btnNovo: TButton
@@ -47,11 +38,11 @@ object FormEditarTarefas: TFormEditarTarefas
   end
   object btnCancelar: TButton
     Left = 19
-    Top = 96
+    Top = 67
     Width = 105
     Height = 25
     Caption = 'Cancelar'
-    TabOrder = 4
+    TabOrder = 3
     OnClick = btnCancelarClick
   end
   object btnEditar: TButton
@@ -135,20 +126,20 @@ object FormEditarTarefas: TFormEditarTarefas
   end
   object btnDeletarTarefa: TButton
     Left = 19
-    Top = 151
+    Top = 122
     Width = 105
     Height = 25
     Caption = 'Deletar'
-    TabOrder = 6
+    TabOrder = 5
     OnClick = btnDeletarTarefaClick
   end
   object btnAdiarTarefa: TButton
     Left = 19
-    Top = 178
+    Top = 149
     Width = 105
     Height = 25
     Caption = 'Adiar Tarefa'
-    TabOrder = 7
+    TabOrder = 6
     OnClick = btnAdiarTarefaClick
   end
   object dbGridCriacaoEdicao: TDBGrid
@@ -158,7 +149,7 @@ object FormEditarTarefas: TFormEditarTarefas
     Height = 185
     Align = alBottom
     ReadOnly = True
-    TabOrder = 8
+    TabOrder = 7
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -173,7 +164,7 @@ object FormEditarTarefas: TFormEditarTarefas
     DataBinding.DataSource = dsCriarTarefas
     DragCursor = crArrow
     Properties.View = cavModern
-    TabOrder = 9
+    TabOrder = 8
     Width = 90
   end
   object dsCriarTarefas: TDataSource

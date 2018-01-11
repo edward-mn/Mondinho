@@ -1,10 +1,13 @@
 # Mondinho 
-A Monde Prototype
+A little Project that tries to imitate some of Monde features.
 
 ## Getting Started
-Create a DataBase on pgAdmin and restore the Backup with the file on the Folder(Backup's).
+Create a DataBase on pgAdmin and restore with the Backup the file on the Folder(Backup's).
+
 Just open the ProjectGroup on Delphi.
-Change the HostName port on sqlConexao(Params) to your own port.
+
+Open sqlConexao in DataModuleConexao and change the HostName port in Params to localhost + your own port.
+![alt text](https://image.prntscr.com/image/llkmq8d_Toe4utDfAwW7QA.png)
 
 ## Prerequisites
 ```
@@ -20,3 +23,10 @@ Change the HostName port on sqlConexao(Params) to your own port.
 * **Edward Moreira** - (https://github.com/Edwardpg)
 * **Gabriel Bevilacqua** - (https://github.com/GabrielBevilacqua)
 * **Vinicius Carli** - (https://github.com/ViniciusCarli)
+
+## Acknowledgments
+This project would not be possible without help of
+* **Fábio Gomes** - (https://github.com/fabioxgn) 
+* **Ronei Bienert** - (https://github.com/RoneiBienert) 
+* **Fernando Almeida** - (https://github.com/fernand-o) 
+* **Anderson Macedo** - (https://github.com/AndersonSKM) 

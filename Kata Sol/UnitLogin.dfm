@@ -5,7 +5,7 @@ object FormLogin: TFormLogin
   BorderStyle = bsDialog
   Caption = 'Login'
   ClientHeight = 345
-  ClientWidth = 351
+  ClientWidth = 321
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,28 +18,28 @@ object FormLogin: TFormLogin
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 20
-    Top = 187
+    Left = 13
+    Top = 189
     Width = 40
     Height = 13
     Caption = 'Usu'#225'rio:'
   end
   object Label2: TLabel
-    Left = 23
+    Left = 13
     Top = 214
     Width = 34
     Height = 13
     Caption = 'Senha:'
   end
   object Label3: TLabel
-    Left = 20
+    Left = 12
     Top = 319
     Width = 299
     Height = 13
     Caption = #169' Mondinho                https://github.com/Edwardpg/Mondinho'
   end
   object Image1: TImage
-    Left = 16
+    Left = 4
     Top = -38
     Width = 315
     Height = 227
@@ -526,7 +526,7 @@ object FormLogin: TFormLogin
       653C0000000049454E44AE426082}
   end
   object edtUsuario: TEdit
-    Left = 60
+    Left = 49
     Top = 184
     Width = 253
     Height = 21
@@ -534,7 +534,7 @@ object FormLogin: TFormLogin
     Text = 'Edward'
   end
   object edtSenha: TEdit
-    Left = 60
+    Left = 49
     Top = 211
     Width = 253
     Height = 21
@@ -543,7 +543,7 @@ object FormLogin: TFormLogin
     Text = 'monde'
   end
   object btnEntrar: TButton
-    Left = 20
+    Left = 12
     Top = 238
     Width = 293
     Height = 25
@@ -553,7 +553,7 @@ object FormLogin: TFormLogin
     OnClick = btnEntrarClick
   end
   object btnCadastrar: TButton
-    Left = 20
+    Left = 13
     Top = 269
     Width = 293
     Height = 25

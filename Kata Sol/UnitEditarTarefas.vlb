@@ -1,9 +1,6 @@
 ﻿[DmClientes.cdsToDo]
 Coordinates=332,10,136,190
 
-[btnAtualizar]
-Coordinates=446,298,83,58
-
 [edtTarefa]
 Coordinates=580,366,70,36
 
@@ -59,7 +56,7 @@ Coordinates=433,366,137,36
 Coordinates=10,298,100,58
 
 []
-Coordinates=321,366,102,36
+Coordinates=446,298,83,58
 Visible=True
 
 [cbTarefas]
