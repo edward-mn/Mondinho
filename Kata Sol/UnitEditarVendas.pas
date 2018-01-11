@@ -15,7 +15,6 @@ type
   TFormEditarVendas = class(TForm)
     dbGridEditarVendas: TDBGrid;
     dsEditarVendas: TDataSource;
-    btnAtualizar: TButton;
     btnSalvar: TButton;
     btnNovo: TButton;
     btnCancelar: TButton;
@@ -36,17 +35,18 @@ type
     btnDeletar: TButton;
     cxDBDateEdit1: TcxDBDateEdit;
     DBcbStatusVendas: TDBComboBox;
+    btnFinalizarVenda: TButton;
     procedure btnNovoClick(Sender: TObject);
-    procedure btnAtualizarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnDeletarClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
+    procedure btnFinalizarVendaClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
   private
     FClientesControle : TDmControleDeUsuario;
-    procedure AtualizarLista;
+    procedure FinalizarVenda;
     procedure CancelarVenda;
     procedure CriarNovaVenda;
     procedure DefinirDataSet;
@@ -77,19 +77,6 @@ implementation
 procedure TFormEditarVendas.btnNovoClick(Sender: TObject);
 begin
   CriarNovaVenda();
-end;
-
-procedure TFormEditarVendas.AtualizarLista;
-begin
-  ClientesVendas.cdsVendas.ApplyUpdates(0);
-  ClientesVendas.cdsVendas.Refresh;
-  GBVendas.Enabled := False;
-  dbGridEditarVendas.Enabled := True;
-end;
-
-procedure TFormEditarVendas.btnAtualizarClick(Sender: TObject);
-begin
-  AtualizarLista();
 end;
 
 procedure TFormEditarVendas.btnCancelarClick(Sender: TObject);
@@ -159,6 +146,11 @@ begin
   FClientesControle.cdsControleDeUsuario.Open;
 end;
 
+procedure TFormEditarVendas.btnFinalizarVendaClick(Sender: TObject);
+begin
+  FinalizarVenda();
+end;
+
 procedure TFormEditarVendas.CriarNovaVenda;
 begin
   DesabilitarBotoes;
@@ -204,6 +196,13 @@ begin
   GBVendas.Enabled := True;
 end;
 
+procedure TFormEditarVendas.FinalizarVenda;
+begin
+  ClientesVendas.cdsVendas.Edit;
+  DesabilitarBotoes();
+  ClientesVendas.cdsVendasstatus.text := 'Finalizada';
+end;
+
 procedure TFormEditarVendas.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   DeixarCamposVisiveis();
@@ -221,6 +220,7 @@ begin
   btnNovo.Enabled := False;
   btnEditar.Enabled := False;
   btnDeletar.Enabled := False;
+  btnFinalizarVenda.Enabled := False;
 end;
 
 procedure TFormEditarVendas.HabilitarBotoes;
@@ -228,6 +228,7 @@ begin
   btnNovo.Enabled := True;
   btnEditar.Enabled := True;
   btnDeletar.Enabled := True;
+  btnFinalizarVenda.Enabled := True;
 end;
 
 procedure TFormEditarVendas.DeixarCamposVisiveis;

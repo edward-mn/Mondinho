@@ -16,7 +16,6 @@ type
     dbGridCriacaoEdicaoPessoas: TDBGrid;
     dsCriacaoEdicaoPessoas: TDataSource;
     btnNovaPessoa: TButton;
-    btnAtualizarPessoas: TButton;
     btnCancelarPessoas: TButton;
     btnSalvarPessoas: TButton;
     gbFormulario: TGroupBox;
@@ -37,7 +36,6 @@ type
     cbData: TcxDBDateEdit;
     cbStatusPessoas: TDBComboBox;
     procedure btnNovaPessoaClick(Sender: TObject);
-    procedure btnAtualizarPessoasClick(Sender: TObject);
     procedure btnCancelarPessoasClick(Sender: TObject);
     procedure btnDeletarCadastroClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
@@ -47,7 +45,6 @@ type
     procedure mCalendarClick(Sender: TObject);
   private
     FClientesControle : TDmControleDeUsuario;
-    procedure AtualizarLista;
     procedure CadastrarNovaPessoa;
     procedure CancelarAcao;
     procedure DefinirDataSet;
@@ -72,22 +69,10 @@ implementation
 
 {$R *.dfm}
 
-procedure TFormCriacaoEdicaoPessoas.AtualizarLista;
-begin
-  ClientesPessoas.cdsPessoas.ApplyUpdates(0);
-  ClientesPessoas.cdsPessoas.Refresh;
-  gbFormulario.Enabled := False;
-  dbGridCriacaoEdicaoPessoas.Enabled := True;
-end;
 
 procedure TFormCriacaoEdicaoPessoas.btnNovaPessoaClick(Sender: TObject);
 begin
   CadastrarNovaPessoa();
-end;
-
-procedure TFormCriacaoEdicaoPessoas.btnAtualizarPessoasClick(Sender: TObject);
-begin
-  AtualizarLista();
 end;
 
 procedure TFormCriacaoEdicaoPessoas.btnCancelarPessoasClick(Sender: TObject);
