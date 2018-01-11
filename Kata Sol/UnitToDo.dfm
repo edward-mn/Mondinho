@@ -225,7 +225,6 @@ object FormView: TFormView
     TabOrder = 4
     Properties.CloseButtonMode = cbmActiveTab
     Properties.CustomButtons.Buttons = <>
-    ExplicitTop = 62
     ClientRectBottom = 365
     ClientRectLeft = 4
     ClientRectRight = 1080
