@@ -178,14 +178,20 @@ object FormEditarVendas: TFormEditarVendas
         'Cancelada')
       TabOrder = 5
     end
-    object cbVendedores: TDBComboBox
+    object cbVendedores: TcxDBLookupComboBox
       Left = 24
       Top = 60
-      Width = 161
-      Height = 21
-      DataField = 'vendedores'
-      DataSource = dsEditarVendas
+      DataBinding.DataField = 'id_vendedor'
+      DataBinding.DataSource = dsEditarVendas
+      Properties.DropDownListStyle = lsFixedList
+      Properties.KeyFieldNames = 'id_vendedor'
+      Properties.ListColumns = <
+        item
+          FieldName = 'nome'
+        end>
+      Properties.ListSource = dsVendedores
       TabOrder = 6
+      Width = 145
     end
   end
   object btnEditar: TButton
@@ -218,5 +224,9 @@ object FormEditarVendas: TFormEditarVendas
   object dsEditarVendas: TDataSource
     Left = 354
     Top = 332
+  end
+  object dsVendedores: TDataSource
+    Left = 328
+    Top = 208
   end
 end

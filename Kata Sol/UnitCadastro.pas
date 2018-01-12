@@ -94,8 +94,6 @@ end;
 
 procedure TFormCadastro.DefinirDataSet;
 begin
-//  FCadastro.cdsCadastro.SetProvider(Conexao.sqlProviderCadastro);
-//  Conexao.sqlQueryCadastro.Open;
   FCadastro.cdsCadastro.Open;
   dsCadastro.DataSet := FCadastro.cdsCadastro;
   FCadastro.cdsCadastro.Insert;

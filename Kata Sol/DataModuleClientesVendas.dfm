@@ -526,5 +526,9 @@ object DmClienteVendas: TDmClienteVendas
     object cdsVendasid_vendedor: TIntegerField
       FieldName = 'id_vendedor'
     end
+    object cdsVendasvendedor: TWideStringField
+      FieldName = 'vendedor'
+      Size = 50
+    end
   end
 end

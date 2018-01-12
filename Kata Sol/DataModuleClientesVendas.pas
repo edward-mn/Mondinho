@@ -22,6 +22,7 @@ type
     cdsVendasdata: TDateField;
     cdsVendasid_cadastro: TIntegerField;
     cdsVendasid_vendedor: TIntegerField;
+    cdsVendasvendedor: TWideStringField;
   private
     { Private declarations }
   public

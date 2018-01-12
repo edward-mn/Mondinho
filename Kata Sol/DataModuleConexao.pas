@@ -4,7 +4,7 @@ interface
 
 uses
   System.SysUtils, System.Classes, Data.FMTBcd, Datasnap.Provider, Data.DB,
-  Data.SqlExpr, Datasnap.DBClient, DbxDevartPostgreSQL, Login;
+  Data.SqlExpr, Datasnap.DBClient, DbxDevartPostgreSQL, Login, Data.DBXCommon;
 
 type
   TDmConexao = class(TDataModule)
@@ -20,7 +20,6 @@ type
     sqlProviderVendas: TDataSetProvider;
     sqlQueryVendasid_produtos: TIntegerField;
     sqlQueryVendasprodutos: TWideStringField;
-    sqlQueryVendasvendedores: TWideStringField;
     sqlQueryVendasstatus: TWideStringField;
     sqlQueryVendasfornecedores: TWideStringField;
     sqlQueryVendasdata: TDateField;
@@ -55,11 +54,13 @@ type
     sqlQueryVendedoresid_vendedor: TIntegerField;
     sqlQueryVendedoresnome: TWideStringField;
     sqlQueryVendedorescpf: TFMTBCDField;
+    sqlQueryVendasvendedor: TWideStringField;
+    procedure sqlQueryVendasBeforeOpen(DataSet: TDataSet);
   public
     Usuario: TUsuario;
+    ID_Login: Integer;
     procedure MostrarTarefas(ID_Login : Integer);
     procedure MostrarPessoas(ID_Login : Integer);
-    procedure MostrarVendas(ID_Login : Integer);
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
   end;
@@ -105,11 +106,10 @@ begin
   Usuario := TUsuario.Create;
 end;
 
-procedure TDmConexao.MostrarVendas;
+procedure TDmConexao.sqlQueryVendasBeforeOpen(DataSet: TDataSet);
 begin
-  Conexao.sqlQueryVendas.SQL.CommaText := ('select * from vendas where id_cadastro =' + IntToStr(ID_Login));
+  sqlQueryVendas.ParamByName('id').Value := ID_Login;
 end;
-
 
 initialization
 finalization
