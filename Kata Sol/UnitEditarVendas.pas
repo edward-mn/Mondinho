@@ -9,7 +9,8 @@ uses
   Vcl.DBCtrls, System.UITypes, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, cxTextEdit, cxMaskEdit,
   cxDropDownEdit, cxCalendar, cxDBEdit, DataModuleClientesVendas,
-  DataModuleControleDeUsuario, DataModuleVendedores;
+  DataModuleControleDeUsuario, DataModuleVendedores, cxLookupEdit,
+  cxDBLookupEdit, cxDBLookupComboBox;
 
 type
   TFormEditarVendas = class(TForm)
@@ -35,7 +36,8 @@ type
     cxDBDateEdit1: TcxDBDateEdit;
     DBcbStatusVendas: TDBComboBox;
     btnFinalizarVenda: TButton;
-    cbVendedores: TDBComboBox;
+    dsVendedores: TDataSource;
+    cbVendedores: TcxDBLookupComboBox;
     procedure btnNovoClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnDeletarClick(Sender: TObject);
@@ -63,7 +65,6 @@ type
     procedure ControleDeUsuarioDeletarVenda;
     procedure ProviderCdsControle;
     procedure ProviderVendedor;
-    procedure BuscarVendedores;
     function CalcularValorTotal(Quantidade : integer;ValorUnit : Currency): Currency;
   public
     ClientesVendas : TDmClienteVendas;
@@ -100,27 +101,6 @@ end;
 procedure TFormEditarVendas.btnSalvarClick(Sender: TObject);
 begin
   SalvarVenda;
-end;
-
-procedure TFormEditarVendas.BuscarVendedores;
-var
-  BookMark : TBookmark;
-begin
-  cbVendedores.Items.Clear;
-  try
-    BookMark := FVendedores.cdsVendedoresnome.DataSet.GetBookmark;
-    FVendedores.cdsVendedoresnome.DataSet.DisableControls;
-
-    FVendedores.cdsVendedoresnome.DataSet.First;
-    while not FVendedores.cdsVendedoresnome.DataSet.Eof do
-    begin
-      cbVendedores.Items.Add(FVendedores.cdsVendedoresnome.Value);
-      FVendedores.cdsVendedoresnome.DataSet.Next;
-    end;
-  finally
-    FVendedores.cdsVendedoresnome.DataSet.GotoBookmark(BookMark);
-    FVendedores.cdsVendedoresnome.DataSet.EnableControls;
-  end;
 end;
 
 function TFormEditarVendas.CalcularValorTotal(Quantidade: integer; ValorUnit: Currency): Currency;
@@ -170,7 +150,9 @@ begin
   ProviderVendedor;
   ProviderCdsControle;
   FClientesControle.cdsControleDeUsuario.Open;
+
   FVendedores.cdsVendedores.Open;
+  dsVendedores.DataSet := FVendedores.cdsVendedores;
 end;
 
 procedure TFormEditarVendas.btnFinalizarVendaClick(Sender: TObject);
@@ -235,13 +217,13 @@ procedure TFormEditarVendas.FormClose(Sender: TObject; var Action: TCloseAction)
 begin
   DeixarCamposVisiveis;
   ClientesVendas.cdsVendas.Cancel;
+  FVendedores.cdsVendedores.Close;
   FClientesControle.cdsControleDeUsuario.Close;
 end;
 
 procedure TFormEditarVendas.FormShow(Sender: TObject);
 begin
   DefinirDataSet;
-  BuscarVendedores;
 end;
 
 procedure TFormEditarVendas.DesabilitarBotoes;

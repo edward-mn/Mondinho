@@ -50,6 +50,7 @@ object DmConexao: TDmConexao
       'IPVersion=IPv4'
       'UseUnicode=True'
       'Charset=')
+    Connected = True
     Left = 288
     Top = 24
   end
@@ -60,10 +61,19 @@ object DmConexao: TDmConexao
     Top = 160
   end
   object sqlQueryVendas: TSQLQuery
+    BeforeOpen = sqlQueryVendasBeforeOpen
     MaxBlobSize = -1
-    Params = <>
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptInput
+      end>
     SQL.Strings = (
-      'select * from vendas')
+      'select v.*, ve.nome vendedor '
+      'from vendas v'
+      'left join vendedores ve on v.id_vendedor = ve.id_vendedor'
+      'where id_cadastro = :id')
     SQLConnection = sqlConexao
     Left = 120
     Top = 88
@@ -72,10 +82,6 @@ object DmConexao: TDmConexao
     end
     object sqlQueryVendasprodutos: TWideStringField
       FieldName = 'produtos'
-      Size = 50
-    end
-    object sqlQueryVendasvendedores: TWideStringField
-      FieldName = 'vendedores'
       Size = 50
     end
     object sqlQueryVendasstatus: TWideStringField
@@ -110,6 +116,11 @@ object DmConexao: TDmConexao
     end
     object sqlQueryVendasid_vendedor: TIntegerField
       FieldName = 'id_vendedor'
+    end
+    object sqlQueryVendasvendedor: TWideStringField
+      FieldName = 'vendedor'
+      ProviderFlags = []
+      Size = 50
     end
   end
   object sqlProviderVendas: TDataSetProvider
