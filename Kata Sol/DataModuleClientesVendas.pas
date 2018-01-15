@@ -12,7 +12,6 @@ type
     frxReportVendas: TfrxReport;
     cdsVendas: TClientDataSet;
     cdsVendasid_produtos: TIntegerField;
-    cdsVendasvendedores: TWideStringField;
     cdsVendasfornecedores: TWideStringField;
     cdsVendasstatus: TWideStringField;
     cdsVendasprodutos: TWideStringField;

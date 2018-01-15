@@ -3,10 +3,17 @@ object DmConexao: TDmConexao
   Height = 241
   Width = 622
   object sqlQueryToDo: TSQLQuery
+    BeforeOpen = sqlQueryToDoBeforeOpen
     MaxBlobSize = -1
-    Params = <>
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptInput
+      end>
     SQL.Strings = (
-      'select * from monde_todo')
+      'select * from monde_todo'
+      'where id_cadastro = :id')
     SQLConnection = sqlConexao
     Left = 32
     Top = 88
@@ -136,10 +143,17 @@ object DmConexao: TDmConexao
     Top = 161
   end
   object sqlQueryPessoas: TSQLQuery
+    BeforeOpen = sqlQueryPessoasBeforeOpen
     MaxBlobSize = -1
-    Params = <>
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptInput
+      end>
     SQL.Strings = (
-      'select * from pessoas')
+      'select * from pessoas'
+      'where id_cadastro = :id')
     SQLConnection = sqlConexao
     Left = 235
     Top = 89

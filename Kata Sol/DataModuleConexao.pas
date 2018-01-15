@@ -55,12 +55,12 @@ type
     sqlQueryVendedoresnome: TWideStringField;
     sqlQueryVendedorescpf: TFMTBCDField;
     sqlQueryVendasvendedor: TWideStringField;
+    procedure sqlQueryPessoasBeforeOpen(DataSet: TDataSet);
+    procedure sqlQueryToDoBeforeOpen(DataSet: TDataSet);
     procedure sqlQueryVendasBeforeOpen(DataSet: TDataSet);
   public
     Usuario: TUsuario;
     ID_Login: Integer;
-    procedure MostrarTarefas(ID_Login : Integer);
-    procedure MostrarPessoas(ID_Login : Integer);
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
   end;
@@ -90,20 +90,20 @@ begin
   inherited;
 end;
 
-procedure TDmConexao.MostrarPessoas;
-begin
-  Conexao.sqlQueryPessoas.SQL.CommaText := ('select * from pessoas where id_cadastro =' + IntToStr(ID_Login));
-end;
-
-procedure TDmConexao.MostrarTarefas(ID_Login : Integer);
-begin
-  Conexao.sqlQueryToDo.SQL.CommaText := ('select * from monde_todo where id_cadastro =' + IntToStr(ID_Login));
-end;
-
 constructor TDmConexao.Create(AOwner: TComponent);
 begin
   inherited;
   Usuario := TUsuario.Create;
+end;
+
+procedure TDmConexao.sqlQueryPessoasBeforeOpen(DataSet: TDataSet);
+begin
+  sqlQueryPessoas.ParamByName('id').Value := ID_Login;
+end;
+
+procedure TDmConexao.sqlQueryToDoBeforeOpen(DataSet: TDataSet);
+begin
+  sqlQueryToDo.ParamByName('id').Value := ID_Login;
 end;
 
 procedure TDmConexao.sqlQueryVendasBeforeOpen(DataSet: TDataSet);

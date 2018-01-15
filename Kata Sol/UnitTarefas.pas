@@ -136,7 +136,6 @@ end;
 
 procedure TFormTarefas.FormShow(Sender: TObject);
 begin
-  Conexao.MostrarTarefas(Conexao.Usuario.Id);
   DefinirDataSet;
   FClientesTarefas.AtrasarTarefas;
 end;
