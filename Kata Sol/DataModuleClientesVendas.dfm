@@ -476,11 +476,6 @@ object DmClienteVendas: TDmClienteVendas
       DisplayLabel = 'C'#243'd. Produtos'
       FieldName = 'id_produtos'
     end
-    object cdsVendasvendedores: TWideStringField
-      DisplayLabel = 'Vendedores'
-      FieldName = 'vendedores'
-      Size = 50
-    end
     object cdsVendasfornecedores: TWideStringField
       DisplayLabel = 'Fornecedores'
       FieldName = 'fornecedores'

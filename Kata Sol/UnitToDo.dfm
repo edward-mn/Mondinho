@@ -171,7 +171,6 @@ object FormView: TFormView
       Caption = 'Pessoas'
       TabOrder = 0
       OnClick = btnPessoasClick
-      ExplicitHeight = 55
     end
     object Button1: TButton
       Left = 1
@@ -182,7 +181,6 @@ object FormView: TFormView
       Caption = 'Tarefas'
       TabOrder = 1
       OnClick = btnTarefasClick
-      ExplicitHeight = 55
     end
     object btnVendas: TButton
       Left = 151
@@ -193,7 +191,6 @@ object FormView: TFormView
       Caption = 'Vendas'
       TabOrder = 2
       OnClick = btnVendasClick
-      ExplicitHeight = 55
     end
   end
   object PageControl: TcxPageControl
@@ -205,8 +202,6 @@ object FormView: TFormView
     TabOrder = 4
     Properties.CloseButtonMode = cbmActiveTab
     Properties.CustomButtons.Buttons = <>
-    ExplicitTop = 64
-    ExplicitHeight = 362
     ClientRectBottom = 379
     ClientRectLeft = 4
     ClientRectRight = 1080
