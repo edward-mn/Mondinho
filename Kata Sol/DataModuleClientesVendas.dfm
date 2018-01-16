@@ -5,6 +5,7 @@ object DmClienteVendas: TDmClienteVendas
   object frxDBDatasetVendas: TfrxDBDataset
     UserName = 'Relatorio Vendas'
     CloseDataSource = False
+    DataSet = cdsVendas
     BCDToCurrency = False
     Left = 48
     Top = 78
@@ -18,7 +19,7 @@ object DmClienteVendas: TDmClienteVendas
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43102.704403935180000000
-    ReportOptions.LastChange = 43102.715434085650000000
+    ReportOptions.LastChange = 43116.482027916670000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
@@ -125,7 +126,7 @@ object DmClienteVendas: TDmClienteVendas
       object PageHeader1: TfrxPageHeader
         FillType = ftBrush
         Height = 22.677180000000000000
-        Top = 68.031540000000010000
+        Top = 68.031540000000000000
         Width = 718.110700000000000000
         object Memo2: TfrxMemoView
           Width = 718.110236220472400000
@@ -307,7 +308,7 @@ object DmClienteVendas: TDmClienteVendas
           Left = 81.000000000000000000
           Width = 114.973797070000000000
           Height = 18.897650000000000000
-          DataField = 'vendedores'
+          DataField = 'vendedor'
           DataSet = frxDBDatasetVendas
           DataSetName = 'Relatorio Vendas'
           Font.Charset = DEFAULT_CHARSET
@@ -318,7 +319,7 @@ object DmClienteVendas: TDmClienteVendas
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
           Fill.BackColor = clWhite
           Memo.UTF8W = (
-            '[Relatorio Vendas."vendedores"]')
+            '[Relatorio Vendas."vendedor"]')
           ParentFont = False
         end
         object Memo14: TfrxMemoView

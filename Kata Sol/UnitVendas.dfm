@@ -2,10 +2,10 @@ object FormVendas: TFormVendas
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
-  BorderStyle = bsSingle
+  BorderStyle = bsNone
   Caption = 'Vendas'
-  ClientHeight = 608
-  ClientWidth = 730
+  ClientHeight = 637
+  ClientWidth = 736
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,8 +21,8 @@ object FormVendas: TFormVendas
   object dbGridVendas: TDBGrid
     Left = 0
     Top = 0
-    Width = 603
-    Height = 608
+    Width = 609
+    Height = 637
     Align = alClient
     ReadOnly = True
     TabOrder = 0
@@ -33,10 +33,10 @@ object FormVendas: TFormVendas
     TitleFont.Style = []
   end
   object gbStatusVenda: TGroupBox
-    Left = 603
+    Left = 609
     Top = 0
     Width = 127
-    Height = 608
+    Height = 637
     Align = alRight
     Caption = 'Status'
     TabOrder = 1
@@ -109,7 +109,7 @@ object FormVendas: TFormVendas
     end
     object gbRelatorioVendas: TGroupBox
       Left = 2
-      Top = 501
+      Top = 530
       Width = 123
       Height = 105
       Align = alBottom
@@ -136,7 +136,7 @@ object FormVendas: TFormVendas
     end
   end
   object dsVendas: TDataSource
-    Left = 240
-    Top = 320
+    Left = 360
+    Top = 344
   end
 end

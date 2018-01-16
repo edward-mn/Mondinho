@@ -1,7 +1,7 @@
 object DmConexao: TDmConexao
   OldCreateOrder = False
-  Height = 241
-  Width = 622
+  Height = 220
+  Width = 625
   object sqlQueryToDo: TSQLQuery
     BeforeOpen = sqlQueryToDoBeforeOpen
     MaxBlobSize = -1
@@ -45,7 +45,7 @@ object DmConexao: TDmConexao
     LoginPrompt = False
     Params.Strings = (
       'BlobSize=-1'
-      'HostName=localhost:5433'
+      'HostName=localhost:5432'
       'DataBase=MiniMonde'
       'SchemaName=mondinho'
       'DriverName=DevartPostgreSQL'
@@ -57,7 +57,6 @@ object DmConexao: TDmConexao
       'IPVersion=IPv4'
       'UseUnicode=True'
       'Charset=')
-    Connected = True
     Left = 288
     Top = 24
   end
