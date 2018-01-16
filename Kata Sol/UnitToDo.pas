@@ -15,7 +15,6 @@ uses
 
 type
   TFormView = class(TForm)
-    dsToDo: TDataSource;
     LayoutControl: TdxLayoutGroup;
     dxLayoutControl1: TdxLayoutControl;
     dxLayoutItem1: TdxLayoutItem;
@@ -37,6 +36,7 @@ type
     dxLayoutGroup4: TdxLayoutGroup;
     dxLayoutImageItem1: TdxLayoutImageItem;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
+    dsToDo: TDataSource;
     procedure btnPessoasClick(Sender: TObject);
     procedure btnTarefasClick(Sender: TObject);
     procedure btnVendasClick(Sender: TObject);
@@ -152,7 +152,6 @@ begin
   dsToDo.DataSet := FClientesCadastro.cdsCadastro;
   FClientesCadastro.cdsCadastrosenha.Visible := False;
 end;
-
 
 procedure TFormView.FormCreate(Sender: TObject);
 begin

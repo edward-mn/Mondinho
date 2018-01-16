@@ -4,7 +4,7 @@ object FormView: TFormView
   BorderStyle = bsSingle
   Caption = 'Mondinho'
   ClientHeight = 620
-  ClientWidth = 994
+  ClientWidth = 938
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -23,7 +23,7 @@ object FormView: TFormView
     AlignWithMargins = True
     Left = 3
     Top = 3
-    Width = 988
+    Width = 932
     Height = 614
     Align = alClient
     TabOrder = 0
@@ -58,7 +58,7 @@ object FormView: TFormView
     object Panel1: TPanel
       Left = 10
       Top = 565
-      Width = 968
+      Width = 912
       Height = 39
       TabOrder = 4
       object lblNome: TLabel
@@ -76,7 +76,7 @@ object FormView: TFormView
         Caption = 'Usu'#225'rio :'
       end
       object btnLogout: TButton
-        Left = 894
+        Left = 838
         Top = 1
         Width = 73
         Height = 37
@@ -90,7 +90,6 @@ object FormView: TFormView
         ParentFont = False
         TabOrder = 0
         OnClick = btnLogoutClick
-        ExplicitHeight = 40
       end
     end
     object DBGrid1: TDBGrid
@@ -99,7 +98,6 @@ object FormView: TFormView
       Width = 320
       Height = 116
       BorderStyle = bsNone
-      DataSource = dsToDo
       TabOrder = 3
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
@@ -113,7 +111,7 @@ object FormView: TFormView
       CaptionOptions.Visible = False
       ButtonOptions.Buttons = <>
       Hidden = True
-      ItemIndex = 1
+      ItemIndex = 3
       ShowBorder = False
       Index = -1
     end
@@ -167,6 +165,7 @@ object FormView: TFormView
       CaptionOptions.Text = 'New Group'
       CaptionOptions.Visible = False
       ButtonOptions.Buttons = <>
+      ItemIndex = 2
       LayoutDirection = ldHorizontal
       Index = 0
     end
@@ -287,7 +286,7 @@ object FormView: TFormView
     end
   end
   object dsToDo: TDataSource
-    Left = 1139
-    Top = 160
+    Left = 40
+    Top = 472
   end
 end
