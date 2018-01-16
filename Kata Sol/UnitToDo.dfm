@@ -1,4 +1,4 @@
-object FormView: TFormView
+﻿object FormView: TFormView
   Left = 0
   Top = 0
   BorderStyle = bsSingle
@@ -28,7 +28,7 @@ object FormView: TFormView
     Align = alClient
     TabOrder = 0
     AutoSize = True
-    object Button2: TButton
+    object btnTarefas: TButton
       Left = 189
       Top = 28
       Width = 75
@@ -37,7 +37,7 @@ object FormView: TFormView
       TabOrder = 2
       OnClick = btnTarefasClick
     end
-    object Button3: TButton
+    object btnPessoas: TButton
       Left = 108
       Top = 28
       Width = 75
@@ -46,7 +46,7 @@ object FormView: TFormView
       TabOrder = 1
       OnClick = btnPessoasClick
     end
-    object Button4: TButton
+    object btnVendas: TButton
       Left = 22
       Top = 28
       Width = 80
@@ -55,7 +55,7 @@ object FormView: TFormView
       TabOrder = 0
       OnClick = btnVendasClick
     end
-    object Panel1: TPanel
+    object PanelFinal: TPanel
       Left = 10
       Top = 565
       Width = 912
@@ -68,7 +68,7 @@ object FormView: TFormView
         Height = 13
         Caption = 'NOME'
       end
-      object Label1: TLabel
+      object lblUsuario: TLabel
         Left = 15
         Top = 15
         Width = 43
@@ -92,7 +92,7 @@ object FormView: TFormView
         OnClick = btnLogoutClick
       end
     end
-    object DBGrid1: TDBGrid
+    object GridUsuarios: TDBGrid
       Left = 24
       Top = 429
       Width = 320
@@ -115,51 +115,51 @@ object FormView: TFormView
       ShowBorder = False
       Index = -1
     end
-    object dxLayoutItem1: TdxLayoutItem
-      Parent = dxLayoutGroup2
+    object layoutBotaoTarefas: TdxLayoutItem
+      Parent = layoutGrupoBotoes
       AlignHorz = ahLeft
       AlignVert = avTop
       CaptionOptions.Visible = False
-      Control = Button2
+      Control = btnTarefas
       ControlOptions.OriginalHeight = 37
       ControlOptions.OriginalWidth = 75
       ControlOptions.ShowBorder = False
       Index = 2
     end
-    object dxLayoutItem2: TdxLayoutItem
-      Parent = dxLayoutGroup2
+    object layoutBotãoPessoas: TdxLayoutItem
+      Parent = layoutGrupoBotoes
       AlignHorz = ahLeft
       AlignVert = avTop
       CaptionOptions.Visible = False
-      Control = Button3
+      Control = btnPessoas
       ControlOptions.OriginalHeight = 37
       ControlOptions.OriginalWidth = 75
       ControlOptions.ShowBorder = False
       Index = 1
     end
-    object dxLayoutItem3: TdxLayoutItem
-      Parent = dxLayoutGroup2
+    object layoutBotãoVendas: TdxLayoutItem
+      Parent = layoutGrupoBotoes
       AlignHorz = ahLeft
       AlignVert = avTop
       CaptionOptions.Visible = False
-      Control = Button4
+      Control = btnVendas
       ControlOptions.OriginalHeight = 37
       ControlOptions.OriginalWidth = 80
       ControlOptions.ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem4: TdxLayoutItem
+    object layoutBarraFim: TdxLayoutItem
       Parent = LayoutControl
       CaptionOptions.Visible = False
-      Control = Panel1
+      Control = PanelFinal
       ControlOptions.AutoColor = True
       ControlOptions.OriginalHeight = 39
       ControlOptions.OriginalWidth = 185
       ControlOptions.ShowBorder = False
       Index = 3
     end
-    object dxLayoutGroup2: TdxLayoutGroup
-      Parent = dxLayoutAutoCreatedGroup1
+    object layoutGrupoBotoes: TdxLayoutGroup
+      Parent = layoutGrupoTopo
       AlignHorz = ahLeft
       AlignVert = avTop
       CaptionOptions.Text = 'New Group'
@@ -169,8 +169,8 @@ object FormView: TFormView
       LayoutDirection = ldHorizontal
       Index = 0
     end
-    object Grupo01: TdxLayoutGroup
-      Parent = dxLayoutGroup4
+    object GrupoForms: TdxLayoutGroup
+      Parent = layoutGrupoPrincipal
       AlignVert = avClient
       ButtonOptions.Buttons = <>
       LayoutDirection = ldTabbed
@@ -178,15 +178,15 @@ object FormView: TFormView
       TabbedOptions.CloseButtonMode = cbmActiveTab
       Index = 0
     end
-    object GrupoGrid: TdxLayoutItem
-      Parent = dxLayoutGroup3
+    object layoutGridUsuarios: TdxLayoutItem
+      Parent = layoutGrupoGridUsuarios
       CaptionOptions.ShowAccelChar = False
-      Control = DBGrid1
+      Control = GridUsuarios
       ControlOptions.OriginalHeight = 116
       ControlOptions.OriginalWidth = 320
       Index = 0
     end
-    object dxLayoutGroup3: TdxLayoutGroup
+    object layoutGrupoGridUsuarios: TdxLayoutGroup
       Parent = LayoutControl
       AlignHorz = ahLeft
       AlignVert = avTop
@@ -194,7 +194,7 @@ object FormView: TFormView
       ButtonOptions.Buttons = <>
       Index = 2
     end
-    object dxLayoutGroup4: TdxLayoutGroup
+    object layoutGrupoPrincipal: TdxLayoutGroup
       Parent = LayoutControl
       AlignVert = avClient
       CaptionOptions.Visible = False
@@ -202,8 +202,8 @@ object FormView: TFormView
       ShowBorder = False
       Index = 1
     end
-    object dxLayoutImageItem1: TdxLayoutImageItem
-      Parent = dxLayoutAutoCreatedGroup1
+    object layoutImagemLogoMondinho: TdxLayoutImageItem
+      Parent = layoutGrupoTopo
       AlignHorz = ahRight
       AlignVert = avClient
       CaptionOptions.Visible = False
@@ -277,7 +277,7 @@ object FormView: TFormView
         70652E6F72679BEE3C1A0000000049454E44AE426082}
       Index = 1
     end
-    object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
+    object layoutGrupoTopo: TdxLayoutAutoCreatedGroup
       Parent = LayoutControl
       AlignVert = avTop
       LayoutDirection = ldHorizontal
