@@ -10,22 +10,33 @@ uses
   UnitTarefas, Vcl.ExtCtrls, UnitVendas, UnitPessoas, Vcl.Imaging.pngimage,
   dxGDIPlusClasses, System.UITypes, DataModuleControleDeUsuario, DataModuleClientesCadastro,
   Vcl.ComCtrls, cxGraphics, cxControls, cxLookAndFeels, cxLookAndFeelPainters,
-  dxBarBuiltInMenu, cxPC;
+  dxBarBuiltInMenu, cxPC, dxLayoutControlAdapters, dxLayoutContainer, cxClasses,
+  dxLayoutControl;
 
 type
   TFormView = class(TForm)
-    dbGridPrincipal: TDBGrid;
     dsToDo: TDataSource;
+    LayoutControl: TdxLayoutGroup;
+    dxLayoutControl1: TdxLayoutControl;
+    dxLayoutItem1: TdxLayoutItem;
+    Button2: TButton;
+    dxLayoutItem2: TdxLayoutItem;
+    Button3: TButton;
+    dxLayoutItem3: TdxLayoutItem;
+    Button4: TButton;
+    dxLayoutItem4: TdxLayoutItem;
     Panel1: TPanel;
-    btnLogout: TButton;
-    Panel2: TPanel;
-    Image1: TImage;
-    PageControl: TcxPageControl;
-    btnPessoas: TButton;
-    Button1: TButton;
-    btnVendas: TButton;
     lblNome: TLabel;
     Label1: TLabel;
+    btnLogout: TButton;
+    dxLayoutGroup2: TdxLayoutGroup;
+    Grupo01: TdxLayoutGroup;
+    DBGrid1: TDBGrid;
+    GrupoGrid: TdxLayoutItem;
+    dxLayoutGroup3: TdxLayoutGroup;
+    dxLayoutGroup4: TdxLayoutGroup;
+    dxLayoutImageItem1: TdxLayoutImageItem;
+    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     procedure btnPessoasClick(Sender: TObject);
     procedure btnTarefasClick(Sender: TObject);
     procedure btnVendasClick(Sender: TObject);
@@ -41,10 +52,7 @@ type
     procedure ControleDeUsuarioLogout;
     procedure ProviderControle;
     procedure DefinirDataSet;
-    procedure CriarFormTarefas;
-    procedure CriarFormVendas;
-    procedure CriarFormPessoas;
-    function CriarFormEmAba(ClasseForm: TFormClass): TForm;
+    function CriarAba(AbaForm: TFormClass;AbaNome : String) :TForm;
   public
     ID_Login: Integer;
     constructor Create(AOwner: TComponent); override;
@@ -76,17 +84,17 @@ end;
 
 procedure TFormView.btnPessoasClick(Sender: TObject);
 begin
-  CriarFormPessoas();
+  CriarAba(TFormPessoas,'Pessoas');
 end;
 
 procedure TFormView.btnTarefasClick(Sender: TObject);
 begin
-  CriarFormTarefas();
+  CriarAba(TFormTarefas,'Tarefas');
 end;
 
 procedure TFormView.btnVendasClick(Sender: TObject);
 begin
-  CriarFormVendas();
+  CriarAba(TFormVendas,'Vendas');
 end;
 
 procedure TFormView.btnLogoutClick(Sender: TObject);
@@ -112,51 +120,24 @@ begin
   FClientesControle.cdsControleDeUsuario.Close;
 end;
 
-function TFormView.CriarFormEmAba(ClasseForm: TFormClass): TForm;
+function TFormView.CriarAba(AbaForm :TFormClass;AbaNome : String) :TForm;
 var
-  Aba: TcxTabSheet;
-  Form: TForm;
-  I : Integer;
+  Item: TdxLayoutItem;
+  I: Integer;
 begin
-  for I := 0 to PageControl.PageCount -1 do
-  begin
-    Form := PageControl.Pages[I].Controls[0] as TForm;
-
-    if Form.ClassName = ClasseForm.ClassName then
+   for I := 0 to Grupo01.Count - 1 do
+    if (Grupo01.Items[I] as TdxLayoutItem).Control is AbaForm then
     begin
-      PageControl.ActivePage := PageControl.Pages[I];
-      Form.SetFocus;
-      Result := Form;
-      Exit; 
+      Grupo01.Items[I].MakeVisible;
+      ((Grupo01.Items[I] as TdxLayoutItem).Control as TWinControl).SetFocus;
+      Exit;
     end;
-  end;
-    
-  Aba := TcxTabSheet.Create(PageControl);
-  Aba.PageControl := PageControl;
-  PageControl.ActivePage := Aba;
-
-  Result := ClasseForm.Create(Aba);
-  Result.Parent := Aba;
-  Result.Align := alClient;
-  Result.BorderStyle := bsNone;
-  Result.Show;
-
-  Aba.Caption := Result.Caption;
-end;
-
-procedure TFormView.CriarFormPessoas;
-begin
-  CriarFormEmAba(TFormPessoas);
-end;
-
-procedure TFormView.CriarFormTarefas;
-begin
-  CriarFormEmAba(TFormTarefas);
-end;
-
-procedure TFormView.CriarFormVendas;
-begin
-  CriarFormEmAba(TFormVendas);
+    begin
+      Item := Grupo01.CreateItem(TdxLayoutItem) as TdxLayoutItem;
+      Item.Control := AbaForm.Create(Item);
+      Item.CaptionOptions.Visible := False;
+      Item.Caption := AbaNome;
+    end;
 end;
 
 procedure TFormView.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -167,7 +148,6 @@ end;
 procedure TFormView.DefinirDataSet;
 begin
   dsToDo.DataSet := FClientesCadastro.cdsCadastro;
-  dbGridPrincipal.DataSource := dsToDo;
   FClientesCadastro.cdsCadastrosenha.Visible := False;
 end;
 
@@ -182,7 +162,6 @@ end;
 procedure TFormView.FormShow(Sender: TObject);
 begin
   ControleDeUsuarioLogin;
-  lblNome.Caption := Conexao.Usuario.Nome;
 end;
 
 procedure TFormView.Logout;
