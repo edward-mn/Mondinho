@@ -40,8 +40,6 @@ object FormVendas: TFormVendas
     Align = alRight
     Caption = 'Status'
     TabOrder = 1
-    ExplicitLeft = 603
-    ExplicitHeight = 608
     object cbExcluida: TCheckBox
       Left = 6
       Top = 56
@@ -117,7 +115,6 @@ object FormVendas: TFormVendas
       Align = alBottom
       Caption = 'Relat'#243'rio'
       TabOrder = 6
-      ExplicitTop = 501
       object btnVisualizarRelatorio: TButton
         Left = 7
         Top = 23
@@ -139,7 +136,7 @@ object FormVendas: TFormVendas
     end
   end
   object dsVendas: TDataSource
-    Left = 240
-    Top = 320
+    Left = 360
+    Top = 344
   end
 end
