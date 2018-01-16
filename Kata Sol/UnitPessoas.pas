@@ -137,7 +137,6 @@ end;
 
 procedure TFormPessoas.FormShow(Sender: TObject);
 begin
-  Conexao.MostrarPessoas(Conexao.Usuario.Id);
   DefinirDataSet;
 end;
 

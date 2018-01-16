@@ -183,7 +183,6 @@ object FormEditarVendas: TFormEditarVendas
       Top = 60
       DataBinding.DataField = 'id_vendedor'
       DataBinding.DataSource = dsEditarVendas
-      Properties.DropDownListStyle = lsFixedList
       Properties.KeyFieldNames = 'id_vendedor'
       Properties.ListColumns = <
         item
@@ -222,11 +221,11 @@ object FormEditarVendas: TFormEditarVendas
     OnClick = btnFinalizarVendaClick
   end
   object dsEditarVendas: TDataSource
-    Left = 354
-    Top = 332
+    Left = 402
+    Top = 284
   end
   object dsVendedores: TDataSource
-    Left = 328
-    Top = 208
+    Left = 304
+    Top = 280
   end
 end

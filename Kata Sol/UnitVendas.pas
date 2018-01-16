@@ -133,7 +133,6 @@ end;
 
 procedure TFormVendas.FormShow(Sender: TObject);
 begin
-//  Conexao.MostrarVendas(Conexao.Usuario.Id);
   DefinirDataSet;
 end;
 
