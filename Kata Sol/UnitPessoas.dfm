@@ -1,12 +1,11 @@
 object FormPessoas: TFormPessoas
   Left = 0
   Top = 0
-  Align = alClient
   BorderIcons = [biSystemMenu, biMinimize]
-  BorderStyle = bsSingle
+  BorderStyle = bsNone
   Caption = 'Pessoas'
-  ClientHeight = 576
-  ClientWidth = 750
+  ClientHeight = 462
+  ClientWidth = 756
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,13 +15,15 @@ object FormPessoas: TFormPessoas
   OldCreateOrder = False
   Position = poMainFormCenter
   OnShow = FormShow
+  ExplicitWidth = 320
+  ExplicitHeight = 240
   PixelsPerInch = 96
   TextHeight = 13
   object dbGridPessoas: TDBGrid
     Left = 0
     Top = 0
-    Width = 619
-    Height = 576
+    Width = 625
+    Height = 462
     Align = alClient
     ReadOnly = True
     TabOrder = 0
@@ -33,13 +34,15 @@ object FormPessoas: TFormPessoas
     TitleFont.Style = []
   end
   object gbStatusPessoas: TGroupBox
-    Left = 619
+    Left = 625
     Top = 0
     Width = 131
-    Height = 576
+    Height = 462
     Align = alRight
     Caption = 'Status'
     TabOrder = 1
+    ExplicitLeft = 534
+    ExplicitHeight = 422
     object cbEmpresa: TCheckBox
       Left = 5
       Top = 79
@@ -118,12 +121,15 @@ object FormPessoas: TFormPessoas
     end
     object gbRelatorioPessoas: TGroupBox
       Left = 2
-      Top = 475
+      Top = 361
       Width = 127
       Height = 99
       Align = alBottom
       Caption = 'Relat'#243'rio'
       TabOrder = 7
+      ExplicitLeft = 9
+      ExplicitTop = 323
+      ExplicitWidth = 120
       object bntVisualizar: TButton
         Left = 10
         Top = 24

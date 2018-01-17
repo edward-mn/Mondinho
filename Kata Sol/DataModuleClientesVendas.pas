@@ -17,6 +17,8 @@ end;
   TAoValidar = reference to procedure (const msg, FieldName : string);
 
   TDmClienteVendas = class(TDataModule)
+    frxDBDatasetVendas: TfrxDBDataset;
+    frxReportVendas: TfrxReport;
     cdsVendas: TClientDataSet;
     cdsVendasid_produtos: TIntegerField;
     cdsVendasvendedores: TWideStringField;

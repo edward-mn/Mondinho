@@ -18,7 +18,10 @@ uses
   DataModuleClientesPessoas in 'DataModuleClientesPessoas.pas' {DmClientesPessoas: TDataModule},
   DataModuleClientesTarefas in 'DataModuleClientesTarefas.pas' {DmClientesTarefas: TDataModule},
   DataModuleControleDeUsuario in 'DataModuleControleDeUsuario.pas' {DmControleDeUsuario: TDataModule},
-  Login in 'Login.pas';
+  Login in 'Login.pas',
+  DataModuleVendedores in 'DataModuleVendedores.pas' {DmClienteVendedores: TDataModule},
+  DataModuleVendasValorTotal in 'DataModuleVendasValorTotal.pas' {DmVendasValorTotal: TDataModule},
+  DataModuleVendasQuantidade in 'DataModuleVendasQuantidade.pas' {DmVendasQuantidade: TDataModule};
 
 {$R *.res}
 
@@ -41,5 +44,8 @@ begin
   Application.CreateForm(TDmClientesPessoas, DmClientesPessoas);
   Application.CreateForm(TDmClientesTarefas, DmClientesTarefas);
   Application.CreateForm(TDmControleDeUsuario, DmControleDeUsuario);
+  Application.CreateForm(TDmClienteVendedores, DmClienteVendedores);
+  Application.CreateForm(TDmVendasValorTotal, DmVendasValorTotal);
+  Application.CreateForm(TDmVendasQuantidade, DmVendasQuantidade);
   Application.Run;
 end.

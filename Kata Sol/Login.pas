@@ -36,6 +36,7 @@ begin
   begin
     FId := Conexao.sqlQueryCadastroid.Value;
     FNome := Conexao.sqlQueryCadastronome_usuario.Value;
+    Conexao.ID_Login := FId;
   end;
 end;
 

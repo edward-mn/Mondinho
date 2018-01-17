@@ -81,7 +81,7 @@ object DmClienteVendas: TDmClienteVendas
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43102.704403935180000000
-    ReportOptions.LastChange = 43102.715434085650000000
+    ReportOptions.LastChange = 43116.482027916670000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
@@ -188,7 +188,7 @@ object DmClienteVendas: TDmClienteVendas
       object PageHeader1: TfrxPageHeader
         FillType = ftBrush
         Height = 22.677180000000000000
-        Top = 68.031540000000010000
+        Top = 68.031540000000000000
         Width = 718.110700000000000000
         object Memo2: TfrxMemoView
           Width = 718.110236220472400000
@@ -370,7 +370,7 @@ object DmClienteVendas: TDmClienteVendas
           Left = 81.000000000000000000
           Width = 114.973797070000000000
           Height = 18.897650000000000000
-          DataField = 'vendedores'
+          DataField = 'vendedor'
           DataSet = frxDBDatasetVendas
           DataSetName = 'Relatorio Vendas'
           Font.Charset = DEFAULT_CHARSET
@@ -381,7 +381,7 @@ object DmClienteVendas: TDmClienteVendas
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
           Fill.BackColor = clWhite
           Memo.UTF8W = (
-            '[Relatorio Vendas."vendedores"]')
+            '[Relatorio Vendas."vendedor"]')
           ParentFont = False
         end
         object Memo14: TfrxMemoView
@@ -527,6 +527,66 @@ object DmClienteVendas: TDmClienteVendas
             'Page [Page#]')
         end
       end
+    end
+  end
+  object cdsVendas: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'sqlProviderVendas'
+    Left = 48
+    Top = 33
+    object cdsVendasid_produtos: TIntegerField
+      DisplayLabel = 'C'#243'd. Produtos'
+      FieldName = 'id_produtos'
+    end
+    object cdsVendasfornecedores: TWideStringField
+      DisplayLabel = 'Fornecedores'
+      FieldName = 'fornecedores'
+      Size = 50
+    end
+    object cdsVendasstatus: TWideStringField
+      DisplayLabel = 'Status'
+      FieldName = 'status'
+    end
+    object cdsVendasprodutos: TWideStringField
+      DisplayLabel = 'Produtos'
+      FieldName = 'produtos'
+      Size = 50
+    end
+    object cdsVendasvalor_produto: TFMTBCDField
+      DisplayLabel = 'Pre'#231'o'
+      FieldName = 'valor_produto'
+      EditFormat = '0.00'
+      currency = True
+      Precision = 11
+      Size = 2
+    end
+    object cdsVendasquantidade: TIntegerField
+      DisplayLabel = 'Quantidade'
+      FieldName = 'quantidade'
+    end
+    object cdsVendasvalor_total: TFMTBCDField
+      DisplayLabel = 'Valor Total'
+      FieldName = 'valor_total'
+      EditFormat = '0.00'
+      currency = True
+      Precision = 11
+      Size = 2
+    end
+    object cdsVendasdata: TDateField
+      DisplayLabel = 'Data'
+      FieldName = 'data'
+      EditMask = '!99/99/0000;'
+    end
+    object cdsVendasid_cadastro: TIntegerField
+      FieldName = 'id_cadastro'
+    end
+    object cdsVendasid_vendedor: TIntegerField
+      FieldName = 'id_vendedor'
+    end
+    object cdsVendasvendedor: TWideStringField
+      FieldName = 'vendedor'
+      Size = 50
     end
   end
 end

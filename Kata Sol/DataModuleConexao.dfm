@@ -1,12 +1,19 @@
 object DmConexao: TDmConexao
   OldCreateOrder = False
-  Height = 247
-  Width = 506
+  Height = 222
+  Width = 901
   object sqlQueryToDo: TSQLQuery
+    BeforeOpen = sqlQueryToDoBeforeOpen
     MaxBlobSize = -1
-    Params = <>
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptInput
+      end>
     SQL.Strings = (
-      '')
+      'select * from monde_todo'
+      'where id_cadastro = :id')
     SQLConnection = sqlConexao
     Left = 32
     Top = 88
@@ -61,10 +68,19 @@ object DmConexao: TDmConexao
     Top = 160
   end
   object sqlQueryVendas: TSQLQuery
+    BeforeOpen = sqlQueryVendasBeforeOpen
     MaxBlobSize = -1
-    Params = <>
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptInput
+      end>
     SQL.Strings = (
-      '')
+      'select v.*, ve.nome vendedor '
+      'from vendas v'
+      'left join vendedores ve on v.id_vendedor = ve.id_vendedor'
+      'where id_cadastro = :id')
     SQLConnection = sqlConexao
     Left = 120
     Top = 88
@@ -109,6 +125,14 @@ object DmConexao: TDmConexao
     object sqlQueryVendasid_cadastro: TIntegerField
       FieldName = 'id_cadastro'
     end
+    object sqlQueryVendasid_vendedor: TIntegerField
+      FieldName = 'id_vendedor'
+    end
+    object sqlQueryVendasvendedor: TWideStringField
+      FieldName = 'vendedor'
+      ProviderFlags = []
+      Size = 50
+    end
   end
   object sqlProviderVendas: TDataSetProvider
     DataSet = sqlQueryVendas
@@ -119,17 +143,24 @@ object DmConexao: TDmConexao
   object sqlProviderPessoas: TDataSetProvider
     DataSet = sqlQueryPessoas
     Options = [poPropogateChanges, poUseQuoteChar]
-    Left = 235
-    Top = 161
+    Left = 217
+    Top = 159
   end
   object sqlQueryPessoas: TSQLQuery
+    BeforeOpen = sqlQueryPessoasBeforeOpen
     MaxBlobSize = -1
-    Params = <>
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptInput
+      end>
     SQL.Strings = (
-      'select * from pessoas;')
+      'select * from pessoas'
+      'where id_cadastro = :id')
     SQLConnection = sqlConexao
-    Left = 235
-    Top = 89
+    Left = 216
+    Top = 87
     object sqlQueryPessoasid_pessoas: TIntegerField
       FieldName = 'id_pessoas'
     end
@@ -165,7 +196,7 @@ object DmConexao: TDmConexao
   object sqlProviderCadastro: TDataSetProvider
     DataSet = sqlQueryCadastro
     Options = [poPropogateChanges, poUseQuoteChar]
-    Left = 336
+    Left = 319
     Top = 158
   end
   object sqlQueryCadastro: TSQLQuery
@@ -174,8 +205,8 @@ object DmConexao: TDmConexao
     SQL.Strings = (
       'select  * from monde_cadastro')
     SQLConnection = sqlConexao
-    Left = 336
-    Top = 88
+    Left = 318
+    Top = 86
     object sqlQueryCadastroid: TIntegerField
       FieldName = 'id'
     end
@@ -194,8 +225,8 @@ object DmConexao: TDmConexao
     SQL.Strings = (
       'select * from controledeusuario')
     SQLConnection = sqlConexao
-    Left = 440
-    Top = 88
+    Left = 416
+    Top = 85
     object sqlQueryControleid_controle: TIntegerField
       FieldName = 'id_controle'
     end
@@ -207,7 +238,96 @@ object DmConexao: TDmConexao
   object sqlProviderControle: TDataSetProvider
     DataSet = sqlQueryControle
     Options = [poPropogateChanges, poUseQuoteChar]
-    Left = 440
-    Top = 160
+    Left = 423
+    Top = 157
+  end
+  object sqlProviderVendedores: TDataSetProvider
+    DataSet = sqlQueryVendedores
+    Left = 533
+    Top = 156
+  end
+  object sqlQueryVendedores: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'select * from vendedores')
+    SQLConnection = sqlConexao
+    Left = 520
+    Top = 84
+    object sqlQueryVendedoresid_vendedor: TIntegerField
+      FieldName = 'id_vendedor'
+    end
+    object sqlQueryVendedoresnome: TWideStringField
+      FieldName = 'nome'
+      Size = 50
+    end
+    object sqlQueryVendedorescpf: TFMTBCDField
+      FieldName = 'cpf'
+      Precision = 11
+      Size = 0
+    end
+  end
+  object sqlQueryVendasValorTotal: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      
+        'select vdd.nome,cast(string_agg(vda.produtos, '#39', '#39') as varchar (' +
+        '200)) produtos, sum(vda.valor_total) from  vendas vda'
+      'inner join vendedores vdd on (vdd.id_vendedor = vda.id_vendedor)'
+      'group by vdd.nome'
+      'order by sum(vda.valor_total) desc ')
+    SQLConnection = sqlConexao
+    Left = 646
+    Top = 83
+    object sqlQueryVendasValorTotalnome: TWideStringField
+      FieldName = 'nome'
+      Size = 50
+    end
+    object sqlQueryVendasValorTotalprodutos: TWideStringField
+      FieldName = 'produtos'
+      Size = 200
+    end
+    object sqlQueryVendasValorTotalsum: TFMTBCDField
+      FieldName = 'sum'
+      Precision = 32
+    end
+  end
+  object sqlQueryQuantidadeVendas: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      
+        'select vdd.nome, cast(string_agg(vda.produtos, '#39', '#39') as varchar ' +
+        '(200)) produtos, sum(vda.quantidade) from  vendas vda'
+      'inner join vendedores vdd on (vdd.id_vendedor = vda.id_vendedor)'
+      'group by vdd.nome'
+      'order by sum(vda.quantidade) desc ')
+    SQLConnection = sqlConexao
+    Left = 791
+    Top = 81
+    object sqlQueryQuantidadeVendasnome: TWideStringField
+      FieldName = 'nome'
+      Size = 50
+    end
+    object sqlQueryQuantidadeVendasprodutos: TWideStringField
+      FieldName = 'produtos'
+      Size = 200
+    end
+    object sqlQueryQuantidadeVendassum: TFMTBCDField
+      FieldName = 'sum'
+      Precision = 19
+      Size = 0
+    end
+  end
+  object sqlProviderVendasValorTotal: TDataSetProvider
+    DataSet = sqlQueryVendasValorTotal
+    Left = 659
+    Top = 155
+  end
+  object sqlProviderQuantidadeVendas: TDataSetProvider
+    DataSet = sqlQueryQuantidadeVendas
+    Left = 802
+    Top = 154
   end
 end

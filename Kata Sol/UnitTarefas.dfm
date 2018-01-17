@@ -2,10 +2,10 @@ object FormTarefas: TFormTarefas
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
-  BorderStyle = bsSingle
+  BorderStyle = bsNone
   Caption = 'Tarefas'
-  ClientHeight = 588
-  ClientWidth = 732
+  ClientHeight = 617
+  ClientWidth = 738
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,13 +18,15 @@ object FormTarefas: TFormTarefas
   PixelsPerInch = 96
   TextHeight = 13
   object gbStatusTarefas: TGroupBox
-    Left = 603
+    Left = 609
     Top = 0
     Width = 129
-    Height = 588
+    Height = 617
     Align = alRight
     Caption = 'Status'
     TabOrder = 0
+    ExplicitLeft = 603
+    ExplicitHeight = 588
     object cbAtrasadas: TCheckBox
       Left = 8
       Top = 92
@@ -94,12 +96,13 @@ object FormTarefas: TFormTarefas
     end
     object gbRelatorioTarefas: TGroupBox
       Left = 2
-      Top = 489
+      Top = 518
       Width = 125
       Height = 97
       Align = alBottom
       Caption = 'Relat'#243'rio'
       TabOrder = 6
+      ExplicitTop = 489
       object btnImprimir: TButton
         Left = 14
         Top = 56
@@ -123,8 +126,8 @@ object FormTarefas: TFormTarefas
   object dbGridTarefas: TDBGrid
     Left = 0
     Top = 0
-    Width = 603
-    Height = 588
+    Width = 609
+    Height = 617
     Align = alClient
     ReadOnly = True
     TabOrder = 1

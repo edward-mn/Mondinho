@@ -4,7 +4,7 @@ interface
 
 uses
   System.SysUtils, System.Classes, Data.FMTBcd, Datasnap.Provider, Data.DB,
-  Data.SqlExpr, Datasnap.DBClient, DbxDevartPostgreSQL, Login;
+  Data.SqlExpr, Datasnap.DBClient, DbxDevartPostgreSQL, Login, Data.DBXCommon;
 
 type
   TDmConexao = class(TDataModule)
@@ -29,6 +29,14 @@ type
     sqlQueryVendasvalor_total: TFMTBCDField;
     sqlProviderPessoas: TDataSetProvider;
     sqlQueryPessoas: TSQLQuery;
+    sqlQueryPessoasid_pessoas: TIntegerField;
+    sqlQueryPessoaspessoas: TWideStringField;
+    sqlQueryPessoascpf: TFMTBCDField;
+    sqlQueryPessoasendereco: TWideStringField;
+    sqlQueryPessoastelefone: TFMTBCDField;
+    sqlQueryPessoascelular: TFMTBCDField;
+    sqlQueryPessoasstatus: TWideStringField;
+    sqlQueryPessoasdata: TDateField;
     sqlProviderCadastro: TDataSetProvider;
     sqlQueryCadastro: TSQLQuery;
     sqlQueryCadastroid: TIntegerField;
@@ -36,24 +44,34 @@ type
     sqlQueryCadastrosenha: TWideStringField;
     sqlQueryToDoid_cadastro: TIntegerField;
     sqlQueryVendasid_cadastro: TIntegerField;
+    sqlQueryPessoasid_cadastro: TIntegerField;
     sqlQueryControle: TSQLQuery;
     sqlProviderControle: TDataSetProvider;
     sqlQueryControleid_controle: TIntegerField;
     sqlQueryControlecontrole_de_usuario: TWideStringField;
-    sqlQueryPessoasid_pessoas: TIntegerField;
-    sqlQueryPessoaspessoas: TWideStringField;
-    sqlQueryPessoascpf_cnpj: TWideStringField;
-    sqlQueryPessoasendereco: TWideStringField;
-    sqlQueryPessoasstatus: TWideStringField;
-    sqlQueryPessoasdata: TDateField;
-    sqlQueryPessoasid_cadastro: TIntegerField;
-    sqlQueryPessoastelefone: TWideStringField;
-    sqlQueryPessoascelular: TWideStringField;
+    sqlQueryVendasid_vendedor: TIntegerField;
+    sqlProviderVendedores: TDataSetProvider;
+    sqlQueryVendedores: TSQLQuery;
+    sqlQueryVendedoresid_vendedor: TIntegerField;
+    sqlQueryVendedoresnome: TWideStringField;
+    sqlQueryVendedorescpf: TFMTBCDField;
+    sqlQueryVendasvendedor: TWideStringField;
+    sqlQueryVendasValorTotal: TSQLQuery;
+    sqlQueryQuantidadeVendas: TSQLQuery;
+    sqlProviderVendasValorTotal: TDataSetProvider;
+    sqlProviderQuantidadeVendas: TDataSetProvider;
+    sqlQueryVendasValorTotalnome: TWideStringField;
+    sqlQueryVendasValorTotalprodutos: TWideStringField;
+    sqlQueryVendasValorTotalsum: TFMTBCDField;
+    sqlQueryQuantidadeVendasnome: TWideStringField;
+    sqlQueryQuantidadeVendasprodutos: TWideStringField;
+    sqlQueryQuantidadeVendassum: TFMTBCDField;
+    procedure sqlQueryPessoasBeforeOpen(DataSet: TDataSet);
+    procedure sqlQueryToDoBeforeOpen(DataSet: TDataSet);
+    procedure sqlQueryVendasBeforeOpen(DataSet: TDataSet);
   public
     Usuario: TUsuario;
-    procedure MostrarTarefas(ID_Login : Integer);
-    procedure MostrarPessoas(ID_Login : Integer);
-    procedure MostrarVendas(ID_Login : Integer);
+    ID_Login: Integer;
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
   end;
@@ -83,27 +101,26 @@ begin
   inherited;
 end;
 
-procedure TDmConexao.MostrarPessoas;
-begin
-  Conexao.sqlQueryPessoas.SQL.CommaText := ('select * from pessoas where id_cadastro =' + IntToStr(ID_Login));
-end;
-
-procedure TDmConexao.MostrarTarefas(ID_Login : Integer);
-begin
-  Conexao.sqlQueryToDo.SQL.CommaText := ('select * from monde_todo where id_cadastro =' + IntToStr(ID_Login));
-end;
-
 constructor TDmConexao.Create(AOwner: TComponent);
 begin
   inherited;
   Usuario := TUsuario.Create;
 end;
 
-procedure TDmConexao.MostrarVendas;
+procedure TDmConexao.sqlQueryPessoasBeforeOpen(DataSet: TDataSet);
 begin
-  Conexao.sqlQueryVendas.SQL.CommaText := ('select * from vendas where id_cadastro =' + IntToStr(ID_Login));
+  sqlQueryPessoas.ParamByName('id').Value := ID_Login;
 end;
 
+procedure TDmConexao.sqlQueryToDoBeforeOpen(DataSet: TDataSet);
+begin
+  sqlQueryToDo.ParamByName('id').Value := ID_Login;
+end;
+
+procedure TDmConexao.sqlQueryVendasBeforeOpen(DataSet: TDataSet);
+begin
+  sqlQueryVendas.ParamByName('id').Value := ID_Login;
+end;
 
 initialization
 finalization

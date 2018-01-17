@@ -73,7 +73,6 @@ object FormEditarVendas: TFormEditarVendas
       Width = 66
       Height = 13
       Caption = '* Vendedores'
-      FocusControl = edtVendedores
     end
     object Label3: TLabel
       Left = 408
@@ -134,6 +133,15 @@ object FormEditarVendas: TFormEditarVendas
       TabOrder = 1
       Width = 123
     end
+   object edtFornecedores: TDBEdit
+      Left = 264
+      Top = 57
+      Width = 201
+      Height = 21
+      DataField = 'fornecedores'
+      DataSource = dsEditarVendas
+      TabOrder = 0
+    end
     object edtDBPreco: TcxDBCurrencyEdit
       Left = 208
       Top = 111
@@ -152,8 +160,17 @@ object FormEditarVendas: TFormEditarVendas
     end
     object SpDBQuantidade: TcxDBSpinEdit
       Left = 353
-      Top = 112
-      DataBinding.DataField = 'quantidade'
+      Top = 111
+      Width = 110
+      Height = 21
+      DataField = 'quantidade'
+      DataSource = dsEditarVendas
+      TabOrder = 4
+    end
+    object cxDBDateEdit1: TcxDBDateEdit
+      Left = 486
+      Top = 111
+      DataBinding.DataField = 'data'
       DataBinding.DataSource = dsEditarVendas
       TabOrder = 4
       Width = 110
@@ -178,10 +195,23 @@ object FormEditarVendas: TFormEditarVendas
       DataBinding.DataField = 'fornecedores'
       DataBinding.DataSource = dsEditarVendas
       TabOrder = 6
-      Width = 201
     end
-  end
-  object btnEditar: TButton
+    object cbVendedores: TcxDBLookupComboBox
+      Left = 24
+      Top = 60
+      DataBinding.DataField = 'id_vendedor'
+      DataBinding.DataSource = dsEditarVendas
+      Properties.KeyFieldNames = 'id_vendedor'
+      Properties.ListColumns = <
+        item
+          FieldName = 'nome'
+        end>
+      Properties.ListSource = dsVendedores
+      TabOrder = 6
+      Width = 145
+    end
+  end  
+object btnEditar: TButton
     Left = 21
     Top = 38
     Width = 105
@@ -209,7 +239,11 @@ object FormEditarVendas: TFormEditarVendas
     OnClick = btnFinalizarVendaClick
   end
   object dsEditarVendas: TDataSource
-    Left = 354
-    Top = 332
+    Left = 402
+    Top = 284
+  end
+  object dsVendedores: TDataSource
+    Left = 304
+    Top = 280
   end
 end
