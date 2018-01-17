@@ -8,18 +8,18 @@ uses
 
 type
   TDmClientesPessoas = class(TDataModule)
+    frxDBDatasetPessoas: TfrxDBDataset;
+    frxReportPessoas: TfrxReport;
     cdsPessoas: TClientDataSet;
     cdsPessoasid_pessoas: TIntegerField;
     cdsPessoaspessoas: TWideStringField;
-    cdsPessoascpf: TFMTBCDField;
     cdsPessoasendereco: TWideStringField;
-    cdsPessoastelefone: TFMTBCDField;
-    cdsPessoascelular: TFMTBCDField;
+    cdsPessoastelefone: TWideStringField;
+    cdsPessoascelular: TWideStringField;
     cdsPessoasstatus: TWideStringField;
+    cdsPessoascpf_cnpj: TWideStringField;
     cdsPessoasdata: TDateField;
     cdsPessoasid_cadastro: TIntegerField;
-    frxDBDatasetPessoas: TfrxDBDataset;
-    frxReportPessoas: TfrxReport;
   private
     { Private declarations }
   public

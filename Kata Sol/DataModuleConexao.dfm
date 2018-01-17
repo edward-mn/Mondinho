@@ -38,7 +38,7 @@ object DmConexao: TDmConexao
     LoginPrompt = False
     Params.Strings = (
       'BlobSize=-1'
-      'HostName=localhost:5432'
+      'HostName=localhost:5434'
       'DataBase=MiniMonde'
       'SchemaName=mondinho'
       'DriverName=DevartPostgreSQL'
@@ -50,6 +50,7 @@ object DmConexao: TDmConexao
       'IPVersion=IPv4'
       'UseUnicode=True'
       'Charset=')
+    Connected = True
     Left = 224
     Top = 16
   end
@@ -125,7 +126,7 @@ object DmConexao: TDmConexao
     MaxBlobSize = -1
     Params = <>
     SQL.Strings = (
-      '')
+      'select * from pessoas;')
     SQLConnection = sqlConexao
     Left = 235
     Top = 89
@@ -136,34 +137,26 @@ object DmConexao: TDmConexao
       FieldName = 'pessoas'
       Size = 50
     end
-    object sqlQueryPessoascpf: TFMTBCDField
-      Alignment = taLeftJustify
-      FieldName = 'cpf'
-      Precision = 11
-      Size = 0
+    object sqlQueryPessoascpf_cnpj: TWideStringField
+      FieldName = 'cpf_cnpj'
+      Size = 18
     end
     object sqlQueryPessoasendereco: TWideStringField
       FieldName = 'endereco'
       Size = 100
     end
-    object sqlQueryPessoastelefone: TFMTBCDField
-      Alignment = taLeftJustify
+    object sqlQueryPessoastelefone: TWideStringField
       FieldName = 'telefone'
-      Precision = 10
-      Size = 0
     end
-    object sqlQueryPessoascelular: TFMTBCDField
-      Alignment = taLeftJustify
+    object sqlQueryPessoascelular: TWideStringField
       FieldName = 'celular'
-      Precision = 11
-      Size = 0
+      Size = 21
     end
     object sqlQueryPessoasstatus: TWideStringField
       FieldName = 'status'
     end
     object sqlQueryPessoasdata: TDateField
       FieldName = 'data'
-      EditMask = '!99/99/0000;1;_'
     end
     object sqlQueryPessoasid_cadastro: TIntegerField
       FieldName = 'id_cadastro'

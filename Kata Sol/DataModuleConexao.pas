@@ -29,14 +29,6 @@ type
     sqlQueryVendasvalor_total: TFMTBCDField;
     sqlProviderPessoas: TDataSetProvider;
     sqlQueryPessoas: TSQLQuery;
-    sqlQueryPessoasid_pessoas: TIntegerField;
-    sqlQueryPessoaspessoas: TWideStringField;
-    sqlQueryPessoascpf: TFMTBCDField;
-    sqlQueryPessoasendereco: TWideStringField;
-    sqlQueryPessoastelefone: TFMTBCDField;
-    sqlQueryPessoascelular: TFMTBCDField;
-    sqlQueryPessoasstatus: TWideStringField;
-    sqlQueryPessoasdata: TDateField;
     sqlProviderCadastro: TDataSetProvider;
     sqlQueryCadastro: TSQLQuery;
     sqlQueryCadastroid: TIntegerField;
@@ -44,11 +36,19 @@ type
     sqlQueryCadastrosenha: TWideStringField;
     sqlQueryToDoid_cadastro: TIntegerField;
     sqlQueryVendasid_cadastro: TIntegerField;
-    sqlQueryPessoasid_cadastro: TIntegerField;
     sqlQueryControle: TSQLQuery;
     sqlProviderControle: TDataSetProvider;
     sqlQueryControleid_controle: TIntegerField;
     sqlQueryControlecontrole_de_usuario: TWideStringField;
+    sqlQueryPessoasid_pessoas: TIntegerField;
+    sqlQueryPessoaspessoas: TWideStringField;
+    sqlQueryPessoascpf_cnpj: TWideStringField;
+    sqlQueryPessoasendereco: TWideStringField;
+    sqlQueryPessoasstatus: TWideStringField;
+    sqlQueryPessoasdata: TDateField;
+    sqlQueryPessoasid_cadastro: TIntegerField;
+    sqlQueryPessoastelefone: TWideStringField;
+    sqlQueryPessoascelular: TWideStringField;
   public
     Usuario: TUsuario;
     procedure MostrarTarefas(ID_Login : Integer);

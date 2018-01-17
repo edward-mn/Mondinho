@@ -40,8 +40,6 @@ object FormPessoas: TFormPessoas
     Align = alRight
     Caption = 'Status'
     TabOrder = 1
-    ExplicitLeft = 534
-    ExplicitHeight = 422
     object cbEmpresa: TCheckBox
       Left = 5
       Top = 79
@@ -126,9 +124,6 @@ object FormPessoas: TFormPessoas
       Align = alBottom
       Caption = 'Relat'#243'rio'
       TabOrder = 7
-      ExplicitLeft = 9
-      ExplicitTop = 323
-      ExplicitWidth = 120
       object bntVisualizar: TButton
         Left = 10
         Top = 24
@@ -150,7 +145,7 @@ object FormPessoas: TFormPessoas
     end
   end
   object dsPessoas: TDataSource
-    Left = 72
-    Top = 328
+    Left = 640
+    Top = 344
   end
 end

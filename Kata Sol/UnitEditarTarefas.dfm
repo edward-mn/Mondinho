@@ -4,8 +4,8 @@ object FormEditarTarefas: TFormEditarTarefas
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Editar/Cadastrar Tarefas'
-  ClientHeight = 421
-  ClientWidth = 900
+  ClientHeight = 398
+  ClientWidth = 716
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -55,45 +55,45 @@ object FormEditarTarefas: TFormEditarTarefas
     OnClick = btnEditarClick
   end
   object gbFormulario: TGroupBox
-    Left = 130
+    Left = 138
     Top = 19
-    Width = 551
-    Height = 184
+    Width = 527
+    Height = 155
     Caption = 'Formul'#225'rio'
     Enabled = False
     TabOrder = 1
     object Label1: TLabel
-      Left = 13
-      Top = 84
+      Left = 181
+      Top = 28
       Width = 36
       Height = 13
       Caption = '* Nome'
       FocusControl = edtNome
     end
     object Label3: TLabel
-      Left = 363
-      Top = 84
+      Left = 13
+      Top = 28
       Width = 40
       Height = 13
       Caption = '* Status'
     end
     object Label4: TLabel
-      Left = 13
-      Top = 134
+      Left = 399
+      Top = 85
       Width = 32
       Height = 13
       Caption = '* Data'
     end
     object Label2: TLabel
       Left = 13
-      Top = 30
+      Top = 85
       Width = 41
       Height = 13
       Caption = '* Tarefa'
     end
     object edtNome: TDBEdit
-      Left = 13
-      Top = 103
+      Left = 181
+      Top = 47
       Width = 316
       Height = 21
       DataField = 'nomes'
@@ -102,18 +102,19 @@ object FormEditarTarefas: TFormEditarTarefas
     end
     object edtTarefa: TDBEdit
       Left = 13
-      Top = 49
-      Width = 524
+      Top = 104
+      Width = 364
       Height = 21
       DataField = 'tarefas'
       DataSource = dsCriarTarefas
       TabOrder = 0
     end
     object cbTarefas: TDBComboBox
-      Left = 363
-      Top = 103
-      Width = 145
+      Left = 13
+      Top = 47
+      Width = 156
       Height = 21
+      Style = csDropDownList
       DataField = 'status'
       DataSource = dsCriarTarefas
       Items.Strings = (
@@ -144,9 +145,9 @@ object FormEditarTarefas: TFormEditarTarefas
   end
   object dbGridCriacaoEdicao: TDBGrid
     Left = 0
-    Top = 236
-    Width = 900
-    Height = 185
+    Top = 200
+    Width = 716
+    Height = 198
     Align = alBottom
     ReadOnly = True
     TabOrder = 7
@@ -157,15 +158,15 @@ object FormEditarTarefas: TFormEditarTarefas
     TitleFont.Style = []
   end
   object cbData: TcxDBDateEdit
-    Left = 143
-    Top = 169
+    Left = 537
+    Top = 123
     Cursor = crArrow
     DataBinding.DataField = 'data'
     DataBinding.DataSource = dsCriarTarefas
     DragCursor = crArrow
     Properties.View = cavModern
     TabOrder = 8
-    Width = 90
+    Width = 94
   end
   object dsCriarTarefas: TDataSource
     Left = 240

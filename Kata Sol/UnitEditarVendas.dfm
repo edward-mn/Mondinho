@@ -4,8 +4,8 @@ object FormEditarVendas: TFormEditarVendas
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Editar/Criar Vendas'
-  ClientHeight = 421
-  ClientWidth = 900
+  ClientHeight = 390
+  ClientWidth = 810
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,8 +20,8 @@ object FormEditarVendas: TFormEditarVendas
   TextHeight = 13
   object dbGridEditarVendas: TDBGrid
     Left = 0
-    Top = 223
-    Width = 900
+    Top = 192
+    Width = 810
     Height = 198
     Align = alBottom
     ReadOnly = True
@@ -68,24 +68,23 @@ object FormEditarVendas: TFormEditarVendas
     Enabled = False
     TabOrder = 0
     object Label2: TLabel
-      Left = 24
-      Top = 41
+      Left = 152
+      Top = 34
       Width = 66
       Height = 13
       Caption = '* Vendedores'
       FocusControl = edtVendedores
     end
     object Label3: TLabel
-      Left = 264
-      Top = 41
+      Left = 408
+      Top = 37
       Width = 75
       Height = 13
       Caption = '* Fornecedores'
-      FocusControl = edtFornecedores
     end
     object Label4: TLabel
-      Left = 492
-      Top = 41
+      Left = 23
+      Top = 37
       Width = 40
       Height = 13
       Caption = '* Status'
@@ -96,15 +95,13 @@ object FormEditarVendas: TFormEditarVendas
       Width = 52
       Height = 13
       Caption = '* Produtos'
-      FocusControl = edtProdutos
     end
     object Label6: TLabel
-      Left = 219
+      Left = 208
       Top = 95
       Width = 36
       Height = 13
       Caption = '* Pre'#231'o'
-      FocusControl = edtPreco
     end
     object Label7: TLabel
       Left = 353
@@ -112,7 +109,6 @@ object FormEditarVendas: TFormEditarVendas
       Width = 65
       Height = 13
       Caption = '* Quantidade'
-      FocusControl = DBEdit16
     end
     object Label9: TLabel
       Left = 486
@@ -122,71 +118,67 @@ object FormEditarVendas: TFormEditarVendas
       Caption = '* Data'
     end
     object edtVendedores: TDBEdit
-      Left = 24
-      Top = 57
-      Width = 217
+      Left = 152
+      Top = 53
+      Width = 228
       Height = 21
       DataField = 'vendedores'
       DataSource = dsEditarVendas
       TabOrder = 0
     end
-    object edtFornecedores: TDBEdit
-      Left = 264
-      Top = 57
-      Width = 201
-      Height = 21
-      DataField = 'fornecedores'
-      DataSource = dsEditarVendas
-      TabOrder = 1
-    end
-    object edtProdutos: TDBEdit
-      Left = 24
-      Top = 111
-      Width = 161
-      Height = 21
-      DataField = 'produtos'
-      DataSource = dsEditarVendas
-      TabOrder = 2
-    end
-    object edtPreco: TDBEdit
-      Left = 219
-      Top = 111
-      Width = 110
-      Height = 21
-      DataField = 'valor_produto'
-      DataSource = dsEditarVendas
-      TabOrder = 3
-    end
-    object DBEdit16: TDBEdit
-      Left = 353
-      Top = 111
-      Width = 110
-      Height = 21
-      DataField = 'quantidade'
-      DataSource = dsEditarVendas
-      TabOrder = 4
-    end
-    object cxDBDateEdit1: TcxDBDateEdit
+    object cbDBData: TcxDBDateEdit
       Left = 486
       Top = 111
       DataBinding.DataField = 'data'
       DataBinding.DataSource = dsEditarVendas
-      TabOrder = 5
+      TabOrder = 1
+      Width = 123
+    end
+    object edtDBPreco: TcxDBCurrencyEdit
+      Left = 208
+      Top = 111
+      DataBinding.DataField = 'valor_produto'
+      DataBinding.DataSource = dsEditarVendas
+      TabOrder = 2
+      Width = 121
+    end
+    object edtDBProdutos: TcxDBTextEdit
+      Left = 23
+      Top = 112
+      DataBinding.DataField = 'produtos'
+      DataBinding.DataSource = dsEditarVendas
+      TabOrder = 3
+      Width = 170
+    end
+    object SpDBQuantidade: TcxDBSpinEdit
+      Left = 353
+      Top = 112
+      DataBinding.DataField = 'quantidade'
+      DataBinding.DataSource = dsEditarVendas
+      TabOrder = 4
       Width = 110
     end
-    object DBcbStatusVendas: TDBComboBox
-      Left = 493
-      Top = 57
-      Width = 105
-      Height = 21
-      DataField = 'status'
-      DataSource = dsEditarVendas
-      Items.Strings = (
+    object cbDBStatusVendas: TcxDBComboBox
+      Left = 23
+      Top = 56
+      DataBinding.DataField = 'status'
+      DataBinding.DataSource = dsEditarVendas
+      Properties.DropDownListStyle = lsEditFixedList
+      Properties.Items.Strings = (
         'Aberta'
         'Finalizada'
         'Excluida'
         'Cancelada')
+      TabOrder = 5
+      Width = 112
+    end
+    object edtDBFornecedores: TcxDBTextEdit
+      Left = 408
+      Top = 53
+      DataBinding.DataField = 'fornecedores'
+      DataBinding.DataSource = dsEditarVendas
       TabOrder = 6
+      Width = 201
     end
   end
   object btnEditar: TButton

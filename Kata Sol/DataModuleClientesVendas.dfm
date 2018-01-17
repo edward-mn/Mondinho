@@ -6,6 +6,7 @@ object DmClienteVendas: TDmClienteVendas
     Aggregates = <>
     Params = <>
     ProviderName = 'sqlProviderVendas'
+    BeforePost = cdsVendasBeforePost
     Left = 51
     Top = 25
     object cdsVendasid_produtos: TIntegerField
@@ -32,6 +33,7 @@ object DmClienteVendas: TDmClienteVendas
       Size = 50
     end
     object cdsVendasvalor_produto: TFMTBCDField
+      Alignment = taLeftJustify
       DisplayLabel = 'Pre'#231'o'
       FieldName = 'valor_produto'
       EditFormat = '0.00'
@@ -40,10 +42,12 @@ object DmClienteVendas: TDmClienteVendas
       Size = 2
     end
     object cdsVendasquantidade: TIntegerField
+      Alignment = taLeftJustify
       DisplayLabel = 'Quantidade'
       FieldName = 'quantidade'
     end
     object cdsVendasvalor_total: TFMTBCDField
+      Alignment = taLeftJustify
       DisplayLabel = 'Valor Total'
       FieldName = 'valor_total'
       EditFormat = '0.00'
