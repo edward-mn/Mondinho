@@ -1,7 +1,7 @@
 object DmConexao: TDmConexao
   OldCreateOrder = False
   Height = 222
-  Width = 875
+  Width = 901
   object sqlQueryToDo: TSQLQuery
     BeforeOpen = sqlQueryToDoBeforeOpen
     MaxBlobSize = -1
@@ -57,6 +57,7 @@ object DmConexao: TDmConexao
       'IPVersion=IPv4'
       'UseUnicode=True'
       'Charset=')
+    Connected = True
     Left = 416
     Top = 24
   end
@@ -275,33 +276,62 @@ object DmConexao: TDmConexao
     Params = <>
     SQL.Strings = (
       
-        'select vdd.nome, string_agg(vda.produtos, '#39', '#39'), sum(vda.valor_t' +
-        'otal) from  vendas vda'
+        'select vdd.nome,cast(string_agg(vda.produtos, '#39', '#39') as varchar (' +
+        '200)) produtos, sum(vda.valor_total) from  vendas vda'
       'inner join vendedores vdd on (vdd.id_vendedor = vda.id_vendedor)'
       'group by vdd.nome'
       'order by sum(vda.valor_total) desc ')
     SQLConnection = sqlConexao
     Left = 646
     Top = 83
+    object sqlQueryVendasValorTotalnome: TWideStringField
+      FieldName = 'nome'
+      Size = 50
+    end
+    object sqlQueryVendasValorTotalprodutos: TWideStringField
+      FieldName = 'produtos'
+      Size = 200
+    end
+    object sqlQueryVendasValorTotalsum: TFMTBCDField
+      FieldName = 'sum'
+      Precision = 32
+    end
   end
   object sqlQueryQuantidadeVendas: TSQLQuery
+    MaxBlobSize = -1
     Params = <>
     SQL.Strings = (
       
-        'select vdd.nome, string_agg(vda.produtos, '#39', '#39'), sum(vda.quantid' +
-        'ade) from  vendas vda'
+        'select vdd.nome, cast(string_agg(vda.produtos, '#39', '#39') as varchar ' +
+        '(200)) produtos, sum(vda.quantidade) from  vendas vda'
       'inner join vendedores vdd on (vdd.id_vendedor = vda.id_vendedor)'
       'group by vdd.nome'
       'order by sum(vda.quantidade) desc ')
-    Left = 784
-    Top = 80
+    SQLConnection = sqlConexao
+    Left = 791
+    Top = 81
+    object sqlQueryQuantidadeVendasnome: TWideStringField
+      FieldName = 'nome'
+      Size = 50
+    end
+    object sqlQueryQuantidadeVendasprodutos: TWideStringField
+      FieldName = 'produtos'
+      Size = 200
+    end
+    object sqlQueryQuantidadeVendassum: TFMTBCDField
+      FieldName = 'sum'
+      Precision = 19
+      Size = 0
+    end
   end
-  object sqlProviderValorTotal: TDataSetProvider
-    Left = 645
+  object sqlProviderVendasValorTotal: TDataSetProvider
+    DataSet = sqlQueryVendasValorTotal
+    Left = 659
     Top = 155
   end
   object sqlProviderQuantidadeVendas: TDataSetProvider
-    Left = 779
+    DataSet = sqlQueryQuantidadeVendas
+    Left = 802
     Top = 154
   end
 end

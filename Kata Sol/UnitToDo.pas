@@ -12,7 +12,10 @@ uses
   DataModuleClientesCadastro,
   Vcl.ComCtrls, cxGraphics, cxControls, cxLookAndFeels, cxLookAndFeelPainters,
   dxBarBuiltInMenu, cxPC, dxLayoutControlAdapters, dxLayoutContainer, cxClasses,
-  dxLayoutControl;
+  dxLayoutControl, cxStyles, cxCustomData, cxFilter, cxData, cxDataStorage,
+  cxEdit, cxNavigator, cxDBData, cxGridLevel, cxGridCustomView,
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid,
+  DataModuleVendasValorTotal, DataModuleVendasQuantidade;
 
 type
   TFormView = class(TForm)
@@ -37,6 +40,13 @@ type
     layoutGrupoPrincipal: TdxLayoutGroup;
     layoutImagemLogoMondinho: TdxLayoutImageItem;
     layoutGrupoTopo: TdxLayoutAutoCreatedGroup;
+    dsToDo: TDataSource;
+    GridValotTotal: TDBGrid;
+    dxLayoutItem1: TdxLayoutItem;
+    GridQauntidade: TDBGrid;
+    dxLayoutItem2: TdxLayoutItem;
+    dsQuantidade: TDataSource;
+    dsValorTotal: TDataSource;
     procedure btnPessoasClick(Sender: TObject);
     procedure btnTarefasClick(Sender: TObject);
     procedure btnVendasClick(Sender: TObject);
@@ -47,10 +57,14 @@ type
   private
     FClientesCadastro: TDmClientesCadastro;
     FClientesControle: TDmControleDeUsuario;
+    FClientesVendasTotalDeVendas : TDmVendasValorTotal;
+    FClientesVendasQuantidade : TDmVendasQuantidade;
     procedure Logout;
     procedure ControleDeUsuarioLogin;
     procedure ControleDeUsuarioLogout;
     procedure ProviderControle;
+    procedure ProviderVendasValorTotal;
+    procedure ProviderVendasQuantidade;
     procedure DefinirDataSet;
     function CriarAba(AbaForm: TFormClass; AbaNome: String): TForm;
   public
@@ -73,7 +87,13 @@ begin
   inherited;
   FClientesCadastro := TDmClientesCadastro.Create(Self);
   FClientesControle := TDmControleDeUsuario.Create(Self);
+  FClientesVendasTotalDeVendas := TDmVendasValorTotal.Create(Self);
+  FClientesVendasQuantidade := TDmVendasQuantidade.Create(Self);
   ProviderControle;
+  ProviderVendasValorTotal;
+  ProviderVendasQuantidade;
+  FClientesVendasTotalDeVendas.cdsVendasValorTotal.Open;
+  FClientesVendasQuantidade.cdsVendasQuantidade.Open;
   FClientesControle.cdsControleDeUsuario.Open;
   ID_Login := Conexao.Usuario.Id;
 
@@ -153,6 +173,11 @@ end;
 procedure TFormView.DefinirDataSet;
 begin
   dsToDo.DataSet := FClientesCadastro.cdsCadastro;
+  dsQuantidade.DataSet := FClientesVendasQuantidade.cdsVendasQuantidade;
+  dsValorTotal.DataSet := FClientesVendasTotalDeVendas.cdsVendasValorTotal;
+  GridUsuarios.DataSource := dsToDo;
+  GridValotTotal.DataSource := dsValorTotal;
+  GridQauntidade.DataSource := dsQuantidade;
   FClientesCadastro.cdsCadastrosenha.Visible := False;
 end;
 
@@ -179,8 +204,17 @@ end;
 
 procedure TFormView.ProviderControle;
 begin
-  FClientesControle.cdsControleDeUsuario.SetProvider
-    (Conexao.sqlProviderControle);
+  FClientesControle.cdsControleDeUsuario.SetProvider(Conexao.sqlProviderControle);
+end;
+
+procedure TFormView.ProviderVendasQuantidade;
+begin
+  FClientesVendasQuantidade.cdsVendasQuantidade.SetProvider(Conexao.sqlProviderQuantidadeVendas);
+end;
+
+procedure TFormView.ProviderVendasValorTotal;
+begin
+  FClientesVendasTotalDeVendas.cdsVendasValorTotal.SetProvider(Conexao.sqlProviderVendasValorTotal);
 end;
 
 end.
