@@ -20,6 +20,7 @@ type
     sqlProviderVendas: TDataSetProvider;
     sqlQueryVendasid_produtos: TIntegerField;
     sqlQueryVendasprodutos: TWideStringField;
+    sqlQueryVendasvendedores: TWideStringField;
     sqlQueryVendasstatus: TWideStringField;
     sqlQueryVendasfornecedores: TWideStringField;
     sqlQueryVendasdata: TDateField;

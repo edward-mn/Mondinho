@@ -2,6 +2,68 @@ object DmClienteVendas: TDmClienteVendas
   OldCreateOrder = False
   Height = 203
   Width = 136
+  object cdsVendas: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'sqlProviderVendas'
+    BeforePost = cdsVendasBeforePost
+    Left = 51
+    Top = 25
+    object cdsVendasid_produtos: TIntegerField
+      DisplayLabel = 'C'#243'd. Produtos'
+      FieldName = 'id_produtos'
+    end
+    object cdsVendasvendedores: TWideStringField
+      DisplayLabel = 'Vendedores'
+      FieldName = 'vendedores'
+      Size = 50
+    end
+    object cdsVendasfornecedores: TWideStringField
+      DisplayLabel = 'Fornecedores'
+      FieldName = 'fornecedores'
+      Size = 50
+    end
+    object cdsVendasstatus: TWideStringField
+      DisplayLabel = 'Status'
+      FieldName = 'status'
+    end
+    object cdsVendasprodutos: TWideStringField
+      DisplayLabel = 'Produtos'
+      FieldName = 'produtos'
+      Size = 50
+    end
+    object cdsVendasvalor_produto: TFMTBCDField
+      Alignment = taLeftJustify
+      DisplayLabel = 'Pre'#231'o'
+      FieldName = 'valor_produto'
+      EditFormat = '0.00'
+      currency = True
+      Precision = 11
+      Size = 2
+    end
+    object cdsVendasquantidade: TIntegerField
+      Alignment = taLeftJustify
+      DisplayLabel = 'Quantidade'
+      FieldName = 'quantidade'
+    end
+    object cdsVendasvalor_total: TFMTBCDField
+      Alignment = taLeftJustify
+      DisplayLabel = 'Valor Total'
+      FieldName = 'valor_total'
+      EditFormat = '0.00'
+      currency = True
+      Precision = 11
+      Size = 2
+    end
+    object cdsVendasdata: TDateField
+      DisplayLabel = 'Data'
+      FieldName = 'data'
+      EditMask = '!99/99/0000;'
+    end
+    object cdsVendasid_cadastro: TIntegerField
+      FieldName = 'id_cadastro'
+    end
+  end
   object frxDBDatasetVendas: TfrxDBDataset
     UserName = 'Relatorio Vendas'
     CloseDataSource = False

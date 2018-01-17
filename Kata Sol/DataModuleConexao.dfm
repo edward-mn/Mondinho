@@ -45,7 +45,7 @@ object DmConexao: TDmConexao
     LoginPrompt = False
     Params.Strings = (
       'BlobSize=-1'
-      'HostName=localhost:5433'
+      'HostName=localhost:5434'
       'DataBase=MiniMonde'
       'SchemaName=mondinho'
       'DriverName=DevartPostgreSQL'
@@ -58,8 +58,8 @@ object DmConexao: TDmConexao
       'UseUnicode=True'
       'Charset=')
     Connected = True
-    Left = 416
-    Top = 24
+    Left = 224
+    Top = 16
   end
   object sqlProviderToDo: TDataSetProvider
     DataSet = sqlQueryToDo
@@ -89,6 +89,10 @@ object DmConexao: TDmConexao
     end
     object sqlQueryVendasprodutos: TWideStringField
       FieldName = 'produtos'
+      Size = 50
+    end
+    object sqlQueryVendasvendedores: TWideStringField
+      FieldName = 'vendedores'
       Size = 50
     end
     object sqlQueryVendasstatus: TWideStringField
@@ -164,34 +168,26 @@ object DmConexao: TDmConexao
       FieldName = 'pessoas'
       Size = 50
     end
-    object sqlQueryPessoascpf: TFMTBCDField
-      Alignment = taLeftJustify
-      FieldName = 'cpf'
-      Precision = 11
-      Size = 0
+    object sqlQueryPessoascpf_cnpj: TWideStringField
+      FieldName = 'cpf_cnpj'
+      Size = 18
     end
     object sqlQueryPessoasendereco: TWideStringField
       FieldName = 'endereco'
       Size = 100
     end
-    object sqlQueryPessoastelefone: TFMTBCDField
-      Alignment = taLeftJustify
+    object sqlQueryPessoastelefone: TWideStringField
       FieldName = 'telefone'
-      Precision = 10
-      Size = 0
     end
-    object sqlQueryPessoascelular: TFMTBCDField
-      Alignment = taLeftJustify
+    object sqlQueryPessoascelular: TWideStringField
       FieldName = 'celular'
-      Precision = 11
-      Size = 0
+      Size = 21
     end
     object sqlQueryPessoasstatus: TWideStringField
       FieldName = 'status'
     end
     object sqlQueryPessoasdata: TDateField
       FieldName = 'data'
-      EditMask = '!99/99/0000;1;_'
     end
     object sqlQueryPessoasid_cadastro: TIntegerField
       FieldName = 'id_cadastro'
