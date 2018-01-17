@@ -1,7 +1,7 @@
 object DmConexao: TDmConexao
   OldCreateOrder = False
-  Height = 220
-  Width = 625
+  Height = 222
+  Width = 901
   object sqlQueryToDo: TSQLQuery
     BeforeOpen = sqlQueryToDoBeforeOpen
     MaxBlobSize = -1
@@ -45,7 +45,7 @@ object DmConexao: TDmConexao
     LoginPrompt = False
     Params.Strings = (
       'BlobSize=-1'
-      'HostName=localhost:5432'
+      'HostName=localhost:5433'
       'DataBase=MiniMonde'
       'SchemaName=mondinho'
       'DriverName=DevartPostgreSQL'
@@ -57,7 +57,8 @@ object DmConexao: TDmConexao
       'IPVersion=IPv4'
       'UseUnicode=True'
       'Charset=')
-    Left = 288
+    Connected = True
+    Left = 416
     Top = 24
   end
   object sqlProviderToDo: TDataSetProvider
@@ -138,8 +139,8 @@ object DmConexao: TDmConexao
   object sqlProviderPessoas: TDataSetProvider
     DataSet = sqlQueryPessoas
     Options = [poPropogateChanges, poUseQuoteChar]
-    Left = 235
-    Top = 161
+    Left = 217
+    Top = 159
   end
   object sqlQueryPessoas: TSQLQuery
     BeforeOpen = sqlQueryPessoasBeforeOpen
@@ -154,8 +155,8 @@ object DmConexao: TDmConexao
       'select * from pessoas'
       'where id_cadastro = :id')
     SQLConnection = sqlConexao
-    Left = 235
-    Top = 89
+    Left = 216
+    Top = 87
     object sqlQueryPessoasid_pessoas: TIntegerField
       FieldName = 'id_pessoas'
     end
@@ -199,7 +200,7 @@ object DmConexao: TDmConexao
   object sqlProviderCadastro: TDataSetProvider
     DataSet = sqlQueryCadastro
     Options = [poPropogateChanges, poUseQuoteChar]
-    Left = 336
+    Left = 319
     Top = 158
   end
   object sqlQueryCadastro: TSQLQuery
@@ -208,8 +209,8 @@ object DmConexao: TDmConexao
     SQL.Strings = (
       'select  * from monde_cadastro')
     SQLConnection = sqlConexao
-    Left = 336
-    Top = 88
+    Left = 318
+    Top = 86
     object sqlQueryCadastroid: TIntegerField
       FieldName = 'id'
     end
@@ -228,8 +229,8 @@ object DmConexao: TDmConexao
     SQL.Strings = (
       'select * from controledeusuario')
     SQLConnection = sqlConexao
-    Left = 440
-    Top = 88
+    Left = 416
+    Top = 85
     object sqlQueryControleid_controle: TIntegerField
       FieldName = 'id_controle'
     end
@@ -241,13 +242,13 @@ object DmConexao: TDmConexao
   object sqlProviderControle: TDataSetProvider
     DataSet = sqlQueryControle
     Options = [poPropogateChanges, poUseQuoteChar]
-    Left = 440
-    Top = 160
+    Left = 423
+    Top = 157
   end
   object sqlProviderVendedores: TDataSetProvider
     DataSet = sqlQueryVendedores
-    Left = 544
-    Top = 160
+    Left = 533
+    Top = 156
   end
   object sqlQueryVendedores: TSQLQuery
     MaxBlobSize = -1
@@ -255,8 +256,8 @@ object DmConexao: TDmConexao
     SQL.Strings = (
       'select * from vendedores')
     SQLConnection = sqlConexao
-    Left = 544
-    Top = 88
+    Left = 520
+    Top = 84
     object sqlQueryVendedoresid_vendedor: TIntegerField
       FieldName = 'id_vendedor'
     end
@@ -269,5 +270,68 @@ object DmConexao: TDmConexao
       Precision = 11
       Size = 0
     end
+  end
+  object sqlQueryVendasValorTotal: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      
+        'select vdd.nome,cast(string_agg(vda.produtos, '#39', '#39') as varchar (' +
+        '200)) produtos, sum(vda.valor_total) from  vendas vda'
+      'inner join vendedores vdd on (vdd.id_vendedor = vda.id_vendedor)'
+      'group by vdd.nome'
+      'order by sum(vda.valor_total) desc ')
+    SQLConnection = sqlConexao
+    Left = 646
+    Top = 83
+    object sqlQueryVendasValorTotalnome: TWideStringField
+      FieldName = 'nome'
+      Size = 50
+    end
+    object sqlQueryVendasValorTotalprodutos: TWideStringField
+      FieldName = 'produtos'
+      Size = 200
+    end
+    object sqlQueryVendasValorTotalsum: TFMTBCDField
+      FieldName = 'sum'
+      Precision = 32
+    end
+  end
+  object sqlQueryQuantidadeVendas: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      
+        'select vdd.nome, cast(string_agg(vda.produtos, '#39', '#39') as varchar ' +
+        '(200)) produtos, sum(vda.quantidade) from  vendas vda'
+      'inner join vendedores vdd on (vdd.id_vendedor = vda.id_vendedor)'
+      'group by vdd.nome'
+      'order by sum(vda.quantidade) desc ')
+    SQLConnection = sqlConexao
+    Left = 791
+    Top = 81
+    object sqlQueryQuantidadeVendasnome: TWideStringField
+      FieldName = 'nome'
+      Size = 50
+    end
+    object sqlQueryQuantidadeVendasprodutos: TWideStringField
+      FieldName = 'produtos'
+      Size = 200
+    end
+    object sqlQueryQuantidadeVendassum: TFMTBCDField
+      FieldName = 'sum'
+      Precision = 19
+      Size = 0
+    end
+  end
+  object sqlProviderVendasValorTotal: TDataSetProvider
+    DataSet = sqlQueryVendasValorTotal
+    Left = 659
+    Top = 155
+  end
+  object sqlProviderQuantidadeVendas: TDataSetProvider
+    DataSet = sqlQueryQuantidadeVendas
+    Left = 802
+    Top = 154
   end
 end

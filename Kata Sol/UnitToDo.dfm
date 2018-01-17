@@ -3,8 +3,8 @@
   Top = 0
   BorderStyle = bsSingle
   Caption = 'Mondinho'
-  ClientHeight = 620
-  ClientWidth = 994
+  ClientHeight = 642
+  ClientWidth = 1118
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -23,8 +23,8 @@
     AlignWithMargins = True
     Left = 3
     Top = 3
-    Width = 988
-    Height = 614
+    Width = 1112
+    Height = 636
     Align = alClient
     TabOrder = 0
     AutoSize = True
@@ -57,10 +57,10 @@
     end
     object PanelFinal: TPanel
       Left = 10
-      Top = 565
-      Width = 968
+      Top = 587
+      Width = 1092
       Height = 39
-      TabOrder = 4
+      TabOrder = 6
       object lblNome: TLabel
         Left = 68
         Top = 15
@@ -76,7 +76,7 @@
         Caption = 'Usu'#225'rio :'
       end
       object btnLogout: TButton
-        Left = 894
+        Left = 1018
         Top = 1
         Width = 73
         Height = 37
@@ -94,12 +94,37 @@
     end
     object GridUsuarios: TDBGrid
       Left = 24
-      Top = 429
-      Width = 320
+      Top = 451
+      Width = 305
       Height = 116
       BorderStyle = bsNone
-      DataSource = dsToDo
       TabOrder = 3
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+    end
+    object GridValotTotal: TDBGrid
+      Left = 339
+      Top = 451
+      Width = 362
+      Height = 116
+      BorderStyle = bsNone
+      TabOrder = 4
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+    end
+    object GridQauntidade: TDBGrid
+      Left = 711
+      Top = 451
+      Width = 366
+      Height = 116
+      BorderStyle = bsNone
+      TabOrder = 5
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
       TitleFont.Height = -11
@@ -181,10 +206,14 @@
     end
     object layoutGridUsuarios: TdxLayoutItem
       Parent = layoutGrupoGridUsuarios
+      AlignHorz = ahLeft
+      AlignVert = avTop
       CaptionOptions.ShowAccelChar = False
+      CaptionOptions.Text = 'Usuarios Do Sistema'
+      CaptionOptions.Layout = clTop
       Control = GridUsuarios
       ControlOptions.OriginalHeight = 116
-      ControlOptions.OriginalWidth = 320
+      ControlOptions.OriginalWidth = 305
       Index = 0
     end
     object layoutGrupoGridUsuarios: TdxLayoutGroup
@@ -193,6 +222,7 @@
       AlignVert = avTop
       CaptionOptions.ShowAccelChar = False
       ButtonOptions.Buttons = <>
+      LayoutDirection = ldHorizontal
       Index = 2
     end
     object layoutGrupoPrincipal: TdxLayoutGroup
@@ -285,9 +315,35 @@
       Index = 0
       AutoCreated = True
     end
+    object dxLayoutItem1: TdxLayoutItem
+      Parent = layoutGrupoGridUsuarios
+      CaptionOptions.Text = 'Vendas Por Valor Total'
+      CaptionOptions.Layout = clTop
+      Control = GridValotTotal
+      ControlOptions.OriginalHeight = 116
+      ControlOptions.OriginalWidth = 362
+      Index = 1
+    end
+    object dxLayoutItem2: TdxLayoutItem
+      Parent = layoutGrupoGridUsuarios
+      CaptionOptions.Text = 'Vendas Por Quantidade'
+      CaptionOptions.Layout = clTop
+      Control = GridQauntidade
+      ControlOptions.OriginalHeight = 116
+      ControlOptions.OriginalWidth = 366
+      Index = 2
+    end
   end
   object dsToDo: TDataSource
-    Left = 1139
-    Top = 160
+    Left = 112
+    Top = 488
+  end
+  object dsQuantidade: TDataSource
+    Left = 888
+    Top = 488
+  end
+  object dsValorTotal: TDataSource
+    Left = 512
+    Top = 488
   end
 end
