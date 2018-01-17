@@ -37,6 +37,9 @@ type
     dbGridCriacaoEdicaoPessoas: TcxGrid;
     dbGridCriacaoEdicaoPessoasDBTableView1: TcxGridDBTableView;
     dbGridCriacaoEdicaoPessoasLevel1: TcxGridLevel;
+    cxDBstatusPessoas: TcxDBComboBox;
+    maskEdtCpf: TcxDBMaskEdit;
+    cbData: TcxDBDateEdit;
     dbGridCriacaoEdicaoPessoasDBTableView1id_pessoas: TcxGridDBColumn;
     dbGridCriacaoEdicaoPessoasDBTableView1pessoas: TcxGridDBColumn;
     dbGridCriacaoEdicaoPessoasDBTableView1cpf_cnpj: TcxGridDBColumn;
@@ -46,15 +49,12 @@ type
     dbGridCriacaoEdicaoPessoasDBTableView1status: TcxGridDBColumn;
     dbGridCriacaoEdicaoPessoasDBTableView1data: TcxGridDBColumn;
     dbGridCriacaoEdicaoPessoasDBTableView1id_cadastro: TcxGridDBColumn;
-    cxDBstatusPessoas: TcxDBComboBox;
-    maskEdtCpf: TcxDBMaskEdit;
-    cbData: TcxDBDateEdit;
     procedure btnNovaPessoaClick(Sender: TObject);
     procedure btnCancelarPessoasClick(Sender: TObject);
     procedure btnDeletarCadastroClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure btnSalvarPessoasClick(Sender: TObject);
-    procedure cbStatusPessoasChange(Sender: TObject);
+    procedure cxDBstatusPessoasFocusChanged(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure mCalendarClick(Sender: TObject);
@@ -180,7 +180,8 @@ begin
   maskEdtCpf.Properties.EditMask := '999.999.999-99';
 end;
 
-procedure TFormCriacaoEdicaoPessoas.cbStatusPessoasChange(Sender: TObject);
+procedure TFormCriacaoEdicaoPessoas.cxDBstatusPessoasFocusChanged(Sender:
+    TObject);
 begin
   if MatchText(cxDBstatusPessoas.Text,  ['Fisica', 'Vendedor', 'Usuario Do Sistema']) then
     AdicionarCampoCPF

@@ -85,7 +85,7 @@ object FormEditarVendas: TFormEditarVendas
     end
     object edtDBPreco: TcxDBCurrencyEdit
       Left = 208
-      Top = 114
+      Top = 111
       DataBinding.DataField = 'valor_produto'
       DataBinding.DataSource = dsEditarVendas
       TabOrder = 0
@@ -93,7 +93,7 @@ object FormEditarVendas: TFormEditarVendas
     end
     object edtDBProdutos: TcxDBTextEdit
       Left = 23
-      Top = 112
+      Top = 111
       DataBinding.DataField = 'produtos'
       DataBinding.DataSource = dsEditarVendas
       TabOrder = 4
@@ -101,7 +101,7 @@ object FormEditarVendas: TFormEditarVendas
     end
     object cbDBStatusVendas: TcxDBComboBox
       Left = 23
-      Top = 56
+      Top = 53
       DataBinding.DataField = 'status'
       DataBinding.DataSource = dsEditarVendas
       Properties.DropDownListStyle = lsEditFixedList
@@ -115,7 +115,7 @@ object FormEditarVendas: TFormEditarVendas
     end
     object edtDBFornecedores: TcxDBTextEdit
       Left = 408
-      Top = 56
+      Top = 53
       DataBinding.DataField = 'fornecedores'
       DataBinding.DataSource = dsEditarVendas
       TabOrder = 2
@@ -151,8 +151,6 @@ object FormEditarVendas: TFormEditarVendas
     Height = 200
     Align = alBottom
     TabOrder = 1
-    ExplicitLeft = 8
-    ExplicitTop = 174
     object dbGridEditarVendasDBTableView1: TcxGridDBTableView
       Navigator.Buttons.CustomButtons = <>
       DataController.DataSource = dsEditarVendas

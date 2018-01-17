@@ -36,7 +36,6 @@ type
     GrupoForms: TdxLayoutGroup;
     layoutGrupoPrincipal: TdxLayoutGroup;
     layoutImagemLogoMondinho: TdxLayoutImageItem;
-    dsToDo: TDataSource;
     cxGridUsuariosDBTableView1: TcxGridDBTableView;
     cxGridUsuariosLevel1: TcxGridLevel;
     cxGridUsuarios: TcxGrid;
@@ -45,12 +44,13 @@ type
     cxGridUsuariosDBTableView1nome_usuario: TcxGridDBColumn;
     layoutGrupoUsuarios: TdxLayoutGroup;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
-    GridValotTotal: TDBGrid;
     GridQauntidade: TDBGrid;
     dxLayoutItem2: TdxLayoutItem;
     dsQuantidade: TDataSource;
+    GridValorTotal: TDBGrid;
+    dxLayoutItem3: TdxLayoutItem;
     dsValorTotal: TDataSource;
-    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
+    dsToDo: TDataSource;
     procedure btnPessoasClick(Sender: TObject);
     procedure btnTarefasClick(Sender: TObject);
     procedure btnVendasClick(Sender: TObject);
@@ -180,7 +180,7 @@ begin
   dsToDo.DataSet := FClientesCadastro.cdsCadastro;
   dsQuantidade.DataSet := FClientesVendasQuantidade.cdsVendasQuantidade;
   dsValorTotal.DataSet := FClientesVendasTotalDeVendas.cdsVendasValorTotal;
-  GridValotTotal.DataSource := dsValorTotal;
+  GridValorTotal.DataSource := dsValorTotal;
   GridQauntidade.DataSource := dsQuantidade;
   FClientesCadastro.cdsCadastrosenha.Visible := False;
 end;

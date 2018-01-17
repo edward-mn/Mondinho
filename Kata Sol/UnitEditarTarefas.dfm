@@ -59,6 +59,7 @@ object FormEditarTarefas: TFormEditarTarefas
       Top = 44
       DataBinding.DataField = 'status'
       DataBinding.DataSource = dsCriarTarefas
+      Properties.DropDownListStyle = lsEditFixedList
       Properties.Items.Strings = (
         'Fisica'
         'Juridica'
@@ -70,7 +71,7 @@ object FormEditarTarefas: TFormEditarTarefas
     end
     object cxDBNome: TcxDBTextEdit
       Left = 181
-      Top = 47
+      Top = 44
       DataBinding.DataField = 'nomes'
       DataBinding.DataSource = dsCriarTarefas
       TabOrder = 1
@@ -78,7 +79,7 @@ object FormEditarTarefas: TFormEditarTarefas
     end
     object cxDBTarefas: TcxDBTextEdit
       Left = 13
-      Top = 101
+      Top = 104
       DataBinding.DataField = 'tarefas'
       DataBinding.DataSource = dsCriarTarefas
       TabOrder = 2

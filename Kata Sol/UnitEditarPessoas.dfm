@@ -55,7 +55,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     TabOrder = 0
     object Label7: TLabel
       Left = 433
-      Top = 78
+      Top = 79
       Width = 32
       Height = 13
       Caption = '* Data'
@@ -118,7 +118,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     end
     object cxDBTelefone: TcxDBMaskEdit
       Left = 3
-      Top = 98
+      Top = 100
       DataBinding.DataField = 'telefone'
       DataBinding.DataSource = dsCriacaoEdicaoPessoas
       Properties.EditMask = '!\(99\)00000000;1;_'
@@ -127,7 +127,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     end
     object cxDBEndereco: TcxDBTextEdit
       Left = 382
-      Top = 46
+      Top = 43
       DataBinding.DataField = 'endereco'
       DataBinding.DataSource = dsCriacaoEdicaoPessoas
       TabOrder = 2
@@ -143,9 +143,11 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     end
     object cxDBstatusPessoas: TcxDBComboBox
       Left = 8
-      Top = 46
+      Top = 43
+      OnFocusChanged = cxDBstatusPessoasFocusChanged
       DataBinding.DataField = 'status'
       DataBinding.DataSource = dsCriacaoEdicaoPessoas
+      Properties.DropDownListStyle = lsEditFixedList
       Properties.Items.Strings = (
         'Fisica'
         'Juridica'
@@ -157,7 +159,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     end
     object maskEdtCpf: TcxDBMaskEdit
       Left = 286
-      Top = 99
+      Top = 100
       DataBinding.DataField = 'cpf_cnpj'
       DataBinding.DataSource = dsCriacaoEdicaoPessoas
       TabOrder = 5
@@ -165,7 +167,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     end
     object cbData: TcxDBDateEdit
       Left = 433
-      Top = 97
+      Top = 100
       DataBinding.DataField = 'data'
       DataBinding.DataSource = dsCriacaoEdicaoPessoas
       TabOrder = 6
@@ -197,9 +199,6 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     Height = 200
     Align = alBottom
     TabOrder = 6
-    ExplicitLeft = -19
-    ExplicitTop = 190
-    ExplicitWidth = 810
     object dbGridCriacaoEdicaoPessoasDBTableView1: TcxGridDBTableView
       Navigator.Buttons.CustomButtons = <>
       DataController.DataSource = dsCriacaoEdicaoPessoas

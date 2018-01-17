@@ -24,9 +24,7 @@ object FormPessoas: TFormPessoas
     Height = 644
     Align = alRight
     Caption = 'Status'
-    TabOrder = 1
-    ExplicitLeft = 534
-    ExplicitHeight = 422
+    TabOrder = 0
     object cbEmpresa: TCheckBox
       Left = 5
       Top = 79
@@ -152,14 +150,9 @@ object FormPessoas: TFormPessoas
       end
       object dbGridPessoasDBTableView1pessoas: TcxGridDBColumn
         DataBinding.FieldName = 'pessoas'
-        Width = 109
-      end
-      object dbGridPessoasDBTableView1cpf: TcxGridDBColumn
-        DataBinding.FieldName = 'cpf'
       end
       object dbGridPessoasDBTableView1endereco: TcxGridDBColumn
         DataBinding.FieldName = 'endereco'
-        Width = 170
       end
       object dbGridPessoasDBTableView1telefone: TcxGridDBColumn
         DataBinding.FieldName = 'telefone'
@@ -169,6 +162,9 @@ object FormPessoas: TFormPessoas
       end
       object dbGridPessoasDBTableView1status: TcxGridDBColumn
         DataBinding.FieldName = 'status'
+      end
+      object dbGridPessoasDBTableView1cpf_cnpj: TcxGridDBColumn
+        DataBinding.FieldName = 'cpf_cnpj'
       end
       object dbGridPessoasDBTableView1data: TcxGridDBColumn
         DataBinding.FieldName = 'data'
