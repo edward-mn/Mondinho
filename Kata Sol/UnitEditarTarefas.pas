@@ -10,27 +10,38 @@ uses
   Vcl.ComCtrls, System.UITypes, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, cxTextEdit, cxMaskEdit,
   cxDropDownEdit, cxCalendar, cxDBEdit, Vcl.ExtCtrls,
-  DataModuleClientesTarefas, DataModuleControleDeUsuario;
+  DataModuleClientesTarefas, DataModuleControleDeUsuario, cxStyles,
+  cxCustomData, cxFilter, cxData, cxDataStorage, cxNavigator, cxDBData,
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGridLevel,
+  cxClasses, cxGridCustomView, cxGrid, Vcl.Menus, cxButtons;
 
 type
   TFormEditarTarefas = class(TForm)
     dsCriarTarefas: TDataSource;
-    btnSalvar: TButton;
-    btnNovo: TButton;
-    btnCancelar: TButton;
-    btnEditar: TButton;
     gbFormulario: TGroupBox;
     Label1: TLabel;
-    edtNome: TDBEdit;
-    edtTarefa: TDBEdit;
     Label3: TLabel;
     Label4: TLabel;
     Label2: TLabel;
-    btnDeletarTarefa: TButton;
-    cbTarefas: TDBComboBox;
-    btnAdiarTarefa: TButton;
-    dbGridCriacaoEdicao: TDBGrid;
     cbData: TcxDBDateEdit;
+    dbGridCriacaoEdicao: TcxGrid;
+    dbGridCriacaoEdicaoDBTableView1: TcxGridDBTableView;
+    dbGridCriacaoEdicaoLevel1: TcxGridLevel;
+    dbGridCriacaoEdicaoDBTableView1id_todo: TcxGridDBColumn;
+    dbGridCriacaoEdicaoDBTableView1nomes: TcxGridDBColumn;
+    dbGridCriacaoEdicaoDBTableView1tarefas: TcxGridDBColumn;
+    dbGridCriacaoEdicaoDBTableView1status: TcxGridDBColumn;
+    dbGridCriacaoEdicaoDBTableView1data: TcxGridDBColumn;
+    dbGridCriacaoEdicaoDBTableView1id_cadastro: TcxGridDBColumn;
+    cxDBstatusTarefas: TcxDBComboBox;
+    cxDBNome: TcxDBTextEdit;
+    cxDBTarefas: TcxDBTextEdit;
+    btnSalvar: TcxButton;
+    btnCancelar: TcxButton;
+    btnEditar: TcxButton;
+    btnNovo: TcxButton;
+    btnDeletarTarefa: TcxButton;
+    btnAdiarTarefa: TcxButton;
     procedure btnAdiarTarefaClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure btnAtualizarClick(Sender: TObject);
@@ -206,7 +217,7 @@ procedure TFormEditarTarefas.DefinirDataSet;
 begin
   ClientesTarefas.cdsToDoid_todo.Visible := False;
   dsCriarTarefas.DataSet := ClientesTarefas.cdsToDo;
-  dbGridCriacaoEdicao.DataSource := dsCriarTarefas;
+  dbGridCriacaoEdicaoDBTableView1.DataController.DataSource := dsCriarTarefas;
 end;
 
 procedure TFormEditarTarefas.DeletarTarefa;

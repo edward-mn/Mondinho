@@ -9,32 +9,46 @@ uses
   Vcl.ComCtrls, System.UITypes, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, cxTextEdit, cxMaskEdit,
   cxDropDownEdit, cxCalendar, cxDBEdit, DataModuleClientesPessoas,
-  DataModuleControleDeUsuario;
+  DataModuleControleDeUsuario, cxStyles, cxCustomData, cxFilter, cxData,
+  cxDataStorage, cxNavigator, cxDBData, cxGridCustomTableView, cxGridTableView,
+  cxGridDBTableView, cxGridLevel, cxClasses, cxGridCustomView, cxGrid,
+  Vcl.Menus, cxButtons;
 
 type
   TFormCriacaoEdicaoPessoas = class(TForm)
-    dbGridCriacaoEdicaoPessoas: TDBGrid;
     dsCriacaoEdicaoPessoas: TDataSource;
-    btnNovaPessoa: TButton;
-    btnCancelarPessoas: TButton;
-    btnSalvarPessoas: TButton;
     gbFormulario: TGroupBox;
     Label7: TLabel;
-    edtTelefone: TDBEdit;
     Label4: TLabel;
-    edtNome: TDBEdit;
     edtCpf: TDBEdit;
     Label2: TLabel;
     Label5: TLabel;
-    edtCelular: TDBEdit;
     Label6: TLabel;
-    edtEndereco: TDBEdit;
     Label3: TLabel;
     Label1: TLabel;
-    btnEditar: TButton;
-    btnDeletarCadastro: TButton;
     cbData: TcxDBDateEdit;
-    cbStatusPessoas: TDBComboBox;
+    dbGridCriacaoEdicaoPessoasDBTableView1: TcxGridDBTableView;
+    dbGridCriacaoEdicaoPessoasLevel1: TcxGridLevel;
+    dbGridCriacaoEdicaoPessoas: TcxGrid;
+    dbGridCriacaoEdicaoPessoasDBTableView1id_pessoas: TcxGridDBColumn;
+    dbGridCriacaoEdicaoPessoasDBTableView1pessoas: TcxGridDBColumn;
+    dbGridCriacaoEdicaoPessoasDBTableView1cpf: TcxGridDBColumn;
+    dbGridCriacaoEdicaoPessoasDBTableView1endereco: TcxGridDBColumn;
+    dbGridCriacaoEdicaoPessoasDBTableView1telefone: TcxGridDBColumn;
+    dbGridCriacaoEdicaoPessoasDBTableView1celular: TcxGridDBColumn;
+    dbGridCriacaoEdicaoPessoasDBTableView1status: TcxGridDBColumn;
+    dbGridCriacaoEdicaoPessoasDBTableView1data: TcxGridDBColumn;
+    dbGridCriacaoEdicaoPessoasDBTableView1id_cadastro: TcxGridDBColumn;
+    cxDBCelular: TcxDBMaskEdit;
+    cxDBTelefone: TcxDBMaskEdit;
+    cxDBEndereco: TcxDBTextEdit;
+    cxDBstatusPessoas: TcxDBComboBox;
+    cxDBNome: TcxDBTextEdit;
+    btnNovaPessoa: TcxButton;
+    btnEditar: TcxButton;
+    btnCancelarPessoas: TcxButton;
+    btnSalvarPessoas: TcxButton;
+    btnDeletarCadastro: TcxButton;
     procedure btnNovaPessoaClick(Sender: TObject);
     procedure btnCancelarPessoasClick(Sender: TObject);
     procedure btnDeletarCadastroClick(Sender: TObject);
@@ -150,9 +164,9 @@ end;
 
 procedure TFormCriacaoEdicaoPessoas.DefinirDataSet;
 begin
+  dbGridCriacaoEdicaoPessoasDBTableView1.DataController.DataSource := dsCriacaoEdicaoPessoas;
   ClientesPessoas.cdsPessoasid_pessoas.Visible := False;
   dsCriacaoEdicaoPessoas.DataSet := ClientesPessoas.cdsPessoas;
-  dbGridCriacaoEdicaoPessoas.DataSource := dsCriacaoEdicaoPessoas;
 end;
 
 procedure TFormCriacaoEdicaoPessoas.DeletarPessoa;

@@ -18,47 +18,6 @@ object FormEditarVendas: TFormEditarVendas
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object dbGridEditarVendas: TDBGrid
-    Left = 0
-    Top = 223
-    Width = 900
-    Height = 198
-    Align = alBottom
-    ReadOnly = True
-    TabOrder = 5
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
-  end
-  object btnSalvar: TButton
-    Left = 21
-    Top = 95
-    Width = 105
-    Height = 26
-    Caption = 'Salvar'
-    TabOrder = 4
-    OnClick = btnSalvarClick
-  end
-  object btnNovo: TButton
-    Left = 21
-    Top = 8
-    Width = 105
-    Height = 25
-    Caption = 'Novo'
-    TabOrder = 1
-    OnClick = btnNovoClick
-  end
-  object btnCancelar: TButton
-    Left = 21
-    Top = 66
-    Width = 105
-    Height = 25
-    Caption = 'Cancelar'
-    TabOrder = 3
-    OnClick = btnCancelarClick
-  end
   object GBVendas: TGroupBox
     Left = 165
     Top = 8
@@ -103,7 +62,6 @@ object FormEditarVendas: TFormEditarVendas
       Width = 36
       Height = 13
       Caption = '* Pre'#231'o'
-      FocusControl = edtPreco
     end
     object Label7: TLabel
       Left = 353
@@ -138,15 +96,6 @@ object FormEditarVendas: TFormEditarVendas
       DataSource = dsEditarVendas
       TabOrder = 1
     end
-    object edtPreco: TDBEdit
-      Left = 219
-      Top = 111
-      Width = 110
-      Height = 21
-      DataField = 'valor_produto'
-      DataSource = dsEditarVendas
-      TabOrder = 2
-    end
     object DBEdit16: TDBEdit
       Left = 353
       Top = 111
@@ -154,14 +103,14 @@ object FormEditarVendas: TFormEditarVendas
       Height = 21
       DataField = 'quantidade'
       DataSource = dsEditarVendas
-      TabOrder = 3
+      TabOrder = 2
     end
     object cxDBDateEdit1: TcxDBDateEdit
       Left = 486
       Top = 111
       DataBinding.DataField = 'data'
       DataBinding.DataSource = dsEditarVendas
-      TabOrder = 4
+      TabOrder = 3
       Width = 110
     end
     object DBcbStatusVendas: TDBComboBox
@@ -176,11 +125,11 @@ object FormEditarVendas: TFormEditarVendas
         'Finalizada'
         'Excluida'
         'Cancelada')
-      TabOrder = 5
+      TabOrder = 4
     end
     object cbVendedores: TcxDBLookupComboBox
       Left = 24
-      Top = 60
+      Top = 57
       DataBinding.DataField = 'id_vendedor'
       DataBinding.DataSource = dsEditarVendas
       Properties.KeyFieldNames = 'id_vendedor'
@@ -189,38 +138,134 @@ object FormEditarVendas: TFormEditarVendas
           FieldName = 'nome'
         end>
       Properties.ListSource = dsVendedores
-      TabOrder = 6
+      TabOrder = 5
       Width = 145
     end
+    object cxDBCurrencyEdit1: TcxDBCurrencyEdit
+      Left = 218
+      Top = 111
+      DataBinding.DataField = 'valor_produto'
+      DataBinding.DataSource = dsEditarVendas
+      TabOrder = 6
+      Width = 121
+    end
   end
-  object btnEditar: TButton
-    Left = 21
-    Top = 38
-    Width = 105
-    Height = 25
-    Caption = 'Editar'
-    TabOrder = 2
-    OnClick = btnEditarClick
+  object dbGridEditarVendas: TcxGrid
+    Left = 0
+    Top = 221
+    Width = 900
+    Height = 200
+    Align = alBottom
+    TabOrder = 1
+    object dbGridEditarVendasDBTableView1: TcxGridDBTableView
+      Navigator.Buttons.CustomButtons = <>
+      DataController.DataSource = dsEditarVendas
+      DataController.Summary.DefaultGroupSummaryItems = <>
+      DataController.Summary.FooterSummaryItems = <>
+      DataController.Summary.SummaryGroups = <>
+      OptionsData.Editing = False
+      OptionsView.GroupByBox = False
+      OptionsView.ShowColumnFilterButtons = sfbWhenSelected
+      object dbGridEditarVendasDBTableView1id_produtos: TcxGridDBColumn
+        DataBinding.FieldName = 'id_produtos'
+      end
+      object dbGridEditarVendasDBTableView1fornecedores: TcxGridDBColumn
+        DataBinding.FieldName = 'fornecedores'
+        Width = 104
+      end
+      object dbGridEditarVendasDBTableView1status: TcxGridDBColumn
+        DataBinding.FieldName = 'status'
+        Width = 103
+      end
+      object dbGridEditarVendasDBTableView1produtos: TcxGridDBColumn
+        DataBinding.FieldName = 'produtos'
+        Width = 111
+      end
+      object dbGridEditarVendasDBTableView1valor_produto: TcxGridDBColumn
+        DataBinding.FieldName = 'valor_produto'
+      end
+      object dbGridEditarVendasDBTableView1quantidade: TcxGridDBColumn
+        DataBinding.FieldName = 'quantidade'
+      end
+      object dbGridEditarVendasDBTableView1valor_total: TcxGridDBColumn
+        DataBinding.FieldName = 'valor_total'
+      end
+      object dbGridEditarVendasDBTableView1data: TcxGridDBColumn
+        DataBinding.FieldName = 'data'
+      end
+      object dbGridEditarVendasDBTableView1id_cadastro: TcxGridDBColumn
+        DataBinding.FieldName = 'id_cadastro'
+        Width = 43
+      end
+      object dbGridEditarVendasDBTableView1id_vendedor: TcxGridDBColumn
+        DataBinding.FieldName = 'id_vendedor'
+        Width = 41
+      end
+      object dbGridEditarVendasDBTableView1vendedor: TcxGridDBColumn
+        DataBinding.FieldName = 'vendedor'
+        Width = 146
+      end
+    end
+    object dbGridEditarVendasLevel1: TcxGridLevel
+      GridView = dbGridEditarVendasDBTableView1
+    end
   end
-  object btnDeletar: TButton
-    Left = 21
-    Top = 127
-    Width = 105
-    Height = 25
-    Caption = 'Deletar'
-    TabOrder = 6
-    OnClick = btnDeletarClick
-  end
-  object btnFinalizarVenda: TButton
+  object btnFinalizarVenda: TcxButton
     Left = 21
     Top = 157
     Width = 105
     Height = 25
     Caption = 'Finalizar Venda'
-    TabOrder = 7
+    TabOrder = 2
     OnClick = btnFinalizarVendaClick
   end
+  object btnDeletar: TcxButton
+    Left = 21
+    Top = 126
+    Width = 105
+    Height = 25
+    Caption = 'Deletar'
+    TabOrder = 3
+    OnClick = btnDeletarClick
+  end
+  object btnSalvar: TcxButton
+    Left = 21
+    Top = 96
+    Width = 105
+    Height = 25
+    Caption = 'Salvar'
+    TabOrder = 4
+    OnClick = btnSalvarClick
+  end
+  object btnCancelar: TcxButton
+    Left = 21
+    Top = 66
+    Width = 105
+    Height = 25
+    Caption = 'Cancelar'
+    TabOrder = 5
+    OnClick = btnCancelarClick
+  end
+  object btnEditar: TcxButton
+    Left = 21
+    Top = 39
+    Width = 105
+    Height = 25
+    Caption = 'Editar'
+    TabOrder = 6
+    OnClick = btnEditarClick
+  end
+  object btnNovo: TcxButton
+    Left = 21
+    Top = 13
+    Width = 105
+    Height = 25
+    Caption = 'Novo'
+    TabOrder = 7
+    OnClick = btnNovoClick
+  end
   object dsEditarVendas: TDataSource
+    DataSet = DmClienteVendas.cdsVendas
     Left = 402
     Top = 284
   end

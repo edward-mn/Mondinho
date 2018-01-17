@@ -10,15 +10,14 @@ uses
   cxLookAndFeelPainters, cxContainer, cxEdit, cxTextEdit, cxMaskEdit,
   cxDropDownEdit, cxCalendar, cxDBEdit, DataModuleClientesVendas,
   DataModuleControleDeUsuario, DataModuleVendedores, cxLookupEdit,
-  cxDBLookupEdit, cxDBLookupComboBox;
+  cxDBLookupEdit, cxDBLookupComboBox, cxStyles, cxCustomData, cxFilter, cxData,
+  cxDataStorage, cxNavigator, cxDBData, cxGridLevel, cxClasses,
+  cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
+  cxGrid, cxCurrencyEdit, Vcl.Menus, cxButtons;
 
 type
   TFormEditarVendas = class(TForm)
-    dbGridEditarVendas: TDBGrid;
     dsEditarVendas: TDataSource;
-    btnSalvar: TButton;
-    btnNovo: TButton;
-    btnCancelar: TButton;
     GBVendas: TGroupBox;
     Label2: TLabel;
     Label3: TLabel;
@@ -29,15 +28,32 @@ type
     Label9: TLabel;
     edtFornecedores: TDBEdit;
     edtProdutos: TDBEdit;
-    edtPreco: TDBEdit;
     DBEdit16: TDBEdit;
-    btnEditar: TButton;
-    btnDeletar: TButton;
     cxDBDateEdit1: TcxDBDateEdit;
     DBcbStatusVendas: TDBComboBox;
-    btnFinalizarVenda: TButton;
     dsVendedores: TDataSource;
     cbVendedores: TcxDBLookupComboBox;
+    dbGridEditarVendas: TcxGrid;
+    dbGridEditarVendasDBTableView1: TcxGridDBTableView;
+    dbGridEditarVendasLevel1: TcxGridLevel;
+    dbGridEditarVendasDBTableView1id_produtos: TcxGridDBColumn;
+    dbGridEditarVendasDBTableView1fornecedores: TcxGridDBColumn;
+    dbGridEditarVendasDBTableView1status: TcxGridDBColumn;
+    dbGridEditarVendasDBTableView1produtos: TcxGridDBColumn;
+    dbGridEditarVendasDBTableView1valor_produto: TcxGridDBColumn;
+    dbGridEditarVendasDBTableView1quantidade: TcxGridDBColumn;
+    dbGridEditarVendasDBTableView1valor_total: TcxGridDBColumn;
+    dbGridEditarVendasDBTableView1data: TcxGridDBColumn;
+    dbGridEditarVendasDBTableView1id_cadastro: TcxGridDBColumn;
+    dbGridEditarVendasDBTableView1id_vendedor: TcxGridDBColumn;
+    dbGridEditarVendasDBTableView1vendedor: TcxGridDBColumn;
+    cxDBCurrencyEdit1: TcxDBCurrencyEdit;
+    btnFinalizarVenda: TcxButton;
+    btnDeletar: TcxButton;
+    btnSalvar: TcxButton;
+    btnCancelar: TcxButton;
+    btnEditar: TcxButton;
+    btnNovo: TcxButton;
     procedure btnNovoClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnDeletarClick(Sender: TObject);
@@ -173,11 +189,11 @@ begin
   dbGridEditarVendas.Enabled := False;
 end;
 
+
 procedure TFormEditarVendas.DefinirDataSet;
 begin
   DeixarCamposInvisiveis;
   dsEditarVendas.DataSet := ClientesVendas.cdsVendas;
-  dbGridEditarVendas.DataSource := dsEditarVendas;
 end;
 
 procedure TFormEditarVendas.DeixarCamposInvisiveis;

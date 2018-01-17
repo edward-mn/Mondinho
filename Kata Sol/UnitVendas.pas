@@ -8,31 +8,48 @@ uses
   Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, System.UITypes,
   UnitEditarVendas, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, cxTextEdit, cxMaskEdit,
-  cxDropDownEdit, cxCalendar, cxDBEdit, DataModuleClientesVendas, VendasUtils;
+  cxDropDownEdit, cxCalendar, cxDBEdit, DataModuleClientesVendas, VendasUtils,
+  cxStyles, cxCustomData, cxFilter, cxData, cxDataStorage, cxNavigator,
+  cxDBData, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
+  cxGridLevel, cxClasses, cxGridCustomView, cxGrid, Vcl.Menus, cxButtons;
 
 type
   TFormVendas = class(TForm)
-    dbGridVendas: TDBGrid;
     dsVendas: TDataSource;
     gbStatusVenda: TGroupBox;
     cbExcluida: TCheckBox;
     cbFinalizada: TCheckBox;
     cbAberta: TCheckBox;
-    btnPesquisar: TButton;
     cbCancelada: TCheckBox;
     gbEditarVenda: TGroupBox;
-    btnAtualizarVendas: TButton;
-    btnEditarVendasCadastrar: TButton;
     gbRelatorioVendas: TGroupBox;
-    btnVisualizarRelatorio: TButton;
-    btnImprimirRelatorio: TButton;
+    dbGridVendas: TcxGrid;
+    dbGridVendasDBTableView1: TcxGridDBTableView;
+    dbGridVendasLevel1: TcxGridLevel;
+    dbGridVendasDBTableView1id_produtos: TcxGridDBColumn;
+    dbGridVendasDBTableView1fornecedores: TcxGridDBColumn;
+    dbGridVendasDBTableView1status: TcxGridDBColumn;
+    dbGridVendasDBTableView1produtos: TcxGridDBColumn;
+    dbGridVendasDBTableView1valor_produto: TcxGridDBColumn;
+    dbGridVendasDBTableView1quantidade: TcxGridDBColumn;
+    dbGridVendasDBTableView1valor_total: TcxGridDBColumn;
+    dbGridVendasDBTableView1data: TcxGridDBColumn;
+    dbGridVendasDBTableView1id_cadastro: TcxGridDBColumn;
+    dbGridVendasDBTableView1id_vendedor: TcxGridDBColumn;
+    dbGridVendasDBTableView1vendedor: TcxGridDBColumn;
+    btnPesquisar: TcxButton;
+    btnCadastrarVendasCadastrar: TcxButton;
+    btnAtualizarVendas: TcxButton;
+    bntVisualizarRelatorio: TcxButton;
+    btnImprimir: TcxButton;
     procedure btnAtualizarVendasClick(Sender: TObject);
     procedure btnEditarVendasCadastrarClick(Sender: TObject);
-    procedure btnImprimirRelatorioClick(Sender: TObject);
     procedure btnPesquisarClick(Sender: TObject);
-    procedure btnVisualizarRelatorioClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
+    procedure btnCadastrarVendasCadastrarClick(Sender: TObject);
+    procedure bntVisualizarRelatorioClick(Sender: TObject);
+    procedure btnImprimirClick(Sender: TObject);
   private
     FClientesVendas : TDmClienteVendas;
     procedure FiltroVendas;
@@ -71,9 +88,19 @@ begin
   FClientesVendas.cdsVendas.Filtered := not FiltroVendas.IsEmpty;
 end;
 
+procedure TFormVendas.bntVisualizarRelatorioClick(Sender: TObject);
+begin
+   FClientesVendas.frxReportVendas.ShowReport();
+end;
+
 procedure TFormVendas.btnAtualizarVendasClick(Sender: TObject);
 begin
   FClientesVendas.cdsVendas.Refresh;
+end;
+
+procedure TFormVendas.btnCadastrarVendasCadastrarClick(Sender: TObject);
+begin
+  CriarFormEditarVendas();
 end;
 
 procedure TFormVendas.btnEditarVendasCadastrarClick(Sender: TObject);
@@ -81,19 +108,14 @@ begin
   CriarFormEditarVendas();
 end;
 
-procedure TFormVendas.btnImprimirRelatorioClick(Sender: TObject);
+procedure TFormVendas.btnImprimirClick(Sender: TObject);
 begin
-  FClientesVendas.frxReportVendas.Print;
+    FClientesVendas.frxReportVendas.Print;
 end;
 
 procedure TFormVendas.btnPesquisarClick(Sender: TObject);
 begin
   FiltroVendas();
-end;
-
-procedure TFormVendas.btnVisualizarRelatorioClick(Sender: TObject);
-begin
-   FClientesVendas.frxReportVendas.ShowReport();
 end;
 
 constructor TFormVendas.Create(AOwner: TComponent);
@@ -121,7 +143,6 @@ procedure TFormVendas.DefinirDataSet;
 begin
   FClientesVendas.cdsVendas.SetProvider(Conexao.sqlQueryVendas);
   dsVendas.DataSet := FClientesVendas.cdsVendas;
-  dbGridVendas.DataSource := dsVendas;
   FClientesVendas.cdsVendas.Open;
   FClientesVendas.cdsVendasid_cadastro.Visible := False;
 end;

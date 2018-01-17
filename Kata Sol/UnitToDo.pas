@@ -12,11 +12,12 @@ uses
   DataModuleClientesCadastro,
   Vcl.ComCtrls, cxGraphics, cxControls, cxLookAndFeels, cxLookAndFeelPainters,
   dxBarBuiltInMenu, cxPC, dxLayoutControlAdapters, dxLayoutContainer, cxClasses,
-  dxLayoutControl;
+  dxLayoutControl, cxStyles, cxCustomData, cxFilter, cxData, cxDataStorage,
+  cxEdit, cxNavigator, cxDBData, cxGridCustomTableView, cxGridTableView,
+  cxGridDBTableView, cxGridLevel, cxGridCustomView, cxGrid, Datasnap.DBClient;
 
 type
   TFormView = class(TForm)
-    dsToDo: TDataSource;
     LayoutControl: TdxLayoutGroup;
     dxLayoutControl1: TdxLayoutControl;
     layoutBotaoTarefas: TdxLayoutItem;
@@ -32,12 +33,17 @@ type
     btnLogout: TButton;
     layoutGrupoBotoes: TdxLayoutGroup;
     GrupoForms: TdxLayoutGroup;
-    GridUsuarios: TDBGrid;
-    layoutGridUsuarios: TdxLayoutItem;
-    layoutGrupoGridUsuarios: TdxLayoutGroup;
     layoutGrupoPrincipal: TdxLayoutGroup;
     layoutImagemLogoMondinho: TdxLayoutImageItem;
-    layoutGrupoTopo: TdxLayoutAutoCreatedGroup;
+    dsToDo: TDataSource;
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1Level1: TcxGridLevel;
+    cxGrid1: TcxGrid;
+    dxLayoutItem1: TdxLayoutItem;
+    cxGrid1DBTableView1id: TcxGridDBColumn;
+    cxGrid1DBTableView1nome_usuario: TcxGridDBColumn;
+    layoutGrupoUsuarios: TdxLayoutGroup;
+    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     procedure btnPessoasClick(Sender: TObject);
     procedure btnTarefasClick(Sender: TObject);
     procedure btnVendasClick(Sender: TObject);
@@ -153,6 +159,7 @@ end;
 
 procedure TFormView.DefinirDataSet;
 begin
+  cxGrid1DBTableView1.DataController.DataSource := dsToDo;
   dsToDo.DataSet := FClientesCadastro.cdsCadastro;
   FClientesCadastro.cdsCadastrosenha.Visible := False;
 end;

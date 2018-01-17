@@ -4,27 +4,42 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, DataModuleConexao,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB , DataModuleConexao,
   Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, UnitEditarPessoas,
-  System.UITypes, DataModuleClientesPessoas, Vcl.ExtCtrls;
+  System.UITypes, DataModuleClientesPessoas, Vcl.ExtCtrls, cxGraphics,
+  cxControls, cxLookAndFeels, cxLookAndFeelPainters, cxStyles, cxCustomData,
+  cxFilter, cxData, cxDataStorage, cxEdit, cxNavigator, cxDBData, cxGridLevel,
+  cxClasses, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
+  cxGridDBTableView, cxGrid, Vcl.Menus, cxButtons;
 
 type
   TFormPessoas = class(TForm)
-    dbGridPessoas: TDBGrid;
     dsPessoas: TDataSource;
     gbStatusPessoas: TGroupBox;
     cbEmpresa: TCheckBox;
     cbVendedor: TCheckBox;
     cbJuridica: TCheckBox;
     cbFisica: TCheckBox;
-    btnPesquisar: TButton;
     cbUsuarioDoSistema: TCheckBox;
     gbEditarPessoas: TGroupBox;
-    btnAtualizarCadastro: TButton;
-    btnCadastrarPessoa: TButton;
     gbRelatorioPessoas: TGroupBox;
-    bntVisualizar: TButton;
-    btnImprimir: TButton;
+    dbGridPessoas: TcxGrid;
+    dbGridPessoasDBTableView1: TcxGridDBTableView;
+    dbGridPessoasLevel1: TcxGridLevel;
+    dbGridPessoasDBTableView1id_pessoas: TcxGridDBColumn;
+    dbGridPessoasDBTableView1pessoas: TcxGridDBColumn;
+    dbGridPessoasDBTableView1cpf: TcxGridDBColumn;
+    dbGridPessoasDBTableView1endereco: TcxGridDBColumn;
+    dbGridPessoasDBTableView1telefone: TcxGridDBColumn;
+    dbGridPessoasDBTableView1celular: TcxGridDBColumn;
+    dbGridPessoasDBTableView1status: TcxGridDBColumn;
+    dbGridPessoasDBTableView1data: TcxGridDBColumn;
+    dbGridPessoasDBTableView1id_cadastro: TcxGridDBColumn;
+    btnImprimir: TcxButton;
+    bntVisualizar: TcxButton;
+    btnAtualizarCadastro: TcxButton;
+    btnCadastrarPessoa: TcxButton;
+    btnPesquisar: TcxButton;
     procedure bntVisualizarClick(Sender: TObject);
     procedure btnAtualizarCadastroClick(Sender: TObject);
     procedure btnCadastrarPessoaClick(Sender: TObject);
@@ -130,7 +145,6 @@ end;
 procedure TFormPessoas.DefinirDataSet;
 begin
   dsPessoas.DataSet := FClientes.cdsPessoas;
-  dbGridPessoas.DataSource := dsPessoas;
   FClientes.cdsPessoas.Open;
   FClientes.cdsPessoasid_cadastro.Visible := False;
 end;

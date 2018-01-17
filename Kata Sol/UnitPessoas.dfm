@@ -4,8 +4,8 @@ object FormPessoas: TFormPessoas
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsNone
   Caption = 'Pessoas'
-  ClientHeight = 462
-  ClientWidth = 756
+  ClientHeight = 644
+  ClientWidth = 736
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,33 +15,16 @@ object FormPessoas: TFormPessoas
   OldCreateOrder = False
   Position = poMainFormCenter
   OnShow = FormShow
-  ExplicitWidth = 320
-  ExplicitHeight = 240
   PixelsPerInch = 96
   TextHeight = 13
-  object dbGridPessoas: TDBGrid
-    Left = 0
-    Top = 0
-    Width = 625
-    Height = 462
-    Align = alClient
-    ReadOnly = True
-    TabOrder = 0
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
-  end
   object gbStatusPessoas: TGroupBox
-    Left = 625
+    Left = 608
     Top = 0
-    Width = 131
-    Height = 462
+    Width = 128
+    Height = 644
     Align = alRight
     Caption = 'Status'
-    TabOrder = 1
-    ExplicitHeight = 605
+    TabOrder = 0
     object cbEmpresa: TCheckBox
       Left = 5
       Top = 79
@@ -74,22 +57,13 @@ object FormPessoas: TFormPessoas
       Caption = 'Fisica'
       TabOrder = 3
     end
-    object btnPesquisar: TButton
-      Left = 6
-      Top = 121
-      Width = 87
-      Height = 26
-      Caption = 'Pesquisar'
-      TabOrder = 4
-      OnClick = btnPesquisarClick
-    end
     object cbUsuarioDoSistema: TCheckBox
       Left = 5
       Top = 100
       Width = 109
       Height = 17
       Caption = 'Usuario do Sistema'
-      TabOrder = 5
+      TabOrder = 4
     end
     object gbEditarPessoas: TGroupBox
       Left = 6
@@ -98,21 +72,21 @@ object FormPessoas: TFormPessoas
       Height = 79
       Align = alCustom
       Caption = 'Pessoas'
-      TabOrder = 6
-      object btnAtualizarCadastro: TButton
-        Left = 9
-        Top = 45
-        Width = 105
-        Height = 26
+      TabOrder = 5
+      object btnAtualizarCadastro: TcxButton
+        Left = 11
+        Top = 47
+        Width = 97
+        Height = 25
         Caption = 'Atualizar'
         TabOrder = 0
         OnClick = btnAtualizarCadastroClick
       end
-      object btnCadastrarPessoa: TButton
-        Left = 8
-        Top = 13
-        Width = 105
-        Height = 26
+      object btnCadastrarPessoa: TcxButton
+        Left = 11
+        Top = 16
+        Width = 97
+        Height = 25
         Caption = 'Editar Registros'
         TabOrder = 1
         OnClick = btnCadastrarPessoaClick
@@ -120,35 +94,94 @@ object FormPessoas: TFormPessoas
     end
     object gbRelatorioPessoas: TGroupBox
       Left = 2
-      Top = 361
-      Width = 127
-      Height = 99
+      Top = 518
+      Width = 124
+      Height = 124
       Align = alBottom
       Caption = 'Relat'#243'rio'
-      TabOrder = 7
-      ExplicitTop = 504
-      object bntVisualizar: TButton
-        Left = 10
-        Top = 24
-        Width = 102
+      TabOrder = 6
+      object btnImprimir: TcxButton
+        Left = 11
+        Top = 63
+        Width = 97
         Height = 25
-        Caption = 'Visualizar'
-        TabOrder = 0
-        OnClick = bntVisualizarClick
-      end
-      object btnImprimir: TButton
-        Left = 10
-        Top = 57
-        Width = 102
-        Height = 26
         Caption = 'Imprimir'
-        TabOrder = 1
+        TabOrder = 0
         OnClick = btnImprimirClick
       end
+      object bntVisualizar: TcxButton
+        Left = 11
+        Top = 29
+        Width = 97
+        Height = 25
+        Caption = 'Visualizar'
+        TabOrder = 1
+        OnClick = bntVisualizarClick
+      end
+    end
+    object btnPesquisar: TcxButton
+      Left = 17
+      Top = 123
+      Width = 97
+      Height = 25
+      Caption = 'Pesquisar'
+      TabOrder = 7
+      OnClick = btnPesquisarClick
+    end
+  end
+  object dbGridPessoas: TcxGrid
+    Left = 0
+    Top = 0
+    Width = 608
+    Height = 644
+    Align = alClient
+    TabOrder = 1
+    object dbGridPessoasDBTableView1: TcxGridDBTableView
+      Navigator.Buttons.CustomButtons = <>
+      DataController.DataSource = dsPessoas
+      DataController.Summary.DefaultGroupSummaryItems = <>
+      DataController.Summary.FooterSummaryItems = <>
+      DataController.Summary.SummaryGroups = <>
+      OptionsData.Editing = False
+      OptionsView.GroupByBox = False
+      OptionsView.ShowColumnFilterButtons = sfbWhenSelected
+      object dbGridPessoasDBTableView1id_pessoas: TcxGridDBColumn
+        DataBinding.FieldName = 'id_pessoas'
+      end
+      object dbGridPessoasDBTableView1pessoas: TcxGridDBColumn
+        DataBinding.FieldName = 'pessoas'
+        Width = 109
+      end
+      object dbGridPessoasDBTableView1cpf: TcxGridDBColumn
+        DataBinding.FieldName = 'cpf'
+      end
+      object dbGridPessoasDBTableView1endereco: TcxGridDBColumn
+        DataBinding.FieldName = 'endereco'
+        Width = 170
+      end
+      object dbGridPessoasDBTableView1telefone: TcxGridDBColumn
+        DataBinding.FieldName = 'telefone'
+      end
+      object dbGridPessoasDBTableView1celular: TcxGridDBColumn
+        DataBinding.FieldName = 'celular'
+      end
+      object dbGridPessoasDBTableView1status: TcxGridDBColumn
+        DataBinding.FieldName = 'status'
+      end
+      object dbGridPessoasDBTableView1data: TcxGridDBColumn
+        DataBinding.FieldName = 'data'
+      end
+      object dbGridPessoasDBTableView1id_cadastro: TcxGridDBColumn
+        DataBinding.FieldName = 'id_cadastro'
+      end
+    end
+    object dbGridPessoasLevel1: TcxGridLevel
+      GridView = dbGridPessoasDBTableView1
     end
   end
   object dsPessoas: TDataSource
+    DataSet = DmClientesPessoas.cdsPessoas
     Left = 72
-    Top = 328
+    Top = 144
   end
 end
