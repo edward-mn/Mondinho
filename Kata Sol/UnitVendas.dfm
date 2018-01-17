@@ -4,8 +4,8 @@ object FormVendas: TFormVendas
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsNone
   Caption = 'Vendas'
-  ClientHeight = 637
-  ClientWidth = 736
+  ClientHeight = 656
+  ClientWidth = 738
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,28 +18,14 @@ object FormVendas: TFormVendas
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object dbGridVendas: TDBGrid
-    Left = 0
-    Top = 0
-    Width = 609
-    Height = 637
-    Align = alClient
-    ReadOnly = True
-    TabOrder = 0
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
-  end
   object gbStatusVenda: TGroupBox
-    Left = 609
+    Left = 611
     Top = 0
     Width = 127
-    Height = 637
+    Height = 656
     Align = alRight
     Caption = 'Status'
-    TabOrder = 1
+    TabOrder = 0
     object cbExcluida: TCheckBox
       Left = 6
       Top = 56
@@ -64,22 +50,13 @@ object FormVendas: TFormVendas
       Caption = 'Aberta'
       TabOrder = 2
     end
-    object btnPesquisar: TButton
-      Left = 10
-      Top = 97
-      Width = 101
-      Height = 26
-      Caption = 'Pesquisar'
-      TabOrder = 3
-      OnClick = btnPesquisarClick
-    end
     object cbCancelada: TCheckBox
       Left = 6
       Top = 77
       Width = 97
       Height = 17
       Caption = 'Cancelada'
-      TabOrder = 4
+      TabOrder = 3
     end
     object gbEditarVenda: TGroupBox
       Left = 2
@@ -87,55 +64,122 @@ object FormVendas: TFormVendas
       Width = 122
       Height = 88
       Caption = 'Venda'
-      TabOrder = 5
-      object btnAtualizarVendas: TButton
-        Left = 7
-        Top = 50
-        Width = 105
-        Height = 26
-        Caption = 'Atualizar'
-        TabOrder = 0
-        OnClick = btnAtualizarVendasClick
-      end
-      object btnEditarVendasCadastrar: TButton
-        Left = 7
-        Top = 19
-        Width = 105
+      TabOrder = 4
+      object btnCadastrarVendasCadastrar: TcxButton
+        Left = 10
+        Top = 16
+        Width = 97
         Height = 25
-        Caption = 'Editar / Cadastrar'
+        Caption = 'Editar Registros'
+        TabOrder = 0
+        OnClick = btnCadastrarVendasCadastrarClick
+      end
+      object btnAtualizarVendas: TcxButton
+        Left = 10
+        Top = 47
+        Width = 97
+        Height = 25
+        Caption = 'Atualizar'
         TabOrder = 1
-        OnClick = btnEditarVendasCadastrarClick
+        OnClick = btnAtualizarVendasClick
       end
     end
     object gbRelatorioVendas: TGroupBox
       Left = 2
-      Top = 530
+      Top = 549
       Width = 123
       Height = 105
       Align = alBottom
       Caption = 'Relat'#243'rio'
-      TabOrder = 6
-      object btnVisualizarRelatorio: TButton
-        Left = 7
-        Top = 23
-        Width = 106
+      TabOrder = 5
+      object bntVisualizarRelatorio: TcxButton
+        Left = 11
+        Top = 29
+        Width = 97
         Height = 25
         Caption = 'Visualizar'
         TabOrder = 0
-        OnClick = btnVisualizarRelatorioClick
+        OnClick = bntVisualizarRelatorioClick
       end
-      object btnImprimirRelatorio: TButton
-        Left = 9
-        Top = 57
-        Width = 104
+      object btnImprimir: TcxButton
+        Left = 11
+        Top = 58
+        Width = 97
         Height = 25
         Caption = 'Imprimir'
         TabOrder = 1
-        OnClick = btnImprimirRelatorioClick
+        OnClick = btnImprimirClick
       end
+    end
+    object btnPesquisar: TcxButton
+      Left = 6
+      Top = 100
+      Width = 97
+      Height = 25
+      Caption = 'Pesquisar'
+      TabOrder = 6
+      OnClick = btnPesquisarClick
+    end
+  end
+  object dbGridVendas: TcxGrid
+    Left = 0
+    Top = 0
+    Width = 611
+    Height = 656
+    Align = alClient
+    TabOrder = 1
+    object dbGridVendasDBTableView1: TcxGridDBTableView
+      Navigator.Buttons.CustomButtons = <>
+      DataController.DataSource = dsVendas
+      DataController.Summary.DefaultGroupSummaryItems = <>
+      DataController.Summary.FooterSummaryItems = <>
+      DataController.Summary.SummaryGroups = <>
+      OptionsData.Editing = False
+      OptionsView.GroupByBox = False
+      OptionsView.ShowColumnFilterButtons = sfbWhenSelected
+      object dbGridVendasDBTableView1id_produtos: TcxGridDBColumn
+        DataBinding.FieldName = 'id_produtos'
+      end
+      object dbGridVendasDBTableView1fornecedores: TcxGridDBColumn
+        DataBinding.FieldName = 'fornecedores'
+        Width = 102
+      end
+      object dbGridVendasDBTableView1status: TcxGridDBColumn
+        DataBinding.FieldName = 'status'
+        Width = 88
+      end
+      object dbGridVendasDBTableView1produtos: TcxGridDBColumn
+        DataBinding.FieldName = 'produtos'
+        Width = 109
+      end
+      object dbGridVendasDBTableView1valor_produto: TcxGridDBColumn
+        DataBinding.FieldName = 'valor_produto'
+      end
+      object dbGridVendasDBTableView1quantidade: TcxGridDBColumn
+        DataBinding.FieldName = 'quantidade'
+      end
+      object dbGridVendasDBTableView1valor_total: TcxGridDBColumn
+        DataBinding.FieldName = 'valor_total'
+      end
+      object dbGridVendasDBTableView1data: TcxGridDBColumn
+        DataBinding.FieldName = 'data'
+      end
+      object dbGridVendasDBTableView1id_cadastro: TcxGridDBColumn
+        DataBinding.FieldName = 'id_cadastro'
+      end
+      object dbGridVendasDBTableView1id_vendedor: TcxGridDBColumn
+        DataBinding.FieldName = 'id_vendedor'
+      end
+      object dbGridVendasDBTableView1vendedor: TcxGridDBColumn
+        DataBinding.FieldName = 'vendedor'
+      end
+    end
+    object dbGridVendasLevel1: TcxGridLevel
+      GridView = dbGridVendasDBTableView1
     end
   end
   object dsVendas: TDataSource
+    DataSet = DmClienteVendas.cdsVendas
     Left = 360
     Top = 344
   end

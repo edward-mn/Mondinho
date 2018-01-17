@@ -6,7 +6,11 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DataModuleConexao,
   Data.DB, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, System.UITypes, UnitEditarTarefas,
-  Vcl.ExtCtrls, DataModuleClientesTarefas;
+  Vcl.ExtCtrls, DataModuleClientesTarefas, cxGraphics, cxControls,
+  cxLookAndFeels, cxLookAndFeelPainters, cxStyles, cxCustomData, cxFilter,
+  cxData, cxDataStorage, cxEdit, cxNavigator, cxDBData, cxGridCustomTableView,
+  cxGridTableView, cxGridDBTableView, cxGridLevel, cxClasses, cxGridCustomView,
+  cxGrid, Vcl.Menus, cxButtons;
 
 type
   TFormTarefas = class(TForm)
@@ -15,16 +19,24 @@ type
     cbFinalizadas: TCheckBox;
     cbAdiadas: TCheckBox;
     cbAgendada: TCheckBox;
-    btnPesquisar: TButton;
-    dbGridTarefas: TDBGrid;
     dsTarefas: TDataSource;
     Timer: TTimer;
     gbEditarTarefas: TGroupBox;
-    btnAtualizarTarefa: TButton;
-    btnCriarTarefa: TButton;
     gbRelatorioTarefas: TGroupBox;
-    btnImprimir: TButton;
-    btnVisualizar: TButton;
+    dbGridTarefas: TcxGrid;
+    dbGridTarefasDBTableView1: TcxGridDBTableView;
+    dbGridTarefasLevel1: TcxGridLevel;
+    dbGridTarefasDBTableView1id_todo: TcxGridDBColumn;
+    dbGridTarefasDBTableView1nomes: TcxGridDBColumn;
+    dbGridTarefasDBTableView1tarefas: TcxGridDBColumn;
+    dbGridTarefasDBTableView1status: TcxGridDBColumn;
+    dbGridTarefasDBTableView1data: TcxGridDBColumn;
+    dbGridTarefasDBTableView1id_cadastro: TcxGridDBColumn;
+    btnCriarTarefa: TcxButton;
+    btnVisualizar: TcxButton;
+    btnImprimir: TcxButton;
+    btnAtualizarTarefa: TcxButton;
+    btnPesquisar: TcxButton;
     procedure btnAtualizarTarefaClick(Sender: TObject);
     procedure btnCriarTarefaClick(Sender: TObject);
     procedure btnEditarTarefaClick(Sender: TObject);
@@ -129,7 +141,6 @@ end;
 procedure TFormTarefas.DefinirDataSet;
 begin
   dsTarefas.DataSet := FClientesTarefas.cdsToDo;
-  dbGridTarefas.DataSource := dsTarefas;
   FClientesTarefas.cdsToDo.Open;
   FClientesTarefas.cdsToDoid_cadastro.Visible := False;
 end;

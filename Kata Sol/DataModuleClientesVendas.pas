@@ -21,7 +21,6 @@ end;
     frxReportVendas: TfrxReport;
     cdsVendas: TClientDataSet;
     cdsVendasid_produtos: TIntegerField;
-    cdsVendasvendedores: TWideStringField;
     cdsVendasfornecedores: TWideStringField;
     cdsVendasstatus: TWideStringField;
     cdsVendasprodutos: TWideStringField;
@@ -30,8 +29,8 @@ end;
     cdsVendasvalor_total: TFMTBCDField;
     cdsVendasdata: TDateField;
     cdsVendasid_cadastro: TIntegerField;
-    frxDBDatasetVendas: TfrxDBDataset;
-    frxReportVendas: TfrxReport;
+    cdsVendasid_vendedor: TIntegerField;
+    cdsVendasvendedor: TWideStringField;
     procedure cdsVendasBeforePost(DataSet: TDataSet);
   private
     FAoValidar : TAoValidar;
@@ -54,8 +53,8 @@ procedure TDmClienteVendas.cdsVendasBeforePost(DataSet: TDataSet);
 begin
    if (cdsVendasstatus.Value.IsEmpty) then
     raise EValidationError.Create('Status é obrigatório.', cdsVendasstatus.FieldName);
-  if (cdsVendasvendedores.Value.IsEmpty) then
-    raise EValidationError.Create('Vendedor é obrigatório.', cdsVendasvendedores.FieldName);
+  if (cdsVendasid_vendedor.IsNull) then
+    raise EValidationError.Create('Vendedor é obrigatório.', cdsVendasid_vendedor.FieldName);
   if (cdsVendasfornecedores.Value.IsEmpty) then
     raise EValidationError.Create('Fornecedor é obrigatório.', cdsVendasfornecedores.FieldName);
   if (cdsVendasprodutos.Value.IsEmpty) then

@@ -4,8 +4,8 @@ object FormTarefas: TFormTarefas
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsNone
   Caption = 'Tarefas'
-  ClientHeight = 617
-  ClientWidth = 738
+  ClientHeight = 652
+  ClientWidth = 741
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,15 +18,13 @@ object FormTarefas: TFormTarefas
   PixelsPerInch = 96
   TextHeight = 13
   object gbStatusTarefas: TGroupBox
-    Left = 609
+    Left = 612
     Top = 0
     Width = 129
-    Height = 617
+    Height = 652
     Align = alRight
     Caption = 'Status'
     TabOrder = 0
-    ExplicitLeft = 603
-    ExplicitHeight = 588
     object cbAtrasadas: TCheckBox
       Left = 8
       Top = 92
@@ -59,92 +57,120 @@ object FormTarefas: TFormTarefas
       Caption = 'Agendada'
       TabOrder = 3
     end
-    object btnPesquisar: TButton
-      Left = 9
-      Top = 121
-      Width = 96
-      Height = 26
-      Caption = 'Pesquisar'
-      TabOrder = 4
-      OnClick = btnPesquisarClick
-    end
     object gbEditarTarefas: TGroupBox
       Left = 5
       Top = 179
       Width = 119
-      Height = 98
+      Height = 70
       Caption = 'Tarefas'
-      TabOrder = 5
-      object btnAtualizarTarefa: TButton
+      TabOrder = 4
+      object btnCriarTarefa: TcxButton
         Left = 9
-        Top = 58
-        Width = 105
-        Height = 26
-        Caption = 'Atualizar'
-        TabOrder = 0
-        OnClick = btnAtualizarTarefaClick
-      end
-      object btnCriarTarefa: TButton
-        Left = 9
-        Top = 22
-        Width = 105
-        Height = 26
+        Top = 16
+        Width = 97
+        Height = 25
         Caption = 'Editar Registros'
-        TabOrder = 1
+        TabOrder = 0
         OnClick = btnCriarTarefaClick
+      end
+      object btnAtualizarTarefa: TcxButton
+        Left = 9
+        Top = 43
+        Width = 97
+        Height = 25
+        Caption = 'Atualizar'
+        TabOrder = 1
+        OnClick = btnAtualizarTarefaClick
       end
     end
     object gbRelatorioTarefas: TGroupBox
       Left = 2
-      Top = 518
+      Top = 553
       Width = 125
       Height = 97
       Align = alBottom
       Caption = 'Relat'#243'rio'
-      TabOrder = 6
-      ExplicitTop = 489
-      object btnImprimir: TButton
-        Left = 14
-        Top = 56
+      TabOrder = 5
+      object btnVisualizar: TcxButton
+        Left = 12
+        Top = 26
+        Width = 97
+        Height = 25
+        Caption = 'Visualizar'
+        TabOrder = 0
+        OnClick = btnVisualizarClick
+      end
+      object btnImprimir: TcxButton
+        Left = 12
+        Top = 57
         Width = 97
         Height = 25
         Caption = 'Imprimir'
-        TabOrder = 0
+        TabOrder = 1
         OnClick = btnImprimirClick
       end
-      object btnVisualizar: TButton
-        Left = 12
-        Top = 23
-        Width = 99
-        Height = 25
-        Caption = 'Visualizar'
-        TabOrder = 1
-        OnClick = btnVisualizarClick
-      end
+    end
+    object btnPesquisar: TcxButton
+      Left = 14
+      Top = 118
+      Width = 97
+      Height = 25
+      Caption = 'Pesquisar'
+      TabOrder = 6
+      OnClick = btnPesquisarClick
     end
   end
-  object dbGridTarefas: TDBGrid
+  object dbGridTarefas: TcxGrid
     Left = 0
     Top = 0
-    Width = 609
-    Height = 617
+    Width = 612
+    Height = 652
     Align = alClient
-    ReadOnly = True
     TabOrder = 1
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
+    ExplicitWidth = 609
+    object dbGridTarefasDBTableView1: TcxGridDBTableView
+      Navigator.Buttons.CustomButtons = <>
+      DataController.DataSource = dsTarefas
+      DataController.Summary.DefaultGroupSummaryItems = <>
+      DataController.Summary.FooterSummaryItems = <>
+      DataController.Summary.SummaryGroups = <>
+      OptionsData.Editing = False
+      OptionsView.GroupByBox = False
+      OptionsView.ShowColumnFilterButtons = sfbWhenSelected
+      object dbGridTarefasDBTableView1id_todo: TcxGridDBColumn
+        DataBinding.FieldName = 'id_todo'
+      end
+      object dbGridTarefasDBTableView1nomes: TcxGridDBColumn
+        DataBinding.FieldName = 'nomes'
+        Width = 111
+      end
+      object dbGridTarefasDBTableView1tarefas: TcxGridDBColumn
+        DataBinding.FieldName = 'tarefas'
+        Width = 141
+      end
+      object dbGridTarefasDBTableView1status: TcxGridDBColumn
+        DataBinding.FieldName = 'status'
+      end
+      object dbGridTarefasDBTableView1data: TcxGridDBColumn
+        DataBinding.FieldName = 'data'
+      end
+      object dbGridTarefasDBTableView1id_cadastro: TcxGridDBColumn
+        DataBinding.FieldName = 'id_cadastro'
+      end
+    end
+    object dbGridTarefasLevel1: TcxGridLevel
+      GridView = dbGridTarefasDBTableView1
+    end
   end
   object dsTarefas: TDataSource
+    DataSet = DmClientesTarefas.cdsToDo
     Left = 648
     Top = 288
   end
   object Timer: TTimer
     Interval = 60000
     OnTimer = TimerTimer
-    Left = 608
-    Top = 288
+    Left = 648
+    Top = 336
   end
 end

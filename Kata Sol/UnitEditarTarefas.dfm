@@ -18,42 +18,6 @@ object FormEditarTarefas: TFormEditarTarefas
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object btnSalvar: TButton
-    Left = 19
-    Top = 94
-    Width = 105
-    Height = 26
-    Caption = 'Salvar'
-    TabOrder = 4
-    OnClick = btnSalvarClick
-  end
-  object btnNovo: TButton
-    Left = 19
-    Top = 11
-    Width = 105
-    Height = 25
-    Caption = 'Novo'
-    TabOrder = 0
-    OnClick = btnNovoClick
-  end
-  object btnCancelar: TButton
-    Left = 19
-    Top = 67
-    Width = 105
-    Height = 25
-    Caption = 'Cancelar'
-    TabOrder = 3
-    OnClick = btnCancelarClick
-  end
-  object btnEditar: TButton
-    Left = 19
-    Top = 39
-    Width = 105
-    Height = 25
-    Caption = 'Editar'
-    TabOrder = 2
-    OnClick = btnEditarClick
-  end
   object gbFormulario: TGroupBox
     Left = 138
     Top = 19
@@ -61,14 +25,13 @@ object FormEditarTarefas: TFormEditarTarefas
     Height = 155
     Caption = 'Formul'#225'rio'
     Enabled = False
-    TabOrder = 1
+    TabOrder = 0
     object Label1: TLabel
       Left = 181
       Top = 28
       Width = 36
       Height = 13
       Caption = '* Nome'
-      FocusControl = edtNome
     end
     object Label3: TLabel
       Left = 13
@@ -91,71 +54,37 @@ object FormEditarTarefas: TFormEditarTarefas
       Height = 13
       Caption = '* Tarefa'
     end
-    object edtNome: TDBEdit
-      Left = 181
-      Top = 47
-      Width = 316
-      Height = 21
-      DataField = 'nomes'
-      DataSource = dsCriarTarefas
-      TabOrder = 1
+    object cxDBstatusTarefas: TcxDBComboBox
+      Left = 13
+      Top = 44
+      DataBinding.DataField = 'status'
+      DataBinding.DataSource = dsCriarTarefas
+      Properties.DropDownListStyle = lsEditFixedList
+      Properties.Items.Strings = (
+        'Fisica'
+        'Juridica'
+        'Vendedor'
+        'Empresa'
+        'Usuario do Sistema')
+      TabOrder = 0
+      Width = 121
     end
-    object edtTarefa: TDBEdit
+    object cxDBNome: TcxDBTextEdit
+      Left = 181
+      Top = 44
+      DataBinding.DataField = 'nomes'
+      DataBinding.DataSource = dsCriarTarefas
+      TabOrder = 1
+      Width = 148
+    end
+    object cxDBTarefas: TcxDBTextEdit
       Left = 13
       Top = 104
-      Width = 364
-      Height = 21
-      DataField = 'tarefas'
-      DataSource = dsCriarTarefas
-      TabOrder = 0
-    end
-    object cbTarefas: TDBComboBox
-      Left = 13
-      Top = 47
-      Width = 156
-      Height = 21
-      Style = csDropDownList
-      DataField = 'status'
-      DataSource = dsCriarTarefas
-      Items.Strings = (
-        'Agendada'
-        'Finalizada'
-        'Adiada'
-        'Atrasada')
+      DataBinding.DataField = 'tarefas'
+      DataBinding.DataSource = dsCriarTarefas
       TabOrder = 2
+      Width = 220
     end
-  end
-  object btnDeletarTarefa: TButton
-    Left = 19
-    Top = 122
-    Width = 105
-    Height = 25
-    Caption = 'Deletar'
-    TabOrder = 5
-    OnClick = btnDeletarTarefaClick
-  end
-  object btnAdiarTarefa: TButton
-    Left = 19
-    Top = 149
-    Width = 105
-    Height = 25
-    Caption = 'Adiar Tarefa'
-    TabOrder = 6
-    OnClick = btnAdiarTarefaClick
-  end
-  object dbGridCriacaoEdicao: TDBGrid
-    Left = 0
-    Top = 200
-    Width = 716
-    Height = 198
-    Align = alBottom
-    ReadOnly = True
-    TabOrder = 7
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
   end
   object cbData: TcxDBDateEdit
     Left = 537
@@ -165,10 +94,104 @@ object FormEditarTarefas: TFormEditarTarefas
     DataBinding.DataSource = dsCriarTarefas
     DragCursor = crArrow
     Properties.View = cavModern
+    TabOrder = 1
+    Width = 90
+  end
+  object dbGridCriacaoEdicao: TcxGrid
+    Left = 0
+    Top = 198
+    Width = 716
+    Height = 200
+    Align = alBottom
+    TabOrder = 2
+    object dbGridCriacaoEdicaoDBTableView1: TcxGridDBTableView
+      Navigator.Buttons.CustomButtons = <>
+      DataController.DataSource = dsCriarTarefas
+      DataController.Summary.DefaultGroupSummaryItems = <>
+      DataController.Summary.FooterSummaryItems = <>
+      DataController.Summary.SummaryGroups = <>
+      OptionsData.Editing = False
+      OptionsView.GroupByBox = False
+      OptionsView.ShowColumnFilterButtons = sfbWhenSelected
+      object dbGridCriacaoEdicaoDBTableView1id_todo: TcxGridDBColumn
+        DataBinding.FieldName = 'id_todo'
+      end
+      object dbGridCriacaoEdicaoDBTableView1nomes: TcxGridDBColumn
+        DataBinding.FieldName = 'nomes'
+      end
+      object dbGridCriacaoEdicaoDBTableView1tarefas: TcxGridDBColumn
+        DataBinding.FieldName = 'tarefas'
+      end
+      object dbGridCriacaoEdicaoDBTableView1status: TcxGridDBColumn
+        DataBinding.FieldName = 'status'
+      end
+      object dbGridCriacaoEdicaoDBTableView1data: TcxGridDBColumn
+        DataBinding.FieldName = 'data'
+      end
+      object dbGridCriacaoEdicaoDBTableView1id_cadastro: TcxGridDBColumn
+        DataBinding.FieldName = 'id_cadastro'
+      end
+    end
+    object dbGridCriacaoEdicaoLevel1: TcxGridLevel
+      GridView = dbGridCriacaoEdicaoDBTableView1
+    end
+  end
+  object btnSalvar: TcxButton
+    Left = 19
+    Top = 88
+    Width = 105
+    Height = 25
+    Caption = 'Salvar'
+    TabOrder = 3
+    OnClick = btnSalvarClick
+  end
+  object btnCancelar: TcxButton
+    Left = 19
+    Top = 61
+    Width = 105
+    Height = 25
+    Caption = 'Cancelar'
+    TabOrder = 4
+    OnClick = btnCancelarClick
+  end
+  object btnEditar: TcxButton
+    Left = 19
+    Top = 34
+    Width = 105
+    Height = 25
+    Caption = 'Editar'
+    TabOrder = 5
+    OnClick = btnEditarClick
+  end
+  object btnNovo: TcxButton
+    Left = 19
+    Top = 8
+    Width = 105
+    Height = 25
+    Caption = 'Novo'
+    TabOrder = 6
+    OnClick = btnNovoClick
+  end
+  object btnDeletarTarefa: TcxButton
+    Left = 19
+    Top = 119
+    Width = 105
+    Height = 25
+    Caption = 'Deletar'
+    TabOrder = 7
+    OnClick = btnDeletarTarefaClick
+  end
+  object btnAdiarTarefa: TcxButton
+    Left = 19
+    Top = 151
+    Width = 105
+    Height = 25
+    Caption = 'Adiar Tarefa'
     TabOrder = 8
-    Width = 94
+    OnClick = btnAdiarTarefaClick
   end
   object dsCriarTarefas: TDataSource
+    DataSet = DmClientesTarefas.cdsToDo
     Left = 240
     Top = 264
   end

@@ -13,11 +13,6 @@ object DmClienteVendas: TDmClienteVendas
       DisplayLabel = 'C'#243'd. Produtos'
       FieldName = 'id_produtos'
     end
-    object cdsVendasvendedores: TWideStringField
-      DisplayLabel = 'Vendedores'
-      FieldName = 'vendedores'
-      Size = 50
-    end
     object cdsVendasfornecedores: TWideStringField
       DisplayLabel = 'Fornecedores'
       FieldName = 'fornecedores'
@@ -59,6 +54,14 @@ object DmClienteVendas: TDmClienteVendas
       DisplayLabel = 'Data'
       FieldName = 'data'
       EditMask = '!99/99/0000;'
+    end
+    object cdsVendasid_vendedor: TIntegerField
+      FieldName = 'id_vendedor'
+    end
+    object cdsVendasvendedor: TWideStringField
+      FieldName = 'vendedor'
+      ProviderFlags = []
+      Size = 50
     end
     object cdsVendasid_cadastro: TIntegerField
       FieldName = 'id_cadastro'
@@ -527,66 +530,6 @@ object DmClienteVendas: TDmClienteVendas
             'Page [Page#]')
         end
       end
-    end
-  end
-  object cdsVendas: TClientDataSet
-    Aggregates = <>
-    Params = <>
-    ProviderName = 'sqlProviderVendas'
-    Left = 48
-    Top = 33
-    object cdsVendasid_produtos: TIntegerField
-      DisplayLabel = 'C'#243'd. Produtos'
-      FieldName = 'id_produtos'
-    end
-    object cdsVendasfornecedores: TWideStringField
-      DisplayLabel = 'Fornecedores'
-      FieldName = 'fornecedores'
-      Size = 50
-    end
-    object cdsVendasstatus: TWideStringField
-      DisplayLabel = 'Status'
-      FieldName = 'status'
-    end
-    object cdsVendasprodutos: TWideStringField
-      DisplayLabel = 'Produtos'
-      FieldName = 'produtos'
-      Size = 50
-    end
-    object cdsVendasvalor_produto: TFMTBCDField
-      DisplayLabel = 'Pre'#231'o'
-      FieldName = 'valor_produto'
-      EditFormat = '0.00'
-      currency = True
-      Precision = 11
-      Size = 2
-    end
-    object cdsVendasquantidade: TIntegerField
-      DisplayLabel = 'Quantidade'
-      FieldName = 'quantidade'
-    end
-    object cdsVendasvalor_total: TFMTBCDField
-      DisplayLabel = 'Valor Total'
-      FieldName = 'valor_total'
-      EditFormat = '0.00'
-      currency = True
-      Precision = 11
-      Size = 2
-    end
-    object cdsVendasdata: TDateField
-      DisplayLabel = 'Data'
-      FieldName = 'data'
-      EditMask = '!99/99/0000;'
-    end
-    object cdsVendasid_cadastro: TIntegerField
-      FieldName = 'id_cadastro'
-    end
-    object cdsVendasid_vendedor: TIntegerField
-      FieldName = 'id_vendedor'
-    end
-    object cdsVendasvendedor: TWideStringField
-      FieldName = 'vendedor'
-      Size = 50
     end
   end
 end

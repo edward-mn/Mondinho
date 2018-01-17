@@ -29,8 +29,8 @@
     TabOrder = 0
     AutoSize = True
     object btnTarefas: TButton
-      Left = 189
-      Top = 28
+      Left = 177
+      Top = 10
       Width = 75
       Height = 37
       Caption = 'Tarefas'
@@ -38,8 +38,8 @@
       OnClick = btnTarefasClick
     end
     object btnPessoas: TButton
-      Left = 108
-      Top = 28
+      Left = 96
+      Top = 10
       Width = 75
       Height = 37
       Caption = 'Pessoas'
@@ -47,8 +47,8 @@
       OnClick = btnPessoasClick
     end
     object btnVendas: TButton
-      Left = 22
-      Top = 28
+      Left = 10
+      Top = 10
       Width = 80
       Height = 37
       Caption = 'Vendas'
@@ -62,15 +62,15 @@
       Height = 39
       TabOrder = 6
       object lblNome: TLabel
-        Left = 68
-        Top = 15
+        Left = 64
+        Top = 14
         Width = 29
         Height = 13
         Caption = 'NOME'
       end
       object lblUsuario: TLabel
         Left = 15
-        Top = 15
+        Top = 14
         Width = 43
         Height = 13
         Caption = 'Usu'#225'rio :'
@@ -90,25 +90,37 @@
         ParentFont = False
         TabOrder = 0
         OnClick = btnLogoutClick
+        ExplicitLeft = 111
       end
     end
-    object GridUsuarios: TDBGrid
-      Left = 24
-      Top = 451
-      Width = 305
-      Height = 116
-      BorderStyle = bsNone
+    object cxGridUsuarios: TcxGrid
+      Left = 22
+      Top = 431
+      Width = 250
+      Height = 136
       TabOrder = 3
-      TitleFont.Charset = DEFAULT_CHARSET
-      TitleFont.Color = clWindowText
-      TitleFont.Height = -11
-      TitleFont.Name = 'Tahoma'
-      TitleFont.Style = []
+      object cxGridUsuariosDBTableView1: TcxGridDBTableView
+        Navigator.Buttons.CustomButtons = <>
+        DataController.Summary.DefaultGroupSummaryItems = <>
+        DataController.Summary.FooterSummaryItems = <>
+        DataController.Summary.SummaryGroups = <>
+        OptionsData.Editing = False
+        OptionsView.GroupByBox = False
+        object cxGridUsuariosDBTableView1id: TcxGridDBColumn
+          DataBinding.FieldName = 'id'
+        end
+        object cxGridUsuariosDBTableView1nome_usuario: TcxGridDBColumn
+          DataBinding.FieldName = 'nome_usuario'
+        end
+      end
+      object cxGridUsuariosLevel1: TcxGridLevel
+        GridView = cxGridUsuariosDBTableView1
+      end
     end
-    object GridValotTotal: TDBGrid
-      Left = 339
+    object GridQauntidade: TDBGrid
+      Left = 280
       Top = 451
-      Width = 362
+      Width = 275
       Height = 116
       BorderStyle = bsNone
       TabOrder = 4
@@ -118,10 +130,10 @@
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
     end
-    object GridQauntidade: TDBGrid
-      Left = 711
+    object GridValorTotal: TDBGrid
+      Left = 565
       Top = 451
-      Width = 366
+      Width = 275
       Height = 116
       BorderStyle = bsNone
       TabOrder = 5
@@ -176,7 +188,9 @@
     end
     object layoutBarraFim: TdxLayoutItem
       Parent = LayoutControl
+      AlignHorz = ahClient
       CaptionOptions.Visible = False
+      CaptionOptions.Layout = clTop
       Control = PanelFinal
       ControlOptions.AutoColor = True
       ControlOptions.OriginalHeight = 39
@@ -185,14 +199,14 @@
       Index = 3
     end
     object layoutGrupoBotoes: TdxLayoutGroup
-      Parent = layoutGrupoTopo
+      Parent = dxLayoutAutoCreatedGroup1
       AlignHorz = ahLeft
       AlignVert = avTop
       CaptionOptions.Text = 'New Group'
       CaptionOptions.Visible = False
       ButtonOptions.Buttons = <>
-      ItemIndex = 2
       LayoutDirection = ldHorizontal
+      ShowBorder = False
       Index = 0
     end
     object GrupoForms: TdxLayoutGroup
@@ -204,25 +218,14 @@
       TabbedOptions.CloseButtonMode = cbmActiveTab
       Index = 0
     end
-    object layoutGridUsuarios: TdxLayoutItem
-      Parent = layoutGrupoGridUsuarios
-      AlignHorz = ahLeft
-      AlignVert = avTop
-      CaptionOptions.ShowAccelChar = False
-      CaptionOptions.Text = 'Usuarios Do Sistema'
-      CaptionOptions.Layout = clTop
-      Control = GridUsuarios
-      ControlOptions.OriginalHeight = 116
-      ControlOptions.OriginalWidth = 305
-      Index = 0
-    end
     object layoutGrupoGridUsuarios: TdxLayoutGroup
       Parent = LayoutControl
       AlignHorz = ahLeft
       AlignVert = avTop
       CaptionOptions.ShowAccelChar = False
+      CaptionOptions.Visible = False
       ButtonOptions.Buttons = <>
-      LayoutDirection = ldHorizontal
+      ShowBorder = False
       Index = 2
     end
     object layoutGrupoPrincipal: TdxLayoutGroup
@@ -234,7 +237,7 @@
       Index = 1
     end
     object layoutImagemLogoMondinho: TdxLayoutImageItem
-      Parent = layoutGrupoTopo
+      Parent = dxLayoutAutoCreatedGroup1
       AlignHorz = ahRight
       AlignVert = avClient
       CaptionOptions.Visible = False
@@ -308,42 +311,63 @@
         70652E6F72679BEE3C1A0000000049454E44AE426082}
       Index = 1
     end
-    object layoutGrupoTopo: TdxLayoutAutoCreatedGroup
-      Parent = LayoutControl
+    object dxLayoutItem1: TdxLayoutItem
+      Parent = layoutGrupoUsuarios
+      AlignHorz = ahLeft
       AlignVert = avTop
+      CaptionOptions.ShowAccelChar = False
+      Control = cxGridUsuarios
+      ControlOptions.OriginalHeight = 136
+      ControlOptions.OriginalWidth = 250
+      ControlOptions.ShowBorder = False
+      Index = 0
+    end
+    object layoutGrupoUsuarios: TdxLayoutGroup
+      Parent = layoutGrupoGridUsuarios
+      AlignHorz = ahLeft
+      AlignVert = avTop
+      CaptionOptions.Text = 'Usuarios Cadastrados'
+      ButtonOptions.Buttons = <>
+      LayoutDirection = ldHorizontal
+      Index = 0
+    end
+    object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
+      Parent = LayoutControl
       LayoutDirection = ldHorizontal
       Index = 0
       AutoCreated = True
     end
-    object dxLayoutItem1: TdxLayoutItem
-      Parent = layoutGrupoGridUsuarios
-      CaptionOptions.Text = 'Vendas Por Valor Total'
-      CaptionOptions.Layout = clTop
-      Control = GridValotTotal
-      ControlOptions.OriginalHeight = 116
-      ControlOptions.OriginalWidth = 362
-      Index = 1
-    end
     object dxLayoutItem2: TdxLayoutItem
-      Parent = layoutGrupoGridUsuarios
+      Parent = layoutGrupoUsuarios
+      AlignHorz = ahLeft
+      AlignVert = avTop
       CaptionOptions.Text = 'Vendas Por Quantidade'
       CaptionOptions.Layout = clTop
       Control = GridQauntidade
       ControlOptions.OriginalHeight = 116
-      ControlOptions.OriginalWidth = 366
+      ControlOptions.OriginalWidth = 275
+      Index = 1
+    end
+    object dxLayoutItem3: TdxLayoutItem
+      Parent = layoutGrupoUsuarios
+      CaptionOptions.Text = 'Vendas Por Valor'
+      CaptionOptions.Layout = clTop
+      Control = GridValorTotal
+      ControlOptions.OriginalHeight = 116
+      ControlOptions.OriginalWidth = 275
       Index = 2
     end
   end
-  object dsToDo: TDataSource
-    Left = 112
-    Top = 488
-  end
   object dsQuantidade: TDataSource
-    Left = 888
-    Top = 488
+    Left = 400
+    Top = 496
   end
   object dsValorTotal: TDataSource
-    Left = 512
+    Left = 672
     Top = 488
+  end
+  object dsToDo: TDataSource
+    Left = 154
+    Top = 464
   end
 end

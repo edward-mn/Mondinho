@@ -45,7 +45,7 @@ object DmConexao: TDmConexao
     LoginPrompt = False
     Params.Strings = (
       'BlobSize=-1'
-      'HostName=localhost:5434'
+      'HostName=localhost:5432'
       'DataBase=MiniMonde'
       'SchemaName=mondinho'
       'DriverName=DevartPostgreSQL'
@@ -89,10 +89,6 @@ object DmConexao: TDmConexao
     end
     object sqlQueryVendasprodutos: TWideStringField
       FieldName = 'produtos'
-      Size = 50
-    end
-    object sqlQueryVendasvendedores: TWideStringField
-      FieldName = 'vendedores'
       Size = 50
     end
     object sqlQueryVendasstatus: TWideStringField

@@ -1,15 +1,6 @@
 ﻿[DmClientes.cdsToDo]
 Coordinates=332,10,136,190
 
-[edtTarefa]
-Coordinates=580,366,70,36
-
-[btnSalvar]
-Coordinates=367,298,69,58
-
-[btnNovo]
-Coordinates=10,366,62,58
-
 [DmClientes.cdsVendas]
 Coordinates=10,10,148,278
 
@@ -25,23 +16,11 @@ Coordinates=304,298,53,58
 [Label3]
 Coordinates=241,298,53,58
 
-[btnEditar]
-Coordinates=245,366,66,58
-
-[edtNome]
-Coordinates=10,434,66,36
-
 [dsCriarTarefas]
 Coordinates=94,317,100,58
 
-[btnCancelar]
-Coordinates=602,298,84,58
-
 [Label1]
 Coordinates=539,298,53,58
-
-[btnDeletarTarefa]
-Coordinates=120,298,111,58
 
 [gbFormulario]
 Coordinates=145,366,90,58
@@ -49,16 +28,7 @@ Coordinates=145,366,90,58
 [Label4]
 Coordinates=82,366,53,58
 
-[dbGridCriacaoEdicao]
-Coordinates=433,366,137,36
-
-[btnAdiarTarefa]
-Coordinates=10,298,100,58
-
 []
-Coordinates=446,298,83,58
+Coordinates=10,298,100,58
 Visible=True
-
-[cbTarefas]
-Coordinates=86,434,89,36
 
