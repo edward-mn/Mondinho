@@ -17,164 +17,358 @@ object FormPessoas: TFormPessoas
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object gbStatusPessoas: TGroupBox
-    Left = 608
+  object dxLayoutControl1: TdxLayoutControl
+    Left = 0
     Top = 0
-    Width = 128
+    Width = 736
     Height = 644
-    Align = alRight
-    Caption = 'Status'
+    Align = alClient
     TabOrder = 0
+    AutoSize = True
     object cbEmpresa: TCheckBox
-      Left = 5
-      Top = 79
+      Left = 593
+      Top = 97
       Width = 97
       Height = 17
       Caption = 'Empresa'
-      TabOrder = 0
+      TabOrder = 4
     end
     object cbVendedor: TCheckBox
-      Left = 5
-      Top = 58
+      Left = 593
+      Top = 74
       Width = 97
       Height = 17
       Caption = 'Vendedor'
-      TabOrder = 1
+      TabOrder = 3
     end
     object cbJuridica: TCheckBox
-      Left = 5
-      Top = 38
+      Left = 593
+      Top = 51
       Width = 97
       Height = 17
       Caption = 'Jurudica'
       TabOrder = 2
     end
     object cbFisica: TCheckBox
-      Left = 5
-      Top = 17
+      Left = 593
+      Top = 28
       Width = 97
       Height = 17
       Caption = 'Fisica'
-      TabOrder = 3
+      TabOrder = 1
     end
     object cbUsuarioDoSistema: TCheckBox
-      Left = 5
-      Top = 100
+      Left = 593
+      Top = 120
       Width = 109
       Height = 17
       Caption = 'Usuario do Sistema'
-      TabOrder = 4
-    end
-    object gbEditarPessoas: TGroupBox
-      Left = 6
-      Top = 153
-      Width = 129
-      Height = 79
-      Align = alCustom
-      Caption = 'Pessoas'
       TabOrder = 5
-      object btnAtualizarCadastro: TcxButton
-        Left = 11
-        Top = 47
-        Width = 97
-        Height = 25
-        Caption = 'Atualizar'
-        TabOrder = 0
-        OnClick = btnAtualizarCadastroClick
-      end
-      object btnCadastrarPessoa: TcxButton
-        Left = 11
-        Top = 16
-        Width = 97
-        Height = 25
-        Caption = 'Editar Registros'
-        TabOrder = 1
-        OnClick = btnCadastrarPessoaClick
-      end
     end
-    object gbRelatorioPessoas: TGroupBox
-      Left = 2
-      Top = 518
-      Width = 124
-      Height = 124
-      Align = alBottom
-      Caption = 'Relat'#243'rio'
-      TabOrder = 6
-      object btnImprimir: TcxButton
-        Left = 11
-        Top = 63
-        Width = 97
-        Height = 25
-        Caption = 'Imprimir'
-        TabOrder = 0
-        OnClick = btnImprimirClick
-      end
-      object bntVisualizar: TcxButton
-        Left = 11
-        Top = 29
-        Width = 97
-        Height = 25
-        Caption = 'Visualizar'
-        TabOrder = 1
-        OnClick = bntVisualizarClick
-      end
+    object btnAtualizarCadastro: TcxButton
+      Left = 605
+      Top = 223
+      Width = 97
+      Height = 25
+      Caption = 'Atualizar'
+      TabOrder = 8
+      OnClick = btnAtualizarCadastroClick
+    end
+    object btnCadastrarPessoa: TcxButton
+      Left = 605
+      Top = 192
+      Width = 97
+      Height = 25
+      Caption = 'Editar Registros'
+      TabOrder = 7
+      OnClick = btnCadastrarPessoaClick
+    end
+    object btnImprimir: TcxButton
+      Left = 605
+      Top = 585
+      Width = 97
+      Height = 25
+      Caption = 'Imprimir'
+      TabOrder = 10
+      OnClick = btnImprimirClick
+    end
+    object bntVisualizar: TcxButton
+      Left = 605
+      Top = 554
+      Width = 97
+      Height = 25
+      Caption = 'Visualizar'
+      TabOrder = 9
+      OnClick = bntVisualizarClick
     end
     object btnPesquisar: TcxButton
-      Left = 17
-      Top = 123
+      Left = 605
+      Top = 143
       Width = 97
       Height = 25
       Caption = 'Pesquisar'
-      TabOrder = 7
+      TabOrder = 6
       OnClick = btnPesquisarClick
     end
-  end
-  object dbGridPessoas: TcxGrid
-    Left = 0
-    Top = 0
-    Width = 608
-    Height = 644
-    Align = alClient
-    TabOrder = 1
-    object dbGridPessoasDBTableView1: TcxGridDBTableView
-      Navigator.Buttons.CustomButtons = <>
-      DataController.DataSource = dsPessoas
-      DataController.Summary.DefaultGroupSummaryItems = <>
-      DataController.Summary.FooterSummaryItems = <>
-      DataController.Summary.SummaryGroups = <>
-      OptionsData.Editing = False
-      OptionsView.GroupByBox = False
-      OptionsView.ShowColumnFilterButtons = sfbWhenSelected
-      object dbGridPessoasDBTableView1id_pessoas: TcxGridDBColumn
-        DataBinding.FieldName = 'id_pessoas'
+    object dbGridPessoas: TcxGrid
+      Left = 10
+      Top = 10
+      Width = 565
+      Height = 624
+      TabOrder = 0
+      object dbGridPessoasDBTableView1: TcxGridDBTableView
+        Navigator.Buttons.CustomButtons = <>
+        DataController.DataSource = dsPessoas
+        DataController.Summary.DefaultGroupSummaryItems = <>
+        DataController.Summary.FooterSummaryItems = <>
+        DataController.Summary.SummaryGroups = <>
+        OptionsData.Deleting = False
+        OptionsData.DeletingConfirmation = False
+        OptionsData.Editing = False
+        OptionsData.Inserting = False
+        OptionsView.GroupByBox = False
+        OptionsView.ShowColumnFilterButtons = sfbWhenSelected
+        object dbGridPessoasDBTableView1id_pessoas: TcxGridDBColumn
+          DataBinding.FieldName = 'id_pessoas'
+        end
+        object dbGridPessoasDBTableView1pessoas: TcxGridDBColumn
+          DataBinding.FieldName = 'pessoas'
+        end
+        object dbGridPessoasDBTableView1endereco: TcxGridDBColumn
+          DataBinding.FieldName = 'endereco'
+        end
+        object dbGridPessoasDBTableView1telefone: TcxGridDBColumn
+          DataBinding.FieldName = 'telefone'
+        end
+        object dbGridPessoasDBTableView1celular: TcxGridDBColumn
+          DataBinding.FieldName = 'celular'
+        end
+        object dbGridPessoasDBTableView1status: TcxGridDBColumn
+          DataBinding.FieldName = 'status'
+        end
+        object dbGridPessoasDBTableView1cpf_cnpj: TcxGridDBColumn
+          DataBinding.FieldName = 'cpf_cnpj'
+        end
+        object dbGridPessoasDBTableView1data: TcxGridDBColumn
+          DataBinding.FieldName = 'data'
+        end
+        object dbGridPessoasDBTableView1id_cadastro: TcxGridDBColumn
+          DataBinding.FieldName = 'id_cadastro'
+        end
       end
-      object dbGridPessoasDBTableView1pessoas: TcxGridDBColumn
-        DataBinding.FieldName = 'pessoas'
-      end
-      object dbGridPessoasDBTableView1endereco: TcxGridDBColumn
-        DataBinding.FieldName = 'endereco'
-      end
-      object dbGridPessoasDBTableView1telefone: TcxGridDBColumn
-        DataBinding.FieldName = 'telefone'
-      end
-      object dbGridPessoasDBTableView1celular: TcxGridDBColumn
-        DataBinding.FieldName = 'celular'
-      end
-      object dbGridPessoasDBTableView1status: TcxGridDBColumn
-        DataBinding.FieldName = 'status'
-      end
-      object dbGridPessoasDBTableView1cpf_cnpj: TcxGridDBColumn
-        DataBinding.FieldName = 'cpf_cnpj'
-      end
-      object dbGridPessoasDBTableView1data: TcxGridDBColumn
-        DataBinding.FieldName = 'data'
-      end
-      object dbGridPessoasDBTableView1id_cadastro: TcxGridDBColumn
-        DataBinding.FieldName = 'id_cadastro'
+      object dbGridPessoasLevel1: TcxGridLevel
+        GridView = dbGridPessoasDBTableView1
       end
     end
-    object dbGridPessoasLevel1: TcxGridLevel
-      GridView = dbGridPessoasDBTableView1
+    object dxLayoutControl1Group_Root: TdxLayoutGroup
+      AlignHorz = ahClient
+      AlignVert = avClient
+      ButtonOptions.Buttons = <>
+      Hidden = True
+      LayoutDirection = ldHorizontal
+      ShowBorder = False
+      Index = -1
+    end
+    object dxLayoutGroup1: TdxLayoutGroup
+      Parent = dxLayoutControl1Group_Root
+      AlignHorz = ahClient
+      AlignVert = avClient
+      CaptionOptions.Text = 'Hidden Group'
+      ButtonOptions.Buttons = <>
+      Hidden = True
+      ShowBorder = False
+      Index = 0
+    end
+    object dxLayoutItem1: TdxLayoutItem
+      Parent = dxLayoutGroup1
+      AlignHorz = ahClient
+      AlignVert = avClient
+      CaptionOptions.Text = 'dbGridPessoas'
+      CaptionOptions.Visible = False
+      Control = dbGridPessoas
+      ControlOptions.OriginalHeight = 644
+      ControlOptions.OriginalWidth = 608
+      ControlOptions.ShowBorder = False
+      Index = 0
+    end
+    object dxLayoutGroup2: TdxLayoutGroup
+      Parent = dxLayoutControl1Group_Root
+      AlignHorz = ahRight
+      AlignVert = avClient
+      CaptionOptions.Text = 'Status'
+      ButtonOptions.Buttons = <>
+      Index = 1
+    end
+    object dxLayoutGroup3: TdxLayoutGroup
+      Parent = dxLayoutGroup2
+      AlignHorz = ahClient
+      AlignVert = avClient
+      CaptionOptions.Text = 'Hidden Group'
+      ButtonOptions.Buttons = <>
+      Hidden = True
+      LayoutDirection = ldHorizontal
+      ShowBorder = False
+      Index = 0
+    end
+    object dxLayoutGroup4: TdxLayoutGroup
+      Parent = dxLayoutGroup3
+      AlignVert = avTop
+      CaptionOptions.Text = 'Hidden Group'
+      ButtonOptions.Buttons = <>
+      Hidden = True
+      ItemIndex = 4
+      ShowBorder = False
+      Index = 0
+    end
+    object dxLayoutItem2: TdxLayoutItem
+      Parent = dxLayoutGroup4
+      AlignHorz = ahLeft
+      CaptionOptions.Text = 'cbFisica'
+      CaptionOptions.Visible = False
+      Control = cbFisica
+      ControlOptions.AutoColor = True
+      ControlOptions.OriginalHeight = 17
+      ControlOptions.OriginalWidth = 97
+      ControlOptions.ShowBorder = False
+      Index = 0
+    end
+    object dxLayoutItem3: TdxLayoutItem
+      Parent = dxLayoutGroup4
+      AlignHorz = ahLeft
+      CaptionOptions.Text = 'cbJuridica'
+      CaptionOptions.Visible = False
+      Control = cbJuridica
+      ControlOptions.AutoColor = True
+      ControlOptions.OriginalHeight = 17
+      ControlOptions.OriginalWidth = 97
+      ControlOptions.ShowBorder = False
+      Index = 1
+    end
+    object dxLayoutItem4: TdxLayoutItem
+      Parent = dxLayoutGroup4
+      AlignHorz = ahLeft
+      CaptionOptions.Text = 'cbVendedor'
+      CaptionOptions.Visible = False
+      Control = cbVendedor
+      ControlOptions.AutoColor = True
+      ControlOptions.OriginalHeight = 17
+      ControlOptions.OriginalWidth = 97
+      ControlOptions.ShowBorder = False
+      Index = 2
+    end
+    object dxLayoutItem5: TdxLayoutItem
+      Parent = dxLayoutGroup4
+      AlignHorz = ahLeft
+      CaptionOptions.Text = 'cbEmpresa'
+      CaptionOptions.Visible = False
+      Control = cbEmpresa
+      ControlOptions.AutoColor = True
+      ControlOptions.OriginalHeight = 17
+      ControlOptions.OriginalWidth = 97
+      ControlOptions.ShowBorder = False
+      Index = 3
+    end
+    object dxLayoutItem6: TdxLayoutItem
+      Parent = dxLayoutGroup4
+      AlignHorz = ahLeft
+      CaptionOptions.Text = 'cbUsuarioDoSistema'
+      CaptionOptions.Visible = False
+      Control = cbUsuarioDoSistema
+      ControlOptions.AutoColor = True
+      ControlOptions.OriginalHeight = 17
+      ControlOptions.OriginalWidth = 109
+      ControlOptions.ShowBorder = False
+      Index = 4
+    end
+    object dxLayoutItem7: TdxLayoutItem
+      Parent = dxLayoutGroup4
+      AlignHorz = ahCenter
+      CaptionOptions.Text = 'btnPesquisar'
+      CaptionOptions.Visible = False
+      Control = btnPesquisar
+      ControlOptions.OriginalHeight = 25
+      ControlOptions.OriginalWidth = 97
+      ControlOptions.ShowBorder = False
+      Index = 5
+    end
+    object dxLayoutGroup5: TdxLayoutGroup
+      Parent = dxLayoutGroup4
+      AlignHorz = ahLeft
+      CaptionOptions.Text = 'Pessoas'
+      ButtonOptions.Buttons = <>
+      LayoutDirection = ldHorizontal
+      Index = 6
+    end
+    object dxLayoutGroup6: TdxLayoutGroup
+      Parent = dxLayoutGroup5
+      AlignVert = avTop
+      CaptionOptions.Text = 'Hidden Group'
+      ButtonOptions.Buttons = <>
+      Hidden = True
+      ShowBorder = False
+      Index = 0
+    end
+    object dxLayoutItem8: TdxLayoutItem
+      Parent = dxLayoutGroup6
+      AlignHorz = ahLeft
+      CaptionOptions.Text = 'btnCadastrarPessoa'
+      CaptionOptions.Visible = False
+      Control = btnCadastrarPessoa
+      ControlOptions.OriginalHeight = 25
+      ControlOptions.OriginalWidth = 97
+      ControlOptions.ShowBorder = False
+      Index = 0
+    end
+    object dxLayoutItem9: TdxLayoutItem
+      Parent = dxLayoutGroup6
+      AlignHorz = ahLeft
+      CaptionOptions.Text = 'btnAtualizarCadastro'
+      CaptionOptions.Visible = False
+      Control = btnAtualizarCadastro
+      ControlOptions.OriginalHeight = 25
+      ControlOptions.OriginalWidth = 97
+      ControlOptions.ShowBorder = False
+      Index = 1
+    end
+    object dxLayoutGroup7: TdxLayoutGroup
+      Parent = dxLayoutGroup2
+      AlignHorz = ahClient
+      AlignVert = avBottom
+      CaptionOptions.Text = 'Relat'#243'rio'
+      ButtonOptions.Buttons = <>
+      LayoutDirection = ldHorizontal
+      Index = 1
+    end
+    object dxLayoutGroup8: TdxLayoutGroup
+      Parent = dxLayoutGroup7
+      AlignVert = avTop
+      CaptionOptions.Text = 'Hidden Group'
+      ButtonOptions.Buttons = <>
+      Hidden = True
+      ShowBorder = False
+      Index = 0
+    end
+    object dxLayoutItem10: TdxLayoutItem
+      Parent = dxLayoutGroup8
+      AlignHorz = ahLeft
+      CaptionOptions.Text = 'bntVisualizar'
+      CaptionOptions.Visible = False
+      Control = bntVisualizar
+      ControlOptions.OriginalHeight = 25
+      ControlOptions.OriginalWidth = 97
+      ControlOptions.ShowBorder = False
+      Index = 0
+    end
+    object dxLayoutItem11: TdxLayoutItem
+      Parent = dxLayoutGroup8
+      AlignHorz = ahLeft
+      CaptionOptions.Text = 'btnImprimir'
+      CaptionOptions.Visible = False
+      Control = btnImprimir
+      ControlOptions.OriginalHeight = 25
+      ControlOptions.OriginalWidth = 97
+      ControlOptions.ShowBorder = False
+      Index = 1
     end
   end
   object dsPessoas: TDataSource

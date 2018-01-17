@@ -45,7 +45,7 @@ object DmConexao: TDmConexao
     LoginPrompt = False
     Params.Strings = (
       'BlobSize=-1'
-      'HostName=localhost:5432'
+      'HostName=localhost:5433'
       'DataBase=MiniMonde'
       'SchemaName=mondinho'
       'DriverName=DevartPostgreSQL'
@@ -58,8 +58,8 @@ object DmConexao: TDmConexao
       'UseUnicode=True'
       'Charset=')
     Connected = True
-    Left = 224
-    Top = 16
+    Left = 416
+    Top = 24
   end
   object sqlProviderToDo: TDataSetProvider
     DataSet = sqlQueryToDo
@@ -312,6 +312,7 @@ object DmConexao: TDmConexao
     end
     object sqlQueryQuantidadeVendassum: TFMTBCDField
       FieldName = 'sum'
+      currency = True
       Precision = 19
       Size = 0
     end

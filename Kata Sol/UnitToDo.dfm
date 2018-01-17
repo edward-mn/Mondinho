@@ -90,13 +90,28 @@
         ParentFont = False
         TabOrder = 0
         OnClick = btnLogoutClick
-        ExplicitLeft = 111
+      end
+      object btnAtt: TcxButton
+        Left = 944
+        Top = 1
+        Width = 74
+        Height = 37
+        Align = alRight
+        Caption = 'Atualizar'
+        TabOrder = 1
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        OnClick = btnAttClick
       end
     end
     object cxGridUsuarios: TcxGrid
       Left = 22
-      Top = 431
-      Width = 250
+      Top = 433
+      Width = 352
       Height = 136
       TabOrder = 3
       object cxGridUsuariosDBTableView1: TcxGridDBTableView
@@ -104,7 +119,10 @@
         DataController.Summary.DefaultGroupSummaryItems = <>
         DataController.Summary.FooterSummaryItems = <>
         DataController.Summary.SummaryGroups = <>
+        OptionsData.Deleting = False
+        OptionsData.DeletingConfirmation = False
         OptionsData.Editing = False
+        OptionsData.Inserting = False
         OptionsView.GroupByBox = False
         object cxGridUsuariosDBTableView1id: TcxGridDBColumn
           DataBinding.FieldName = 'id'
@@ -117,31 +135,79 @@
         GridView = cxGridUsuariosDBTableView1
       end
     end
-    object GridQauntidade: TDBGrid
-      Left = 280
-      Top = 451
-      Width = 275
-      Height = 116
-      BorderStyle = bsNone
-      TabOrder = 4
-      TitleFont.Charset = DEFAULT_CHARSET
-      TitleFont.Color = clWindowText
-      TitleFont.Height = -11
-      TitleFont.Name = 'Tahoma'
-      TitleFont.Style = []
-    end
-    object GridValorTotal: TDBGrid
-      Left = 565
-      Top = 451
-      Width = 275
-      Height = 116
-      BorderStyle = bsNone
+    object GridQauntidade: TcxGrid
+      Left = 738
+      Top = 433
+      Width = 352
+      Height = 136
       TabOrder = 5
-      TitleFont.Charset = DEFAULT_CHARSET
-      TitleFont.Color = clWindowText
-      TitleFont.Height = -11
-      TitleFont.Name = 'Tahoma'
-      TitleFont.Style = []
+      object GridQauntidadeDBTableView1: TcxGridDBTableView
+        Navigator.Buttons.CustomButtons = <>
+        DataController.DataSource = dsValorTotal
+        DataController.Summary.DefaultGroupSummaryItems = <>
+        DataController.Summary.FooterSummaryItems = <>
+        DataController.Summary.SummaryGroups = <>
+        OptionsData.Deleting = False
+        OptionsData.DeletingConfirmation = False
+        OptionsData.Editing = False
+        OptionsData.Inserting = False
+        OptionsView.GroupByBox = False
+        object GridQauntidadeDBTableView1nome: TcxGridDBColumn
+          Caption = 'Nome Do Vendedor'
+          DataBinding.FieldName = 'nome'
+          Width = 130
+        end
+        object GridQauntidadeDBTableView1produtos: TcxGridDBColumn
+          Caption = 'Produtos Vendidos'
+          DataBinding.FieldName = 'produtos'
+          Width = 400
+        end
+        object GridQauntidadeDBTableView1sum: TcxGridDBColumn
+          Caption = 'Valor Total'
+          DataBinding.FieldName = 'sum'
+          Width = 87
+        end
+      end
+      object GridQauntidadeLevel1: TcxGridLevel
+        GridView = GridQauntidadeDBTableView1
+      end
+    end
+    object cxGrid1: TcxGrid
+      Left = 380
+      Top = 433
+      Width = 352
+      Height = 136
+      TabOrder = 4
+      object cxGrid1DBTableView1: TcxGridDBTableView
+        Navigator.Buttons.CustomButtons = <>
+        DataController.DataSource = dsQuantidade
+        DataController.Summary.DefaultGroupSummaryItems = <>
+        DataController.Summary.FooterSummaryItems = <>
+        DataController.Summary.SummaryGroups = <>
+        OptionsData.Deleting = False
+        OptionsData.DeletingConfirmation = False
+        OptionsData.Editing = False
+        OptionsData.Inserting = False
+        OptionsView.GroupByBox = False
+        object cxGrid1DBTableView1nome: TcxGridDBColumn
+          Caption = 'Nome Do Vendedor'
+          DataBinding.FieldName = 'nome'
+          Width = 130
+        end
+        object cxGrid1DBTableView1produtos: TcxGridDBColumn
+          Caption = 'Produtos Vendidos'
+          DataBinding.FieldName = 'produtos'
+          Width = 390
+        end
+        object cxGrid1DBTableView1sum: TcxGridDBColumn
+          Caption = 'Quatidade Vendida'
+          DataBinding.FieldName = 'sum'
+          Width = 97
+        end
+      end
+      object cxGrid1Level1: TcxGridLevel
+        GridView = cxGrid1DBTableView1
+      end
     end
     object LayoutControl: TdxLayoutGroup
       AlignHorz = ahClient
@@ -149,7 +215,7 @@
       CaptionOptions.Visible = False
       ButtonOptions.Buttons = <>
       Hidden = True
-      ItemIndex = 1
+      ItemIndex = 3
       ShowBorder = False
       Index = -1
     end
@@ -205,6 +271,7 @@
       CaptionOptions.Text = 'New Group'
       CaptionOptions.Visible = False
       ButtonOptions.Buttons = <>
+      ItemIndex = 2
       LayoutDirection = ldHorizontal
       ShowBorder = False
       Index = 0
@@ -212,21 +279,12 @@
     object GrupoForms: TdxLayoutGroup
       Parent = layoutGrupoPrincipal
       AlignVert = avClient
+      CaptionOptions.Visible = False
       ButtonOptions.Buttons = <>
       LayoutDirection = ldTabbed
       ShowBorder = False
       TabbedOptions.CloseButtonMode = cbmActiveTab
       Index = 0
-    end
-    object layoutGrupoGridUsuarios: TdxLayoutGroup
-      Parent = LayoutControl
-      AlignHorz = ahLeft
-      AlignVert = avTop
-      CaptionOptions.ShowAccelChar = False
-      CaptionOptions.Visible = False
-      ButtonOptions.Buttons = <>
-      ShowBorder = False
-      Index = 2
     end
     object layoutGrupoPrincipal: TdxLayoutGroup
       Parent = LayoutControl
@@ -313,9 +371,11 @@
     end
     object dxLayoutItem1: TdxLayoutItem
       Parent = layoutGrupoUsuarios
-      AlignHorz = ahLeft
-      AlignVert = avTop
+      AlignHorz = ahClient
+      AlignVert = avClient
       CaptionOptions.ShowAccelChar = False
+      CaptionOptions.Text = 'Usuarios Cadastrados'
+      CaptionOptions.Layout = clTop
       Control = cxGridUsuarios
       ControlOptions.OriginalHeight = 136
       ControlOptions.OriginalWidth = 250
@@ -323,13 +383,11 @@
       Index = 0
     end
     object layoutGrupoUsuarios: TdxLayoutGroup
-      Parent = layoutGrupoGridUsuarios
-      AlignHorz = ahLeft
-      AlignVert = avTop
-      CaptionOptions.Text = 'Usuarios Cadastrados'
+      Parent = LayoutControl
       ButtonOptions.Buttons = <>
+      ItemIndex = 2
       LayoutDirection = ldHorizontal
-      Index = 0
+      Index = 2
     end
     object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
       Parent = LayoutControl
@@ -339,35 +397,39 @@
     end
     object dxLayoutItem2: TdxLayoutItem
       Parent = layoutGrupoUsuarios
-      AlignHorz = ahLeft
-      AlignVert = avTop
-      CaptionOptions.Text = 'Vendas Por Quantidade'
+      AlignHorz = ahClient
+      AlignVert = avClient
+      CaptionOptions.Text = 'Vendedores Por Valor'
       CaptionOptions.Layout = clTop
       Control = GridQauntidade
-      ControlOptions.OriginalHeight = 116
-      ControlOptions.OriginalWidth = 275
-      Index = 1
+      ControlOptions.OriginalHeight = 136
+      ControlOptions.OriginalWidth = 250
+      ControlOptions.ShowBorder = False
+      Index = 2
     end
     object dxLayoutItem3: TdxLayoutItem
       Parent = layoutGrupoUsuarios
-      CaptionOptions.Text = 'Vendas Por Valor'
+      AlignHorz = ahClient
+      AlignVert = avClient
+      CaptionOptions.Text = 'Vendedores Por Quantidade'
       CaptionOptions.Layout = clTop
-      Control = GridValorTotal
-      ControlOptions.OriginalHeight = 116
-      ControlOptions.OriginalWidth = 275
-      Index = 2
+      Control = cxGrid1
+      ControlOptions.OriginalHeight = 136
+      ControlOptions.OriginalWidth = 250
+      ControlOptions.ShowBorder = False
+      Index = 1
     end
   end
   object dsQuantidade: TDataSource
-    Left = 400
-    Top = 496
+    Left = 424
+    Top = 480
   end
   object dsValorTotal: TDataSource
-    Left = 672
-    Top = 488
+    Left = 952
+    Top = 456
   end
   object dsToDo: TDataSource
-    Left = 154
-    Top = 464
+    Left = 186
+    Top = 440
   end
 end

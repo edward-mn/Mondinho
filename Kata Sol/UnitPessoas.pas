@@ -10,19 +10,17 @@ uses
   cxControls, cxLookAndFeels, cxLookAndFeelPainters, cxStyles, cxCustomData,
   cxFilter, cxData, cxDataStorage, cxEdit, cxNavigator, cxDBData, cxGridLevel,
   cxClasses, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
-  cxGridDBTableView, cxGrid, Vcl.Menus, cxButtons;
+  cxGridDBTableView, cxGrid, Vcl.Menus, cxButtons, dxLayoutContainer,
+  dxLayoutControlAdapters, dxLayoutControl;
 
 type
   TFormPessoas = class(TForm)
     dsPessoas: TDataSource;
-    gbStatusPessoas: TGroupBox;
     cbEmpresa: TCheckBox;
     cbVendedor: TCheckBox;
     cbJuridica: TCheckBox;
     cbFisica: TCheckBox;
     cbUsuarioDoSistema: TCheckBox;
-    gbEditarPessoas: TGroupBox;
-    gbRelatorioPessoas: TGroupBox;
     dbGridPessoas: TcxGrid;
     dbGridPessoasDBTableView1: TcxGridDBTableView;
     dbGridPessoasLevel1: TcxGridLevel;
@@ -40,6 +38,27 @@ type
     dbGridPessoasDBTableView1cpf_cnpj: TcxGridDBColumn;
     dbGridPessoasDBTableView1data: TcxGridDBColumn;
     dbGridPessoasDBTableView1id_cadastro: TcxGridDBColumn;
+    dxLayoutControl1Group_Root: TdxLayoutGroup;
+    dxLayoutControl1: TdxLayoutControl;
+    dxLayoutGroup1: TdxLayoutGroup;
+    dxLayoutItem1: TdxLayoutItem;
+    dxLayoutGroup2: TdxLayoutGroup;
+    dxLayoutGroup3: TdxLayoutGroup;
+    dxLayoutGroup4: TdxLayoutGroup;
+    dxLayoutItem2: TdxLayoutItem;
+    dxLayoutItem3: TdxLayoutItem;
+    dxLayoutItem4: TdxLayoutItem;
+    dxLayoutItem5: TdxLayoutItem;
+    dxLayoutItem6: TdxLayoutItem;
+    dxLayoutItem7: TdxLayoutItem;
+    dxLayoutGroup5: TdxLayoutGroup;
+    dxLayoutGroup6: TdxLayoutGroup;
+    dxLayoutItem8: TdxLayoutItem;
+    dxLayoutItem9: TdxLayoutItem;
+    dxLayoutGroup7: TdxLayoutGroup;
+    dxLayoutGroup8: TdxLayoutGroup;
+    dxLayoutItem10: TdxLayoutItem;
+    dxLayoutItem11: TdxLayoutItem;
     procedure bntVisualizarClick(Sender: TObject);
     procedure btnAtualizarCadastroClick(Sender: TObject);
     procedure btnCadastrarPessoaClick(Sender: TObject);
