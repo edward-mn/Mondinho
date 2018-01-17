@@ -27,6 +27,10 @@ Open sqlConexao in DataModuleConexao and change the HostName port in Params to l
 ## Acknowledgments
 This project would not be possible without help of
 * **Fábio Gomes** - (https://github.com/fabioxgn) 
+* **Luiz Castro**(Project Manager) - (https://github.com/luizcastrolfc) 
 * **Ronei Bienert** - (https://github.com/RoneiBienert) 
 * **Fernando Almeida** - (https://github.com/fernand-o) 
-* **Anderson Macedo** - (https://github.com/AndersonSKM) 
+* **Anderson Macedo** - (https://github.com/AndersonSKM)
+* **Erik Cunha** - (https://github.com/erikcunha)
+
+Icon made by [Freepik](http://www.freepik.com/) from www.flaticon.com
