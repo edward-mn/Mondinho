@@ -18,27 +18,13 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object dbGridCriacaoEdicaoPessoas: TDBGrid
-    Left = 0
-    Top = 236
-    Width = 900
-    Height = 185
-    Align = alBottom
-    ReadOnly = True
-    TabOrder = 5
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
-  end
   object btnNovaPessoa: TButton
     Left = 11
     Top = 21
     Width = 105
     Height = 25
     Caption = 'Novo'
-    TabOrder = 1
+    TabOrder = 3
     OnClick = btnNovaPessoaClick
   end
   object btnCancelarPessoas: TButton
@@ -47,7 +33,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     Width = 105
     Height = 25
     Caption = 'Cancelar'
-    TabOrder = 3
+    TabOrder = 4
     OnClick = btnCancelarPessoasClick
   end
   object btnSalvarPessoas: TButton
@@ -56,7 +42,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     Width = 105
     Height = 26
     Caption = 'Salvar'
-    TabOrder = 4
+    TabOrder = 1
     OnClick = btnSalvarPessoasClick
   end
   object gbFormulario: TGroupBox
@@ -121,66 +107,99 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       Height = 13
       Caption = '*Nome'
     end
-    object edtCpf: TDBEdit
-      Left = 177
-      Top = 32
-      Width = 105
-      Height = 21
-      Align = alCustom
-      DataField = 'cpf'
-      DataSource = dsCriacaoEdicaoPessoas
-      TabOrder = 0
-    end
     object cxDBCelular: TcxDBMaskEdit
-      Left = 177
-      Top = 83
+      Left = 142
+      Top = 100
       DataBinding.DataField = 'celular'
       DataBinding.DataSource = dsCriacaoEdicaoPessoas
       Properties.EditMask = '!\(99\)000000000;1;_'
-      TabOrder = 1
+      TabOrder = 0
       Width = 121
     end
     object cxDBTelefone: TcxDBMaskEdit
-      Left = 6
-      Top = 79
-      DataBinding.DataField = 'celular'
+      Left = 3
+      Top = 98
+      DataBinding.DataField = 'telefone'
       DataBinding.DataSource = dsCriacaoEdicaoPessoas
       Properties.EditMask = '!\(99\)00000000;1;_'
-      TabOrder = 2
+      TabOrder = 1
       Width = 121
     end
     object cxDBEndereco: TcxDBTextEdit
-      Left = 323
-      Top = 32
+      Left = 382
+      Top = 46
       DataBinding.DataField = 'endereco'
       DataBinding.DataSource = dsCriacaoEdicaoPessoas
-      TabOrder = 3
+      TabOrder = 2
       Width = 182
     end
     object cxDBNome: TcxDBTextEdit
-      Left = 5
-      Top = 32
+      Left = 169
+      Top = 43
       DataBinding.DataField = 'pessoas'
       DataBinding.DataSource = dsCriacaoEdicaoPessoas
-      TabOrder = 4
+      TabOrder = 3
       Width = 148
     end
+    object cxDBstatusPessoas: TcxDBComboBox
+      Left = 8
+      Top = 46
+      DataBinding.DataField = 'status'
+      DataBinding.DataSource = dsCriacaoEdicaoPessoas
+      Properties.Items.Strings = (
+        'Fisica'
+        'Juridica'
+        'Vendedor'
+        'Empresa'
+        'Usuario do Sistema')
+      TabOrder = 4
+      Width = 121
+    end
+    object maskEdtCpf: TcxDBMaskEdit
+      Left = 286
+      Top = 99
+      DataBinding.DataField = 'cpf_cnpj'
+      DataBinding.DataSource = dsCriacaoEdicaoPessoas
+      TabOrder = 5
+      Width = 121
+    end
+    object cbData: TcxDBDateEdit
+      Left = 433
+      Top = 97
+      DataBinding.DataField = 'data'
+      DataBinding.DataSource = dsCriacaoEdicaoPessoas
+      TabOrder = 6
+      Width = 147
+    end
   end
-  object cbData: TcxDBDateEdit
-    Left = 148
-    Top = 158
-    DataBinding.DataField = 'data'
-    DataBinding.DataSource = dsCriacaoEdicaoPessoas
-    TabOrder = 1
-    Width = 147
+  object btnEditar: TcxButton
+    Left = 11
+    Top = 52
+    Width = 105
+    Height = 25
+    Caption = 'Editar'
+    TabOrder = 2
+    OnClick = btnEditarClick
+  end
+  object btnDeletarCadastro: TcxButton
+    Left = 11
+    Top = 144
+    Width = 105
+    Height = 25
+    Caption = 'Deletar'
+    TabOrder = 5
+    OnClick = btnDeletarCadastroClick
   end
   object dbGridCriacaoEdicaoPessoas: TcxGrid
     Left = 0
-    Top = 221
-    Width = 900
+    Top = 232
+    Width = 791
     Height = 200
     Align = alBottom
-    TabOrder = 2
+    TabOrder = 6
+    ExplicitLeft = -19
+    ExplicitTop = 190
+    ExplicitWidth = 810
     object dbGridCriacaoEdicaoPessoasDBTableView1: TcxGridDBTableView
       Navigator.Buttons.CustomButtons = <>
       DataController.DataSource = dsCriacaoEdicaoPessoas
@@ -195,14 +214,12 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       end
       object dbGridCriacaoEdicaoPessoasDBTableView1pessoas: TcxGridDBColumn
         DataBinding.FieldName = 'pessoas'
-        Width = 170
       end
-      object dbGridCriacaoEdicaoPessoasDBTableView1cpf: TcxGridDBColumn
-        DataBinding.FieldName = 'cpf'
+      object dbGridCriacaoEdicaoPessoasDBTableView1cpf_cnpj: TcxGridDBColumn
+        DataBinding.FieldName = 'cpf_cnpj'
       end
       object dbGridCriacaoEdicaoPessoasDBTableView1endereco: TcxGridDBColumn
         DataBinding.FieldName = 'endereco'
-        Width = 147
       end
       object dbGridCriacaoEdicaoPessoasDBTableView1telefone: TcxGridDBColumn
         DataBinding.FieldName = 'telefone'
@@ -223,73 +240,6 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     object dbGridCriacaoEdicaoPessoasLevel1: TcxGridLevel
       GridView = dbGridCriacaoEdicaoPessoasDBTableView1
     end
-  end
-  object cxDBstatusPessoas: TcxDBComboBox
-    Left = 511
-    Top = 117
-    DataBinding.DataField = 'status'
-    DataBinding.DataSource = dsCriacaoEdicaoPessoas
-    Properties.Items.Strings = (
-      'Fisica'
-      'Juridica'
-      'Vendedor'
-      'Empresa'
-      'Usuario do Sistema')
-    TabOrder = 3
-    Width = 121
-  end
-  object btnNovaPessoa: TcxButton
-    Left = 11
-    Top = 21
-    Width = 105
-    Height = 25
-    Caption = 'Novo'
-    TabOrder = 4
-    OnClick = btnNovaPessoaClick
-  end
-  object btnEditar: TcxButton
-    Left = 11
-    Top = 52
-    Width = 105
-    Height = 25
-    Caption = 'Editar'
-    TabOrder = 5
-    OnClick = btnEditarClick
-  end
-  object btnCancelarPessoas: TcxButton
-    Left = 11
-    Top = 82
-    Width = 105
-    Height = 25
-    Caption = 'Cancelar'
-    TabOrder = 6
-    OnClick = btnCancelarPessoasClick
-  end
-  object cbData: TcxDBDateEdit
-    Left = 148
-    Top = 158
-    DataBinding.DataField = 'data'
-    DataBinding.DataSource = dsCriacaoEdicaoPessoas
-    TabOrder = 7
-    OnClick = btnSalvarPessoasClick
-  end
-  object btnSalvarPessoas: TcxButton
-    Left = 11
-    Top = 113
-    Width = 105
-    Height = 25
-    Caption = 'Salvar'
-    TabOrder = 7
-    OnClick = btnSalvarPessoasClick
-  end
-  object btnDeletarCadastro: TcxButton
-    Left = 11
-    Top = 144
-    Width = 105
-    Height = 25
-    Caption = 'Deletar'
-    TabOrder = 8
-    OnClick = btnDeletarCadastroClick
   end
   object dsCriacaoEdicaoPessoas: TDataSource
     DataSet = DmConexao.sqlQueryPessoas

@@ -20,7 +20,6 @@ type
     sqlProviderVendas: TDataSetProvider;
     sqlQueryVendasid_produtos: TIntegerField;
     sqlQueryVendasprodutos: TWideStringField;
-    sqlQueryVendasvendedores: TWideStringField;
     sqlQueryVendasstatus: TWideStringField;
     sqlQueryVendasfornecedores: TWideStringField;
     sqlQueryVendasdata: TDateField;
@@ -31,10 +30,9 @@ type
     sqlQueryPessoas: TSQLQuery;
     sqlQueryPessoasid_pessoas: TIntegerField;
     sqlQueryPessoaspessoas: TWideStringField;
-    sqlQueryPessoascpf: TFMTBCDField;
     sqlQueryPessoasendereco: TWideStringField;
-    sqlQueryPessoastelefone: TFMTBCDField;
-    sqlQueryPessoascelular: TFMTBCDField;
+    sqlQueryPessoastelefone: TWideStringField;
+    sqlQueryPessoascelular: TWideStringField;
     sqlQueryPessoasstatus: TWideStringField;
     sqlQueryPessoasdata: TDateField;
     sqlProviderCadastro: TDataSetProvider;

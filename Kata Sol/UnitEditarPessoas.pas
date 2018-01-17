@@ -16,7 +16,6 @@ uses
 
 type
   TFormCriacaoEdicaoPessoas = class(TForm)
-    dbGridCriacaoEdicaoPessoas: TDBGrid;
     dsCriacaoEdicaoPessoas: TDataSource;
     btnNovaPessoa: TButton;
     btnCancelarPessoas: TButton;
@@ -24,39 +23,32 @@ type
     gbFormulario: TGroupBox;
     Label7: TLabel;
     Label4: TLabel;
-    edtNome: TDBEdit;
-    edtCpf: TDBEdit;
     Label2: TLabel;
     Label5: TLabel;
     Label6: TLabel;
-    edtEndereco: TDBEdit;
     Label3: TLabel;
     Label1: TLabel;
-    btnEditar: TButton;
-    btnDeletarCadastro: TButton;
-    cbData: TcxDBDateEdit;
+    btnEditar: TcxButton;
+    btnDeletarCadastro: TcxButton;
+    cxDBCelular: TcxDBMaskEdit;
+    cxDBTelefone: TcxDBMaskEdit;
+    cxDBEndereco: TcxDBTextEdit;
+    cxDBNome: TcxDBTextEdit;
+    dbGridCriacaoEdicaoPessoas: TcxGrid;
     dbGridCriacaoEdicaoPessoasDBTableView1: TcxGridDBTableView;
     dbGridCriacaoEdicaoPessoasLevel1: TcxGridLevel;
-    dbGridCriacaoEdicaoPessoas: TcxGrid;
     dbGridCriacaoEdicaoPessoasDBTableView1id_pessoas: TcxGridDBColumn;
     dbGridCriacaoEdicaoPessoasDBTableView1pessoas: TcxGridDBColumn;
-    dbGridCriacaoEdicaoPessoasDBTableView1cpf: TcxGridDBColumn;
+    dbGridCriacaoEdicaoPessoasDBTableView1cpf_cnpj: TcxGridDBColumn;
     dbGridCriacaoEdicaoPessoasDBTableView1endereco: TcxGridDBColumn;
     dbGridCriacaoEdicaoPessoasDBTableView1telefone: TcxGridDBColumn;
     dbGridCriacaoEdicaoPessoasDBTableView1celular: TcxGridDBColumn;
     dbGridCriacaoEdicaoPessoasDBTableView1status: TcxGridDBColumn;
     dbGridCriacaoEdicaoPessoasDBTableView1data: TcxGridDBColumn;
     dbGridCriacaoEdicaoPessoasDBTableView1id_cadastro: TcxGridDBColumn;
-    cxDBCelular: TcxDBMaskEdit;
-    cxDBTelefone: TcxDBMaskEdit;
-    cxDBEndereco: TcxDBTextEdit;
     cxDBstatusPessoas: TcxDBComboBox;
-    cxDBNome: TcxDBTextEdit;
-    btnNovaPessoa: TcxButton;
-    btnEditar: TcxButton;
-    btnCancelarPessoas: TcxButton;
-    btnSalvarPessoas: TcxButton;
-    btnDeletarCadastro: TcxButton;
+    maskEdtCpf: TcxDBMaskEdit;
+    cbData: TcxDBDateEdit;
     procedure btnNovaPessoaClick(Sender: TObject);
     procedure btnCancelarPessoasClick(Sender: TObject);
     procedure btnDeletarCadastroClick(Sender: TObject);
@@ -133,7 +125,7 @@ begin
   ClientesPessoas.cdsPessoas.Insert;
   ClientesPessoas.cdsPessoasid_cadastro.Value := Conexao.Usuario.Id;
   gbFormulario.Enabled := True;
-  cbStatusPessoas.SetFocus;
+  cxDBstatusPessoas.SetFocus;
   dbGridCriacaoEdicaoPessoas.Enabled := False;
 end;
 
@@ -180,19 +172,19 @@ end;
 
 procedure TFormCriacaoEdicaoPessoas.AdicionarCampoCNPJ;
 begin
-  cxDBMaskEditCPFCNPJ.Properties.EditMask := '99.999.999/9999-99' ;
+  maskEdtCpf.Properties.EditMask := '99.999.999/9999-99' ;
 end;
 
 procedure TFormCriacaoEdicaoPessoas.AdicionarCampoCPF;
 begin
-  cxDBMaskEditCPFCNPJ.Properties.EditMask := '999.999.999-99';
+  maskEdtCpf.Properties.EditMask := '999.999.999-99';
 end;
 
 procedure TFormCriacaoEdicaoPessoas.cbStatusPessoasChange(Sender: TObject);
 begin
-  if MatchText(cbStatusPessoas.Text,  ['Fisica', 'Vendedor', 'Usuario Do Sistema']) then
+  if MatchText(cxDBstatusPessoas.Text,  ['Fisica', 'Vendedor', 'Usuario Do Sistema']) then
     AdicionarCampoCPF
-  else if MatchText(cbStatusPessoas.Text, ['Juridica', 'Empresa']) then
+  else if MatchText(cxDBstatusPessoas.Text, ['Juridica', 'Empresa']) then
     AdicionarCampoCNPJ;
 end;
 
@@ -201,7 +193,6 @@ begin
   dbGridCriacaoEdicaoPessoasDBTableView1.DataController.DataSource := dsCriacaoEdicaoPessoas;
   ClientesPessoas.cdsPessoasid_pessoas.Visible := False;
   dsCriacaoEdicaoPessoas.DataSet := ClientesPessoas.cdsPessoas;
-  dbGridCriacaoEdicaoPessoas.DataSource := dsCriacaoEdicaoPessoas;
 end;
 
 procedure TFormCriacaoEdicaoPessoas.DeletarPessoa;
@@ -267,40 +258,40 @@ procedure TFormCriacaoEdicaoPessoas.SalvarAlteracoes;
 begin
   if (ClientesPessoas.cdsPessoas.State = dsEdit) or (ClientesPessoas.cdsPessoas.State = dsInsert) then
   begin
-   if cbStatusPessoas.Text = '' then
+   if cxDBstatusPessoas.Text = '' then
    begin
       ShowMessage('Por favor é necessário selecionar um Status.');
-      cbStatusPessoas.SetFocus;
+      cxDBstatusPessoas.SetFocus;
       Exit;
    end
-    else if edtNome.Text = '' then
+    else if cxDBNome.Text = '' then
     begin
       ShowMessage('Por favor é necessário digitar um Nome.');
-      edtNome.SetFocus;
+      cxDBNome.SetFocus;
       Exit;
     end
-    else if edtEndereco.Text = '' then
+    else if cxDBEndereco.Text = '' then
     begin
       ShowMessage('Por favor é necessário digitar um Endereço.');
-      edtEndereco.SetFocus;
+      cxDBEndereco.SetFocus;
       Exit;
     end
-    else if cxDBMaskEditTelefone.Text = '' then
+    else if cxDBTelefone.Text = '' then
     begin
       ShowMessage('Por favor é necessário digitar um Telefone.');
-      cxDBMaskEditTelefone.SetFocus;
+      cxDBTelefone.SetFocus;
       Exit;
     end
-    else if cxDBMaskEditCelular.Text = '' then
+    else if cxDBCelular.Text = '' then
     begin
       ShowMessage('Por favor é necessário digitar um Celular.');
-      cxDBMaskEditCelular.SetFocus;
+      cxDBCelular.SetFocus;
       Exit;
     end
-    else if cxDBMaskEditCPFCNPJ.Text = '' then
+    else if maskEdtCpf.Text = '' then
     begin
       ShowMessage('Por favor é necessário digitar um CPF.');
-      cxDBMaskEditCPFCNPJ.SetFocus;
+      maskEdtCpf.SetFocus;
       Exit;
     end
      else if cbData.Text = '' then

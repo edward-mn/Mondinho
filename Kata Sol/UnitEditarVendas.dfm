@@ -75,65 +75,29 @@ object FormEditarVendas: TFormEditarVendas
       Height = 13
       Caption = '* Data'
     end
-    object edtVendedores: TDBEdit
-      Left = 152
-      Top = 53
-      Width = 228
-      Height = 21
-      DataField = 'vendedores'
-      DataSource = dsEditarVendas
-      TabOrder = 0
-    end
     object cbDBData: TcxDBDateEdit
       Left = 486
       Top = 111
       DataBinding.DataField = 'data'
       DataBinding.DataSource = dsEditarVendas
-      TabOrder = 1
+      TabOrder = 3
       Width = 123
-    end
-   object edtFornecedores: TDBEdit
-      Left = 264
-      Top = 57
-      Width = 201
-      Height = 21
-      DataField = 'fornecedores'
-      DataSource = dsEditarVendas
-      TabOrder = 0
     end
     object edtDBPreco: TcxDBCurrencyEdit
       Left = 208
-      Top = 111
-      Width = 161
-      Height = 21
-      DataField = 'produtos'
-      DataSource = dsEditarVendas
-      TabOrder = 1
+      Top = 114
+      DataBinding.DataField = 'valor_produto'
+      DataBinding.DataSource = dsEditarVendas
+      TabOrder = 0
+      Width = 114
     end
     object edtDBProdutos: TcxDBTextEdit
       Left = 23
       Top = 112
       DataBinding.DataField = 'produtos'
       DataBinding.DataSource = dsEditarVendas
-      TabOrder = 3
+      TabOrder = 4
       Width = 170
-    end
-    object DBEdit16: TDBEdit
-      Left = 353
-      Top = 111
-      Width = 110
-      Height = 21
-      DataField = 'quantidade'
-      DataSource = dsEditarVendas
-      TabOrder = 2
-    end
-    object cxDBDateEdit1: TcxDBDateEdit
-      Left = 486
-      Top = 111
-      DataBinding.DataField = 'data'
-      DataBinding.DataSource = dsEditarVendas
-      TabOrder = 3
-      Width = 110
     end
     object cbDBStatusVendas: TcxDBComboBox
       Left = 23
@@ -151,14 +115,15 @@ object FormEditarVendas: TFormEditarVendas
     end
     object edtDBFornecedores: TcxDBTextEdit
       Left = 408
-      Top = 53
+      Top = 56
       DataBinding.DataField = 'fornecedores'
       DataBinding.DataSource = dsEditarVendas
-      TabOrder = 6
+      TabOrder = 2
+      Width = 121
     end
     object cbVendedores: TcxDBLookupComboBox
-      Left = 24
-      Top = 57
+      Left = 152
+      Top = 53
       DataBinding.DataField = 'id_vendedor'
       DataBinding.DataSource = dsEditarVendas
       Properties.KeyFieldNames = 'id_vendedor'
@@ -167,18 +132,27 @@ object FormEditarVendas: TFormEditarVendas
           FieldName = 'nome'
         end>
       Properties.ListSource = dsVendedores
-      TabOrder = 5
+      TabOrder = 1
       Width = 145
     end
-
+    object cxDBQuantidade: TcxDBSpinEdit
+      Left = 353
+      Top = 112
+      DataBinding.DataField = 'quantidade'
+      DataBinding.DataSource = dsEditarVendas
+      TabOrder = 6
+      Width = 121
+    end
   end
   object dbGridEditarVendas: TcxGrid
     Left = 0
-    Top = 221
-    Width = 900
+    Top = 190
+    Width = 810
     Height = 200
     Align = alBottom
     TabOrder = 1
+    ExplicitLeft = 8
+    ExplicitTop = 174
     object dbGridEditarVendasDBTableView1: TcxGridDBTableView
       Navigator.Buttons.CustomButtons = <>
       DataController.DataSource = dsEditarVendas

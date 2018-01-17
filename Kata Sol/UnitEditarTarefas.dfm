@@ -55,8 +55,8 @@ object FormEditarTarefas: TFormEditarTarefas
       Caption = '* Tarefa'
     end
     object cxDBstatusTarefas: TcxDBComboBox
-      Left = 363
-      Top = 103
+      Left = 13
+      Top = 44
       DataBinding.DataField = 'status'
       DataBinding.DataSource = dsCriarTarefas
       Properties.Items.Strings = (
@@ -69,8 +69,8 @@ object FormEditarTarefas: TFormEditarTarefas
       Width = 121
     end
     object cxDBNome: TcxDBTextEdit
-      Left = 13
-      Top = 103
+      Left = 181
+      Top = 47
       DataBinding.DataField = 'nomes'
       DataBinding.DataSource = dsCriarTarefas
       TabOrder = 1
@@ -78,16 +78,16 @@ object FormEditarTarefas: TFormEditarTarefas
     end
     object cxDBTarefas: TcxDBTextEdit
       Left = 13
-      Top = 49
+      Top = 101
       DataBinding.DataField = 'tarefas'
       DataBinding.DataSource = dsCriarTarefas
       TabOrder = 2
-      Width = 468
+      Width = 220
     end
   end
   object cbData: TcxDBDateEdit
-    Left = 143
-    Top = 169
+    Left = 537
+    Top = 123
     Cursor = crArrow
     DataBinding.DataField = 'data'
     DataBinding.DataSource = dsCriarTarefas
@@ -98,8 +98,8 @@ object FormEditarTarefas: TFormEditarTarefas
   end
   object dbGridCriacaoEdicao: TcxGrid
     Left = 0
-    Top = 221
-    Width = 900
+    Top = 198
+    Width = 716
     Height = 200
     Align = alBottom
     TabOrder = 2
@@ -188,17 +188,6 @@ object FormEditarTarefas: TFormEditarTarefas
     Caption = 'Adiar Tarefa'
     TabOrder = 8
     OnClick = btnAdiarTarefaClick
-  end
-  object cbData: TcxDBDateEdit
-    Left = 143
-    Top = 169
-    Cursor = crArrow
-    DataBinding.DataField = 'data'
-    DataBinding.DataSource = dsCriarTarefas
-    DragCursor = crArrow
-    Properties.View = cavModern
-    TabOrder = 8
-    Width = 90
   end
   object dsCriarTarefas: TDataSource
     DataSet = DmClientesTarefas.cdsToDo

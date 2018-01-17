@@ -283,7 +283,7 @@ begin
   ClientesTarefas.cdsToDoid_cadastro.Value := Conexao.Usuario.Id;
   cbData.Enabled := True;
   gbFormulario.Enabled := True;
-  cbTarefas.SetFocus;
+  cxDBstatusTarefas.SetFocus;
   dbGridCriacaoEdicao.Enabled := False;
 end;
 
@@ -291,22 +291,22 @@ procedure TFormEditarTarefas.SalvarTarefa;
 begin
   if (ClientesTarefas.cdsToDo.State = dsEdit) or (ClientesTarefas.cdsToDo.State = dsInsert) then
   begin
-    if cbTarefas.Text = '' then
+    if cxDBstatusTarefas.Text = '' then
     begin
       ShowMessage('Por favor é necessário selecionar um Status.');
-      cbTarefas.SetFocus;
+      cxDBstatusTarefas.SetFocus;
       exit;
     end
-    else if edtNome.Text = '' then
+    else if cxDBNome.Text = '' then
     begin
       ShowMessage('Por favor é necessário ditigar um Nome.');
-      edtNome.SetFocus;
+      cxDBNome.SetFocus;
       Exit;
     end
-    else if edtTarefa.Text = '' then
+    else if cxDBTarefas.Text = '' then
      begin
       ShowMessage('Por favor é necessário ditigar uma Tarefa.');
-      edtTarefa.SetFocus;
+      cxDBTarefas.SetFocus;
       Exit;
      end
     else if cbData.Text = '' then
