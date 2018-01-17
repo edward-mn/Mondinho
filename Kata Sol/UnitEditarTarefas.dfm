@@ -4,8 +4,8 @@ object FormEditarTarefas: TFormEditarTarefas
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Editar/Cadastrar Tarefas'
-  ClientHeight = 421
-  ClientWidth = 900
+  ClientHeight = 398
+  ClientWidth = 716
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,37 +19,37 @@ object FormEditarTarefas: TFormEditarTarefas
   PixelsPerInch = 96
   TextHeight = 13
   object gbFormulario: TGroupBox
-    Left = 130
+    Left = 138
     Top = 19
-    Width = 551
-    Height = 184
+    Width = 527
+    Height = 155
     Caption = 'Formul'#225'rio'
     Enabled = False
     TabOrder = 0
     object Label1: TLabel
-      Left = 13
-      Top = 84
+      Left = 181
+      Top = 28
       Width = 36
       Height = 13
       Caption = '* Nome'
     end
     object Label3: TLabel
-      Left = 363
-      Top = 84
+      Left = 13
+      Top = 28
       Width = 40
       Height = 13
       Caption = '* Status'
     end
     object Label4: TLabel
-      Left = 13
-      Top = 134
+      Left = 399
+      Top = 85
       Width = 32
       Height = 13
       Caption = '* Data'
     end
     object Label2: TLabel
       Left = 13
-      Top = 30
+      Top = 85
       Width = 41
       Height = 13
       Caption = '* Tarefa'
@@ -188,6 +188,17 @@ object FormEditarTarefas: TFormEditarTarefas
     Caption = 'Adiar Tarefa'
     TabOrder = 8
     OnClick = btnAdiarTarefaClick
+  end
+  object cbData: TcxDBDateEdit
+    Left = 143
+    Top = 169
+    Cursor = crArrow
+    DataBinding.DataField = 'data'
+    DataBinding.DataSource = dsCriarTarefas
+    DragCursor = crArrow
+    Properties.View = cavModern
+    TabOrder = 8
+    Width = 90
   end
   object dsCriarTarefas: TDataSource
     DataSet = DmClientesTarefas.cdsToDo

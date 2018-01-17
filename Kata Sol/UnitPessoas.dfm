@@ -24,7 +24,9 @@ object FormPessoas: TFormPessoas
     Height = 644
     Align = alRight
     Caption = 'Status'
-    TabOrder = 0
+    TabOrder = 1
+    ExplicitLeft = 534
+    ExplicitHeight = 422
     object cbEmpresa: TCheckBox
       Left = 5
       Top = 79

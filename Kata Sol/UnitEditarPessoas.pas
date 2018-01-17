@@ -12,20 +12,28 @@ uses
   DataModuleControleDeUsuario, cxStyles, cxCustomData, cxFilter, cxData,
   cxDataStorage, cxNavigator, cxDBData, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGridLevel, cxClasses, cxGridCustomView, cxGrid,
-  Vcl.Menus, cxButtons;
+  Vcl.Menus, cxButtons, Vcl.ExtCtrls;
 
 type
   TFormCriacaoEdicaoPessoas = class(TForm)
+    dbGridCriacaoEdicaoPessoas: TDBGrid;
     dsCriacaoEdicaoPessoas: TDataSource;
+    btnNovaPessoa: TButton;
+    btnCancelarPessoas: TButton;
+    btnSalvarPessoas: TButton;
     gbFormulario: TGroupBox;
     Label7: TLabel;
     Label4: TLabel;
+    edtNome: TDBEdit;
     edtCpf: TDBEdit;
     Label2: TLabel;
     Label5: TLabel;
     Label6: TLabel;
+    edtEndereco: TDBEdit;
     Label3: TLabel;
     Label1: TLabel;
+    btnEditar: TButton;
+    btnDeletarCadastro: TButton;
     cbData: TcxDBDateEdit;
     dbGridCriacaoEdicaoPessoasDBTableView1: TcxGridDBTableView;
     dbGridCriacaoEdicaoPessoasLevel1: TcxGridLevel;
@@ -54,11 +62,14 @@ type
     procedure btnDeletarCadastroClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure btnSalvarPessoasClick(Sender: TObject);
+    procedure cbStatusPessoasChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure mCalendarClick(Sender: TObject);
   private
     FClientesControle : TDmControleDeUsuario;
+    procedure AdicionarCampoCNPJ;
+    procedure AdicionarCampoCPF;
     procedure CadastrarNovaPessoa;
     procedure CancelarAcao;
     procedure DefinirDataSet;
@@ -80,6 +91,9 @@ var
   FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas;
 
 implementation
+
+uses
+  System.StrUtils;
 
 {$R *.dfm}
 
@@ -106,6 +120,7 @@ end;
 
 procedure TFormCriacaoEdicaoPessoas.btnSalvarPessoasClick(Sender: TObject);
 begin
+
   SalvarAlteracoes();
 end;
 
@@ -118,6 +133,7 @@ begin
   ClientesPessoas.cdsPessoas.Insert;
   ClientesPessoas.cdsPessoasid_cadastro.Value := Conexao.Usuario.Id;
   gbFormulario.Enabled := True;
+  cbStatusPessoas.SetFocus;
   dbGridCriacaoEdicaoPessoas.Enabled := False;
 end;
 
@@ -162,11 +178,30 @@ begin
   FClientesControle.cdsControleDeUsuario.Open;
 end;
 
+procedure TFormCriacaoEdicaoPessoas.AdicionarCampoCNPJ;
+begin
+  cxDBMaskEditCPFCNPJ.Properties.EditMask := '99.999.999/9999-99' ;
+end;
+
+procedure TFormCriacaoEdicaoPessoas.AdicionarCampoCPF;
+begin
+  cxDBMaskEditCPFCNPJ.Properties.EditMask := '999.999.999-99';
+end;
+
+procedure TFormCriacaoEdicaoPessoas.cbStatusPessoasChange(Sender: TObject);
+begin
+  if MatchText(cbStatusPessoas.Text,  ['Fisica', 'Vendedor', 'Usuario Do Sistema']) then
+    AdicionarCampoCPF
+  else if MatchText(cbStatusPessoas.Text, ['Juridica', 'Empresa']) then
+    AdicionarCampoCNPJ;
+end;
+
 procedure TFormCriacaoEdicaoPessoas.DefinirDataSet;
 begin
   dbGridCriacaoEdicaoPessoasDBTableView1.DataController.DataSource := dsCriacaoEdicaoPessoas;
   ClientesPessoas.cdsPessoasid_pessoas.Visible := False;
   dsCriacaoEdicaoPessoas.DataSet := ClientesPessoas.cdsPessoas;
+  dbGridCriacaoEdicaoPessoas.DataSource := dsCriacaoEdicaoPessoas;
 end;
 
 procedure TFormCriacaoEdicaoPessoas.DeletarPessoa;
@@ -232,11 +267,54 @@ procedure TFormCriacaoEdicaoPessoas.SalvarAlteracoes;
 begin
   if (ClientesPessoas.cdsPessoas.State = dsEdit) or (ClientesPessoas.cdsPessoas.State = dsInsert) then
   begin
-  gbFormulario.Enabled := False;
-  dbGridCriacaoEdicaoPessoas.Enabled := True;
-  ClientesPessoas.cdsPessoas.ApplyUpdates(0);
-  ClientesPessoas.cdsPessoas.Refresh;
-  HabilitarBotoes;
+   if cbStatusPessoas.Text = '' then
+   begin
+      ShowMessage('Por favor é necessário selecionar um Status.');
+      cbStatusPessoas.SetFocus;
+      Exit;
+   end
+    else if edtNome.Text = '' then
+    begin
+      ShowMessage('Por favor é necessário digitar um Nome.');
+      edtNome.SetFocus;
+      Exit;
+    end
+    else if edtEndereco.Text = '' then
+    begin
+      ShowMessage('Por favor é necessário digitar um Endereço.');
+      edtEndereco.SetFocus;
+      Exit;
+    end
+    else if cxDBMaskEditTelefone.Text = '' then
+    begin
+      ShowMessage('Por favor é necessário digitar um Telefone.');
+      cxDBMaskEditTelefone.SetFocus;
+      Exit;
+    end
+    else if cxDBMaskEditCelular.Text = '' then
+    begin
+      ShowMessage('Por favor é necessário digitar um Celular.');
+      cxDBMaskEditCelular.SetFocus;
+      Exit;
+    end
+    else if cxDBMaskEditCPFCNPJ.Text = '' then
+    begin
+      ShowMessage('Por favor é necessário digitar um CPF.');
+      cxDBMaskEditCPFCNPJ.SetFocus;
+      Exit;
+    end
+     else if cbData.Text = '' then
+    begin
+      ShowMessage('Por favor é necessário digitar uma Data.');
+      cbData.SetFocus;
+      Exit;
+    end;
+
+        gbFormulario.Enabled := False;
+        dbGridCriacaoEdicaoPessoas.Enabled := True;
+        ClientesPessoas.cdsPessoas.ApplyUpdates(0);
+        ClientesPessoas.cdsPessoas.Refresh;
+        HabilitarBotoes;
   end;
 end;
 
