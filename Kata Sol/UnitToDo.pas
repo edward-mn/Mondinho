@@ -15,7 +15,8 @@ uses
   dxLayoutControl, cxStyles, cxCustomData, cxFilter, cxData, cxDataStorage,
   cxEdit, cxNavigator, cxDBData, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid,
-  DataModuleVendasValorTotal, DataModuleVendasQuantidade;
+  DataModuleVendasValorTotal, DataModuleVendasQuantidade, Vcl.Menus, cxButtons,
+  Datasnap.DBClient;
 
 type
   TFormView = class(TForm)
@@ -44,13 +45,24 @@ type
     cxGridUsuariosDBTableView1nome_usuario: TcxGridDBColumn;
     layoutGrupoUsuarios: TdxLayoutGroup;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
-    GridQauntidade: TDBGrid;
-    dxLayoutItem2: TdxLayoutItem;
     dsQuantidade: TDataSource;
-    GridValorTotal: TDBGrid;
-    dxLayoutItem3: TdxLayoutItem;
     dsValorTotal: TDataSource;
     dsToDo: TDataSource;
+    GridQauntidadeDBTableView1: TcxGridDBTableView;
+    GridQauntidadeLevel1: TcxGridLevel;
+    GridQauntidade: TcxGrid;
+    dxLayoutItem2: TdxLayoutItem;
+    GridQauntidadeDBTableView1nome: TcxGridDBColumn;
+    GridQauntidadeDBTableView1produtos: TcxGridDBColumn;
+    GridQauntidadeDBTableView1sum: TcxGridDBColumn;
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1Level1: TcxGridLevel;
+    cxGrid1: TcxGrid;
+    dxLayoutItem3: TdxLayoutItem;
+    cxGrid1DBTableView1nome: TcxGridDBColumn;
+    cxGrid1DBTableView1produtos: TcxGridDBColumn;
+    cxGrid1DBTableView1sum: TcxGridDBColumn;
+    btnAtt: TcxButton;
     procedure btnPessoasClick(Sender: TObject);
     procedure btnTarefasClick(Sender: TObject);
     procedure btnVendasClick(Sender: TObject);
@@ -58,6 +70,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure btnAttClick(Sender: TObject);
   private
     FClientesCadastro: TDmClientesCadastro;
     FClientesControle: TDmControleDeUsuario;
@@ -169,6 +182,13 @@ begin
   end;
 end;
 
+procedure TFormView.btnAttClick(Sender: TObject);
+begin
+  FClientesVendasTotalDeVendas.cdsVendasValorTotal.Refresh;
+  FClientesVendasQuantidade.cdsVendasQuantidade.Refresh;
+  FClientesCadastro.cdsCadastro.Refresh;
+end;
+
 procedure TFormView.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   ControleDeUsuarioLogout;
@@ -180,9 +200,8 @@ begin
   dsToDo.DataSet := FClientesCadastro.cdsCadastro;
   dsQuantidade.DataSet := FClientesVendasQuantidade.cdsVendasQuantidade;
   dsValorTotal.DataSet := FClientesVendasTotalDeVendas.cdsVendasValorTotal;
-  GridValorTotal.DataSource := dsValorTotal;
-  GridQauntidade.DataSource := dsQuantidade;
   FClientesCadastro.cdsCadastrosenha.Visible := False;
+  lblNome.Caption := Conexao.Usuario.Nome;
 end;
 
 procedure TFormView.FormCreate(Sender: TObject);

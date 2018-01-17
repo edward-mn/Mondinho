@@ -18,6 +18,7 @@ object DmVendasValorTotal: TDmVendasValorTotal
     end
     object cdsVendasValorTotalsum: TFMTBCDField
       FieldName = 'sum'
+      currency = True
       Precision = 32
     end
   end

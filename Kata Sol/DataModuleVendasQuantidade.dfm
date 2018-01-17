@@ -7,7 +7,7 @@ object DmVendasQuantidade: TDmVendasQuantidade
     Params = <>
     ProviderName = 'sqlProviderQuantidadeVendas'
     Left = 59
-    Top = 40
+    Top = 44
     object cdsVendasQuantidadenome: TWideStringField
       FieldName = 'nome'
       Size = 50

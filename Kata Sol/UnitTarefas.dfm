@@ -17,149 +17,335 @@ object FormTarefas: TFormTarefas
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object gbStatusTarefas: TGroupBox
-    Left = 612
+  object dxLayoutControl1: TdxLayoutControl
+    Left = 0
     Top = 0
-    Width = 129
+    Width = 741
     Height = 652
-    Align = alRight
-    Caption = 'Status'
+    Align = alClient
     TabOrder = 0
+    AutoSize = True
     object cbAtrasadas: TCheckBox
-      Left = 8
-      Top = 92
+      Left = 598
+      Top = 97
       Width = 97
       Height = 17
       Caption = 'Atrasada'
-      TabOrder = 0
+      TabOrder = 4
     end
     object cbFinalizadas: TCheckBox
-      Left = 8
-      Top = 67
+      Left = 598
+      Top = 74
       Width = 97
       Height = 17
       Caption = 'Finalizada'
-      TabOrder = 1
+      TabOrder = 3
     end
     object cbAdiadas: TCheckBox
-      Left = 8
-      Top = 42
+      Left = 598
+      Top = 51
       Width = 97
       Height = 17
       Caption = 'Adiada'
       TabOrder = 2
     end
     object cbAgendada: TCheckBox
-      Left = 8
-      Top = 18
+      Left = 598
+      Top = 28
       Width = 97
       Height = 17
       Caption = 'Agendada'
-      TabOrder = 3
+      TabOrder = 1
     end
-    object gbEditarTarefas: TGroupBox
-      Left = 5
-      Top = 179
-      Width = 119
-      Height = 70
-      Caption = 'Tarefas'
-      TabOrder = 4
-      object btnCriarTarefa: TcxButton
-        Left = 9
-        Top = 16
-        Width = 97
-        Height = 25
-        Caption = 'Editar Registros'
-        TabOrder = 0
-        OnClick = btnCriarTarefaClick
-      end
-      object btnAtualizarTarefa: TcxButton
-        Left = 9
-        Top = 43
-        Width = 97
-        Height = 25
-        Caption = 'Atualizar'
-        TabOrder = 1
-        OnClick = btnAtualizarTarefaClick
-      end
+    object btnCriarTarefa: TcxButton
+      Left = 610
+      Top = 169
+      Width = 97
+      Height = 25
+      Caption = 'Editar Registros'
+      TabOrder = 6
+      OnClick = btnCriarTarefaClick
     end
-    object gbRelatorioTarefas: TGroupBox
-      Left = 2
-      Top = 553
-      Width = 125
-      Height = 97
-      Align = alBottom
-      Caption = 'Relat'#243'rio'
-      TabOrder = 5
-      object btnVisualizar: TcxButton
-        Left = 12
-        Top = 26
-        Width = 97
-        Height = 25
-        Caption = 'Visualizar'
-        TabOrder = 0
-        OnClick = btnVisualizarClick
-      end
-      object btnImprimir: TcxButton
-        Left = 12
-        Top = 57
-        Width = 97
-        Height = 25
-        Caption = 'Imprimir'
-        TabOrder = 1
-        OnClick = btnImprimirClick
-      end
+    object btnAtualizarTarefa: TcxButton
+      Left = 610
+      Top = 200
+      Width = 97
+      Height = 25
+      Caption = 'Atualizar'
+      TabOrder = 7
+      OnClick = btnAtualizarTarefaClick
+    end
+    object btnVisualizar: TcxButton
+      Left = 610
+      Top = 562
+      Width = 97
+      Height = 25
+      Caption = 'Visualizar'
+      TabOrder = 8
+      OnClick = btnVisualizarClick
+    end
+    object btnImprimir: TcxButton
+      Left = 610
+      Top = 593
+      Width = 97
+      Height = 25
+      Caption = 'Imprimir'
+      TabOrder = 9
+      OnClick = btnImprimirClick
     end
     object btnPesquisar: TcxButton
-      Left = 14
-      Top = 118
+      Left = 598
+      Top = 120
       Width = 97
       Height = 25
       Caption = 'Pesquisar'
-      TabOrder = 6
+      TabOrder = 5
       OnClick = btnPesquisarClick
     end
-  end
-  object dbGridTarefas: TcxGrid
-    Left = 0
-    Top = 0
-    Width = 612
-    Height = 652
-    Align = alClient
-    TabOrder = 1
-    ExplicitWidth = 609
-    object dbGridTarefasDBTableView1: TcxGridDBTableView
-      Navigator.Buttons.CustomButtons = <>
-      DataController.DataSource = dsTarefas
-      DataController.Summary.DefaultGroupSummaryItems = <>
-      DataController.Summary.FooterSummaryItems = <>
-      DataController.Summary.SummaryGroups = <>
-      OptionsData.Editing = False
-      OptionsView.GroupByBox = False
-      OptionsView.ShowColumnFilterButtons = sfbWhenSelected
-      object dbGridTarefasDBTableView1id_todo: TcxGridDBColumn
-        DataBinding.FieldName = 'id_todo'
+    object dbGridTarefas: TcxGrid
+      Left = 10
+      Top = 10
+      Width = 570
+      Height = 632
+      TabOrder = 0
+      object dbGridTarefasDBTableView1: TcxGridDBTableView
+        Navigator.Buttons.CustomButtons = <>
+        DataController.DataSource = dsTarefas
+        DataController.Summary.DefaultGroupSummaryItems = <>
+        DataController.Summary.FooterSummaryItems = <>
+        DataController.Summary.SummaryGroups = <>
+        OptionsData.Deleting = False
+        OptionsData.DeletingConfirmation = False
+        OptionsData.Editing = False
+        OptionsData.Inserting = False
+        OptionsView.GroupByBox = False
+        OptionsView.ShowColumnFilterButtons = sfbWhenSelected
+        object dbGridTarefasDBTableView1id_todo: TcxGridDBColumn
+          DataBinding.FieldName = 'id_todo'
+        end
+        object dbGridTarefasDBTableView1nomes: TcxGridDBColumn
+          DataBinding.FieldName = 'nomes'
+          Width = 111
+        end
+        object dbGridTarefasDBTableView1tarefas: TcxGridDBColumn
+          DataBinding.FieldName = 'tarefas'
+          Width = 141
+        end
+        object dbGridTarefasDBTableView1status: TcxGridDBColumn
+          DataBinding.FieldName = 'status'
+        end
+        object dbGridTarefasDBTableView1data: TcxGridDBColumn
+          DataBinding.FieldName = 'data'
+        end
+        object dbGridTarefasDBTableView1id_cadastro: TcxGridDBColumn
+          DataBinding.FieldName = 'id_cadastro'
+        end
       end
-      object dbGridTarefasDBTableView1nomes: TcxGridDBColumn
-        DataBinding.FieldName = 'nomes'
-        Width = 111
-      end
-      object dbGridTarefasDBTableView1tarefas: TcxGridDBColumn
-        DataBinding.FieldName = 'tarefas'
-        Width = 141
-      end
-      object dbGridTarefasDBTableView1status: TcxGridDBColumn
-        DataBinding.FieldName = 'status'
-      end
-      object dbGridTarefasDBTableView1data: TcxGridDBColumn
-        DataBinding.FieldName = 'data'
-      end
-      object dbGridTarefasDBTableView1id_cadastro: TcxGridDBColumn
-        DataBinding.FieldName = 'id_cadastro'
+      object dbGridTarefasLevel1: TcxGridLevel
+        GridView = dbGridTarefasDBTableView1
       end
     end
-    object dbGridTarefasLevel1: TcxGridLevel
-      GridView = dbGridTarefasDBTableView1
+    object dxLayoutControl1Group_Root: TdxLayoutGroup
+      AlignHorz = ahClient
+      AlignVert = avClient
+      ButtonOptions.Buttons = <>
+      Hidden = True
+      ItemIndex = 1
+      LayoutDirection = ldHorizontal
+      ShowBorder = False
+      Index = -1
+    end
+    object dxLayoutGroup1: TdxLayoutGroup
+      Parent = dxLayoutControl1Group_Root
+      AlignHorz = ahClient
+      AlignVert = avClient
+      CaptionOptions.Text = 'Hidden Group'
+      ButtonOptions.Buttons = <>
+      Hidden = True
+      ShowBorder = False
+      Index = 0
+    end
+    object dxLayoutItem1: TdxLayoutItem
+      Parent = dxLayoutGroup1
+      AlignHorz = ahClient
+      AlignVert = avClient
+      CaptionOptions.Text = 'dbGridTarefas'
+      CaptionOptions.Visible = False
+      Control = dbGridTarefas
+      ControlOptions.OriginalHeight = 652
+      ControlOptions.OriginalWidth = 612
+      ControlOptions.ShowBorder = False
+      Index = 0
+    end
+    object dxLayoutGroup2: TdxLayoutGroup
+      Parent = dxLayoutControl1Group_Root
+      AlignHorz = ahRight
+      AlignVert = avClient
+      CaptionOptions.Text = 'Status'
+      ButtonOptions.Buttons = <>
+      ItemIndex = 1
+      Index = 1
+    end
+    object dxLayoutGroup3: TdxLayoutGroup
+      Parent = dxLayoutGroup2
+      AlignHorz = ahClient
+      AlignVert = avClient
+      CaptionOptions.Text = 'Hidden Group'
+      ButtonOptions.Buttons = <>
+      Hidden = True
+      LayoutDirection = ldHorizontal
+      ShowBorder = False
+      Index = 0
+    end
+    object dxLayoutGroup4: TdxLayoutGroup
+      Parent = dxLayoutGroup3
+      AlignVert = avTop
+      CaptionOptions.Text = 'Hidden Group'
+      ButtonOptions.Buttons = <>
+      Hidden = True
+      ItemIndex = 5
+      ShowBorder = False
+      Index = 0
+    end
+    object dxLayoutItem2: TdxLayoutItem
+      Parent = dxLayoutGroup4
+      AlignHorz = ahLeft
+      CaptionOptions.Text = 'cbAgendada'
+      CaptionOptions.Visible = False
+      Control = cbAgendada
+      ControlOptions.AutoColor = True
+      ControlOptions.OriginalHeight = 17
+      ControlOptions.OriginalWidth = 97
+      ControlOptions.ShowBorder = False
+      Index = 0
+    end
+    object dxLayoutItem3: TdxLayoutItem
+      Parent = dxLayoutGroup4
+      AlignHorz = ahLeft
+      CaptionOptions.Text = 'cbAdiadas'
+      CaptionOptions.Visible = False
+      Control = cbAdiadas
+      ControlOptions.AutoColor = True
+      ControlOptions.OriginalHeight = 17
+      ControlOptions.OriginalWidth = 97
+      ControlOptions.ShowBorder = False
+      Index = 1
+    end
+    object dxLayoutItem4: TdxLayoutItem
+      Parent = dxLayoutGroup4
+      AlignHorz = ahLeft
+      CaptionOptions.Text = 'cbFinalizadas'
+      CaptionOptions.Visible = False
+      Control = cbFinalizadas
+      ControlOptions.AutoColor = True
+      ControlOptions.OriginalHeight = 17
+      ControlOptions.OriginalWidth = 97
+      ControlOptions.ShowBorder = False
+      Index = 2
+    end
+    object dxLayoutItem5: TdxLayoutItem
+      Parent = dxLayoutGroup4
+      AlignHorz = ahLeft
+      CaptionOptions.Text = 'cbAtrasadas'
+      CaptionOptions.Visible = False
+      Control = cbAtrasadas
+      ControlOptions.AutoColor = True
+      ControlOptions.OriginalHeight = 17
+      ControlOptions.OriginalWidth = 97
+      ControlOptions.ShowBorder = False
+      Index = 3
+    end
+    object dxLayoutItem6: TdxLayoutItem
+      Parent = dxLayoutGroup4
+      AlignHorz = ahLeft
+      CaptionOptions.Text = 'btnPesquisar'
+      CaptionOptions.Visible = False
+      Control = btnPesquisar
+      ControlOptions.OriginalHeight = 25
+      ControlOptions.OriginalWidth = 97
+      ControlOptions.ShowBorder = False
+      Index = 4
+    end
+    object dxLayoutGroup5: TdxLayoutGroup
+      Parent = dxLayoutGroup4
+      AlignHorz = ahLeft
+      CaptionOptions.Text = 'Tarefas'
+      ButtonOptions.Buttons = <>
+      LayoutDirection = ldHorizontal
+      Index = 5
+    end
+    object dxLayoutGroup6: TdxLayoutGroup
+      Parent = dxLayoutGroup5
+      AlignVert = avTop
+      CaptionOptions.Text = 'Hidden Group'
+      ButtonOptions.Buttons = <>
+      Hidden = True
+      ItemIndex = 1
+      ShowBorder = False
+      Index = 0
+    end
+    object dxLayoutItem7: TdxLayoutItem
+      Parent = dxLayoutGroup6
+      AlignHorz = ahLeft
+      CaptionOptions.Text = 'btnCriarTarefa'
+      CaptionOptions.Visible = False
+      Control = btnCriarTarefa
+      ControlOptions.OriginalHeight = 25
+      ControlOptions.OriginalWidth = 97
+      ControlOptions.ShowBorder = False
+      Index = 0
+    end
+    object dxLayoutItem8: TdxLayoutItem
+      Parent = dxLayoutGroup6
+      AlignHorz = ahLeft
+      CaptionOptions.Text = 'btnAtualizarTarefa'
+      CaptionOptions.Visible = False
+      Control = btnAtualizarTarefa
+      ControlOptions.OriginalHeight = 25
+      ControlOptions.OriginalWidth = 97
+      ControlOptions.ShowBorder = False
+      Index = 1
+    end
+    object dxLayoutGroup7: TdxLayoutGroup
+      Parent = dxLayoutGroup2
+      AlignHorz = ahClient
+      AlignVert = avBottom
+      CaptionOptions.Text = 'Relat'#243'rio'
+      ButtonOptions.Buttons = <>
+      LayoutDirection = ldHorizontal
+      Index = 1
+    end
+    object dxLayoutGroup8: TdxLayoutGroup
+      Parent = dxLayoutGroup7
+      AlignVert = avTop
+      CaptionOptions.Text = 'Hidden Group'
+      ButtonOptions.Buttons = <>
+      Hidden = True
+      ItemIndex = 1
+      ShowBorder = False
+      Index = 0
+    end
+    object dxLayoutItem9: TdxLayoutItem
+      Parent = dxLayoutGroup8
+      AlignHorz = ahLeft
+      CaptionOptions.Text = 'btnVisualizar'
+      CaptionOptions.Visible = False
+      Control = btnVisualizar
+      ControlOptions.OriginalHeight = 25
+      ControlOptions.OriginalWidth = 97
+      ControlOptions.ShowBorder = False
+      Index = 0
+    end
+    object dxLayoutItem10: TdxLayoutItem
+      Parent = dxLayoutGroup8
+      AlignHorz = ahLeft
+      CaptionOptions.Text = 'btnImprimir'
+      CaptionOptions.Visible = False
+      Control = btnImprimir
+      ControlOptions.OriginalHeight = 25
+      ControlOptions.OriginalWidth = 97
+      ControlOptions.ShowBorder = False
+      Index = 1
     end
   end
   object dsTarefas: TDataSource
