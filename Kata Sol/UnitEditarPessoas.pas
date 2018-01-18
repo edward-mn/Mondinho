@@ -117,7 +117,8 @@ end;
 
 procedure TFormCriacaoEdicaoPessoas.btnDeletarCadastroClick(Sender: TObject);
 begin
-  DeletarPessoa();
+  if not ClientesPessoas.cdsPessoas.IsEmpty then
+    DeletarPessoa();
 end;
 
 procedure TFormCriacaoEdicaoPessoas.btnEditarClick(Sender: TObject);

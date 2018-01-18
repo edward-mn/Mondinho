@@ -88,6 +88,10 @@
         <DCCReference Include="VendasUtils.pas"/>
         <DCCReference Include="TestVendas.pas"/>
         <DCCReference Include="TestPessoas.pas"/>
+        <DCCReference Include="TestDataModuleConexao.pas"/>
+        <DCCReference Include="DataModuleConexao.pas">
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

@@ -142,7 +142,8 @@ end;
 
 procedure TFormEditarTarefas.btnDeletarTarefaClick(Sender: TObject);
 begin
-  DeletarTarefa();
+  if not ClientesTarefas.cdsToDo.IsEmpty then
+    DeletarTarefa();
 end;
 
 procedure TFormEditarTarefas.btnEditarClick(Sender: TObject);
