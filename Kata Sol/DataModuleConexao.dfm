@@ -268,11 +268,9 @@ object DmConexao: TDmConexao
     Params = <>
     SQL.Strings = (
       
-        'select vdd.nome,cast(string_agg(vda.produtos, '#39', '#39') as varchar (' +
-        '200)) produtos, sum(vda.valor_total) from  vendas vda'
-      'inner join vendedores vdd on (vdd.id_vendedor = vda.id_vendedor)'
-      'group by vdd.nome'
-      'order by sum(vda.valor_total) desc ')
+        'select vdd.nome, vda.produtos produtos, vda.valor_total from  ve' +
+        'ndas vda'
+      'join vendedores vdd on (vdd.id_vendedor = vda.id_vendedor)')
     SQLConnection = sqlConexao
     Left = 646
     Top = 83
@@ -282,11 +280,12 @@ object DmConexao: TDmConexao
     end
     object sqlQueryVendasValorTotalprodutos: TWideStringField
       FieldName = 'produtos'
-      Size = 200
+      Size = 50
     end
-    object sqlQueryVendasValorTotalsum: TFMTBCDField
-      FieldName = 'sum'
-      Precision = 32
+    object sqlQueryVendasValorTotalvalor_total: TFMTBCDField
+      FieldName = 'valor_total'
+      Precision = 11
+      Size = 2
     end
   end
   object sqlQueryQuantidadeVendas: TSQLQuery
@@ -294,11 +293,9 @@ object DmConexao: TDmConexao
     Params = <>
     SQL.Strings = (
       
-        'select vdd.nome, cast(string_agg(vda.produtos, '#39', '#39') as varchar ' +
-        '(200)) produtos, sum(vda.quantidade) from  vendas vda'
-      'inner join vendedores vdd on (vdd.id_vendedor = vda.id_vendedor)'
-      'group by vdd.nome'
-      'order by sum(vda.quantidade) desc ')
+        'select vdd.nome, vda.produtos produtos, vda.quantidade from  ven' +
+        'das vda'
+      'join vendedores vdd on (vdd.id_vendedor = vda.id_vendedor)')
     SQLConnection = sqlConexao
     Left = 791
     Top = 81
@@ -308,13 +305,10 @@ object DmConexao: TDmConexao
     end
     object sqlQueryQuantidadeVendasprodutos: TWideStringField
       FieldName = 'produtos'
-      Size = 200
+      Size = 50
     end
-    object sqlQueryQuantidadeVendassum: TFMTBCDField
-      FieldName = 'sum'
-      currency = True
-      Precision = 19
-      Size = 0
+    object sqlQueryQuantidadeVendasquantidade: TIntegerField
+      FieldName = 'quantidade'
     end
   end
   object sqlProviderVendasValorTotal: TDataSetProvider

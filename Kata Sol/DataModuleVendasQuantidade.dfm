@@ -6,7 +6,7 @@ object DmVendasQuantidade: TDmVendasQuantidade
     Aggregates = <>
     Params = <>
     ProviderName = 'sqlProviderQuantidadeVendas'
-    Left = 59
+    Left = 51
     Top = 44
     object cdsVendasQuantidadenome: TWideStringField
       FieldName = 'nome'
@@ -16,10 +16,8 @@ object DmVendasQuantidade: TDmVendasQuantidade
       FieldName = 'produtos'
       Size = 200
     end
-    object cdsVendasQuantidadesum: TFMTBCDField
-      FieldName = 'sum'
-      Precision = 19
-      Size = 0
+    object cdsVendasQuantidadequantidade: TIntegerField
+      FieldName = 'quantidade'
     end
   end
 end

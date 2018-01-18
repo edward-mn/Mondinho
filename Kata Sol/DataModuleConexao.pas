@@ -49,10 +49,8 @@ type
     sqlProviderQuantidadeVendas: TDataSetProvider;
     sqlQueryVendasValorTotalnome: TWideStringField;
     sqlQueryVendasValorTotalprodutos: TWideStringField;
-    sqlQueryVendasValorTotalsum: TFMTBCDField;
     sqlQueryQuantidadeVendasnome: TWideStringField;
     sqlQueryQuantidadeVendasprodutos: TWideStringField;
-    sqlQueryQuantidadeVendassum: TFMTBCDField;
     sqlQueryVendasid_produtos: TIntegerField;
     sqlQueryVendasprodutos: TWideStringField;
     sqlQueryVendasstatus: TWideStringField;
@@ -64,6 +62,8 @@ type
     sqlQueryVendasid_cadastro: TIntegerField;
     sqlQueryVendasid_vendedor: TIntegerField;
     sqlQueryVendasvendedor: TWideStringField;
+    sqlQueryVendasValorTotalvalor_total: TFMTBCDField;
+    sqlQueryQuantidadeVendasquantidade: TIntegerField;
     procedure sqlQueryPessoasBeforeOpen(DataSet: TDataSet);
     procedure sqlQueryToDoBeforeOpen(DataSet: TDataSet);
     procedure sqlQueryVendasBeforeOpen(DataSet: TDataSet);
