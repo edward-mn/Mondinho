@@ -83,7 +83,7 @@ type
     procedure ProviderVendasValorTotal;
     procedure ProviderVendasQuantidade;
     procedure DefinirDataSet;
-    function CriarAba(AbaForm: TFormClass; AbaNome: String): TForm;
+    procedure CriarAba(AbaForm: TFormClass; AbaNome: String);
   public
     ID_Login: Integer;
     constructor Create(AOwner: TComponent); override;
@@ -154,32 +154,35 @@ begin
   FClientesControle.cdsControleDeUsuario.Open;
   FClientesControle.cdsControleDeUsuario.Insert;
   FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value :=
-    ('ID :' + (IntToStr(ID_Login)) + ' Se Desconectou' + (DateTimeToStr(Now)));
+    ('ID :' + (IntToStr(ID_Login)) + ' Se Desconectou'
+     + (DateTimeToStr(Now)));
   FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
   FClientesControle.cdsControleDeUsuario.Close;
 end;
 
-function TFormView.CriarAba(AbaForm: TFormClass; AbaNome: String): TForm;
+procedure TFormView.CriarAba(AbaForm: TFormClass; AbaNome: String);
 var
   Item: TdxLayoutItem;
   I: Integer;
+
+  procedure DefinirFoco(Item: TdxLayoutItem);
+  begin
+    Item.MakeVisible;
+    ((Item as TdxLayoutItem).Control as TWinControl).SetFocus;
+  end;
+
 begin
-  I := 0;
   for I := 0 to GrupoForms.Count - 1 do
     if (GrupoForms.Items[I] as TdxLayoutItem).Control is AbaForm then
     begin
-      GrupoForms.Items[I].MakeVisible;
-      ((GrupoForms.Items[I] as TdxLayoutItem).Control as TWinControl).SetFocus;
+      DefinirFoco(GrupoForms.Items[I] as TdxLayoutItem);
       Exit;
     end;
-  begin
-    Item := GrupoForms.CreateItem(TdxLayoutItem) as TdxLayoutItem;
-    Item.Control := AbaForm.Create(Item);
-    Item.CaptionOptions.Visible := False;
-    Item.Caption := AbaNome;
-    GrupoForms.Items[I].MakeVisible;
-    ((GrupoForms.Items[I] as TdxLayoutItem).Control as TWinControl).SetFocus;
-  end;
+  Item := GrupoForms.CreateItem(TdxLayoutItem) as TdxLayoutItem;
+  Item.Control := AbaForm.Create(Item);
+  Item.CaptionOptions.Visible := False;
+  Item.Caption := AbaNome;
+  DefinirFoco(Item);
 end;
 
 procedure TFormView.btnAttClick(Sender: TObject);

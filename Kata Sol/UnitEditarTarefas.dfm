@@ -86,9 +86,9 @@ object FormEditarTarefas: TFormEditarTarefas
     end
     object dbGridCriacaoEdicao: TcxGrid
       Left = 10
-      Top = 232
+      Top = 196
       Width = 974
-      Height = 229
+      Height = 265
       TabOrder = 10
       object dbGridCriacaoEdicaoDBTableView1: TcxGridDBTableView
         Navigator.Buttons.CustomButtons = <>
@@ -294,6 +294,7 @@ object FormEditarTarefas: TFormEditarTarefas
     object dxLayoutGroup5: TdxLayoutGroup
       Parent = dxLayoutGroup1
       AlignHorz = ahClient
+      AlignVert = avClient
       CaptionOptions.Text = 'Formul'#225'rio'
       ButtonOptions.Buttons = <>
       LayoutDirection = ldHorizontal
@@ -373,7 +374,7 @@ object FormEditarTarefas: TFormEditarTarefas
       CaptionOptions.Text = 'dbGridCriacaoEdicao'
       CaptionOptions.Visible = False
       Control = dbGridCriacaoEdicao
-      ControlOptions.OriginalHeight = 229
+      ControlOptions.OriginalHeight = 265
       ControlOptions.OriginalWidth = 716
       ControlOptions.ShowBorder = False
       Index = 1
@@ -758,7 +759,7 @@ object FormEditarTarefas: TFormEditarTarefas
   end
   object dsCriarTarefas: TDataSource
     DataSet = DmClientesTarefas.cdsToDo
-    Left = 240
-    Top = 264
+    Left = 568
+    Top = 352
   end
 end
