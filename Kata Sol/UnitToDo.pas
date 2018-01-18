@@ -16,7 +16,7 @@ uses
   cxEdit, cxNavigator, cxDBData, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid,
   DataModuleVendasValorTotal, DataModuleVendasQuantidade, Vcl.Menus, cxButtons,
-  Datasnap.DBClient;
+  Datasnap.DBClient, cxMemo;
 
 type
   TFormView = class(TForm)
@@ -48,20 +48,20 @@ type
     dsQuantidade: TDataSource;
     dsValorTotal: TDataSource;
     dsToDo: TDataSource;
-    GridQauntidadeDBTableView1: TcxGridDBTableView;
-    GridQauntidadeLevel1: TcxGridLevel;
-    GridQauntidade: TcxGrid;
+    GridViewVendedoresPorValor: TcxGridDBTableView;
+    GridValorTotalLevel1: TcxGridLevel;
+    GridValorTotal: TcxGrid;
     dxLayoutItem2: TdxLayoutItem;
-    GridQauntidadeDBTableView1nome: TcxGridDBColumn;
-    GridQauntidadeDBTableView1produtos: TcxGridDBColumn;
-    GridQauntidadeDBTableView1sum: TcxGridDBColumn;
-    cxGrid1DBTableView1: TcxGridDBTableView;
-    cxGrid1Level1: TcxGridLevel;
-    cxGrid1: TcxGrid;
+    GridViewVendedoresPorValornome: TcxGridDBColumn;
+    GridViewVendedoresPorValorprodutos: TcxGridDBColumn;
+    GridViewVendedoresPorValorvalor_total: TcxGridDBColumn;
+    GridQuantidadeDBTableView1: TcxGridDBTableView;
+    GridQuantidadeLevel1: TcxGridLevel;
+    GridQuantidade: TcxGrid;
     dxLayoutItem3: TdxLayoutItem;
-    cxGrid1DBTableView1nome: TcxGridDBColumn;
-    cxGrid1DBTableView1produtos: TcxGridDBColumn;
-    cxGrid1DBTableView1sum: TcxGridDBColumn;
+    GridQuantidadeDBTableView1nome: TcxGridDBColumn;
+    GridQuantidadeDBTableView1produtos: TcxGridDBColumn;
+    GridQuantidadeDBTableView1quantidade: TcxGridDBColumn;
     btnAtt: TcxButton;
     procedure btnPessoasClick(Sender: TObject);
     procedure btnTarefasClick(Sender: TObject);
@@ -214,6 +214,8 @@ end;
 procedure TFormView.FormShow(Sender: TObject);
 begin
   ControleDeUsuarioLogin;
+  GridViewVendedoresPorValor.DataController.Groups.FullExpand;
+  GridQuantidadeDBTableView1.DataController.Groups.FullExpand;
 end;
 
 procedure TFormView.Logout;

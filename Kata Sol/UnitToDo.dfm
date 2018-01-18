@@ -135,16 +135,20 @@
         GridView = cxGridUsuariosDBTableView1
       end
     end
-    object GridQauntidade: TcxGrid
+    object GridValorTotal: TcxGrid
       Left = 738
       Top = 433
       Width = 352
       Height = 136
       TabOrder = 5
-      object GridQauntidadeDBTableView1: TcxGridDBTableView
+      object GridViewVendedoresPorValor: TcxGridDBTableView
         Navigator.Buttons.CustomButtons = <>
         DataController.DataSource = dsValorTotal
-        DataController.Summary.DefaultGroupSummaryItems = <>
+        DataController.Summary.DefaultGroupSummaryItems = <
+          item
+            Kind = skSum
+            Column = GridViewVendedoresPorValorvalor_total
+          end>
         DataController.Summary.FooterSummaryItems = <>
         DataController.Summary.SummaryGroups = <>
         OptionsData.Deleting = False
@@ -152,61 +156,73 @@
         OptionsData.Editing = False
         OptionsData.Inserting = False
         OptionsView.GroupByBox = False
-        object GridQauntidadeDBTableView1nome: TcxGridDBColumn
+        object GridViewVendedoresPorValornome: TcxGridDBColumn
           Caption = 'Nome Do Vendedor'
           DataBinding.FieldName = 'nome'
+          Visible = False
+          GroupIndex = 0
           Width = 130
         end
-        object GridQauntidadeDBTableView1produtos: TcxGridDBColumn
+        object GridViewVendedoresPorValorprodutos: TcxGridDBColumn
           Caption = 'Produtos Vendidos'
           DataBinding.FieldName = 'produtos'
           Width = 400
         end
-        object GridQauntidadeDBTableView1sum: TcxGridDBColumn
+        object GridViewVendedoresPorValorvalor_total: TcxGridDBColumn
           Caption = 'Valor Total'
-          DataBinding.FieldName = 'sum'
+          DataBinding.FieldName = 'valor_total'
           Width = 87
         end
       end
-      object GridQauntidadeLevel1: TcxGridLevel
-        GridView = GridQauntidadeDBTableView1
+      object GridValorTotalLevel1: TcxGridLevel
+        GridView = GridViewVendedoresPorValor
       end
     end
-    object cxGrid1: TcxGrid
+    object GridQuantidade: TcxGrid
       Left = 380
       Top = 433
       Width = 352
       Height = 136
       TabOrder = 4
-      object cxGrid1DBTableView1: TcxGridDBTableView
+      object GridQuantidadeDBTableView1: TcxGridDBTableView
         Navigator.Buttons.CustomButtons = <>
         DataController.DataSource = dsQuantidade
-        DataController.Summary.DefaultGroupSummaryItems = <>
+        DataController.Summary.DefaultGroupSummaryItems = <
+          item
+            Kind = skSum
+            Column = GridQuantidadeDBTableView1quantidade
+          end>
         DataController.Summary.FooterSummaryItems = <>
         DataController.Summary.SummaryGroups = <>
         OptionsData.Deleting = False
         OptionsData.DeletingConfirmation = False
         OptionsData.Editing = False
         OptionsData.Inserting = False
+        OptionsView.ColumnAutoWidth = True
         OptionsView.GroupByBox = False
-        object cxGrid1DBTableView1nome: TcxGridDBColumn
+        object GridQuantidadeDBTableView1nome: TcxGridDBColumn
           Caption = 'Nome Do Vendedor'
           DataBinding.FieldName = 'nome'
+          Visible = False
+          GroupIndex = 0
+          SortIndex = 0
+          SortOrder = soAscending
           Width = 130
         end
-        object cxGrid1DBTableView1produtos: TcxGridDBColumn
+        object GridQuantidadeDBTableView1produtos: TcxGridDBColumn
           Caption = 'Produtos Vendidos'
           DataBinding.FieldName = 'produtos'
+          FooterAlignmentHorz = taRightJustify
           Width = 390
         end
-        object cxGrid1DBTableView1sum: TcxGridDBColumn
+        object GridQuantidadeDBTableView1quantidade: TcxGridDBColumn
           Caption = 'Quatidade Vendida'
-          DataBinding.FieldName = 'sum'
+          DataBinding.FieldName = 'quantidade'
           Width = 97
         end
       end
-      object cxGrid1Level1: TcxGridLevel
-        GridView = cxGrid1DBTableView1
+      object GridQuantidadeLevel1: TcxGridLevel
+        GridView = GridQuantidadeDBTableView1
       end
     end
     object LayoutControl: TdxLayoutGroup
@@ -401,7 +417,7 @@
       AlignVert = avClient
       CaptionOptions.Text = 'Vendedores Por Valor'
       CaptionOptions.Layout = clTop
-      Control = GridQauntidade
+      Control = GridValorTotal
       ControlOptions.OriginalHeight = 136
       ControlOptions.OriginalWidth = 250
       ControlOptions.ShowBorder = False
@@ -413,7 +429,7 @@
       AlignVert = avClient
       CaptionOptions.Text = 'Vendedores Por Quantidade'
       CaptionOptions.Layout = clTop
-      Control = cxGrid1
+      Control = GridQuantidade
       ControlOptions.OriginalHeight = 136
       ControlOptions.OriginalWidth = 250
       ControlOptions.ShowBorder = False
@@ -421,15 +437,15 @@
     end
   end
   object dsQuantidade: TDataSource
-    Left = 424
-    Top = 480
+    Left = 560
+    Top = 440
   end
   object dsValorTotal: TDataSource
-    Left = 952
-    Top = 456
+    Left = 848
+    Top = 440
   end
   object dsToDo: TDataSource
-    Left = 186
+    Left = 170
     Top = 440
   end
 end

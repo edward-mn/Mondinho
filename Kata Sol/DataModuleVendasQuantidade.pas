@@ -10,7 +10,7 @@ type
     cdsVendasQuantidade: TClientDataSet;
     cdsVendasQuantidadenome: TWideStringField;
     cdsVendasQuantidadeprodutos: TWideStringField;
-    cdsVendasQuantidadesum: TFMTBCDField;
+    cdsVendasQuantidadequantidade: TIntegerField;
   private
     { Private declarations }
   public
