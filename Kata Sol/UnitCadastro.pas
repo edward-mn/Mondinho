@@ -73,16 +73,8 @@ begin
 end;
 
 function TFormCadastro.UsuarioJaCadastrado: Boolean;
-var
-  JaCadastrados: TDmClientesCadastro;
 begin
-  JaCadastrados := TDmClientesCadastro.Create(nil);
-  try
-    JaCadastrados.cdsCadastro.Open;
-    Result := JaCadastrados.cdsCadastro.Locate(JaCadastrados.cdsCadastronome_usuario.FieldName, DBEdtUsuario.Text, [loCaseInsensitive]);
-  finally
-    JaCadastrados.Free;
-  end;
+  Result := Conexao.Usuario.Logar(DBEdtUsuario.Text, DBEdtSenha.Text);
 end;
 
 procedure TFormCadastro.LimparCampos;

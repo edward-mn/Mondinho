@@ -113,7 +113,8 @@ end;
 
 procedure TFormEditarVendas.btnDeletarClick(Sender: TObject);
 begin
-  DeletarVenda;
+  if not ClientesVendas.cdsVendas.IsEmpty then
+    DeletarVenda;
 end;
 
 procedure TFormEditarVendas.btnEditarClick(Sender: TObject);
