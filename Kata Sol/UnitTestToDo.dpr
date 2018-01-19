@@ -14,10 +14,6 @@ program UnitTestToDo;
 {$APPTYPE CONSOLE}
 {$ENDIF}
 
-//uses
-//  TestUnit in 'TestUnit.pas',
-//  Unitfunc in 'Unitfunc.pas';
-
 uses
   DUnitTestRunner,
   TarefaUtils in 'TarefaUtils.pas',
