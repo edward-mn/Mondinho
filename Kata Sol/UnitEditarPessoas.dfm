@@ -4,8 +4,8 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Editar/Cadastrar Pessoas'
-  ClientHeight = 471
-  ClientWidth = 994
+  ClientHeight = 480
+  ClientWidth = 1000
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,11 +21,13 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
   object dxLayoutControl1: TdxLayoutControl
     Left = 0
     Top = 0
-    Width = 994
-    Height = 471
+    Width = 1000
+    Height = 480
     Align = alClient
     TabOrder = 0
     AutoSize = True
+    ExplicitWidth = 994
+    ExplicitHeight = 471
     object btnNovaPessoa: TButton
       Left = 10
       Top = 10
@@ -37,20 +39,20 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     end
     object btnCancelarPessoas: TButton
       Left = 10
-      Top = 72
+      Top = 41
       Width = 105
       Height = 25
       Caption = 'Cancelar'
-      TabOrder = 2
+      TabOrder = 1
       OnClick = btnCancelarPessoasClick
     end
     object btnSalvarPessoas: TButton
       Left = 10
-      Top = 103
+      Top = 72
       Width = 105
       Height = 26
       Caption = 'Salvar'
-      TabOrder = 3
+      TabOrder = 2
       OnClick = btnSalvarPessoasClick
     end
     object cxDBCelular: TcxDBMaskEdit
@@ -62,7 +64,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
-      TabOrder = 9
+      TabOrder = 8
       Width = 121
     end
     object cxDBTelefone: TcxDBMaskEdit
@@ -74,7 +76,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
-      TabOrder = 8
+      TabOrder = 7
       Width = 121
     end
     object cxDBEndereco: TcxDBTextEdit
@@ -85,7 +87,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
-      TabOrder = 7
+      TabOrder = 6
       Width = 182
     end
     object cxDBNome: TcxDBTextEdit
@@ -96,7 +98,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
-      TabOrder = 6
+      TabOrder = 5
       Width = 148
     end
     object cxDBstatusPessoas: TcxDBComboBox
@@ -117,7 +119,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       Style.HotTrack = False
       Style.ButtonStyle = bts3D
       Style.PopupBorderStyle = epbsFrame3D
-      TabOrder = 5
+      TabOrder = 4
       Width = 121
     end
     object maskEdtCpf: TcxDBMaskEdit
@@ -128,7 +130,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
-      TabOrder = 10
+      TabOrder = 9
       Width = 121
     end
     object cbData: TcxDBDateEdit
@@ -141,33 +143,24 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       Style.HotTrack = False
       Style.ButtonStyle = bts3D
       Style.PopupBorderStyle = epbsFrame3D
-      TabOrder = 11
+      TabOrder = 10
       Width = 147
-    end
-    object btnEditar: TcxButton
-      Left = 10
-      Top = 41
-      Width = 105
-      Height = 25
-      Caption = 'Editar'
-      TabOrder = 1
-      OnClick = btnEditarClick
     end
     object btnDeletarCadastro: TcxButton
       Left = 10
-      Top = 135
+      Top = 104
       Width = 105
       Height = 25
       Caption = 'Deletar'
-      TabOrder = 4
+      TabOrder = 3
       OnClick = btnDeletarCadastroClick
     end
     object dbGridCriacaoEdicaoPessoas: TcxGrid
       Left = 10
-      Top = 192
-      Width = 974
+      Top = 201
+      Width = 980
       Height = 269
-      TabOrder = 12
+      TabOrder = 11
       object dbGridCriacaoEdicaoPessoasDBTableView1: TcxGridDBTableView
         Navigator.Buttons.CustomButtons = <>
         DataController.DataSource = dsCriacaoEdicaoPessoas
@@ -235,7 +228,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       CaptionOptions.Text = 'Hidden Group'
       ButtonOptions.Buttons = <>
       Hidden = True
-      ItemIndex = 4
+      ItemIndex = 3
       ShowBorder = False
       Index = 0
     end
@@ -250,17 +243,6 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       ControlOptions.ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem2: TdxLayoutItem
-      Parent = dxLayoutGroup2
-      AlignHorz = ahLeft
-      CaptionOptions.Text = 'btnEditar'
-      CaptionOptions.Visible = False
-      Control = btnEditar
-      ControlOptions.OriginalHeight = 25
-      ControlOptions.OriginalWidth = 105
-      ControlOptions.ShowBorder = False
-      Index = 1
-    end
     object dxLayoutItem3: TdxLayoutItem
       Parent = dxLayoutGroup2
       AlignHorz = ahLeft
@@ -270,7 +252,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       ControlOptions.OriginalHeight = 25
       ControlOptions.OriginalWidth = 105
       ControlOptions.ShowBorder = False
-      Index = 2
+      Index = 1
     end
     object dxLayoutItem4: TdxLayoutItem
       Parent = dxLayoutGroup2
@@ -281,7 +263,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       ControlOptions.OriginalHeight = 26
       ControlOptions.OriginalWidth = 105
       ControlOptions.ShowBorder = False
-      Index = 3
+      Index = 2
     end
     object dxLayoutItem5: TdxLayoutItem
       Parent = dxLayoutGroup2
@@ -292,7 +274,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       ControlOptions.OriginalHeight = 25
       ControlOptions.OriginalWidth = 105
       ControlOptions.ShowBorder = False
-      Index = 4
+      Index = 3
     end
     object dxLayoutGroup3: TdxLayoutGroup
       Parent = dxLayoutGroup1
@@ -308,7 +290,6 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       CaptionOptions.Text = 'Hidden Group'
       ButtonOptions.Buttons = <>
       Hidden = True
-      ItemIndex = 1
       ShowBorder = False
       Index = 1
     end
@@ -318,7 +299,6 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       CaptionOptions.Text = 'Hidden Group'
       ButtonOptions.Buttons = <>
       Hidden = True
-      ItemIndex = 2
       LayoutDirection = ldHorizontal
       ShowBorder = False
       Index = 0
@@ -359,7 +339,6 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       CaptionOptions.Text = 'Hidden Group'
       ButtonOptions.Buttons = <>
       Hidden = True
-      ItemIndex = 3
       LayoutDirection = ldHorizontal
       ShowBorder = False
       Index = 1
@@ -406,7 +385,6 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     end
     object dxLayoutItem13: TdxLayoutItem
       Parent = dxLayoutControl1Group_Root
-      AlignHorz = ahClient
       AlignVert = avBottom
       CaptionOptions.Text = 'dbGridCriacaoEdicaoPessoas'
       CaptionOptions.Visible = False

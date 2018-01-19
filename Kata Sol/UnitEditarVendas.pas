@@ -13,20 +13,13 @@ uses
   cxDBLookupEdit, cxDBLookupComboBox, cxStyles, cxCustomData, cxFilter, cxData,
   cxDataStorage, cxNavigator, cxDBData, cxGridLevel, cxClasses,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
-  cxGrid, cxCurrencyEdit, Vcl.Menus, cxButtons, cxSpinEdit;
+  cxGrid, cxCurrencyEdit, Vcl.Menus, cxButtons, cxSpinEdit,
+  dxLayoutControlAdapters, dxLayoutcxEditAdapters, dxLayoutContainer,
+  dxLayoutControl;
 
 type
   TFormEditarVendas = class(TForm)
     dsEditarVendas: TDataSource;
-    GBVendas: TGroupBox;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
-    Label7: TLabel;
-    Label9: TLabel;
-    btnEditar: TcxButton;
     btnDeletar: TcxButton;
     cbDBData: TcxDBDateEdit;
     btnFinalizarVenda: TcxButton;
@@ -54,6 +47,29 @@ type
     btnCancelar: TcxButton;
     btnNovo: TcxButton;
     cxDBQuantidade: TcxDBSpinEdit;
+    dxLayoutControl1Group_Root: TdxLayoutGroup;
+    dxLayoutControl1: TdxLayoutControl;
+    dxLayoutItem1: TdxLayoutItem;
+    dxLayoutItem3: TdxLayoutItem;
+    dxLayoutItem4: TdxLayoutItem;
+    dxLayoutItem5: TdxLayoutItem;
+    dxLayoutItem6: TdxLayoutItem;
+    LayoutItemStatus: TdxLayoutItem;
+    LayoutItemVendedores: TdxLayoutItem;
+    LayoutItemFornecedores: TdxLayoutItem;
+    LayoutItemProduto: TdxLayoutItem;
+    LayoutItemPreco: TdxLayoutItem;
+    LayoutItemQuantidade: TdxLayoutItem;
+    LayoutItemData: TdxLayoutItem;
+    LayoutGridVendas: TdxLayoutItem;
+    dxLayoutImageItem1: TdxLayoutImageItem;
+    dxLayoutGroup1: TdxLayoutGroup;
+    dxLayoutGroup2: TdxLayoutGroup;
+    dxLayoutGroup3: TdxLayoutGroup;
+    dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup8: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
     procedure btnNovoClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnDeletarClick(Sender: TObject);
@@ -81,14 +97,10 @@ type
     procedure ControleDeUsuarioDeletarVenda;
     procedure ProviderVendedor;
     procedure ProviderCdsControle;
-    procedure FocarCampos (FieldName: string);
-//    procedure SetDados (Const Value : TDmClienteVendas);
-    procedure Validar (Const Msg, FieldName : string);
     function CalcularValorTotal(Quantidade : integer;ValorUnit : Currency): Currency;
   public
     ClientesVendas : TDmClienteVendas;
     constructor Create(AOwner: TComponent); override;
-//    property Campos : TDmClienteVendas read  ClientesVendas write Validar();
   end;
 
 var
@@ -97,7 +109,7 @@ var
 implementation
 
 uses
-  System.Rtti, System.TypInfo;
+  ValidacaoUtils;
 
 {$R *.dfm}
 
@@ -139,7 +151,6 @@ begin
 
   ClientesVendas.cdsVendas.Cancel;
   dbGridEditarVendas.Enabled := True;
-  GBVendas.Enabled := False;
 end;
 
 procedure TFormEditarVendas.ControleDeUsuarioDeletarVenda;
@@ -193,7 +204,6 @@ begin
   ClientesVendas.cdsVendas.Insert;
   ClientesVendas.cdsVendasid_vendedor.Value := FVendedores.cdsVendedoresid_vendedor.Value;
   ClientesVendas.cdsVendasid_cadastro.Value := Conexao.Usuario.Id;
-  GBVendas.Enabled := True;
   cbDBStatusVendas.SetFocus;
   dbGridEditarVendas.Enabled := False;
 end;
@@ -228,7 +238,6 @@ begin
   ControleDeUsuarioEditarVenda;
 
   dbGridEditarVendas.Enabled := False;
-  GBVendas.Enabled := True;
 end;
 
 procedure TFormEditarVendas.FinalizarVenda;
@@ -236,43 +245,6 @@ begin
   ClientesVendas.cdsVendas.Edit;
   DesabilitarBotoes;
   ClientesVendas.cdsVendasstatus.text := 'Finalizada';
-end;
-
-procedure TFormEditarVendas.FocarCampos(FieldName: string);
-var
-  ComponenteCbStatus : TComponent;    // TcxDBComboBox;
-  ComponenteEdtText : TcxDBTextEdit;
-  ComponenteEdtValor : TcxDBCurrencyEdit;
-  ComponenteSpQtd : TcxDBSpinEdit;
-  ComponenteData : TcxDBDateEdit;
-  PropInfo : PPropInfo;
-  Field : Variant;
-begin
-  if FieldName.IsEmpty then
-    exit
-  else
-  for ComponenteCbStatus in Self do
-    begin
-      if (ComponenteCbStatus is TcxDBComboBox) and
-      (TcxDBComboBox(ComponenteCbStatus).DataBinding.DataField = FieldName) then
-      TcxDBComboBox(ComponenteCbStatus).SetFocus
-    end;
-
-
-
-
-//  Com RTTI
-//  for ComponenteCbStatus in Self do
-//  begin
-//    PropInfo := GetPropInfo(ComponenteCbStatus.ClassInfo, 'DataField');
-//    if Assigned(PropInfo) then
-//    begin
-//      Field := GetPropValue(ComponenteCbStatus, 'DataField', True);
-//      if Field = FieldName then
-//        if ComponenteCbStatus is TWinControl then
-//          TWinControl(ComponenteCbStatus).SetFocus;
-//    end;
-//  end;
 end;
 
 procedure TFormEditarVendas.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -291,7 +263,6 @@ end;
 procedure TFormEditarVendas.DesabilitarBotoes;
 begin
   btnNovo.Enabled := False;
-  btnEditar.Enabled := False;
   btnDeletar.Enabled := False;
   btnFinalizarVenda.Enabled := False;
 end;
@@ -299,7 +270,6 @@ end;
 procedure TFormEditarVendas.HabilitarBotoes;
 begin
   btnNovo.Enabled := True;
-  btnEditar.Enabled := True;
   btnDeletar.Enabled := True;
   btnFinalizarVenda.Enabled := True;
 end;
@@ -323,28 +293,23 @@ end;
 procedure TFormEditarVendas.SalvarVenda;
 begin
   if (ClientesVendas.cdsVendas.State = dsEdit) or (ClientesVendas.cdsVendas.State = dsInsert) then
- begin
-  CalcularValorTotal(ClientesVendas.cdsVendasquantidade.Value,
-    ClientesVendas.cdsVendasvalor_produto.AsCurrency);
-  ClientesVendas.cdsVendas.ApplyUpdates(0);
-  dbGridEditarVendas.Enabled := True;
-  GBVendas.Enabled := False;
-  ClientesVendas.cdsVendas.Refresh;
-  HabilitarBotoes;
+  begin
+    try
+      CalcularValorTotal(ClientesVendas.cdsVendasquantidade.Value,
+        ClientesVendas.cdsVendasvalor_produto.AsCurrency);
+      ClientesVendas.cdsVendas.ApplyUpdates(0);
+      dbGridEditarVendas.Enabled := True;
+      ClientesVendas.cdsVendas.Refresh;
+      HabilitarBotoes;
+    except
+      on E: EValidationError do
+      begin
+        TValidacaoUtils.FocarCampos(Self ,E.FieldName);
+        ShowMessage(E.Message);
+        Abort;
+      end;
+    end;
   end;
 end;
-
-procedure TFormEditarVendas.Validar(const Msg, FieldName: string);
-begin
-  FocarCampos(FieldName);
-  ShowMessage(Msg);
-  Abort;
-end;
-
-//procedure TFormEditarVendas.SetDados(const Value: TDmClienteVendas);
-//begin
-//  ClientesVendas := Value;
-//  ClientesVendas.o
-//end;
 
 end.

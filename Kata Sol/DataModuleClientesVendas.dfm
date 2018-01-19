@@ -9,14 +9,14 @@ object DmClienteVendas: TDmClienteVendas
     BeforePost = cdsVendasBeforePost
     Left = 51
     Top = 25
-    object cdsVendasid_produtos: TIntegerField
-      DisplayLabel = 'C'#243'd. Produtos'
-      FieldName = 'id_produtos'
-    end
     object cdsVendasfornecedores: TWideStringField
       DisplayLabel = 'Fornecedores'
       FieldName = 'fornecedores'
       Size = 50
+    end
+    object cdsVendasid_produtos: TIntegerField
+      DisplayLabel = 'C'#243'd. Produtos'
+      FieldName = 'id_produtos'
     end
     object cdsVendasstatus: TWideStringField
       DisplayLabel = 'Status'

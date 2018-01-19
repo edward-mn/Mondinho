@@ -35,7 +35,6 @@ type
     cxDBTarefas: TcxDBTextEdit;
     btnSalvar: TcxButton;
     btnCancelar: TcxButton;
-    btnEditar: TcxButton;
     btnNovo: TcxButton;
     btnDeletarTarefa: TcxButton;
     btnAdiarTarefa: TcxButton;
@@ -44,7 +43,6 @@ type
     dxLayoutGroup1: TdxLayoutGroup;
     dxLayoutGroup2: TdxLayoutGroup;
     dxLayoutItem1: TdxLayoutItem;
-    dxLayoutItem2: TdxLayoutItem;
     dxLayoutItem3: TdxLayoutItem;
     dxLayoutItem4: TdxLayoutItem;
     dxLayoutItem5: TdxLayoutItem;
@@ -56,7 +54,6 @@ type
     dxLayoutGroup7: TdxLayoutGroup;
     dxLayoutItem7: TdxLayoutItem;
     dxLayoutItem8: TdxLayoutItem;
-    dxLayoutLabeledItem1: TdxLayoutLabeledItem;
     dxLayoutItem9: TdxLayoutItem;
     dxLayoutItem10: TdxLayoutItem;
     dxLayoutItem11: TdxLayoutItem;
@@ -99,6 +96,9 @@ var
 
 implementation
 
+uses
+  ValidacaoUtils;
+
 {$R *.dfm}
 
 procedure TFormEditarTarefas.ArmazenarDataAnterior;
@@ -108,7 +108,6 @@ begin
   cbData.SetFocus;
 
   btnNovo.Enabled := False;
-  btnEditar.Enabled := False;
   btnDeletarTarefa.Enabled := False;
   btnAdiarTarefa.Enabled := False;
 
@@ -171,20 +170,20 @@ end;
 procedure TFormEditarTarefas.AdiarTarefa;
 begin
   if Trigger = True then
-    begin
+  begin
 
-  if DataAntiga <> cbData.Date then
+    if DataAntiga <> cbData.Date then
     begin
     ClientesTarefas.cdsToDostatus.text := 'Adiada';
     dbGridCriacaoEdicao.Enabled := True;
 
-    HabilitarBotoes;
+      HabilitarBotoes;
 
-    Trigger := False;
+      Trigger := False;
     end
-  else
-  ShowMessage('É necessario Colocar uma data diferente!');
-end
+    else
+      ShowMessage('É necessario Colocar uma data diferente!');
+  end
 end;
 
 constructor TFormEditarTarefas.Create(AOwner: TComponent);
@@ -250,7 +249,6 @@ end;
 procedure TFormEditarTarefas.DesabilitarBotoes;
 begin
   btnNovo.Enabled := False;
-  btnEditar.Enabled := False;
   btnDeletarTarefa.Enabled := False;
   btnAdiarTarefa.Enabled := False;
 end;
@@ -264,7 +262,6 @@ begin
   cbData.Enabled := True;
   dbGridCriacaoEdicao.Enabled := False;
 end;
-
 
 procedure TFormEditarTarefas.FormClose(Sender: TObject;
   var Action: TCloseAction);
@@ -283,7 +280,6 @@ end;
 procedure TFormEditarTarefas.HabilitarBotoes;
 begin
   btnNovo.Enabled := True;
-  btnEditar.Enabled := True;
   btnDeletarTarefa.Enabled := True;
   btnAdiarTarefa.Enabled := True;
 end;
@@ -303,38 +299,24 @@ end;
 
 procedure TFormEditarTarefas.SalvarTarefa;
 begin
-  if (ClientesTarefas.cdsToDo.State = dsEdit) or (ClientesTarefas.cdsToDo.State = dsInsert) then
+  if (ClientesTarefas.cdsToDo.State = dsEdit) or
+    (ClientesTarefas.cdsToDo.State = dsInsert) then
   begin
-    if cxDBstatusTarefas.Text = '' then
-    begin
-      ShowMessage('Por favor é necessário selecionar um Status.');
-      cxDBstatusTarefas.SetFocus;
-      exit;
-    end
-    else if cxDBNome.Text = '' then
-    begin
-      ShowMessage('Por favor é necessário ditigar um Nome.');
-      cxDBNome.SetFocus;
-      Exit;
-    end
-    else if cxDBTarefas.Text = '' then
-     begin
-      ShowMessage('Por favor é necessário ditigar uma Tarefa.');
-      cxDBTarefas.SetFocus;
-      Exit;
-     end
-    else if cbData.Text = '' then
-     begin
-      ShowMessage('Por favor é necessário ditigar uma Data.');
-      cbData.SetFocus;
-      Exit;
-     end;
-
-    ClientesTarefas.cdsToDo.ApplyUpdates(0);
-    dbGridCriacaoEdicao.Enabled := True;
-    cbData.Enabled := True;
-    ClientesTarefas.cdsToDo.Refresh;
-    HabilitarBotoes;
+    try
+      ClientesTarefas.cdsToDo.ApplyUpdates(0);
+      dbGridCriacaoEdicao.Enabled := True;
+      cbData.Enabled := True;
+      ClientesTarefas.cdsToDo.Refresh;
+      HabilitarBotoes;
+    except
+      on E: EvalidationError do
+      begin
+        TValidacaoUtils.FocarCampos(Self, E.FieldName);
+        ShowMessage(E.Message);
+        Abort;
+      end;
+    end;
   end;
 end;
+
 end.

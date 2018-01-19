@@ -438,6 +438,7 @@ object DmClientesPessoas: TDmClientesPessoas
     Aggregates = <>
     Params = <>
     ProviderName = 'sqlProviderPessoas'
+    BeforePost = cdsPessoasBeforePost
     Left = 95
     Top = 38
     object cdsPessoasid_pessoas: TIntegerField
