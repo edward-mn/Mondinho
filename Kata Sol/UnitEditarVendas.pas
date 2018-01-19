@@ -81,14 +81,11 @@ type
     procedure ControleDeUsuarioDeletarVenda;
     procedure ProviderVendedor;
     procedure ProviderCdsControle;
-    procedure FocarCampos (FieldName: string);
-//    procedure SetDados (Const Value : TDmClienteVendas);
-    procedure Validar (Const Msg, FieldName : string);
     function CalcularValorTotal(Quantidade : integer;ValorUnit : Currency): Currency;
+    procedure FocarCampos(FieldName: string);
   public
     ClientesVendas : TDmClienteVendas;
     constructor Create(AOwner: TComponent); override;
-//    property Campos : TDmClienteVendas read  ClientesVendas write Validar();
   end;
 
 var
@@ -237,43 +234,6 @@ begin
   ClientesVendas.cdsVendasstatus.text := 'Finalizada';
 end;
 
-procedure TFormEditarVendas.FocarCampos(FieldName: string);
-var
-  ComponenteCbStatus : TComponent;    // TcxDBComboBox;
-  ComponenteEdtText : TcxDBTextEdit;
-  ComponenteEdtValor : TcxDBCurrencyEdit;
-  ComponenteSpQtd : TcxDBSpinEdit;
-  ComponenteData : TcxDBDateEdit;
-  PropInfo : PPropInfo;
-  Field : Variant;
-begin
-  if FieldName.IsEmpty then
-    exit
-  else
-  for ComponenteCbStatus in Self do
-    begin
-      if (ComponenteCbStatus is TcxDBComboBox) and
-      (TcxDBComboBox(ComponenteCbStatus).DataBinding.DataField = FieldName) then
-      TcxDBComboBox(ComponenteCbStatus).SetFocus
-    end;
-
-
-
-
-//  Com RTTI
-//  for ComponenteCbStatus in Self do
-//  begin
-//    PropInfo := GetPropInfo(ComponenteCbStatus.ClassInfo, 'DataField');
-//    if Assigned(PropInfo) then
-//    begin
-//      Field := GetPropValue(ComponenteCbStatus, 'DataField', True);
-//      if Field = FieldName then
-//        if ComponenteCbStatus is TWinControl then
-//          TWinControl(ComponenteCbStatus).SetFocus;
-//    end;
-//  end;
-end;
-
 procedure TFormEditarVendas.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   DeixarCamposVisiveis;
@@ -309,6 +269,42 @@ begin
   ClientesVendas.cdsVendasvalor_total.Visible := True;
 end;
 
+procedure TFormEditarVendas.FocarCampos(FieldName: string);
+var
+  Componente: TComponent;
+begin
+  if (FieldName.IsEmpty) then { Sem RTTI }
+    Exit;
+
+  for Componente in Self do
+  begin
+    if (Componente is TcxDBComboBox) and
+      (TcxDBComboBox(Componente).DataBinding.DataField = FieldName) then
+      TcxDBComboBox(Componente).SetFocus;
+
+    if (Componente is TcxDBLookupComboBox) and
+      (TcxDBLookupComboBox(Componente).DataBinding.DataField = FieldName) then
+      TcxDBLookupComboBox(Componente).SetFocus;
+
+    if (Componente is TcxDBTextEdit) and
+      (TcxDBTextEdit(Componente).DataBinding.DataField = FieldName) then
+      TcxDBTextEdit(Componente).SetFocus;
+
+    if (Componente is TcxDBCurrencyEdit) and
+      (TcxDBCurrencyEdit(Componente).DataBinding.DataField = FieldName) then
+      TcxDBCurrencyEdit(Componente).SetFocus;
+
+    if (Componente is TcxDBSpinEdit) and
+      ((TcxDBSpinEdit(Componente).DataBinding.DataField = FieldName))then
+      TcxDBSpinEdit(Componente).SetFocus;
+
+    if (Componente is TcxDBDateEdit) and
+      (TcxDBDateEdit(Componente).DataBinding.DataField = FieldName) then
+      TcxDBDateEdit(Componente).SetFocus;
+
+  end;
+end;
+
 procedure TFormEditarVendas.ProviderCdsControle;
 begin
   FClientesControle.cdsControleDeUsuario.SetProvider(Conexao.sqlQueryControle);
@@ -322,28 +318,24 @@ end;
 procedure TFormEditarVendas.SalvarVenda;
 begin
   if (ClientesVendas.cdsVendas.State = dsEdit) or (ClientesVendas.cdsVendas.State = dsInsert) then
- begin
-  CalcularValorTotal(ClientesVendas.cdsVendasquantidade.Value,
-    ClientesVendas.cdsVendasvalor_produto.AsCurrency);
-  ClientesVendas.cdsVendas.ApplyUpdates(0);
-  dbGridEditarVendas.Enabled := True;
-  GBVendas.Enabled := False;
-  ClientesVendas.cdsVendas.Refresh;
-  HabilitarBotoes;
+  begin
+    try
+      CalcularValorTotal(ClientesVendas.cdsVendasquantidade.Value,
+        ClientesVendas.cdsVendasvalor_produto.AsCurrency);
+      ClientesVendas.cdsVendas.ApplyUpdates(0);
+      dbGridEditarVendas.Enabled := True;
+      GBVendas.Enabled := False;
+      ClientesVendas.cdsVendas.Refresh;
+      HabilitarBotoes;
+    except
+      on E: EValidationError do
+      begin
+        FocarCampos(E.FieldName);
+        ShowMessage(E.Message);
+        Abort;
+      end;
+    end;
   end;
 end;
-
-procedure TFormEditarVendas.Validar(const Msg, FieldName: string);
-begin
-  FocarCampos(FieldName);
-  ShowMessage(Msg);
-  Abort;
-end;
-
-//procedure TFormEditarVendas.SetDados(const Value: TDmClienteVendas);
-//begin
-//  ClientesVendas := Value;
-//  ClientesVendas.o
-//end;
 
 end.

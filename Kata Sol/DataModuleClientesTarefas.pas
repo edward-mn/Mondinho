@@ -7,6 +7,12 @@ uses
   Datasnap.DBClient;
 
 type
+  EvalidationError = Class(Exception)
+    public
+    FieldName : String;
+    Constructor Create (Const Msg : string; FieldName : String); overload;
+  End;
+
   TDmClientesTarefas = class(TDataModule)
     cdsToDo: TClientDataSet;
     cdsToDoid_todo: TIntegerField;
@@ -17,6 +23,7 @@ type
     cdsToDoid_cadastro: TIntegerField;
     frxDBDatasetToDo: TfrxDBDataset;
     frxReportToDo: TfrxReport;
+    procedure cdsToDoBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -55,4 +62,25 @@ begin
   end;
 
 end;
+
+procedure TDmClientesTarefas.cdsToDoBeforePost(DataSet: TDataSet);
+begin
+  if (cdsToDostatus.Value.IsEmpty) then
+    raise EvalidationError.Create('Campo status é obrigatório', cdsToDostatus.FieldName);
+  if (cdsToDonomes.Value.IsEmpty) then
+   raise EvalidationError.Create('Campo nome é obrigatório', cdsToDonomes.FieldName);
+  if (cdsToDotarefas.Value.IsEmpty) then
+    raise EvalidationError.Create('Campo tafera é obrigatório', cdsToDotarefas.FieldName);
+  if (cdsToDodata.IsNull) then
+    raise EvalidationError.Create('Campo data é obrigatório', cdsToDodata.FieldName);
+end;
+
+{ EvalidationError }
+
+constructor EvalidationError.Create(const Msg: string; FieldName: String);
+begin
+  inherited Create(Msg);
+  Self.FieldName := FieldName;
+end;
+
 end.

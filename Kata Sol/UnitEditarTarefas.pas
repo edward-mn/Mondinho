@@ -12,8 +12,9 @@ uses
   cxDropDownEdit, cxCalendar, cxDBEdit, Vcl.ExtCtrls,
   DataModuleClientesTarefas, DataModuleControleDeUsuario, cxStyles,
   cxCustomData, cxFilter, cxData, cxDataStorage, cxNavigator, cxDBData,
-  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGridLevel,
-  cxClasses, cxGridCustomView, cxGrid, Vcl.Menus, cxButtons;
+  Vcl.Menus, cxButtons, cxGridLevel, cxGridCustomTableView,
+  cxGridDBTableView, cxClasses, cxGridCustomView, cxGrid,
+  cxGridTableView;
 
 type
   TFormEditarTarefas = class(TForm)
@@ -68,6 +69,7 @@ type
     procedure EditarTarefa;
     procedure NovaTarefa;
     procedure SalvarTarefa;
+    procedure FocarCampo(FieldName: string);
   public
     ClientesTarefas : TDmClientesTarefas;
     DataAntiga : TDateTime;
@@ -154,21 +156,21 @@ end;
 procedure TFormEditarTarefas.AdiarTarefa;
 begin
   if Trigger = True then
+  begin
+
+    if DataAntiga <> cbData.Date then
     begin
+      ClientesTarefas.cdsToDostatus.text := 'Adiada';
+      gbFormulario.Enabled := True;
+      dbGridCriacaoEdicao.Enabled := True;
 
-  if DataAntiga <> cbData.Date then
-    begin
-    ClientesTarefas.cdsToDostatus.text := 'Adiada';
-    gbFormulario.Enabled := True;
-    dbGridCriacaoEdicao.Enabled := True;
+      HabilitarBotoes;
 
-    HabilitarBotoes;
-
-    Trigger := False;
+      Trigger := False;
     end
-  else
-  ShowMessage('É necessario Colocar uma data diferente!');
-end
+    else
+      ShowMessage('É necessario Colocar uma data diferente!');
+  end
 end;
 
 constructor TFormEditarTarefas.Create(AOwner: TComponent);
@@ -250,6 +252,28 @@ begin
   dbGridCriacaoEdicao.Enabled := False;
 end;
 
+procedure TFormEditarTarefas.FocarCampo(FieldName: string);
+var
+  Componente: TComponent;
+begin
+  if FieldName.IsEmpty then { Sem RTTI }
+    Exit;
+
+  for Componente in Self do
+  begin
+    if (Componente is TcxDBComboBox) and
+      (TcxDBComboBox(Componente).DataBinding.DataField = FieldName) then
+      TcxDBComboBox(Componente).SetFocus;
+
+    if (Componente is TcxDBTextEdit) and
+      (TcxDBTextEdit(Componente).DataBinding.DataField = FieldName) then
+      TcxDBTextEdit(Componente).SetFocus;
+
+    if (Componente is TcxDBDateEdit) and
+      (TcxDBDateEdit(Componente).DataBinding.DataField = FieldName) then
+      TcxDBDateEdit(Componente).SetFocus;
+  end;
+end;
 
 procedure TFormEditarTarefas.FormClose(Sender: TObject;
   var Action: TCloseAction);
@@ -289,39 +313,25 @@ end;
 
 procedure TFormEditarTarefas.SalvarTarefa;
 begin
-  if (ClientesTarefas.cdsToDo.State = dsEdit) or (ClientesTarefas.cdsToDo.State = dsInsert) then
+  if (ClientesTarefas.cdsToDo.State = dsEdit) or
+    (ClientesTarefas.cdsToDo.State = dsInsert) then
   begin
-    if cxDBstatusTarefas.Text = '' then
-    begin
-      ShowMessage('Por favor é necessário selecionar um Status.');
-      cxDBstatusTarefas.SetFocus;
-      exit;
-    end
-    else if cxDBNome.Text = '' then
-    begin
-      ShowMessage('Por favor é necessário ditigar um Nome.');
-      cxDBNome.SetFocus;
-      Exit;
-    end
-    else if cxDBTarefas.Text = '' then
-     begin
-      ShowMessage('Por favor é necessário ditigar uma Tarefa.');
-      cxDBTarefas.SetFocus;
-      Exit;
-     end
-    else if cbData.Text = '' then
-     begin
-      ShowMessage('Por favor é necessário ditigar uma Data.');
-      cbData.SetFocus;
-      Exit;
-     end;
-
-    ClientesTarefas.cdsToDo.ApplyUpdates(0);
-    gbFormulario.Enabled := False;
-    dbGridCriacaoEdicao.Enabled := True;
-    cbData.Enabled := True;
-    ClientesTarefas.cdsToDo.Refresh;
-    HabilitarBotoes;
+    try
+      ClientesTarefas.cdsToDo.ApplyUpdates(0);
+      gbFormulario.Enabled := False;
+      dbGridCriacaoEdicao.Enabled := True;
+      cbData.Enabled := True;
+      ClientesTarefas.cdsToDo.Refresh;
+      HabilitarBotoes;
+    except
+      on E: EvalidationError do
+      begin
+        FocarCampo(E.FieldName);
+        ShowMessage(E.Message);
+        Abort;
+      end;
+    end;
   end;
 end;
+
 end.

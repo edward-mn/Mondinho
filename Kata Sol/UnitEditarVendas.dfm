@@ -140,6 +140,7 @@ object FormEditarVendas: TFormEditarVendas
       Top = 112
       DataBinding.DataField = 'quantidade'
       DataBinding.DataSource = dsEditarVendas
+      Properties.AssignedValues.MinValue = True
       TabOrder = 6
       Width = 121
     end

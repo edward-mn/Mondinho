@@ -3,7 +3,8 @@ unit UnitEditarPessoas;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DataModuleConexao,
   Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls,
   Vcl.ComCtrls, System.UITypes, cxGraphics, cxControls, cxLookAndFeels,
@@ -59,7 +60,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure mCalendarClick(Sender: TObject);
   private
-    FClientesControle : TDmControleDeUsuario;
+    FClientesControle: TDmControleDeUsuario;
     procedure AdicionarCampoCNPJ;
     procedure AdicionarCampoCPF;
     procedure CadastrarNovaPessoa;
@@ -73,9 +74,10 @@ type
     procedure ControleDeUsuarioNovaPessoa;
     procedure ControleDeUsuarioEditarPessoa;
     procedure ControleDeUsuarioDeletarPessoa;
+    procedure FocarCampo(FieldName: String);
     procedure ProviderCdsControle;
   public
-    ClientesPessoas : TDmClientesPessoas;
+    ClientesPessoas: TDmClientesPessoas;
     constructor Create(AOwner: TComponent); override;
   end;
 
@@ -88,7 +90,6 @@ uses
   System.StrUtils;
 
 {$R *.dfm}
-
 
 procedure TFormCriacaoEdicaoPessoas.btnNovaPessoaClick(Sender: TObject);
 begin
@@ -112,7 +113,6 @@ end;
 
 procedure TFormCriacaoEdicaoPessoas.btnSalvarPessoasClick(Sender: TObject);
 begin
-
   SalvarAlteracoes();
 end;
 
@@ -141,24 +141,27 @@ end;
 procedure TFormCriacaoEdicaoPessoas.ControleDeUsuarioDeletarPessoa;
 begin
   FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(Conexao.Usuario.Id)) +
-     ' Deletou Pessoa ' + (DateTimeToStr(Now)));
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value :=
+    ('ID :' + (IntToStr(Conexao.Usuario.Id)) + ' Deletou Pessoa ' +
+    (DateTimeToStr(Now)));
   FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
 end;
 
 procedure TFormCriacaoEdicaoPessoas.ControleDeUsuarioEditarPessoa;
 begin
   FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(Conexao.Usuario.Id)) +
-     ' Editou Pessoa ' + (DateTimeToStr(Now)));
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value :=
+    ('ID :' + (IntToStr(Conexao.Usuario.Id)) + ' Editou Pessoa ' +
+    (DateTimeToStr(Now)));
   FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
 end;
 
 procedure TFormCriacaoEdicaoPessoas.ControleDeUsuarioNovaPessoa;
 begin
   FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(Conexao.Usuario.Id)) +
-     ' Adicionou Nova Pessoa ' + (DateTimeToStr(Now)));
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value :=
+    ('ID :' + (IntToStr(Conexao.Usuario.Id)) + ' Adicionou Nova Pessoa ' +
+    (DateTimeToStr(Now)));
   FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
 end;
 
@@ -172,7 +175,7 @@ end;
 
 procedure TFormCriacaoEdicaoPessoas.AdicionarCampoCNPJ;
 begin
-  maskEdtCpf.Properties.EditMask := '99.999.999/9999-99' ;
+  maskEdtCpf.Properties.EditMask := '99.999.999/9999-99';
 end;
 
 procedure TFormCriacaoEdicaoPessoas.AdicionarCampoCPF;
@@ -180,10 +183,11 @@ begin
   maskEdtCpf.Properties.EditMask := '999.999.999-99';
 end;
 
-procedure TFormCriacaoEdicaoPessoas.cxDBstatusPessoasFocusChanged(Sender:
-    TObject);
+procedure TFormCriacaoEdicaoPessoas.cxDBstatusPessoasFocusChanged
+  (Sender: TObject);
 begin
-  if MatchText(cxDBstatusPessoas.Text,  ['Fisica', 'Vendedor', 'Usuario Do Sistema']) then
+  if MatchText(cxDBstatusPessoas.Text, ['Fisica', 'Vendedor',
+    'Usuario Do Sistema']) then
     AdicionarCampoCPF
   else if MatchText(cxDBstatusPessoas.Text, ['Juridica', 'Empresa']) then
     AdicionarCampoCNPJ;
@@ -191,19 +195,21 @@ end;
 
 procedure TFormCriacaoEdicaoPessoas.DefinirDataSet;
 begin
-  dbGridCriacaoEdicaoPessoasDBTableView1.DataController.DataSource := dsCriacaoEdicaoPessoas;
+  dbGridCriacaoEdicaoPessoasDBTableView1.DataController.DataSource :=
+    dsCriacaoEdicaoPessoas;
   ClientesPessoas.cdsPessoasid_pessoas.Visible := False;
   dsCriacaoEdicaoPessoas.DataSet := ClientesPessoas.cdsPessoas;
 end;
 
 procedure TFormCriacaoEdicaoPessoas.DeletarPessoa;
 begin
-  if MessageDlg('Deseja realmente deletar essa tarefa ?', mtInformation, [mbYes , mbNo],0) = mrYes then
-    begin
+  if MessageDlg('Deseja realmente deletar essa tarefa ?', mtInformation,
+    [mbYes, mbNo], 0) = mrYes then
+  begin
     ClientesPessoas.cdsPessoas.Delete;
     ClientesPessoas.cdsPessoas.ApplyUpdates(0);
     ControleDeUsuarioDeletarPessoa;
-    end;
+  end;
 end;
 
 procedure TFormCriacaoEdicaoPessoas.DesabilitarBotoes;
@@ -223,13 +229,40 @@ begin
   dbGridCriacaoEdicaoPessoas.Enabled := False;
 end;
 
-procedure TFormCriacaoEdicaoPessoas.FormClose(Sender: TObject; var Action:
-    TCloseAction);
+procedure TFormCriacaoEdicaoPessoas.FocarCampo(FieldName: String);
+var
+  Componente: TComponent;
 begin
-    ClientesPessoas.cdsPessoas.Cancel;
-    ClientesPessoas.cdsPessoasid_pessoas.Visible := True;
-    dbGridCriacaoEdicaoPessoas.Enabled := True;
-    FClientesControle.cdsControleDeUsuario.Close;
+  if FieldName.IsEmpty then  { Sem RTTI }
+    Exit;
+
+  for Componente in Self do
+  begin
+    if (Componente is TcxDBComboBox) and
+      (TcxDBComboBox(Componente).DataBinding.DataField = FieldName) then
+      TcxDBComboBox(Componente).SetFocus;
+
+    if (Componente is TcxDBTextEdit) and
+      (TcxDBTextEdit(Componente).DataBinding.DataField = FieldName) then
+      TcxDBTextEdit(Componente).SetFocus;
+
+    if (Componente is TcxDBMaskEdit) and
+      (TcxDBMaskEdit(Componente).DataBinding.DataField = FieldName) then
+      TcxDBMaskEdit(Componente).SetFocus;
+
+    if (Componente is TcxDBDateEdit) and
+      (TcxDBDateEdit(Componente).DataBinding.DataField = FieldName) then
+      TcxDBDateEdit(Componente).SetFocus;
+  end;
+end;
+
+procedure TFormCriacaoEdicaoPessoas.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  ClientesPessoas.cdsPessoas.Cancel;
+  ClientesPessoas.cdsPessoasid_pessoas.Visible := True;
+  dbGridCriacaoEdicaoPessoas.Enabled := True;
+  FClientesControle.cdsControleDeUsuario.Close;
 end;
 
 procedure TFormCriacaoEdicaoPessoas.FormShow(Sender: TObject);
@@ -254,59 +287,25 @@ begin
   FClientesControle.cdsControleDeUsuario.SetProvider(Conexao.sqlQueryControle);
 end;
 
-
 procedure TFormCriacaoEdicaoPessoas.SalvarAlteracoes;
 begin
-  if (ClientesPessoas.cdsPessoas.State = dsEdit) or (ClientesPessoas.cdsPessoas.State = dsInsert) then
+  if (ClientesPessoas.cdsPessoas.State = dsEdit) or
+    (ClientesPessoas.cdsPessoas.State = dsInsert) then
   begin
-   if cxDBstatusPessoas.Text = '' then
-   begin
-      ShowMessage('Por favor é necessário selecionar um Status.');
-      cxDBstatusPessoas.SetFocus;
-      Exit;
-   end
-    else if cxDBNome.Text = '' then
-    begin
-      ShowMessage('Por favor é necessário digitar um Nome.');
-      cxDBNome.SetFocus;
-      Exit;
-    end
-    else if cxDBEndereco.Text = '' then
-    begin
-      ShowMessage('Por favor é necessário digitar um Endereço.');
-      cxDBEndereco.SetFocus;
-      Exit;
-    end
-    else if cxDBTelefone.Text = '' then
-    begin
-      ShowMessage('Por favor é necessário digitar um Telefone.');
-      cxDBTelefone.SetFocus;
-      Exit;
-    end
-    else if cxDBCelular.Text = '' then
-    begin
-      ShowMessage('Por favor é necessário digitar um Celular.');
-      cxDBCelular.SetFocus;
-      Exit;
-    end
-    else if maskEdtCpf.Text = '' then
-    begin
-      ShowMessage('Por favor é necessário digitar um CPF.');
-      maskEdtCpf.SetFocus;
-      Exit;
-    end
-     else if cbData.Text = '' then
-    begin
-      ShowMessage('Por favor é necessário digitar uma Data.');
-      cbData.SetFocus;
-      Exit;
+    try
+      ClientesPessoas.cdsPessoas.ApplyUpdates(0);
+      gbFormulario.Enabled := False;
+      dbGridCriacaoEdicaoPessoas.Enabled := True;
+      ClientesPessoas.cdsPessoas.Refresh;
+      HabilitarBotoes;
+    except
+      on E: EvalidationError do
+      begin
+        FocarCampo(E.FieldName);
+        ShowMessage(E.Message);
+        Abort;
+      end;
     end;
-
-        gbFormulario.Enabled := False;
-        dbGridCriacaoEdicaoPessoas.Enabled := True;
-        ClientesPessoas.cdsPessoas.ApplyUpdates(0);
-        ClientesPessoas.cdsPessoas.Refresh;
-        HabilitarBotoes;
   end;
 end;
 

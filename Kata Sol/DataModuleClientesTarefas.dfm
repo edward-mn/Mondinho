@@ -6,6 +6,7 @@ object DmClientesTarefas: TDmClientesTarefas
     Aggregates = <>
     Params = <>
     ProviderName = 'sqlProviderToDo'
+    BeforePost = cdsToDoBeforePost
     Left = 74
     Top = 30
     object cdsToDoid_todo: TIntegerField
