@@ -10,7 +10,7 @@ type
     cdsVendasValorTotal: TClientDataSet;
     cdsVendasValorTotalnome: TWideStringField;
     cdsVendasValorTotalprodutos: TWideStringField;
-    cdsVendasValorTotalsum: TFMTBCDField;
+    cdsVendasValorTotalvalor_total: TFMTBCDField;
   private
     { Private declarations }
   public

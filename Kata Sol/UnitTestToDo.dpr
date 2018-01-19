@@ -21,7 +21,9 @@ uses
   PessoasUtils in 'PessoasUtils.pas',
   VendasUtils in 'VendasUtils.pas',
   TestVendas in 'TestVendas.pas',
-  TestPessoas in 'TestPessoas.pas';
+  TestPessoas in 'TestPessoas.pas',
+  TestDataModuleConexao in 'TestDataModuleConexao.pas',
+  DataModuleConexao in 'DataModuleConexao.pas';
 
 {R *.RES}
 

@@ -7,7 +7,9 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Datasnap.DBClient,
   Vcl.StdCtrls, Vcl.DBCtrls, DataModuleClientesCadastro, DataModuleConexao, Vcl.Mask,
   DataModuleCadastro, UnitToDo, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
-  dxGDIPlusClasses;
+  dxGDIPlusClasses, cxGraphics, cxControls, cxLookAndFeels,
+  cxLookAndFeelPainters, dxLayoutContainer, dxLayoutControlAdapters, cxClasses,
+  dxLayoutControl;
 
 type
   TFormCadastro = class(TForm)
@@ -21,6 +23,16 @@ type
     Label1: TLabel;
     Label4: TLabel;
     Image1: TImage;
+    dxLayoutControl1Group_Root: TdxLayoutGroup;
+    dxLayoutControl1: TdxLayoutControl;
+    dxLayoutItem1: TdxLayoutItem;
+    dxLayoutItem2: TdxLayoutItem;
+    dxLayoutItem3: TdxLayoutItem;
+    dxLayoutGroup4: TdxLayoutGroup;
+    dxLayoutItem4: TdxLayoutItem;
+    dxLayoutItem5: TdxLayoutItem;
+    dxLayoutLabeledItem1: TdxLayoutLabeledItem;
+    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     function UsuarioJaCadastrado: Boolean;
     procedure btnCadastrarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -50,11 +62,24 @@ end;
 
 procedure TFormCadastro.Cadastrar;
 begin
-  if DBEdtSenha.Text <> edtSenhaNovamente.Text then
-    raise Exception.Create('A senha não pode ser diferente nos dois campos!');
 
   if UsuarioJaCadastrado then
     raise Exception.Create('Usuario já Existente.');
+
+  if (DBEdtUsuario.Text = '') then
+    raise Exception.Create('Campo Usuario em Branco.');
+
+  if (DBEdtSenha.Text = '') then
+    raise Exception.Create('Campo Senha em Branco.');
+
+  if (DBEdtUsuario.Text = '') or (DBEdtSenha.Text = '') then
+    raise Exception.Create('Campos Usuario e Senha em Branco.');
+
+  if edtSenhaNovamente.Text = '' then
+    raise Exception.Create('É Necessario Digitar a senha novamente Senha.');
+
+  if DBEdtSenha.Text <> edtSenhaNovamente.Text then
+    raise Exception.Create('A Senha não pode ser Diferente nos dois campos!');
 
   FCadastro.cdsCadastro.ApplyUpdates(0);
   ShowMessage('Cadastro Concluido!');
@@ -73,16 +98,8 @@ begin
 end;
 
 function TFormCadastro.UsuarioJaCadastrado: Boolean;
-var
-  JaCadastrados: TDmClientesCadastro;
 begin
-  JaCadastrados := TDmClientesCadastro.Create(nil);
-  try
-    JaCadastrados.cdsCadastro.Open;
-    Result := JaCadastrados.cdsCadastro.Locate(JaCadastrados.cdsCadastronome_usuario.FieldName, DBEdtUsuario.Text, [loCaseInsensitive]);
-  finally
-    JaCadastrados.Free;
-  end;
+  Result := Conexao.Usuario.Logar(DBEdtUsuario.Text, DBEdtSenha.Text);
 end;
 
 procedure TFormCadastro.LimparCampos;

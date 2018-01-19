@@ -13,7 +13,8 @@ uses
   DataModuleControleDeUsuario, cxStyles, cxCustomData, cxFilter, cxData,
   cxDataStorage, cxNavigator, cxDBData, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGridLevel, cxClasses, cxGridCustomView, cxGrid,
-  Vcl.Menus, cxButtons, Vcl.ExtCtrls;
+  Vcl.Menus, cxButtons, Vcl.ExtCtrls, dxLayoutControlAdapters,
+  dxLayoutcxEditAdapters, dxLayoutContainer, dxLayoutControl;
 
 type
   TFormCriacaoEdicaoPessoas = class(TForm)
@@ -21,14 +22,6 @@ type
     btnNovaPessoa: TButton;
     btnCancelarPessoas: TButton;
     btnSalvarPessoas: TButton;
-    gbFormulario: TGroupBox;
-    Label7: TLabel;
-    Label4: TLabel;
-    Label2: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
-    Label3: TLabel;
-    Label1: TLabel;
     btnEditar: TcxButton;
     btnDeletarCadastro: TcxButton;
     cxDBCelular: TcxDBMaskEdit;
@@ -50,6 +43,28 @@ type
     dbGridCriacaoEdicaoPessoasDBTableView1status: TcxGridDBColumn;
     dbGridCriacaoEdicaoPessoasDBTableView1data: TcxGridDBColumn;
     dbGridCriacaoEdicaoPessoasDBTableView1id_cadastro: TcxGridDBColumn;
+    dxLayoutControl1Group_Root: TdxLayoutGroup;
+    dxLayoutControl1: TdxLayoutControl;
+    dxLayoutGroup1: TdxLayoutGroup;
+    dxLayoutGroup2: TdxLayoutGroup;
+    dxLayoutItem1: TdxLayoutItem;
+    dxLayoutItem2: TdxLayoutItem;
+    dxLayoutItem3: TdxLayoutItem;
+    dxLayoutItem4: TdxLayoutItem;
+    dxLayoutItem5: TdxLayoutItem;
+    dxLayoutGroup3: TdxLayoutGroup;
+    dxLayoutGroup4: TdxLayoutGroup;
+    dxLayoutGroup5: TdxLayoutGroup;
+    dxLayoutItem6: TdxLayoutItem;
+    dxLayoutItem7: TdxLayoutItem;
+    dxLayoutItem8: TdxLayoutItem;
+    dxLayoutGroup6: TdxLayoutGroup;
+    dxLayoutItem9: TdxLayoutItem;
+    dxLayoutItem10: TdxLayoutItem;
+    dxLayoutItem11: TdxLayoutItem;
+    dxLayoutItem12: TdxLayoutItem;
+    dxLayoutItem13: TdxLayoutItem;
+    dxLayoutImageItem1: TdxLayoutImageItem;
     procedure btnNovaPessoaClick(Sender: TObject);
     procedure btnCancelarPessoasClick(Sender: TObject);
     procedure btnDeletarCadastroClick(Sender: TObject);
@@ -103,7 +118,8 @@ end;
 
 procedure TFormCriacaoEdicaoPessoas.btnDeletarCadastroClick(Sender: TObject);
 begin
-  DeletarPessoa();
+  if not ClientesPessoas.cdsPessoas.IsEmpty then
+    DeletarPessoa();
 end;
 
 procedure TFormCriacaoEdicaoPessoas.btnEditarClick(Sender: TObject);
@@ -124,7 +140,6 @@ begin
 
   ClientesPessoas.cdsPessoas.Insert;
   ClientesPessoas.cdsPessoasid_cadastro.Value := Conexao.Usuario.Id;
-  gbFormulario.Enabled := True;
   cxDBstatusPessoas.SetFocus;
   dbGridCriacaoEdicaoPessoas.Enabled := False;
 end;
@@ -134,7 +149,6 @@ begin
   HabilitarBotoes;
 
   ClientesPessoas.cdsPessoas.Cancel;
-  gbFormulario.Enabled := False;
   dbGridCriacaoEdicaoPessoas.Enabled := True;
 end;
 
@@ -225,7 +239,6 @@ begin
 
   ControleDeUsuarioEditarPessoa;
 
-  gbFormulario.Enabled := True;
   dbGridCriacaoEdicaoPessoas.Enabled := False;
 end;
 

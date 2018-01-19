@@ -10,19 +10,17 @@ uses
   cxLookAndFeels, cxLookAndFeelPainters, cxStyles, cxCustomData, cxFilter,
   cxData, cxDataStorage, cxEdit, cxNavigator, cxDBData, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxGridLevel, cxClasses, cxGridCustomView,
-  cxGrid, Vcl.Menus, cxButtons;
+  cxGrid, Vcl.Menus, cxButtons, dxLayoutContainer, dxLayoutControlAdapters,
+  dxLayoutControl;
 
 type
   TFormTarefas = class(TForm)
-    gbStatusTarefas: TGroupBox;
     cbAtrasadas: TCheckBox;
     cbFinalizadas: TCheckBox;
     cbAdiadas: TCheckBox;
     cbAgendada: TCheckBox;
     dsTarefas: TDataSource;
     Timer: TTimer;
-    gbEditarTarefas: TGroupBox;
-    gbRelatorioTarefas: TGroupBox;
     dbGridTarefas: TcxGrid;
     dbGridTarefasDBTableView1: TcxGridDBTableView;
     dbGridTarefasLevel1: TcxGridLevel;
@@ -37,6 +35,26 @@ type
     btnImprimir: TcxButton;
     btnAtualizarTarefa: TcxButton;
     btnPesquisar: TcxButton;
+    dxLayoutControl1Group_Root: TdxLayoutGroup;
+    dxLayoutControl1: TdxLayoutControl;
+    dxLayoutGroup1: TdxLayoutGroup;
+    dxLayoutItem1: TdxLayoutItem;
+    dxLayoutGroup2: TdxLayoutGroup;
+    dxLayoutGroup3: TdxLayoutGroup;
+    dxLayoutGroup4: TdxLayoutGroup;
+    dxLayoutItem2: TdxLayoutItem;
+    dxLayoutItem3: TdxLayoutItem;
+    dxLayoutItem4: TdxLayoutItem;
+    dxLayoutItem5: TdxLayoutItem;
+    dxLayoutItem6: TdxLayoutItem;
+    dxLayoutGroup5: TdxLayoutGroup;
+    dxLayoutGroup6: TdxLayoutGroup;
+    dxLayoutItem7: TdxLayoutItem;
+    dxLayoutItem8: TdxLayoutItem;
+    dxLayoutGroup7: TdxLayoutGroup;
+    dxLayoutGroup8: TdxLayoutGroup;
+    dxLayoutItem9: TdxLayoutItem;
+    dxLayoutItem10: TdxLayoutItem;
     procedure btnAtualizarTarefaClick(Sender: TObject);
     procedure btnCriarTarefaClick(Sender: TObject);
     procedure btnEditarTarefaClick(Sender: TObject);

@@ -134,7 +134,10 @@ object FormVendas: TFormVendas
       DataController.Summary.DefaultGroupSummaryItems = <>
       DataController.Summary.FooterSummaryItems = <>
       DataController.Summary.SummaryGroups = <>
+      OptionsData.Deleting = False
+      OptionsData.DeletingConfirmation = False
       OptionsData.Editing = False
+      OptionsData.Inserting = False
       OptionsView.GroupByBox = False
       OptionsView.ShowColumnFilterButtons = sfbWhenSelected
       object dbGridVendasDBTableView1id_produtos: TcxGridDBColumn

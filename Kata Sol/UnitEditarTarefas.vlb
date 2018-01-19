@@ -10,25 +10,10 @@ Coordinates=168,10,154,256
 [DmClientes.cdsCadastro]
 Coordinates=478,10,157,124
 
-[Label2]
-Coordinates=304,298,53,58
-
-[Label3]
-Coordinates=241,298,53,58
-
 [dsCriarTarefas]
 Coordinates=94,317,100,58
 
-[Label1]
-Coordinates=539,298,53,58
-
-[gbFormulario]
-Coordinates=145,366,90,58
-
-[Label4]
-Coordinates=82,366,53,58
-
 []
-Coordinates=10,298,100,58
+Coordinates=145,366,90,58
 Visible=True
 

@@ -16,8 +16,9 @@ object DmVendasValorTotal: TDmVendasValorTotal
       FieldName = 'produtos'
       Size = 200
     end
-    object cdsVendasValorTotalsum: TFMTBCDField
-      FieldName = 'sum'
+    object cdsVendasValorTotalvalor_total: TFMTBCDField
+      FieldName = 'valor_total'
+      currency = True
       Precision = 32
     end
   end

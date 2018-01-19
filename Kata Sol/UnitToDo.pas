@@ -15,7 +15,8 @@ uses
   dxLayoutControl, cxStyles, cxCustomData, cxFilter, cxData, cxDataStorage,
   cxEdit, cxNavigator, cxDBData, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid,
-  DataModuleVendasValorTotal, DataModuleVendasQuantidade;
+  DataModuleVendasValorTotal, DataModuleVendasQuantidade, Vcl.Menus, cxButtons,
+  Datasnap.DBClient, cxMemo;
 
 type
   TFormView = class(TForm)
@@ -44,13 +45,24 @@ type
     cxGridUsuariosDBTableView1nome_usuario: TcxGridDBColumn;
     layoutGrupoUsuarios: TdxLayoutGroup;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
-    GridQauntidade: TDBGrid;
-    dxLayoutItem2: TdxLayoutItem;
     dsQuantidade: TDataSource;
-    GridValorTotal: TDBGrid;
-    dxLayoutItem3: TdxLayoutItem;
     dsValorTotal: TDataSource;
     dsToDo: TDataSource;
+    GridViewVendedoresPorValor: TcxGridDBTableView;
+    GridValorTotalLevel1: TcxGridLevel;
+    GridValorTotal: TcxGrid;
+    dxLayoutItem2: TdxLayoutItem;
+    GridViewVendedoresPorValornome: TcxGridDBColumn;
+    GridViewVendedoresPorValorprodutos: TcxGridDBColumn;
+    GridViewVendedoresPorValorvalor_total: TcxGridDBColumn;
+    GridQuantidadeDBTableView1: TcxGridDBTableView;
+    GridQuantidadeLevel1: TcxGridLevel;
+    GridQuantidade: TcxGrid;
+    dxLayoutItem3: TdxLayoutItem;
+    GridQuantidadeDBTableView1nome: TcxGridDBColumn;
+    GridQuantidadeDBTableView1produtos: TcxGridDBColumn;
+    GridQuantidadeDBTableView1quantidade: TcxGridDBColumn;
+    btnAtt: TcxButton;
     procedure btnPessoasClick(Sender: TObject);
     procedure btnTarefasClick(Sender: TObject);
     procedure btnVendasClick(Sender: TObject);
@@ -58,6 +70,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure btnAttClick(Sender: TObject);
   private
     FClientesCadastro: TDmClientesCadastro;
     FClientesControle: TDmControleDeUsuario;
@@ -70,7 +83,7 @@ type
     procedure ProviderVendasValorTotal;
     procedure ProviderVendasQuantidade;
     procedure DefinirDataSet;
-    function CriarAba(AbaForm: TFormClass; AbaNome: String): TForm;
+    procedure CriarAba(AbaForm: TFormClass; AbaNome: String);
   public
     ID_Login: Integer;
     constructor Create(AOwner: TComponent); override;
@@ -141,32 +154,42 @@ begin
   FClientesControle.cdsControleDeUsuario.Open;
   FClientesControle.cdsControleDeUsuario.Insert;
   FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value :=
-    ('ID :' + (IntToStr(ID_Login)) + ' Se Desconectou' + (DateTimeToStr(Now)));
+    ('ID :' + (IntToStr(ID_Login)) + ' Se Desconectou'
+     + (DateTimeToStr(Now)));
   FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
   FClientesControle.cdsControleDeUsuario.Close;
 end;
 
-function TFormView.CriarAba(AbaForm: TFormClass; AbaNome: String): TForm;
+procedure TFormView.CriarAba(AbaForm: TFormClass; AbaNome: String);
 var
   Item: TdxLayoutItem;
   I: Integer;
+
+  procedure DefinirFoco(Item: TdxLayoutItem);
+  begin
+    Item.MakeVisible;
+    ((Item as TdxLayoutItem).Control as TWinControl).SetFocus;
+  end;
+
 begin
-  I := 0;
   for I := 0 to GrupoForms.Count - 1 do
     if (GrupoForms.Items[I] as TdxLayoutItem).Control is AbaForm then
     begin
-      GrupoForms.Items[I].MakeVisible;
-      ((GrupoForms.Items[I] as TdxLayoutItem).Control as TWinControl).SetFocus;
+      DefinirFoco(GrupoForms.Items[I] as TdxLayoutItem);
       Exit;
     end;
-  begin
-    Item := GrupoForms.CreateItem(TdxLayoutItem) as TdxLayoutItem;
-    Item.Control := AbaForm.Create(Item);
-    Item.CaptionOptions.Visible := False;
-    Item.Caption := AbaNome;
-    GrupoForms.Items[I].MakeVisible;
-    ((GrupoForms.Items[I] as TdxLayoutItem).Control as TWinControl).SetFocus;
-  end;
+  Item := GrupoForms.CreateItem(TdxLayoutItem) as TdxLayoutItem;
+  Item.Control := AbaForm.Create(Item);
+  Item.CaptionOptions.Visible := False;
+  Item.Caption := AbaNome;
+  DefinirFoco(Item);
+end;
+
+procedure TFormView.btnAttClick(Sender: TObject);
+begin
+  FClientesVendasTotalDeVendas.cdsVendasValorTotal.Refresh;
+  FClientesVendasQuantidade.cdsVendasQuantidade.Refresh;
+  FClientesCadastro.cdsCadastro.Refresh;
 end;
 
 procedure TFormView.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -180,9 +203,8 @@ begin
   dsToDo.DataSet := FClientesCadastro.cdsCadastro;
   dsQuantidade.DataSet := FClientesVendasQuantidade.cdsVendasQuantidade;
   dsValorTotal.DataSet := FClientesVendasTotalDeVendas.cdsVendasValorTotal;
-  GridValorTotal.DataSource := dsValorTotal;
-  GridQauntidade.DataSource := dsQuantidade;
   FClientesCadastro.cdsCadastrosenha.Visible := False;
+  lblNome.Caption := Conexao.Usuario.Nome;
 end;
 
 procedure TFormView.FormCreate(Sender: TObject);
@@ -195,6 +217,8 @@ end;
 procedure TFormView.FormShow(Sender: TObject);
 begin
   ControleDeUsuarioLogin;
+  GridViewVendedoresPorValor.DataController.Groups.FullExpand;
+  GridQuantidadeDBTableView1.DataController.Groups.FullExpand;
 end;
 
 procedure TFormView.Logout;

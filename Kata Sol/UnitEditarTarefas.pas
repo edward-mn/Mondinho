@@ -12,18 +12,14 @@ uses
   cxDropDownEdit, cxCalendar, cxDBEdit, Vcl.ExtCtrls,
   DataModuleClientesTarefas, DataModuleControleDeUsuario, cxStyles,
   cxCustomData, cxFilter, cxData, cxDataStorage, cxNavigator, cxDBData,
-  Vcl.Menus, cxButtons, cxGridLevel, cxGridCustomTableView,
-  cxGridDBTableView, cxClasses, cxGridCustomView, cxGrid,
-  cxGridTableView;
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGridLevel,
+  cxClasses, cxGridCustomView, cxGrid, Vcl.Menus, cxButtons,
+  dxLayoutControlAdapters, dxLayoutcxEditAdapters, dxLayoutContainer,
+  dxLayoutControl, cxGridTableView;
 
 type
   TFormEditarTarefas = class(TForm)
     dsCriarTarefas: TDataSource;
-    gbFormulario: TGroupBox;
-    Label1: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label2: TLabel;
     cbData: TcxDBDateEdit;
     dbGridCriacaoEdicao: TcxGrid;
     dbGridCriacaoEdicaoDBTableView1: TcxGridDBTableView;
@@ -43,6 +39,28 @@ type
     btnNovo: TcxButton;
     btnDeletarTarefa: TcxButton;
     btnAdiarTarefa: TcxButton;
+    dxLayoutControl1Group_Root: TdxLayoutGroup;
+    dxLayoutControl1: TdxLayoutControl;
+    dxLayoutGroup1: TdxLayoutGroup;
+    dxLayoutGroup2: TdxLayoutGroup;
+    dxLayoutItem1: TdxLayoutItem;
+    dxLayoutItem2: TdxLayoutItem;
+    dxLayoutItem3: TdxLayoutItem;
+    dxLayoutItem4: TdxLayoutItem;
+    dxLayoutItem5: TdxLayoutItem;
+    dxLayoutItem6: TdxLayoutItem;
+    dxLayoutGroup3: TdxLayoutGroup;
+    dxLayoutGroup4: TdxLayoutGroup;
+    dxLayoutGroup5: TdxLayoutGroup;
+    dxLayoutGroup6: TdxLayoutGroup;
+    dxLayoutGroup7: TdxLayoutGroup;
+    dxLayoutItem7: TdxLayoutItem;
+    dxLayoutItem8: TdxLayoutItem;
+    dxLayoutLabeledItem1: TdxLayoutLabeledItem;
+    dxLayoutItem9: TdxLayoutItem;
+    dxLayoutItem10: TdxLayoutItem;
+    dxLayoutItem11: TdxLayoutItem;
+    sdasdy9ywew: TdxLayoutImageItem;
     procedure btnAdiarTarefaClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure btnAtualizarClick(Sender: TObject);
@@ -87,7 +105,6 @@ implementation
 procedure TFormEditarTarefas.ArmazenarDataAnterior;
 begin
   ClientesTarefas.cdsToDo.Edit;
-  gbFormulario.Enabled := False;
   dbGridCriacaoEdicao.Enabled := False;
   cbData.SetFocus;
 
@@ -105,7 +122,6 @@ procedure TFormEditarTarefas.AtualizarLista;
 begin
   ClientesTarefas.cdsToDo.ApplyUpdates(0);
   ClientesTarefas.cdsToDo.Refresh;
-  gbFormulario.Enabled := False;
   cbData.Enabled := False;
   dbGridCriacaoEdicao.Enabled := True;
 end;
@@ -127,7 +143,8 @@ end;
 
 procedure TFormEditarTarefas.btnDeletarTarefaClick(Sender: TObject);
 begin
-  DeletarTarefa();
+  if not ClientesTarefas.cdsToDo.IsEmpty then
+    DeletarTarefa();
 end;
 
 procedure TFormEditarTarefas.btnEditarClick(Sender: TObject);
@@ -146,7 +163,6 @@ begin
   HabilitarBotoes;
 
   ClientesTarefas.cdsToDo.Cancel;
-  gbFormulario.Enabled := False;
   cbData.Enabled := True;
   dbGridCriacaoEdicao.Enabled := True;
 
@@ -160,9 +176,8 @@ begin
 
     if DataAntiga <> cbData.Date then
     begin
-      ClientesTarefas.cdsToDostatus.text := 'Adiada';
-      gbFormulario.Enabled := True;
-      dbGridCriacaoEdicao.Enabled := True;
+    ClientesTarefas.cdsToDostatus.text := 'Adiada';
+    dbGridCriacaoEdicao.Enabled := True;
 
       HabilitarBotoes;
 
@@ -247,7 +262,6 @@ begin
 
   ControleDeUsuarioEditarTarefa;
 
-  gbFormulario.Enabled := True;
   cbData.Enabled := True;
   dbGridCriacaoEdicao.Enabled := False;
 end;
@@ -306,7 +320,6 @@ begin
   ClientesTarefas.cdsToDo.Insert;
   ClientesTarefas.cdsToDoid_cadastro.Value := Conexao.Usuario.Id;
   cbData.Enabled := True;
-  gbFormulario.Enabled := True;
   cxDBstatusTarefas.SetFocus;
   dbGridCriacaoEdicao.Enabled := False;
 end;
