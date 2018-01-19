@@ -22,7 +22,6 @@ type
     btnNovaPessoa: TButton;
     btnCancelarPessoas: TButton;
     btnSalvarPessoas: TButton;
-    btnEditar: TcxButton;
     btnDeletarCadastro: TcxButton;
     cxDBCelular: TcxDBMaskEdit;
     cxDBTelefone: TcxDBMaskEdit;
@@ -48,7 +47,6 @@ type
     dxLayoutGroup1: TdxLayoutGroup;
     dxLayoutGroup2: TdxLayoutGroup;
     dxLayoutItem1: TdxLayoutItem;
-    dxLayoutItem2: TdxLayoutItem;
     dxLayoutItem3: TdxLayoutItem;
     dxLayoutItem4: TdxLayoutItem;
     dxLayoutItem5: TdxLayoutItem;
@@ -89,7 +87,6 @@ type
     procedure ControleDeUsuarioNovaPessoa;
     procedure ControleDeUsuarioEditarPessoa;
     procedure ControleDeUsuarioDeletarPessoa;
-    procedure FocarCampo(FieldName: String);
     procedure ProviderCdsControle;
   public
     ClientesPessoas: TDmClientesPessoas;
@@ -102,7 +99,7 @@ var
 implementation
 
 uses
-  System.StrUtils;
+  System.StrUtils, ValidacaoUtils;
 
 {$R *.dfm}
 
@@ -229,7 +226,6 @@ end;
 procedure TFormCriacaoEdicaoPessoas.DesabilitarBotoes;
 begin
   btnNovaPessoa.Enabled := False;
-  btnEditar.Enabled := False;
   btnDeletarCadastro.Enabled := False;
 end;
 
@@ -240,33 +236,6 @@ begin
   ControleDeUsuarioEditarPessoa;
 
   dbGridCriacaoEdicaoPessoas.Enabled := False;
-end;
-
-procedure TFormCriacaoEdicaoPessoas.FocarCampo(FieldName: String);
-var
-  Componente: TComponent;
-begin
-  if FieldName.IsEmpty then  { Sem RTTI }
-    Exit;
-
-  for Componente in Self do
-  begin
-    if (Componente is TcxDBComboBox) and
-      (TcxDBComboBox(Componente).DataBinding.DataField = FieldName) then
-      TcxDBComboBox(Componente).SetFocus;
-
-    if (Componente is TcxDBTextEdit) and
-      (TcxDBTextEdit(Componente).DataBinding.DataField = FieldName) then
-      TcxDBTextEdit(Componente).SetFocus;
-
-    if (Componente is TcxDBMaskEdit) and
-      (TcxDBMaskEdit(Componente).DataBinding.DataField = FieldName) then
-      TcxDBMaskEdit(Componente).SetFocus;
-
-    if (Componente is TcxDBDateEdit) and
-      (TcxDBDateEdit(Componente).DataBinding.DataField = FieldName) then
-      TcxDBDateEdit(Componente).SetFocus;
-  end;
 end;
 
 procedure TFormCriacaoEdicaoPessoas.FormClose(Sender: TObject;
@@ -286,7 +255,6 @@ end;
 procedure TFormCriacaoEdicaoPessoas.HabilitarBotoes;
 begin
   btnNovaPessoa.Enabled := True;
-  btnEditar.Enabled := True;
   btnDeletarCadastro.Enabled := True;
 end;
 
@@ -307,14 +275,13 @@ begin
   begin
     try
       ClientesPessoas.cdsPessoas.ApplyUpdates(0);
-      gbFormulario.Enabled := False;
       dbGridCriacaoEdicaoPessoas.Enabled := True;
       ClientesPessoas.cdsPessoas.Refresh;
       HabilitarBotoes;
     except
       on E: EvalidationError do
       begin
-        FocarCampo(E.FieldName);
+        TValidacaoUtils.FocarCampos(Self, E.FieldName);
         ShowMessage(E.Message);
         Abort;
       end;

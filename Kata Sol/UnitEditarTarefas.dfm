@@ -4,8 +4,8 @@ object FormEditarTarefas: TFormEditarTarefas
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Editar/Cadastrar Tarefas'
-  ClientHeight = 471
-  ClientWidth = 994
+  ClientHeight = 480
+  ClientWidth = 1000
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,8 +21,8 @@ object FormEditarTarefas: TFormEditarTarefas
   object dxLayoutControl1: TdxLayoutControl
     Left = 0
     Top = 0
-    Width = 994
-    Height = 471
+    Width = 1000
+    Height = 480
     Align = alClient
     TabOrder = 0
     AutoSize = True
@@ -43,7 +43,7 @@ object FormEditarTarefas: TFormEditarTarefas
       Style.HotTrack = False
       Style.ButtonStyle = bts3D
       Style.PopupBorderStyle = epbsFrame3D
-      TabOrder = 6
+      TabOrder = 5
       Width = 121
     end
     object cxDBNome: TcxDBTextEdit
@@ -54,22 +54,22 @@ object FormEditarTarefas: TFormEditarTarefas
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
-      TabOrder = 7
-      Width = 148
+      TabOrder = 6
+      Width = 173
     end
     object cxDBTarefas: TcxDBTextEdit
       Left = 133
-      Top = 111
+      Top = 91
       DataBinding.DataField = 'tarefas'
       DataBinding.DataSource = dsCriarTarefas
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
-      TabOrder = 9
+      TabOrder = 8
       Width = 410
     end
     object cbData: TcxDBDateEdit
-      Left = 453
+      Left = 439
       Top = 46
       Cursor = crArrow
       DataBinding.DataField = 'data'
@@ -81,15 +81,15 @@ object FormEditarTarefas: TFormEditarTarefas
       Style.HotTrack = False
       Style.ButtonStyle = bts3D
       Style.PopupBorderStyle = epbsFrame3D
-      TabOrder = 8
-      Width = 90
+      TabOrder = 7
+      Width = 104
     end
     object dbGridCriacaoEdicao: TcxGrid
       Left = 10
-      Top = 196
-      Width = 974
+      Top = 205
+      Width = 980
       Height = 265
-      TabOrder = 10
+      TabOrder = 9
       object dbGridCriacaoEdicaoDBTableView1: TcxGridDBTableView
         Navigator.Buttons.CustomButtons = <>
         DataController.DataSource = dsCriarTarefas
@@ -124,30 +124,21 @@ object FormEditarTarefas: TFormEditarTarefas
     end
     object btnSalvar: TcxButton
       Left = 10
-      Top = 103
+      Top = 72
       Width = 105
       Height = 25
       Caption = 'Salvar'
-      TabOrder = 3
+      TabOrder = 2
       OnClick = btnSalvarClick
     end
     object btnCancelar: TcxButton
       Left = 10
-      Top = 72
-      Width = 105
-      Height = 25
-      Caption = 'Cancelar'
-      TabOrder = 2
-      OnClick = btnCancelarClick
-    end
-    object btnEditar: TcxButton
-      Left = 10
       Top = 41
       Width = 105
       Height = 25
-      Caption = 'Editar'
+      Caption = 'Cancelar'
       TabOrder = 1
-      OnClick = btnEditarClick
+      OnClick = btnCancelarClick
     end
     object btnNovo: TcxButton
       Left = 10
@@ -160,20 +151,20 @@ object FormEditarTarefas: TFormEditarTarefas
     end
     object btnDeletarTarefa: TcxButton
       Left = 10
-      Top = 134
+      Top = 103
       Width = 105
       Height = 25
       Caption = 'Deletar'
-      TabOrder = 4
+      TabOrder = 3
       OnClick = btnDeletarTarefaClick
     end
     object btnAdiarTarefa: TcxButton
       Left = 10
-      Top = 165
+      Top = 134
       Width = 105
       Height = 25
       Caption = 'Adiar Tarefa'
-      TabOrder = 5
+      TabOrder = 4
       OnClick = btnAdiarTarefaClick
     end
     object dxLayoutControl1Group_Root: TdxLayoutGroup
@@ -202,7 +193,7 @@ object FormEditarTarefas: TFormEditarTarefas
       CaptionOptions.Text = 'Hidden Group'
       ButtonOptions.Buttons = <>
       Hidden = True
-      ItemIndex = 5
+      ItemIndex = 4
       ShowBorder = False
       Index = 0
     end
@@ -217,17 +208,6 @@ object FormEditarTarefas: TFormEditarTarefas
       ControlOptions.ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem2: TdxLayoutItem
-      Parent = dxLayoutGroup2
-      AlignHorz = ahLeft
-      CaptionOptions.Text = 'btnEditar'
-      CaptionOptions.Visible = False
-      Control = btnEditar
-      ControlOptions.OriginalHeight = 25
-      ControlOptions.OriginalWidth = 105
-      ControlOptions.ShowBorder = False
-      Index = 1
-    end
     object dxLayoutItem3: TdxLayoutItem
       Parent = dxLayoutGroup2
       AlignHorz = ahLeft
@@ -237,7 +217,7 @@ object FormEditarTarefas: TFormEditarTarefas
       ControlOptions.OriginalHeight = 25
       ControlOptions.OriginalWidth = 105
       ControlOptions.ShowBorder = False
-      Index = 2
+      Index = 1
     end
     object dxLayoutItem4: TdxLayoutItem
       Parent = dxLayoutGroup2
@@ -248,7 +228,7 @@ object FormEditarTarefas: TFormEditarTarefas
       ControlOptions.OriginalHeight = 25
       ControlOptions.OriginalWidth = 105
       ControlOptions.ShowBorder = False
-      Index = 3
+      Index = 2
     end
     object dxLayoutItem5: TdxLayoutItem
       Parent = dxLayoutGroup2
@@ -259,7 +239,7 @@ object FormEditarTarefas: TFormEditarTarefas
       ControlOptions.OriginalHeight = 25
       ControlOptions.OriginalWidth = 105
       ControlOptions.ShowBorder = False
-      Index = 4
+      Index = 3
     end
     object dxLayoutItem6: TdxLayoutItem
       Parent = dxLayoutGroup2
@@ -270,7 +250,7 @@ object FormEditarTarefas: TFormEditarTarefas
       ControlOptions.OriginalHeight = 25
       ControlOptions.OriginalWidth = 105
       ControlOptions.ShowBorder = False
-      Index = 5
+      Index = 4
     end
     object dxLayoutGroup3: TdxLayoutGroup
       Parent = dxLayoutGroup1
@@ -336,14 +316,8 @@ object FormEditarTarefas: TFormEditarTarefas
       CaptionOptions.Layout = clTop
       Control = cxDBNome
       ControlOptions.OriginalHeight = 21
-      ControlOptions.OriginalWidth = 148
+      ControlOptions.OriginalWidth = 173
       ControlOptions.ShowBorder = False
-      Index = 1
-    end
-    object dxLayoutLabeledItem1: TdxLayoutLabeledItem
-      Parent = dxLayoutGroup6
-      AlignHorz = ahLeft
-      CaptionOptions.Text = '* Data'
       Index = 1
     end
     object dxLayoutItem9: TdxLayoutItem
@@ -355,21 +329,22 @@ object FormEditarTarefas: TFormEditarTarefas
       ControlOptions.OriginalHeight = 21
       ControlOptions.OriginalWidth = 410
       ControlOptions.ShowBorder = False
-      Index = 2
+      Index = 1
     end
     object dxLayoutItem10: TdxLayoutItem
       Parent = dxLayoutGroup7
+      AlignHorz = ahLeft
       AlignVert = avBottom
-      CaptionOptions.Text = 'cbData'
+      CaptionOptions.Text = '*Data'
+      CaptionOptions.Layout = clTop
       Control = cbData
       ControlOptions.OriginalHeight = 21
-      ControlOptions.OriginalWidth = 90
+      ControlOptions.OriginalWidth = 104
       ControlOptions.ShowBorder = False
       Index = 2
     end
     object dxLayoutItem11: TdxLayoutItem
       Parent = dxLayoutControl1Group_Root
-      AlignHorz = ahClient
       AlignVert = avBottom
       CaptionOptions.Text = 'dbGridCriacaoEdicao'
       CaptionOptions.Visible = False

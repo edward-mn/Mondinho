@@ -58,8 +58,8 @@ object DmConexao: TDmConexao
       'UseUnicode=True'
       'Charset=')
     Connected = True
-    Left = 224
-    Top = 16
+    Left = 424
+    Top = 24
   end
   object sqlProviderToDo: TDataSetProvider
     DataSet = sqlQueryToDo

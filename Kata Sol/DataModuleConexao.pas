@@ -62,18 +62,6 @@ type
     sqlQueryVendasValorTotalprodutos: TWideStringField;
     sqlQueryQuantidadeVendasnome: TWideStringField;
     sqlQueryQuantidadeVendasprodutos: TWideStringField;
-    sqlQueryQuantidadeVendassum: TFMTBCDField;
-    sqlQueryVendasid_produtos: TIntegerField;
-    sqlQueryVendasprodutos: TWideStringField;
-    sqlQueryVendasstatus: TWideStringField;
-    sqlQueryVendasfornecedores: TWideStringField;
-    sqlQueryVendasdata: TDateField;
-    sqlQueryVendasvalor_produto: TFMTBCDField;
-    sqlQueryVendasquantidade: TIntegerField;
-    sqlQueryVendasvalor_total: TFMTBCDField;
-    sqlQueryVendasid_cadastro: TIntegerField;
-    sqlQueryVendasid_vendedor: TIntegerField;
-    sqlQueryVendasvendedor: TWideStringField;
     sqlQueryVendasValorTotalvalor_total: TFMTBCDField;
     sqlQueryQuantidadeVendasquantidade: TIntegerField;
     procedure sqlQueryPessoasBeforeOpen(DataSet: TDataSet);

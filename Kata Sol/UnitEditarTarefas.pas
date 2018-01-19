@@ -15,7 +15,7 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGridLevel,
   cxClasses, cxGridCustomView, cxGrid, Vcl.Menus, cxButtons,
   dxLayoutControlAdapters, dxLayoutcxEditAdapters, dxLayoutContainer,
-  dxLayoutControl, cxGridTableView;
+  dxLayoutControl;
 
 type
   TFormEditarTarefas = class(TForm)
@@ -35,7 +35,6 @@ type
     cxDBTarefas: TcxDBTextEdit;
     btnSalvar: TcxButton;
     btnCancelar: TcxButton;
-    btnEditar: TcxButton;
     btnNovo: TcxButton;
     btnDeletarTarefa: TcxButton;
     btnAdiarTarefa: TcxButton;
@@ -44,7 +43,6 @@ type
     dxLayoutGroup1: TdxLayoutGroup;
     dxLayoutGroup2: TdxLayoutGroup;
     dxLayoutItem1: TdxLayoutItem;
-    dxLayoutItem2: TdxLayoutItem;
     dxLayoutItem3: TdxLayoutItem;
     dxLayoutItem4: TdxLayoutItem;
     dxLayoutItem5: TdxLayoutItem;
@@ -56,7 +54,6 @@ type
     dxLayoutGroup7: TdxLayoutGroup;
     dxLayoutItem7: TdxLayoutItem;
     dxLayoutItem8: TdxLayoutItem;
-    dxLayoutLabeledItem1: TdxLayoutLabeledItem;
     dxLayoutItem9: TdxLayoutItem;
     dxLayoutItem10: TdxLayoutItem;
     dxLayoutItem11: TdxLayoutItem;
@@ -87,7 +84,6 @@ type
     procedure EditarTarefa;
     procedure NovaTarefa;
     procedure SalvarTarefa;
-    procedure FocarCampo(FieldName: string);
   public
     ClientesTarefas : TDmClientesTarefas;
     DataAntiga : TDateTime;
@@ -100,6 +96,9 @@ var
 
 implementation
 
+uses
+  ValidacaoUtils;
+
 {$R *.dfm}
 
 procedure TFormEditarTarefas.ArmazenarDataAnterior;
@@ -109,7 +108,6 @@ begin
   cbData.SetFocus;
 
   btnNovo.Enabled := False;
-  btnEditar.Enabled := False;
   btnDeletarTarefa.Enabled := False;
   btnAdiarTarefa.Enabled := False;
 
@@ -251,7 +249,6 @@ end;
 procedure TFormEditarTarefas.DesabilitarBotoes;
 begin
   btnNovo.Enabled := False;
-  btnEditar.Enabled := False;
   btnDeletarTarefa.Enabled := False;
   btnAdiarTarefa.Enabled := False;
 end;
@@ -264,29 +261,6 @@ begin
 
   cbData.Enabled := True;
   dbGridCriacaoEdicao.Enabled := False;
-end;
-
-procedure TFormEditarTarefas.FocarCampo(FieldName: string);
-var
-  Componente: TComponent;
-begin
-  if FieldName.IsEmpty then { Sem RTTI }
-    Exit;
-
-  for Componente in Self do
-  begin
-    if (Componente is TcxDBComboBox) and
-      (TcxDBComboBox(Componente).DataBinding.DataField = FieldName) then
-      TcxDBComboBox(Componente).SetFocus;
-
-    if (Componente is TcxDBTextEdit) and
-      (TcxDBTextEdit(Componente).DataBinding.DataField = FieldName) then
-      TcxDBTextEdit(Componente).SetFocus;
-
-    if (Componente is TcxDBDateEdit) and
-      (TcxDBDateEdit(Componente).DataBinding.DataField = FieldName) then
-      TcxDBDateEdit(Componente).SetFocus;
-  end;
 end;
 
 procedure TFormEditarTarefas.FormClose(Sender: TObject;
@@ -306,7 +280,6 @@ end;
 procedure TFormEditarTarefas.HabilitarBotoes;
 begin
   btnNovo.Enabled := True;
-  btnEditar.Enabled := True;
   btnDeletarTarefa.Enabled := True;
   btnAdiarTarefa.Enabled := True;
 end;
@@ -331,7 +304,6 @@ begin
   begin
     try
       ClientesTarefas.cdsToDo.ApplyUpdates(0);
-      gbFormulario.Enabled := False;
       dbGridCriacaoEdicao.Enabled := True;
       cbData.Enabled := True;
       ClientesTarefas.cdsToDo.Refresh;
@@ -339,7 +311,7 @@ begin
     except
       on E: EvalidationError do
       begin
-        FocarCampo(E.FieldName);
+        TValidacaoUtils.FocarCampos(Self, E.FieldName);
         ShowMessage(E.Message);
         Abort;
       end;

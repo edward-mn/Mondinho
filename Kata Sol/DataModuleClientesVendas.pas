@@ -55,8 +55,8 @@ begin
     raise EValidationError.Create('Campo produto é obrigatório.', cdsVendasprodutos.FieldName);
   if (cdsVendasvalor_produto.IsNull) or (cdsVendasvalor_produto.Value <= 0) then
     raise EValidationError.Create('Valor do produto inválido.', cdsVendasvalor_produto.FieldName);
-  if (cdsVendasquantidade.Value <= 0) or (cdsVendasquantidade.Value <> 0 )then  //mudar
-    raise EValidationError.Create('Quantidade do produto inválida.', cdsVendasdata.FieldName);
+  if (cdsVendasquantidade.Value <= 0) then
+    raise EValidationError.Create('Quantidade do produto inválida.', cdsVendasquantidade.FieldName);
   if (cdsVendasdata.IsNull) then
     raise EValidationError.Create('Campo data é obrigatória.', cdsVendasdata.FieldName);
 end;

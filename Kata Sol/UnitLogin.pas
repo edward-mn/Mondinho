@@ -6,7 +6,9 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Imaging.pngimage,
   Vcl.ExtCtrls, UnitCadastro, DataModuleClientesCadastro, DataModuleConexao, Data.DB,
-  dxGDIPlusClasses, DataModuleControleDeUsuario, System.UITypes;
+  dxGDIPlusClasses, DataModuleControleDeUsuario, System.UITypes, cxGraphics,
+  cxControls, cxLookAndFeels, cxLookAndFeelPainters, dxLayoutContainer,
+  dxLayoutControlAdapters, cxClasses, dxLayoutControl;
 
 type
   TFormLogin = class(TForm)
@@ -18,6 +20,17 @@ type
     btnEntrar: TButton;
     btnCadastrar: TButton;
     Image1: TImage;
+    dxLayoutControl1Group_Root: TdxLayoutGroup;
+    dxLayoutControl1: TdxLayoutControl;
+    LayoutLogo: TdxLayoutItem;
+    LayoutItemUsuario: TdxLayoutItem;
+    LayoutItemSenha: TdxLayoutItem;
+    LayoutItemEntrar: TdxLayoutItem;
+    LayoutItemCadastrar: TdxLayoutItem;
+    LayoutLabeledItemFim: TdxLayoutLabeledItem;
+    LayoutGroupPricipal: TdxLayoutGroup;
+    LayoutGroupCampoLogin: TdxLayoutGroup;
+    LayoutGroupBotaoLogar: TdxLayoutGroup;
     procedure btnCadastrarClick(Sender: TObject);
     procedure btnEntrarClick(Sender: TObject);
     procedure CriarFormCadastro;

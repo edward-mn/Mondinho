@@ -69,10 +69,10 @@ begin
     raise EvalidationError.Create('Campo status é obrigatório', cdsToDostatus.FieldName);
   if (cdsToDonomes.Value.IsEmpty) then
    raise EvalidationError.Create('Campo nome é obrigatório', cdsToDonomes.FieldName);
-  if (cdsToDotarefas.Value.IsEmpty) then
-    raise EvalidationError.Create('Campo tafera é obrigatório', cdsToDotarefas.FieldName);
   if (cdsToDodata.IsNull) then
     raise EvalidationError.Create('Campo data é obrigatório', cdsToDodata.FieldName);
+  if (cdsToDotarefas.Value.IsEmpty) then
+    raise EvalidationError.Create('Campo tafera é obrigatório', cdsToDotarefas.FieldName);
 end;
 
 { EvalidationError }
