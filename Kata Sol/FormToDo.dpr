@@ -22,7 +22,8 @@ uses
   DataModuleVendedores in 'DataModuleVendedores.pas' {DmClienteVendedores: TDataModule},
   DataModuleVendasValorTotal in 'DataModuleVendasValorTotal.pas' {DmVendasValorTotal: TDataModule},
   DataModuleVendasQuantidade in 'DataModuleVendasQuantidade.pas' {DmVendasQuantidade: TDataModule},
-  ValidacaoUtils in 'ValidacaoUtils.pas';
+  ValidacaoUtils in 'ValidacaoUtils.pas',
+  ControleUtils in 'ControleUtils.pas';
 
 {$R *.res}
 

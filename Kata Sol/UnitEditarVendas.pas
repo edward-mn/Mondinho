@@ -16,7 +16,7 @@ uses
   cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
   cxGrid, cxCurrencyEdit, Vcl.Menus, cxButtons, cxSpinEdit,
   dxLayoutControlAdapters, dxLayoutcxEditAdapters, dxLayoutContainer,
-  dxLayoutControl;
+  dxLayoutControl, ControleUtils;
 
 type
   TFormEditarVendas = class(TForm)
@@ -91,9 +91,6 @@ type
     procedure DeixarCamposInvisiveis;
     procedure DeixarCamposVisiveis;
     procedure SalvarVenda;
-    procedure ControleDeUsuarioNovaVenda;
-    procedure ControleDeUsuarioEditarVenda;
-    procedure ControleDeUsuarioDeletarVenda;
     procedure ProviderVendedor;
     procedure ProviderCdsControle;
     function CalcularValorTotal(Quantidade: integer; ValorUnit: Currency)
@@ -149,33 +146,6 @@ begin
   dbGridEditarVendas.Enabled := True;
 end;
 
-procedure TFormEditarVendas.ControleDeUsuarioDeletarVenda;
-begin
-  FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value :=
-    ('ID :' + (IntToStr(Conexao.Usuario.Id)) + ' Deletou Venda ' +
-    (DateTimeToStr(Now)));
-  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
-end;
-
-procedure TFormEditarVendas.ControleDeUsuarioEditarVenda;
-begin
-  FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value :=
-    ('ID :' + (IntToStr(Conexao.Usuario.Id)) + ' Editou Venda ' +
-    (DateTimeToStr(Now)));
-  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
-end;
-
-procedure TFormEditarVendas.ControleDeUsuarioNovaVenda;
-begin
-  FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value :=
-    ('ID :' + (IntToStr(Conexao.Usuario.Id)) + ' Adicionou Nova Venda ' +
-    (DateTimeToStr(Now)));
-  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
-end;
-
 constructor TFormEditarVendas.Create(AOwner: TComponent);
 begin
   inherited;
@@ -219,13 +189,15 @@ begin
 end;
 
 procedure TFormEditarVendas.DeletarVenda;
+const
+  DeletouVenda = ' Deletou Venda ';
 begin
   if MessageDlg('Deseja realmente deletar essa venda ?', mtInformation,
     [mbYes, mbNo], 0) = mrYes then
   begin
     ClientesVendas.cdsVendas.Delete;
     ClientesVendas.cdsVendas.ApplyUpdates(0);
-    ControleDeUsuarioDeletarVenda;
+    ControleUtils.TControleUtils.SalvarLog(DeletouVenda);
   end;
 end;
 
@@ -281,6 +253,9 @@ begin
 end;
 
 procedure TFormEditarVendas.SalvarVenda;
+const
+  NovaVenda = ' Adicionou Nova Venda ';
+  EditouVenda = ' Editou Venda ';
 begin
   if (ClientesVendas.cdsVendas.State = dsInsert) then
   begin
@@ -289,7 +264,7 @@ begin
         ClientesVendas.cdsVendasvalor_produto.AsCurrency);
       ClientesVendas.cdsVendas.ApplyUpdates(0);
 
-      ControleDeUsuarioNovaVenda;
+      ControleUtils.TControleUtils.SalvarLog(NovaVenda);
 
       dbGridEditarVendas.Enabled := True;
       ClientesVendas.cdsVendas.Refresh;
@@ -310,7 +285,7 @@ begin
         ClientesVendas.cdsVendasvalor_produto.AsCurrency);
       ClientesVendas.cdsVendas.ApplyUpdates(0);
 
-      ControleDeUsuarioEditarVenda;
+      ControleUtils.TControleUtils.SalvarLog(EditouVenda);
 
       dbGridEditarVendas.Enabled := True;
       ClientesVendas.cdsVendas.Refresh;
