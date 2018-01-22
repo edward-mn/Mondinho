@@ -154,6 +154,7 @@ object FormPessoas: TFormPessoas
         end
         object dbGridPessoasDBTableView1id_cadastro: TcxGridDBColumn
           DataBinding.FieldName = 'id_cadastro'
+          Visible = False
         end
       end
       object dbGridPessoasLevel1: TcxGridLevel
@@ -165,11 +166,12 @@ object FormPessoas: TFormPessoas
       AlignVert = avClient
       ButtonOptions.Buttons = <>
       Hidden = True
+      ItemIndex = 1
       LayoutDirection = ldHorizontal
       ShowBorder = False
       Index = -1
     end
-    object dxLayoutGroup1: TdxLayoutGroup
+    object LayoutGroupPessoas: TdxLayoutGroup
       Parent = dxLayoutControl1Group_Root
       AlignHorz = ahClient
       AlignVert = avClient
@@ -179,8 +181,8 @@ object FormPessoas: TFormPessoas
       ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem1: TdxLayoutItem
-      Parent = dxLayoutGroup1
+    object LayoutGridPessoas: TdxLayoutItem
+      Parent = LayoutGroupPessoas
       AlignHorz = ahClient
       AlignVert = avClient
       CaptionOptions.Text = 'dbGridPessoas'
@@ -191,16 +193,17 @@ object FormPessoas: TFormPessoas
       ControlOptions.ShowBorder = False
       Index = 0
     end
-    object dxLayoutGroup2: TdxLayoutGroup
+    object LayoutGroupTodosBotoes: TdxLayoutGroup
       Parent = dxLayoutControl1Group_Root
       AlignHorz = ahRight
       AlignVert = avClient
       CaptionOptions.Text = 'Status'
       ButtonOptions.Buttons = <>
+      ItemIndex = 1
       Index = 1
     end
-    object dxLayoutGroup3: TdxLayoutGroup
-      Parent = dxLayoutGroup2
+    object LayoutGroupDireitoDentro: TdxLayoutGroup
+      Parent = LayoutGroupTodosBotoes
       AlignHorz = ahClient
       AlignVert = avClient
       CaptionOptions.Text = 'Hidden Group'
@@ -210,18 +213,18 @@ object FormPessoas: TFormPessoas
       ShowBorder = False
       Index = 0
     end
-    object dxLayoutGroup4: TdxLayoutGroup
-      Parent = dxLayoutGroup3
+    object LayoutGroupSuperiorDireito: TdxLayoutGroup
+      Parent = LayoutGroupDireitoDentro
       AlignVert = avTop
       CaptionOptions.Text = 'Hidden Group'
       ButtonOptions.Buttons = <>
       Hidden = True
-      ItemIndex = 4
+      ItemIndex = 6
       ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem2: TdxLayoutItem
-      Parent = dxLayoutGroup4
+    object LayoutItemChFisica: TdxLayoutItem
+      Parent = LayoutGroupSuperiorDireito
       AlignHorz = ahLeft
       CaptionOptions.Text = 'cbFisica'
       CaptionOptions.Visible = False
@@ -232,8 +235,8 @@ object FormPessoas: TFormPessoas
       ControlOptions.ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem3: TdxLayoutItem
-      Parent = dxLayoutGroup4
+    object LayoutItemChJuridica: TdxLayoutItem
+      Parent = LayoutGroupSuperiorDireito
       AlignHorz = ahLeft
       CaptionOptions.Text = 'cbJuridica'
       CaptionOptions.Visible = False
@@ -244,8 +247,8 @@ object FormPessoas: TFormPessoas
       ControlOptions.ShowBorder = False
       Index = 1
     end
-    object dxLayoutItem4: TdxLayoutItem
-      Parent = dxLayoutGroup4
+    object LayoutItemChVendedor: TdxLayoutItem
+      Parent = LayoutGroupSuperiorDireito
       AlignHorz = ahLeft
       CaptionOptions.Text = 'cbVendedor'
       CaptionOptions.Visible = False
@@ -256,8 +259,8 @@ object FormPessoas: TFormPessoas
       ControlOptions.ShowBorder = False
       Index = 2
     end
-    object dxLayoutItem5: TdxLayoutItem
-      Parent = dxLayoutGroup4
+    object LayoutItemChEmpresa: TdxLayoutItem
+      Parent = LayoutGroupSuperiorDireito
       AlignHorz = ahLeft
       CaptionOptions.Text = 'cbEmpresa'
       CaptionOptions.Visible = False
@@ -268,8 +271,8 @@ object FormPessoas: TFormPessoas
       ControlOptions.ShowBorder = False
       Index = 3
     end
-    object dxLayoutItem6: TdxLayoutItem
-      Parent = dxLayoutGroup4
+    object LayoutItemChUsuarioDoSistema: TdxLayoutItem
+      Parent = LayoutGroupSuperiorDireito
       AlignHorz = ahLeft
       CaptionOptions.Text = 'cbUsuarioDoSistema'
       CaptionOptions.Visible = False
@@ -280,8 +283,8 @@ object FormPessoas: TFormPessoas
       ControlOptions.ShowBorder = False
       Index = 4
     end
-    object dxLayoutItem7: TdxLayoutItem
-      Parent = dxLayoutGroup4
+    object LayoutItemBtPesquisar: TdxLayoutItem
+      Parent = LayoutGroupSuperiorDireito
       AlignHorz = ahCenter
       CaptionOptions.Text = 'btnPesquisar'
       CaptionOptions.Visible = False
@@ -291,25 +294,26 @@ object FormPessoas: TFormPessoas
       ControlOptions.ShowBorder = False
       Index = 5
     end
-    object dxLayoutGroup5: TdxLayoutGroup
-      Parent = dxLayoutGroup4
+    object LayoutGroupCampoPessoas: TdxLayoutGroup
+      Parent = LayoutGroupSuperiorDireito
       AlignHorz = ahLeft
       CaptionOptions.Text = 'Pessoas'
       ButtonOptions.Buttons = <>
       LayoutDirection = ldHorizontal
       Index = 6
     end
-    object dxLayoutGroup6: TdxLayoutGroup
-      Parent = dxLayoutGroup5
+    object LayoutGroupBotoes: TdxLayoutGroup
+      Parent = LayoutGroupCampoPessoas
       AlignVert = avTop
       CaptionOptions.Text = 'Hidden Group'
       ButtonOptions.Buttons = <>
       Hidden = True
+      ItemIndex = 1
       ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem8: TdxLayoutItem
-      Parent = dxLayoutGroup6
+    object LayoutItemBtEdtRegistro: TdxLayoutItem
+      Parent = LayoutGroupBotoes
       AlignHorz = ahLeft
       CaptionOptions.Text = 'btnCadastrarPessoa'
       CaptionOptions.Visible = False
@@ -319,8 +323,8 @@ object FormPessoas: TFormPessoas
       ControlOptions.ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem9: TdxLayoutItem
-      Parent = dxLayoutGroup6
+    object LayoutItemBtAtualizar: TdxLayoutItem
+      Parent = LayoutGroupBotoes
       AlignHorz = ahLeft
       CaptionOptions.Text = 'btnAtualizarCadastro'
       CaptionOptions.Visible = False
@@ -330,8 +334,8 @@ object FormPessoas: TFormPessoas
       ControlOptions.ShowBorder = False
       Index = 1
     end
-    object dxLayoutGroup7: TdxLayoutGroup
-      Parent = dxLayoutGroup2
+    object LayoutGroupCampoRelatorios: TdxLayoutGroup
+      Parent = LayoutGroupTodosBotoes
       AlignHorz = ahClient
       AlignVert = avBottom
       CaptionOptions.Text = 'Relat'#243'rio'
@@ -339,17 +343,18 @@ object FormPessoas: TFormPessoas
       LayoutDirection = ldHorizontal
       Index = 1
     end
-    object dxLayoutGroup8: TdxLayoutGroup
-      Parent = dxLayoutGroup7
+    object LayoutGroupBtRelatorios: TdxLayoutGroup
+      Parent = LayoutGroupCampoRelatorios
       AlignVert = avTop
       CaptionOptions.Text = 'Hidden Group'
       ButtonOptions.Buttons = <>
       Hidden = True
+      ItemIndex = 1
       ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem10: TdxLayoutItem
-      Parent = dxLayoutGroup8
+    object LayoutItemBtVisualizar: TdxLayoutItem
+      Parent = LayoutGroupBtRelatorios
       AlignHorz = ahLeft
       CaptionOptions.Text = 'bntVisualizar'
       CaptionOptions.Visible = False
@@ -359,8 +364,8 @@ object FormPessoas: TFormPessoas
       ControlOptions.ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem11: TdxLayoutItem
-      Parent = dxLayoutGroup8
+    object LayoutItemBtImprimir: TdxLayoutItem
+      Parent = LayoutGroupBtRelatorios
       AlignHorz = ahLeft
       CaptionOptions.Text = 'btnImprimir'
       CaptionOptions.Visible = False

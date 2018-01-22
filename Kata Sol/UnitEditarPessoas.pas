@@ -14,7 +14,7 @@ uses
   cxDataStorage, cxNavigator, cxDBData, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGridLevel, cxClasses, cxGridCustomView, cxGrid,
   Vcl.Menus, cxButtons, Vcl.ExtCtrls, dxLayoutControlAdapters,
-  dxLayoutcxEditAdapters, dxLayoutContainer, dxLayoutControl;
+  dxLayoutcxEditAdapters, dxLayoutContainer, dxLayoutControl, ControleUtils;
 
 type
   TFormCriacaoEdicaoPessoas = class(TForm)
@@ -44,29 +44,28 @@ type
     dbGridCriacaoEdicaoPessoasDBTableView1id_cadastro: TcxGridDBColumn;
     dxLayoutControl1Group_Root: TdxLayoutGroup;
     dxLayoutControl1: TdxLayoutControl;
-    dxLayoutGroup1: TdxLayoutGroup;
-    dxLayoutGroup2: TdxLayoutGroup;
-    dxLayoutItem1: TdxLayoutItem;
-    dxLayoutItem3: TdxLayoutItem;
-    dxLayoutItem4: TdxLayoutItem;
-    dxLayoutItem5: TdxLayoutItem;
-    dxLayoutGroup3: TdxLayoutGroup;
-    dxLayoutGroup4: TdxLayoutGroup;
-    dxLayoutGroup5: TdxLayoutGroup;
-    dxLayoutItem6: TdxLayoutItem;
-    dxLayoutItem7: TdxLayoutItem;
-    dxLayoutItem8: TdxLayoutItem;
-    dxLayoutGroup6: TdxLayoutGroup;
-    dxLayoutItem9: TdxLayoutItem;
-    dxLayoutItem10: TdxLayoutItem;
-    dxLayoutItem11: TdxLayoutItem;
-    dxLayoutItem12: TdxLayoutItem;
-    dxLayoutItem13: TdxLayoutItem;
-    dxLayoutImageItem1: TdxLayoutImageItem;
+    LayoutGroupTudoSuperior: TdxLayoutGroup;
+    LayoutGroupBotoes: TdxLayoutGroup;
+    LayoutItemBtNovo: TdxLayoutItem;
+    LayoutItemBtCancelar: TdxLayoutItem;
+    LayoutItemBtSalvar: TdxLayoutItem;
+    LayoutItemBtDeletar: TdxLayoutItem;
+    LayoutGroupFormulario: TdxLayoutGroup;
+    LayoutGroupCampos: TdxLayoutGroup;
+    LayoutGroupCamposSuperior: TdxLayoutGroup;
+    LayoutItemCpStatus: TdxLayoutItem;
+    LayoutItemCpNome: TdxLayoutItem;
+    LayoutItemCpEndereco: TdxLayoutItem;
+    LayoutGroupCamposInferior: TdxLayoutGroup;
+    LayoutItemCpTelefone: TdxLayoutItem;
+    LayoutItemCpCelular: TdxLayoutItem;
+    LayoutItemCpCPFCNPJ: TdxLayoutItem;
+    LayoutItemCpData: TdxLayoutItem;
+    LayoutItemGridPessoas: TdxLayoutItem;
+    LayoutImageItemMiniLogo: TdxLayoutImageItem;
     procedure btnNovaPessoaClick(Sender: TObject);
     procedure btnCancelarPessoasClick(Sender: TObject);
     procedure btnDeletarCadastroClick(Sender: TObject);
-    procedure btnEditarClick(Sender: TObject);
     procedure btnSalvarPessoasClick(Sender: TObject);
     procedure cxDBstatusPessoasFocusChanged(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -81,12 +80,8 @@ type
     procedure DefinirDataSet;
     procedure DeletarPessoa;
     procedure DesabilitarBotoes;
-    procedure EditarPessoa;
     procedure HabilitarBotoes;
     procedure SalvarAlteracoes;
-    procedure ControleDeUsuarioNovaPessoa;
-    procedure ControleDeUsuarioEditarPessoa;
-    procedure ControleDeUsuarioDeletarPessoa;
     procedure ProviderCdsControle;
   public
     ClientesPessoas: TDmClientesPessoas;
@@ -119,11 +114,6 @@ begin
     DeletarPessoa();
 end;
 
-procedure TFormCriacaoEdicaoPessoas.btnEditarClick(Sender: TObject);
-begin
-  EditarPessoa();
-end;
-
 procedure TFormCriacaoEdicaoPessoas.btnSalvarPessoasClick(Sender: TObject);
 begin
   SalvarAlteracoes();
@@ -132,8 +122,6 @@ end;
 procedure TFormCriacaoEdicaoPessoas.CadastrarNovaPessoa;
 begin
   DesabilitarBotoes;
-
-  ControleDeUsuarioNovaPessoa;
 
   ClientesPessoas.cdsPessoas.Insert;
   ClientesPessoas.cdsPessoasid_cadastro.Value := Conexao.Usuario.Id;
@@ -147,33 +135,6 @@ begin
 
   ClientesPessoas.cdsPessoas.Cancel;
   dbGridCriacaoEdicaoPessoas.Enabled := True;
-end;
-
-procedure TFormCriacaoEdicaoPessoas.ControleDeUsuarioDeletarPessoa;
-begin
-  FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value :=
-    ('ID :' + (IntToStr(Conexao.Usuario.Id)) + ' Deletou Pessoa ' +
-    (DateTimeToStr(Now)));
-  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
-end;
-
-procedure TFormCriacaoEdicaoPessoas.ControleDeUsuarioEditarPessoa;
-begin
-  FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value :=
-    ('ID :' + (IntToStr(Conexao.Usuario.Id)) + ' Editou Pessoa ' +
-    (DateTimeToStr(Now)));
-  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
-end;
-
-procedure TFormCriacaoEdicaoPessoas.ControleDeUsuarioNovaPessoa;
-begin
-  FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value :=
-    ('ID :' + (IntToStr(Conexao.Usuario.Id)) + ' Adicionou Nova Pessoa ' +
-    (DateTimeToStr(Now)));
-  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
 end;
 
 constructor TFormCriacaoEdicaoPessoas.Create(AOwner: TComponent);
@@ -213,13 +174,15 @@ begin
 end;
 
 procedure TFormCriacaoEdicaoPessoas.DeletarPessoa;
+const
+  DeletarPessoa = ' Deletou Pessoa ';
 begin
-  if MessageDlg('Deseja realmente deletar essa tarefa ?', mtInformation,
+  if MessageDlg('Deseja realmente deletar essa Pessoa ?', mtInformation,
     [mbYes, mbNo], 0) = mrYes then
   begin
     ClientesPessoas.cdsPessoas.Delete;
     ClientesPessoas.cdsPessoas.ApplyUpdates(0);
-    ControleDeUsuarioDeletarPessoa;
+    ControleUtils.TControleUtils.SalvarLog(DeletarPessoa);
   end;
 end;
 
@@ -227,15 +190,6 @@ procedure TFormCriacaoEdicaoPessoas.DesabilitarBotoes;
 begin
   btnNovaPessoa.Enabled := False;
   btnDeletarCadastro.Enabled := False;
-end;
-
-procedure TFormCriacaoEdicaoPessoas.EditarPessoa;
-begin
-  DesabilitarBotoes;
-
-  ControleDeUsuarioEditarPessoa;
-
-  dbGridCriacaoEdicaoPessoas.Enabled := False;
 end;
 
 procedure TFormCriacaoEdicaoPessoas.FormClose(Sender: TObject;
@@ -269,12 +223,17 @@ begin
 end;
 
 procedure TFormCriacaoEdicaoPessoas.SalvarAlteracoes;
+const
+  NovaPessoa = ' Adicionou Nova Pessoa ';
+  EditarPessoa = ' Editou Pessoa ';
 begin
-  if (ClientesPessoas.cdsPessoas.State = dsEdit) or
-    (ClientesPessoas.cdsPessoas.State = dsInsert) then
+  if ClientesPessoas.cdsPessoas.State = dsInsert then
   begin
     try
       ClientesPessoas.cdsPessoas.ApplyUpdates(0);
+
+      ControleUtils.TControleUtils.SalvarLog(NovaPessoa);
+
       dbGridCriacaoEdicaoPessoas.Enabled := True;
       ClientesPessoas.cdsPessoas.Refresh;
       HabilitarBotoes;
@@ -285,6 +244,26 @@ begin
         ShowMessage(E.Message);
         Abort;
       end;
+
+    end;
+  end
+  else if ClientesPessoas.cdsPessoas.State = dsEdit then
+  begin
+    try
+      ClientesPessoas.cdsPessoas.ApplyUpdates(0);
+
+      ControleUtils.TControleUtils.SalvarLog(EditarPessoa);
+
+      dbGridCriacaoEdicaoPessoas.Enabled := True;
+      ClientesPessoas.cdsPessoas.Refresh;
+    except
+      on E: EvalidationError do
+      begin
+        TValidacaoUtils.FocarCampos(Self, E.FieldName);
+        ShowMessage(E.Message);
+        Abort;
+      end;
+
     end;
   end;
 end;

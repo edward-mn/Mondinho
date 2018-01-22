@@ -139,6 +139,7 @@ object FormTarefas: TFormTarefas
         end
         object dbGridTarefasDBTableView1id_cadastro: TcxGridDBColumn
           DataBinding.FieldName = 'id_cadastro'
+          Visible = False
         end
       end
       object dbGridTarefasLevel1: TcxGridLevel
@@ -155,7 +156,7 @@ object FormTarefas: TFormTarefas
       ShowBorder = False
       Index = -1
     end
-    object dxLayoutGroup1: TdxLayoutGroup
+    object LayoutGroupTarefas: TdxLayoutGroup
       Parent = dxLayoutControl1Group_Root
       AlignHorz = ahClient
       AlignVert = avClient
@@ -165,8 +166,8 @@ object FormTarefas: TFormTarefas
       ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem1: TdxLayoutItem
-      Parent = dxLayoutGroup1
+    object LayoutGridTarefas: TdxLayoutItem
+      Parent = LayoutGroupTarefas
       AlignHorz = ahClient
       AlignVert = avClient
       CaptionOptions.Text = 'dbGridTarefas'
@@ -177,7 +178,7 @@ object FormTarefas: TFormTarefas
       ControlOptions.ShowBorder = False
       Index = 0
     end
-    object dxLayoutGroup2: TdxLayoutGroup
+    object LayoutGroupTodosBotoes: TdxLayoutGroup
       Parent = dxLayoutControl1Group_Root
       AlignHorz = ahRight
       AlignVert = avClient
@@ -186,8 +187,8 @@ object FormTarefas: TFormTarefas
       ItemIndex = 1
       Index = 1
     end
-    object dxLayoutGroup3: TdxLayoutGroup
-      Parent = dxLayoutGroup2
+    object LayoutGroupDireitoDentro: TdxLayoutGroup
+      Parent = LayoutGroupTodosBotoes
       AlignHorz = ahClient
       AlignVert = avClient
       CaptionOptions.Text = 'Hidden Group'
@@ -197,8 +198,8 @@ object FormTarefas: TFormTarefas
       ShowBorder = False
       Index = 0
     end
-    object dxLayoutGroup4: TdxLayoutGroup
-      Parent = dxLayoutGroup3
+    object LayoutGroupSuperiorDireito: TdxLayoutGroup
+      Parent = LayoutGroupDireitoDentro
       AlignVert = avTop
       CaptionOptions.Text = 'Hidden Group'
       ButtonOptions.Buttons = <>
@@ -207,8 +208,8 @@ object FormTarefas: TFormTarefas
       ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem2: TdxLayoutItem
-      Parent = dxLayoutGroup4
+    object LayoutItemChAgendada: TdxLayoutItem
+      Parent = LayoutGroupSuperiorDireito
       AlignHorz = ahLeft
       CaptionOptions.Text = 'cbAgendada'
       CaptionOptions.Visible = False
@@ -219,8 +220,8 @@ object FormTarefas: TFormTarefas
       ControlOptions.ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem3: TdxLayoutItem
-      Parent = dxLayoutGroup4
+    object LayoutItemChAdiada: TdxLayoutItem
+      Parent = LayoutGroupSuperiorDireito
       AlignHorz = ahLeft
       CaptionOptions.Text = 'cbAdiadas'
       CaptionOptions.Visible = False
@@ -231,8 +232,8 @@ object FormTarefas: TFormTarefas
       ControlOptions.ShowBorder = False
       Index = 1
     end
-    object dxLayoutItem4: TdxLayoutItem
-      Parent = dxLayoutGroup4
+    object LayoutItemChFinalizada: TdxLayoutItem
+      Parent = LayoutGroupSuperiorDireito
       AlignHorz = ahLeft
       CaptionOptions.Text = 'cbFinalizadas'
       CaptionOptions.Visible = False
@@ -243,8 +244,8 @@ object FormTarefas: TFormTarefas
       ControlOptions.ShowBorder = False
       Index = 2
     end
-    object dxLayoutItem5: TdxLayoutItem
-      Parent = dxLayoutGroup4
+    object LayoutItemChAtrasada: TdxLayoutItem
+      Parent = LayoutGroupSuperiorDireito
       AlignHorz = ahLeft
       CaptionOptions.Text = 'cbAtrasadas'
       CaptionOptions.Visible = False
@@ -255,8 +256,8 @@ object FormTarefas: TFormTarefas
       ControlOptions.ShowBorder = False
       Index = 3
     end
-    object dxLayoutItem6: TdxLayoutItem
-      Parent = dxLayoutGroup4
+    object LayoutItemBtPesquisar: TdxLayoutItem
+      Parent = LayoutGroupSuperiorDireito
       AlignHorz = ahLeft
       CaptionOptions.Text = 'btnPesquisar'
       CaptionOptions.Visible = False
@@ -266,16 +267,16 @@ object FormTarefas: TFormTarefas
       ControlOptions.ShowBorder = False
       Index = 4
     end
-    object dxLayoutGroup5: TdxLayoutGroup
-      Parent = dxLayoutGroup4
+    object LayoutGroupCampoTarefas: TdxLayoutGroup
+      Parent = LayoutGroupSuperiorDireito
       AlignHorz = ahLeft
       CaptionOptions.Text = 'Tarefas'
       ButtonOptions.Buttons = <>
       LayoutDirection = ldHorizontal
       Index = 5
     end
-    object dxLayoutGroup6: TdxLayoutGroup
-      Parent = dxLayoutGroup5
+    object LayoutGroupBotoes: TdxLayoutGroup
+      Parent = LayoutGroupCampoTarefas
       AlignVert = avTop
       CaptionOptions.Text = 'Hidden Group'
       ButtonOptions.Buttons = <>
@@ -284,8 +285,8 @@ object FormTarefas: TFormTarefas
       ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem7: TdxLayoutItem
-      Parent = dxLayoutGroup6
+    object LayoutItemBtEdtRegistro: TdxLayoutItem
+      Parent = LayoutGroupBotoes
       AlignHorz = ahLeft
       CaptionOptions.Text = 'btnCriarTarefa'
       CaptionOptions.Visible = False
@@ -295,8 +296,8 @@ object FormTarefas: TFormTarefas
       ControlOptions.ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem8: TdxLayoutItem
-      Parent = dxLayoutGroup6
+    object LayoutItemBtAtualizar: TdxLayoutItem
+      Parent = LayoutGroupBotoes
       AlignHorz = ahLeft
       CaptionOptions.Text = 'btnAtualizarTarefa'
       CaptionOptions.Visible = False
@@ -306,8 +307,8 @@ object FormTarefas: TFormTarefas
       ControlOptions.ShowBorder = False
       Index = 1
     end
-    object dxLayoutGroup7: TdxLayoutGroup
-      Parent = dxLayoutGroup2
+    object LayoutGroupCampoRelatorios: TdxLayoutGroup
+      Parent = LayoutGroupTodosBotoes
       AlignHorz = ahClient
       AlignVert = avBottom
       CaptionOptions.Text = 'Relat'#243'rio'
@@ -315,8 +316,8 @@ object FormTarefas: TFormTarefas
       LayoutDirection = ldHorizontal
       Index = 1
     end
-    object dxLayoutGroup8: TdxLayoutGroup
-      Parent = dxLayoutGroup7
+    object LayoutGroupBtRelatorios: TdxLayoutGroup
+      Parent = LayoutGroupCampoRelatorios
       AlignVert = avTop
       CaptionOptions.Text = 'Hidden Group'
       ButtonOptions.Buttons = <>
@@ -325,8 +326,8 @@ object FormTarefas: TFormTarefas
       ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem9: TdxLayoutItem
-      Parent = dxLayoutGroup8
+    object LayoutItemBtVisualizar: TdxLayoutItem
+      Parent = LayoutGroupBtRelatorios
       AlignHorz = ahLeft
       CaptionOptions.Text = 'btnVisualizar'
       CaptionOptions.Visible = False
@@ -336,8 +337,8 @@ object FormTarefas: TFormTarefas
       ControlOptions.ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem10: TdxLayoutItem
-      Parent = dxLayoutGroup8
+    object LayoutItemBtImprimir: TdxLayoutItem
+      Parent = LayoutGroupBtRelatorios
       AlignHorz = ahLeft
       CaptionOptions.Text = 'btnImprimir'
       CaptionOptions.Visible = False

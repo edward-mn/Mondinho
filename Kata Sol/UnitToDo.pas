@@ -16,7 +16,7 @@ uses
   cxEdit, cxNavigator, cxDBData, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid,
   DataModuleVendasValorTotal, DataModuleVendasQuantidade, Vcl.Menus, cxButtons,
-  Datasnap.DBClient, cxMemo;
+  Datasnap.DBClient, cxMemo, ControleUtils;
 
 type
   TFormView = class(TForm)
@@ -74,11 +74,9 @@ type
   private
     FClientesCadastro: TDmClientesCadastro;
     FClientesControle: TDmControleDeUsuario;
-    FClientesVendasTotalDeVendas : TDmVendasValorTotal;
-    FClientesVendasQuantidade : TDmVendasQuantidade;
+    FClientesVendasTotalDeVendas: TDmVendasValorTotal;
+    FClientesVendasQuantidade: TDmVendasQuantidade;
     procedure Logout;
-    procedure ControleDeUsuarioLogin;
-    procedure ControleDeUsuarioLogout;
     procedure ProviderControle;
     procedure ProviderVendasValorTotal;
     procedure ProviderVendasQuantidade;
@@ -139,27 +137,6 @@ begin
   Logout;
 end;
 
-procedure TFormView.ControleDeUsuarioLogin;
-begin
-  FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value :=
-    ('ID :' + (IntToStr(ID_Login)) + ' Se Conectou' + (DateTimeToStr(Now)));
-  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
-  FClientesControle.cdsControleDeUsuario.Close;
-end;
-
-procedure TFormView.ControleDeUsuarioLogout;
-begin
-  ProviderControle;
-  FClientesControle.cdsControleDeUsuario.Open;
-  FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value :=
-    ('ID :' + (IntToStr(ID_Login)) + ' Se Desconectou'
-     + (DateTimeToStr(Now)));
-  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
-  FClientesControle.cdsControleDeUsuario.Close;
-end;
-
 procedure TFormView.CriarAba(AbaForm: TFormClass; AbaNome: String);
 var
   Item: TdxLayoutItem;
@@ -193,8 +170,10 @@ begin
 end;
 
 procedure TFormView.FormClose(Sender: TObject; var Action: TCloseAction);
+const
+  Desconectar = ' Se Desconectou ';
 begin
-  ControleDeUsuarioLogout;
+  ControleUtils.TControleUtils.SalvarLog(Desconectar);
 end;
 
 procedure TFormView.DefinirDataSet;
@@ -215,8 +194,10 @@ begin
 end;
 
 procedure TFormView.FormShow(Sender: TObject);
+const
+  Logar = ' Se Conectou ';
 begin
-  ControleDeUsuarioLogin;
+  ControleUtils.TControleUtils.SalvarLog(Logar);
   GridViewVendedoresPorValor.DataController.Groups.FullExpand;
   GridQuantidadeDBTableView1.DataController.Groups.FullExpand;
 end;
@@ -232,17 +213,20 @@ end;
 
 procedure TFormView.ProviderControle;
 begin
-  FClientesControle.cdsControleDeUsuario.SetProvider(Conexao.sqlProviderControle);
+  FClientesControle.cdsControleDeUsuario.SetProvider
+    (Conexao.sqlProviderControle);
 end;
 
 procedure TFormView.ProviderVendasQuantidade;
 begin
-  FClientesVendasQuantidade.cdsVendasQuantidade.SetProvider(Conexao.sqlProviderQuantidadeVendas);
+  FClientesVendasQuantidade.cdsVendasQuantidade.SetProvider
+    (Conexao.sqlProviderQuantidadeVendas);
 end;
 
 procedure TFormView.ProviderVendasValorTotal;
 begin
-  FClientesVendasTotalDeVendas.cdsVendasValorTotal.SetProvider(Conexao.sqlProviderVendasValorTotal);
+  FClientesVendasTotalDeVendas.cdsVendasValorTotal.SetProvider
+    (Conexao.sqlProviderVendasValorTotal);
 end;
 
 end.

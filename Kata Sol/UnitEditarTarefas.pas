@@ -15,7 +15,7 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGridLevel,
   cxClasses, cxGridCustomView, cxGrid, Vcl.Menus, cxButtons,
   dxLayoutControlAdapters, dxLayoutcxEditAdapters, dxLayoutContainer,
-  dxLayoutControl;
+  dxLayoutControl, ControleUtils;
 
 type
   TFormEditarTarefas = class(TForm)
@@ -40,54 +40,47 @@ type
     btnAdiarTarefa: TcxButton;
     dxLayoutControl1Group_Root: TdxLayoutGroup;
     dxLayoutControl1: TdxLayoutControl;
-    dxLayoutGroup1: TdxLayoutGroup;
-    dxLayoutGroup2: TdxLayoutGroup;
-    dxLayoutItem1: TdxLayoutItem;
-    dxLayoutItem3: TdxLayoutItem;
-    dxLayoutItem4: TdxLayoutItem;
-    dxLayoutItem5: TdxLayoutItem;
-    dxLayoutItem6: TdxLayoutItem;
-    dxLayoutGroup3: TdxLayoutGroup;
-    dxLayoutGroup4: TdxLayoutGroup;
-    dxLayoutGroup5: TdxLayoutGroup;
-    dxLayoutGroup6: TdxLayoutGroup;
-    dxLayoutGroup7: TdxLayoutGroup;
-    dxLayoutItem7: TdxLayoutItem;
-    dxLayoutItem8: TdxLayoutItem;
-    dxLayoutItem9: TdxLayoutItem;
-    dxLayoutItem10: TdxLayoutItem;
-    dxLayoutItem11: TdxLayoutItem;
-    sdasdy9ywew: TdxLayoutImageItem;
+    LayoutGroupTudoSuperior: TdxLayoutGroup;
+    LayoutGroupBotoes: TdxLayoutGroup;
+    LayoutItemBtNovo: TdxLayoutItem;
+    LayoutItemBtCancelar: TdxLayoutItem;
+    LayoutItemBtSalvar: TdxLayoutItem;
+    LayoutItemBtDeletar: TdxLayoutItem;
+    LayoutItemBtAdiarTarefa: TdxLayoutItem;
+    LayoutGroupFormulario: TdxLayoutGroup;
+    LayoutGroupCampos: TdxLayoutGroup;
+    LayoutGroupCamposSuperior: TdxLayoutGroup;
+    LayoutItemCpStatus: TdxLayoutItem;
+    LayoutItemCpNome: TdxLayoutItem;
+    LayoutItemCpTarefas: TdxLayoutItem;
+    LayoutItemCpData: TdxLayoutItem;
+    LayoutGridTarefas: TdxLayoutItem;
+    LayoutImageItemMiniLogo: TdxLayoutImageItem;
     procedure btnAdiarTarefaClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure btnAtualizarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnDeletarTarefaClick(Sender: TObject);
-    procedure btnEditarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
   private
-    FClientesControle : TDmControleDeUsuario;
+    FClientesControle: TDmControleDeUsuario;
     procedure AdiarTarefa;
     procedure ArmazenarDataAnterior;
     procedure AtualizarLista;
     procedure CancelarTarefa;
-    procedure ControleDeUsuarioNovaTarefa;
-    procedure ControleDeUsuarioEditarTarefa;
-    procedure ControleDeUsuarioDeletarTarefa;
     procedure ProviderCdsControle;
     procedure DefinirDataSet;
     procedure DeletarTarefa;
     procedure DesabilitarBotoes;
     procedure HabilitarBotoes;
-    procedure EditarTarefa;
     procedure NovaTarefa;
     procedure SalvarTarefa;
   public
-    ClientesTarefas : TDmClientesTarefas;
-    DataAntiga : TDateTime;
-    Trigger : Boolean;
+    ClientesTarefas: TDmClientesTarefas;
+    DataAntiga: TDateTime;
+    Trigger: Boolean;
     constructor Create(AOwner: TComponent); override;
   end;
 
@@ -145,11 +138,6 @@ begin
     DeletarTarefa();
 end;
 
-procedure TFormEditarTarefas.btnEditarClick(Sender: TObject);
-begin
-  EditarTarefa();
-end;
-
 procedure TFormEditarTarefas.btnSalvarClick(Sender: TObject);
 begin
   AdiarTarefa();
@@ -174,8 +162,8 @@ begin
 
     if DataAntiga <> cbData.Date then
     begin
-    ClientesTarefas.cdsToDostatus.text := 'Adiada';
-    dbGridCriacaoEdicao.Enabled := True;
+      ClientesTarefas.cdsToDostatus.text := 'Adiada';
+      dbGridCriacaoEdicao.Enabled := True;
 
       HabilitarBotoes;
 
@@ -199,30 +187,6 @@ begin
   ArmazenarDataAnterior;
 end;
 
-procedure TFormEditarTarefas.ControleDeUsuarioDeletarTarefa;
-begin
-  FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(Conexao.Usuario.Id)) +
-     ' Deletou Tarefa ' + (DateTimeToStr(Now)));
-  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
-end;
-
-procedure TFormEditarTarefas.ControleDeUsuarioEditarTarefa;
-begin
-  FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(Conexao.Usuario.Id)) +
-     ' Editou Tarefa ' + (DateTimeToStr(Now)));
-  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
-end;
-
-procedure TFormEditarTarefas.ControleDeUsuarioNovaTarefa;
-begin
-  FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(Conexao.Usuario.Id)) +
-     ' Adicionou Nova Tarefa ' + (DateTimeToStr(Now)));
-  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
-end;
-
 procedure TFormEditarTarefas.ProviderCdsControle;
 begin
   FClientesControle.cdsControleDeUsuario.SetProvider(Conexao.sqlQueryControle);
@@ -236,13 +200,15 @@ begin
 end;
 
 procedure TFormEditarTarefas.DeletarTarefa;
+const
+  DeletarTarefa = ' Deletou Tarefa ';
 begin
   if MessageDlg('Deseja realmente deletar essa tarefa ?', mtInformation,
     [mbYes, mbNo], 0) = mrYes then
   begin
     ClientesTarefas.cdsToDo.Delete;
     ClientesTarefas.cdsToDo.ApplyUpdates(0);
-    ControleDeUsuarioDeletarTarefa;
+    ControleUtils.TControleUtils.SalvarLog(DeletarTarefa);
   end;
 end;
 
@@ -251,16 +217,6 @@ begin
   btnNovo.Enabled := False;
   btnDeletarTarefa.Enabled := False;
   btnAdiarTarefa.Enabled := False;
-end;
-
-procedure TFormEditarTarefas.EditarTarefa;
-begin
-  DesabilitarBotoes;
-
-  ControleDeUsuarioEditarTarefa;
-
-  cbData.Enabled := True;
-  dbGridCriacaoEdicao.Enabled := False;
 end;
 
 procedure TFormEditarTarefas.FormClose(Sender: TObject;
@@ -288,8 +244,6 @@ procedure TFormEditarTarefas.NovaTarefa;
 begin
   DesabilitarBotoes;
 
-  ControleDeUsuarioNovaTarefa;
-
   ClientesTarefas.cdsToDo.Insert;
   ClientesTarefas.cdsToDoid_cadastro.Value := Conexao.Usuario.Id;
   cbData.Enabled := True;
@@ -298,12 +252,17 @@ begin
 end;
 
 procedure TFormEditarTarefas.SalvarTarefa;
+const
+  NovaTarefa = ' Adicionou Nova Tarefa ';
+  EditarTarefa = ' Editou Tarefa ';
 begin
-  if (ClientesTarefas.cdsToDo.State = dsEdit) or
-    (ClientesTarefas.cdsToDo.State = dsInsert) then
+  if ClientesTarefas.cdsToDo.State = dsInsert then
   begin
     try
       ClientesTarefas.cdsToDo.ApplyUpdates(0);
+
+      ControleUtils.TControleUtils.SalvarLog(NovaTarefa);
+      
       dbGridCriacaoEdicao.Enabled := True;
       cbData.Enabled := True;
       ClientesTarefas.cdsToDo.Refresh;
@@ -316,7 +275,28 @@ begin
         Abort;
       end;
     end;
+  end
+  else if ClientesTarefas.cdsToDo.State = dsEdit then
+  begin
+    try
+      ClientesTarefas.cdsToDo.ApplyUpdates(0);
+
+      ControleUtils.TControleUtils.SalvarLog(EditarTarefa);
+      
+      dbGridCriacaoEdicao.Enabled := True;
+      cbData.Enabled := True;
+      ClientesTarefas.cdsToDo.Refresh;
+    except
+      on E: EvalidationError do
+      begin
+        TValidacaoUtils.FocarCampos(Self, E.FieldName);
+        ShowMessage(E.Message);
+        Abort;
+      end;
+
+    end;
   end;
+
 end;
 
 end.

@@ -62,6 +62,8 @@ end;
 
 procedure TFormCadastro.Cadastrar;
 begin
+  if (DBEdtUsuario.Text = '') and (DBEdtSenha.Text = '') then
+    raise Exception.Create('Campos Usuario e Senha em Branco.');
 
   if UsuarioJaCadastrado then
     raise Exception.Create('Usuario já Existente.');
@@ -71,9 +73,6 @@ begin
 
   if (DBEdtSenha.Text = '') then
     raise Exception.Create('Campo Senha em Branco.');
-
-  if (DBEdtUsuario.Text = '') or (DBEdtSenha.Text = '') then
-    raise Exception.Create('Campos Usuario e Senha em Branco.');
 
   if edtSenhaNovamente.Text = '' then
     raise Exception.Create('É Necessario Digitar a senha novamente Senha.');
