@@ -9,7 +9,6 @@ uses
 type
   TTestVendas = class(TTestCase)
   published
-
   procedure TelaVendas_FiltroStatus_Aberta;
   procedure TelaVendas_FiltroStatus_Finalizada;
   procedure TelaVendas_FiltroStatus_Excluida;
@@ -32,163 +31,152 @@ type
 
   end;
   var
-  FiltroVendas, Esperado: string;
+  Esperado: string;
 
 implementation
 
 { TTestVendas }
 
+
 procedure TTestVendas.TelaVendas_FiltroStatus_Aberta;
 begin
-  FiltroVendas := '';
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusAberta);
+  FiltroVenda := '';
+  TFuncoesVendas.Filtrar(StatusAberta);
 
   Esperado := 'Status = ''Aberta''';
 
-  CheckEqualsString(Esperado, FiltroVendas);
+  CheckEqualsString(Esperado, FiltroVenda);
 end;
 
 procedure TTestVendas.TelaVendas_FiltroStatus_AbertaECancelada;
 begin
-  FiltroVendas := '';
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusAberta);
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusCancelada);
+  FiltroVenda := '';
+  TFuncoesVendas.Filtrar(StatusAberta,StatusCancelada);
 
   Esperado := 'Status = ''Aberta'' or Status = ''Cancelada''';
 
-  CheckEqualsString(Esperado, FiltroVendas);
+  CheckEqualsString(Esperado, FiltroVenda);
 end;
 
 procedure TTestVendas.TelaVendas_FiltroStatus_AbertaEExcluida;
 begin
-  FiltroVendas := '';
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusAberta);
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusExcluida);
+  FiltroVenda := '';
+  TFuncoesVendas.Filtrar(StatusAberta,StatusExcluida);
 
   Esperado := 'Status = ''Aberta'' or Status = ''Excluida''';
 
-  CheckEqualsString(Esperado, FiltroVendas);
+  CheckEqualsString(Esperado, FiltroVenda);
 end;
 
 procedure TTestVendas.TelaVendas_FiltroStatus_AbertaEFinalizada;
 begin
-  FiltroVendas := '';
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusAberta);
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusFinalizada);
+  FiltroVenda := '';
+  TFuncoesVendas.Filtrar(StatusAberta,StatusFinalizada);
 
   Esperado := 'Status = ''Aberta'' or Status = ''Finalizada''';
 
-  CheckEqualsString(Esperado, FiltroVendas);
+  CheckEqualsString(Esperado, FiltroVenda);
 end;
 
 procedure TTestVendas.TelaVendas_FiltroStatus_AbertaEFinalizadaECancelada;
 begin
-  FiltroVendas := '';
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusAberta);
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusFinalizada);
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusCancelada);
+  FiltroVenda := '';
+  TFuncoesVendas.Filtrar(StatusAberta,StatusFinalizada,StatusCancelada);
 
   Esperado := 'Status = ''Aberta'' or Status = ''Finalizada'' or Status = ''Cancelada''';
 
-  CheckEqualsString(Esperado, FiltroVendas);
+  CheckEqualsString(Esperado, FiltroVenda);
 end;
 
 procedure TTestVendas.TelaVendas_FiltroStatus_AbertaEFinalizadaEExcluida;
 begin
-  FiltroVendas := '';
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusFinalizada);
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusExcluida);
+  FiltroVenda := '';
+  TFuncoesVendas.Filtrar(StatusFinalizada,StatusExcluida);
 
   Esperado := 'Status = ''Finalizada'' or Status = ''Excluida''';
 
-  CheckEqualsString(Esperado, FiltroVendas);
+  CheckEqualsString(Esperado, FiltroVenda);
 end;
 
 procedure TTestVendas.TelaVendas_FiltroStatus_AbertaEFinalizadaEExcluidaECancelada;
 begin
-  FiltroVendas := '';
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusAberta);
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusFinalizada);
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusExcluida);
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusCancelada);
+  FiltroVenda := '';
+  TFuncoesVendas.Filtrar(StatusAberta,StatusFinalizada,StatusExcluida,StatusCancelada);
+
   Esperado := 'Status = ''Aberta'' or Status = ''Finalizada'' or Status = ''Excluida'' or Status = ''Cancelada''';
 
-  CheckEqualsString(Esperado, FiltroVendas);
+  CheckEqualsString(Esperado, FiltroVenda);
 end;
 
 procedure TTestVendas.TelaVendas_FiltroStatus_Canceladada;
 begin
-  FiltroVendas := '';
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusCancelada);
+  FiltroVenda := '';
+  TFuncoesVendas.Filtrar(StatusCancelada);
 
   Esperado := 'Status = ''Cancelada''';
 
-  CheckEqualsString(Esperado, FiltroVendas);
+  CheckEqualsString(Esperado, FiltroVenda);
 end;
 
 procedure TTestVendas.TelaVendas_FiltroStatus_Excluida;
 begin
-  FiltroVendas := '';
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusExcluida);
+  FiltroVenda := '';
+  TFuncoesVendas.Filtrar(StatusExcluida);
 
   Esperado := 'Status = ''Excluida''';
 
-  CheckEqualsString(Esperado, FiltroVendas);
+  CheckEqualsString(Esperado, FiltroVenda);
 end;
 
 procedure TTestVendas.TelaVendas_FiltroStatus_ExcluidaECancelada;
 begin
-  FiltroVendas := '';
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusExcluida);
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusCancelada);
+  FiltroVenda := '';
+  TFuncoesVendas.Filtrar(StatusExcluida,StatusCancelada);
 
   Esperado := 'Status = ''Excluida'' or Status = ''Cancelada''';
 
-  CheckEqualsString(Esperado, FiltroVendas);
+  CheckEqualsString(Esperado, FiltroVenda);
 end;
 
 procedure TTestVendas.TelaVendas_FiltroStatus_Finalizada;
 begin
-  FiltroVendas := '';
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusFinalizada);
+  FiltroVenda := '';
+
+  TFuncoesVendas.Filtrar(StatusFinalizada);
 
   Esperado := 'Status = ''Finalizada''';
 
-  CheckEqualsString(Esperado, FiltroVendas);
+  CheckEqualsString(Esperado, FiltroVenda);
 end;
 
 procedure TTestVendas.TelaVendas_FiltroStatus_FinalizadaECancelada;
 begin
-  FiltroVendas := '';
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusFinalizada);
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusCancelada);
+  FiltroVenda := '';
+  TFuncoesVendas.Filtrar(StatusFinalizada,StatusCancelada);
 
   Esperado := 'Status = ''Finalizada'' or Status = ''Cancelada''';
 
-  CheckEqualsString(Esperado, FiltroVendas);
+  CheckEqualsString(Esperado, FiltroVenda);
 end;
 
 procedure TTestVendas.TelaVendas_FiltroStatus_FinalizadaEExcluida;
 begin
-  FiltroVendas := '';
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusFinalizada);
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusExcluida);
+  FiltroVenda := '';
+  TFuncoesVendas.Filtrar(StatusFinalizada,StatusExcluida);
 
   Esperado := 'Status = ''Finalizada'' or Status = ''Excluida''';
 
-  CheckEqualsString(Esperado, FiltroVendas);
+  CheckEqualsString(Esperado, FiltroVenda);
 end;
 
 procedure TTestVendas.TelaVendas_FiltroStatus_FinalizadaEExcluidaECancelada;
 begin
-  FiltroVendas := '';
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusFinalizada);
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusExcluida);
-  FiltroVendas := TFuncoesVendas.FiltroVendas(FiltroVendas, StatusCancelada);
+  FiltroVenda := '';
+  TFuncoesVendas.Filtrar(StatusFinalizada,StatusExcluida,StatusCancelada);
 
   Esperado := 'Status = ''Finalizada'' or Status = ''Excluida'' or Status = ''Cancelada''';
 
-  CheckEqualsString(Esperado, FiltroVendas);
+  CheckEqualsString(Esperado, FiltroVenda);
 end;
 
 initialization

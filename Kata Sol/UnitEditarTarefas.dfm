@@ -33,11 +33,8 @@ object FormEditarTarefas: TFormEditarTarefas
       DataBinding.DataSource = dsCriarTarefas
       Properties.DropDownListStyle = lsEditFixedList
       Properties.Items.Strings = (
-        'Fisica'
-        'Juridica'
-        'Vendedor'
-        'Empresa'
-        'Usuario do Sistema')
+        'Agendada'
+        'Finalizada')
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False

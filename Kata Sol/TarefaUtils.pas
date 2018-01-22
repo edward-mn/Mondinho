@@ -7,6 +7,11 @@ uses
   DataModuleClientesTarefas;
 
 const
+  Status1 = '';
+  Status2 = '';
+  Status3 = '';
+  Status4 = '';
+
   StatusFinalizada = 'Finalizada';
   StatusAdiada = 'Adiada';
   StatusAgendada = 'Agendada';
@@ -19,14 +24,18 @@ type
     class function StatusToDo(Status : String) : String;
     class function Calendario(Dia : TDateTime) : String;
     class function Tarefas(Tarefa : String) : String;
-    class function FiltroStatus(const FiltroAtual: string; StatusDoFiltro: String) : string;
+    class function FiltroStatus(FiltroAtual: string;
+  Status1: String; Status2: String = ''; Status3: String = '';
+  Status4: String = ''): string;
+    class procedure Filtrar(Status1: String; Status2: String = '';
+    Status3: String = '';Status4: String = '');
   public
     Clientes: TDmClientesTarefas;
 
   end;
 
 var
-  Filtro: String;
+  FiltroTarefa: String;
   TTarefas: TFormTarefas;
 
 const
@@ -53,8 +62,14 @@ begin
     Result := 'DataInvalida';
 end;
 
-class function TFuncoesToDo.FiltroStatus(const FiltroAtual: string;
-    StatusDoFiltro: String): string;
+class procedure TFuncoesToDo.Filtrar(Status1: String; Status2: String = '';Status3: String = '';Status4: String = '');
+begin
+  FiltroTarefa := TFuncoesToDo.FiltroStatus(FiltroTarefa,Status1,Status2,Status3,Status4);
+end;
+
+class function TFuncoesToDo.FiltroStatus(FiltroAtual: string;
+  Status1: String; Status2: String = ''; Status3: String = '';
+  Status4: String = ''): string;
 
   procedure AdicionarStatus(Box: String);
   begin
@@ -67,16 +82,20 @@ class function TFuncoesToDo.FiltroStatus(const FiltroAtual: string;
 begin
   Result := FiltroAtual;
 
-  if StatusDoFiltro = StatusAtrasada then
+  if (Status1 = StatusAtrasada) or (Status2 = StatusAtrasada) or
+    (Status3 = StatusAtrasada) or (Status4 = StatusAtrasada) then
     AdicionarStatus(BoxAtrasada);
 
-  if StatusDoFiltro = StatusAgendada then
+  if (Status1 = StatusAgendada) or (Status2 = StatusAgendada) or
+    (Status3 = StatusAgendada) or (Status4 = StatusAgendada) then
     AdicionarStatus(BoxAgendada);
 
-  if StatusDoFiltro = StatusAdiada then
+  if (Status1 = StatusAdiada) or (Status2 = StatusAdiada) or
+    (Status3 = StatusAdiada) or (Status4 = StatusAdiada) then
     AdicionarStatus(BoxAdiada);
 
-  if StatusDoFiltro = StatusFinalizada then
+  if (Status1 = StatusFinalizada) or (Status2 = StatusFinalizada) or
+    (Status3 = StatusFinalizada) or (Status4 = StatusFinalizada) then
     AdicionarStatus(BoxFinalizada);
 
 end;
