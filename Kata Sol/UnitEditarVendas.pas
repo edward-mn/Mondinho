@@ -3,7 +3,8 @@ unit UnitEditarVendas;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB,
   DataModuleConexao, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.Mask,
   Vcl.DBCtrls, System.UITypes, cxGraphics, cxControls, cxLookAndFeels,
@@ -79,8 +80,8 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
   private
-    FVendedores : TDmClienteVendedores;
-    FClientesControle : TDmControleDeUsuario;
+    FVendedores: TDmClienteVendedores;
+    FClientesControle: TDmControleDeUsuario;
     procedure FinalizarVenda;
     procedure CancelarVenda;
     procedure CriarNovaVenda;
@@ -97,9 +98,10 @@ type
     procedure ControleDeUsuarioDeletarVenda;
     procedure ProviderVendedor;
     procedure ProviderCdsControle;
-    function CalcularValorTotal(Quantidade : integer;ValorUnit : Currency): Currency;
+    function CalcularValorTotal(Quantidade: integer; ValorUnit: Currency)
+      : Currency;
   public
-    ClientesVendas : TDmClienteVendas;
+    ClientesVendas: TDmClienteVendas;
     constructor Create(AOwner: TComponent); override;
   end;
 
@@ -139,9 +141,10 @@ begin
   SalvarVenda;
 end;
 
-function TFormEditarVendas.CalcularValorTotal(Quantidade: integer; ValorUnit: Currency): Currency;
+function TFormEditarVendas.CalcularValorTotal(Quantidade: integer;
+  ValorUnit: Currency): Currency;
 begin
-  Result := Quantidade * ValorUnit ;
+  Result := Quantidade * ValorUnit;
   ClientesVendas.cdsVendasvalor_total.Value := Result;
 end;
 
@@ -156,24 +159,27 @@ end;
 procedure TFormEditarVendas.ControleDeUsuarioDeletarVenda;
 begin
   FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(Conexao.Usuario.Id)) +
-     ' Deletou Venda ' + (DateTimeToStr(Now)));
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value :=
+    ('ID :' + (IntToStr(Conexao.Usuario.Id)) + ' Deletou Venda ' +
+    (DateTimeToStr(Now)));
   FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
 end;
 
 procedure TFormEditarVendas.ControleDeUsuarioEditarVenda;
 begin
   FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(Conexao.Usuario.Id)) +
-     ' Editou Venda ' + (DateTimeToStr(Now)));
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value :=
+    ('ID :' + (IntToStr(Conexao.Usuario.Id)) + ' Editou Venda ' +
+    (DateTimeToStr(Now)));
   FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
 end;
 
 procedure TFormEditarVendas.ControleDeUsuarioNovaVenda;
 begin
   FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(Conexao.Usuario.Id)) +
-     ' Adicionou Nova Venda ' + (DateTimeToStr(Now)));
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value :=
+    ('ID :' + (IntToStr(Conexao.Usuario.Id)) + ' Adicionou Nova Venda ' +
+    (DateTimeToStr(Now)));
   FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
 end;
 
@@ -202,12 +208,12 @@ begin
   ControleDeUsuarioNovaVenda;
 
   ClientesVendas.cdsVendas.Insert;
-  ClientesVendas.cdsVendasid_vendedor.Value := FVendedores.cdsVendedoresid_vendedor.Value;
+  ClientesVendas.cdsVendasid_vendedor.Value :=
+    FVendedores.cdsVendedoresid_vendedor.Value;
   ClientesVendas.cdsVendasid_cadastro.Value := Conexao.Usuario.Id;
   cbDBStatusVendas.SetFocus;
   dbGridEditarVendas.Enabled := False;
 end;
-
 
 procedure TFormEditarVendas.DefinirDataSet;
 begin
@@ -223,7 +229,8 @@ end;
 
 procedure TFormEditarVendas.DeletarVenda;
 begin
-  if MessageDlg('Deseja realmente deletar essa venda ?', mtInformation, [mbYes , mbNo],0) = mrYes then
+  if MessageDlg('Deseja realmente deletar essa venda ?', mtInformation,
+    [mbYes, mbNo], 0) = mrYes then
   begin
     ClientesVendas.cdsVendas.Delete;
     ClientesVendas.cdsVendas.ApplyUpdates(0);
@@ -247,7 +254,8 @@ begin
   ClientesVendas.cdsVendasstatus.text := 'Finalizada';
 end;
 
-procedure TFormEditarVendas.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TFormEditarVendas.FormClose(Sender: TObject;
+  var Action: TCloseAction);
 begin
   DeixarCamposVisiveis;
   ClientesVendas.cdsVendas.Cancel;
@@ -292,7 +300,8 @@ end;
 
 procedure TFormEditarVendas.SalvarVenda;
 begin
-  if (ClientesVendas.cdsVendas.State = dsEdit) or (ClientesVendas.cdsVendas.State = dsInsert) then
+  if (ClientesVendas.cdsVendas.State = dsEdit) or
+    (ClientesVendas.cdsVendas.State = dsInsert) then
   begin
     try
       CalcularValorTotal(ClientesVendas.cdsVendasquantidade.Value,
@@ -304,7 +313,7 @@ begin
     except
       on E: EValidationError do
       begin
-        TValidacaoUtils.FocarCampos(Self ,E.FieldName);
+        TValidacaoUtils.FocarCampos(Self, E.FieldName);
         ShowMessage(E.Message);
         Abort;
       end;

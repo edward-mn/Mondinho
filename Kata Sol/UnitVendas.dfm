@@ -169,11 +169,14 @@ object FormVendas: TFormVendas
       end
       object dbGridVendasDBTableView1id_cadastro: TcxGridDBColumn
         DataBinding.FieldName = 'id_cadastro'
+        Visible = False
       end
       object dbGridVendasDBTableView1id_vendedor: TcxGridDBColumn
         DataBinding.FieldName = 'id_vendedor'
+        Visible = False
       end
       object dbGridVendasDBTableView1vendedor: TcxGridDBColumn
+        Caption = 'Vendedor'
         DataBinding.FieldName = 'vendedor'
       end
     end

@@ -116,6 +116,7 @@ object FormEditarTarefas: TFormEditarTarefas
         end
         object dbGridCriacaoEdicaoDBTableView1id_cadastro: TcxGridDBColumn
           DataBinding.FieldName = 'id_cadastro'
+          Visible = False
         end
       end
       object dbGridCriacaoEdicaoLevel1: TcxGridLevel

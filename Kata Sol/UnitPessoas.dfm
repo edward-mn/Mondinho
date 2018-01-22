@@ -154,6 +154,7 @@ object FormPessoas: TFormPessoas
         end
         object dbGridPessoasDBTableView1id_cadastro: TcxGridDBColumn
           DataBinding.FieldName = 'id_cadastro'
+          Visible = False
         end
       end
       object dbGridPessoasLevel1: TcxGridLevel

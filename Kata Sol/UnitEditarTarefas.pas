@@ -68,7 +68,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
   private
-    FClientesControle : TDmControleDeUsuario;
+    FClientesControle: TDmControleDeUsuario;
     procedure AdiarTarefa;
     procedure ArmazenarDataAnterior;
     procedure AtualizarLista;
@@ -85,9 +85,9 @@ type
     procedure NovaTarefa;
     procedure SalvarTarefa;
   public
-    ClientesTarefas : TDmClientesTarefas;
-    DataAntiga : TDateTime;
-    Trigger : Boolean;
+    ClientesTarefas: TDmClientesTarefas;
+    DataAntiga: TDateTime;
+    Trigger: Boolean;
     constructor Create(AOwner: TComponent); override;
   end;
 
@@ -174,8 +174,8 @@ begin
 
     if DataAntiga <> cbData.Date then
     begin
-    ClientesTarefas.cdsToDostatus.text := 'Adiada';
-    dbGridCriacaoEdicao.Enabled := True;
+      ClientesTarefas.cdsToDostatus.text := 'Adiada';
+      dbGridCriacaoEdicao.Enabled := True;
 
       HabilitarBotoes;
 
@@ -202,24 +202,27 @@ end;
 procedure TFormEditarTarefas.ControleDeUsuarioDeletarTarefa;
 begin
   FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(Conexao.Usuario.Id)) +
-     ' Deletou Tarefa ' + (DateTimeToStr(Now)));
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value :=
+    ('ID :' + (IntToStr(Conexao.Usuario.Id)) + ' Deletou Tarefa ' +
+    (DateTimeToStr(Now)));
   FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
 end;
 
 procedure TFormEditarTarefas.ControleDeUsuarioEditarTarefa;
 begin
   FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(Conexao.Usuario.Id)) +
-     ' Editou Tarefa ' + (DateTimeToStr(Now)));
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value :=
+    ('ID :' + (IntToStr(Conexao.Usuario.Id)) + ' Editou Tarefa ' +
+    (DateTimeToStr(Now)));
   FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
 end;
 
 procedure TFormEditarTarefas.ControleDeUsuarioNovaTarefa;
 begin
   FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value := ('ID :' + (IntToStr(Conexao.Usuario.Id)) +
-     ' Adicionou Nova Tarefa ' + (DateTimeToStr(Now)));
+  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value :=
+    ('ID :' + (IntToStr(Conexao.Usuario.Id)) + ' Adicionou Nova Tarefa ' +
+    (DateTimeToStr(Now)));
   FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
 end;
 
