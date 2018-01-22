@@ -194,6 +194,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
         end
         object dbGridCriacaoEdicaoPessoasDBTableView1id_cadastro: TcxGridDBColumn
           DataBinding.FieldName = 'id_cadastro'
+          Visible = False
         end
       end
       object dbGridCriacaoEdicaoPessoasLevel1: TcxGridLevel

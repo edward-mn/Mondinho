@@ -139,6 +139,7 @@ object FormTarefas: TFormTarefas
         end
         object dbGridTarefasDBTableView1id_cadastro: TcxGridDBColumn
           DataBinding.FieldName = 'id_cadastro'
+          Visible = False
         end
       end
       object dbGridTarefasLevel1: TcxGridLevel

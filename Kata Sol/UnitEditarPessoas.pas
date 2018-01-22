@@ -66,7 +66,6 @@ type
     procedure btnNovaPessoaClick(Sender: TObject);
     procedure btnCancelarPessoasClick(Sender: TObject);
     procedure btnDeletarCadastroClick(Sender: TObject);
-    procedure btnEditarClick(Sender: TObject);
     procedure btnSalvarPessoasClick(Sender: TObject);
     procedure cxDBstatusPessoasFocusChanged(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -81,7 +80,6 @@ type
     procedure DefinirDataSet;
     procedure DeletarPessoa;
     procedure DesabilitarBotoes;
-    procedure EditarPessoa;
     procedure HabilitarBotoes;
     procedure SalvarAlteracoes;
     procedure ControleDeUsuarioNovaPessoa;
@@ -119,11 +117,6 @@ begin
     DeletarPessoa();
 end;
 
-procedure TFormCriacaoEdicaoPessoas.btnEditarClick(Sender: TObject);
-begin
-  EditarPessoa();
-end;
-
 procedure TFormCriacaoEdicaoPessoas.btnSalvarPessoasClick(Sender: TObject);
 begin
   SalvarAlteracoes();
@@ -132,8 +125,6 @@ end;
 procedure TFormCriacaoEdicaoPessoas.CadastrarNovaPessoa;
 begin
   DesabilitarBotoes;
-
-  ControleDeUsuarioNovaPessoa;
 
   ClientesPessoas.cdsPessoas.Insert;
   ClientesPessoas.cdsPessoasid_cadastro.Value := Conexao.Usuario.Id;
@@ -229,15 +220,6 @@ begin
   btnDeletarCadastro.Enabled := False;
 end;
 
-procedure TFormCriacaoEdicaoPessoas.EditarPessoa;
-begin
-  DesabilitarBotoes;
-
-  ControleDeUsuarioEditarPessoa;
-
-  dbGridCriacaoEdicaoPessoas.Enabled := False;
-end;
-
 procedure TFormCriacaoEdicaoPessoas.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
@@ -270,11 +252,13 @@ end;
 
 procedure TFormCriacaoEdicaoPessoas.SalvarAlteracoes;
 begin
-  if (ClientesPessoas.cdsPessoas.State = dsEdit) or
-    (ClientesPessoas.cdsPessoas.State = dsInsert) then
+  if ClientesPessoas.cdsPessoas.State = dsInsert then
   begin
     try
       ClientesPessoas.cdsPessoas.ApplyUpdates(0);
+
+      ControleDeUsuarioNovaPessoa;
+
       dbGridCriacaoEdicaoPessoas.Enabled := True;
       ClientesPessoas.cdsPessoas.Refresh;
       HabilitarBotoes;
@@ -285,6 +269,26 @@ begin
         ShowMessage(E.Message);
         Abort;
       end;
+
+    end;
+  end
+  else if ClientesPessoas.cdsPessoas.State = dsEdit then
+  begin
+    try
+      ClientesPessoas.cdsPessoas.ApplyUpdates(0);
+
+      ControleDeUsuarioEditarPessoa;
+
+      dbGridCriacaoEdicaoPessoas.Enabled := True;
+      ClientesPessoas.cdsPessoas.Refresh;
+    except
+      on E: EvalidationError do
+      begin
+        TValidacaoUtils.FocarCampos(Self, E.FieldName);
+        ShowMessage(E.Message);
+        Abort;
+      end;
+
     end;
   end;
 end;

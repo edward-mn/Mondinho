@@ -167,10 +167,12 @@ object FormEditarVendas: TFormEditarVendas
         end
         object dbGridEditarVendasDBTableView1id_cadastro: TcxGridDBColumn
           DataBinding.FieldName = 'id_cadastro'
+          Visible = False
           Width = 43
         end
         object dbGridEditarVendasDBTableView1id_vendedor: TcxGridDBColumn
           DataBinding.FieldName = 'id_vendedor'
+          Visible = False
           Width = 41
         end
         object dbGridEditarVendasDBTableView1vendedor: TcxGridDBColumn
