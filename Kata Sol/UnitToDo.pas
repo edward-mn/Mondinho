@@ -74,8 +74,8 @@ type
   private
     FClientesCadastro: TDmClientesCadastro;
     FClientesControle: TDmControleDeUsuario;
-    FClientesVendasTotalDeVendas : TDmVendasValorTotal;
-    FClientesVendasQuantidade : TDmVendasQuantidade;
+    FClientesVendasTotalDeVendas: TDmVendasValorTotal;
+    FClientesVendasQuantidade: TDmVendasQuantidade;
     procedure Logout;
     procedure ControleDeUsuarioLogin;
     procedure ControleDeUsuarioLogout;
@@ -154,8 +154,7 @@ begin
   FClientesControle.cdsControleDeUsuario.Open;
   FClientesControle.cdsControleDeUsuario.Insert;
   FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value :=
-    ('ID :' + (IntToStr(ID_Login)) + ' Se Desconectou'
-     + (DateTimeToStr(Now)));
+    ('ID :' + (IntToStr(ID_Login)) + ' Se Desconectou' + (DateTimeToStr(Now)));
   FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
   FClientesControle.cdsControleDeUsuario.Close;
 end;
@@ -232,17 +231,20 @@ end;
 
 procedure TFormView.ProviderControle;
 begin
-  FClientesControle.cdsControleDeUsuario.SetProvider(Conexao.sqlProviderControle);
+  FClientesControle.cdsControleDeUsuario.SetProvider
+    (Conexao.sqlProviderControle);
 end;
 
 procedure TFormView.ProviderVendasQuantidade;
 begin
-  FClientesVendasQuantidade.cdsVendasQuantidade.SetProvider(Conexao.sqlProviderQuantidadeVendas);
+  FClientesVendasQuantidade.cdsVendasQuantidade.SetProvider
+    (Conexao.sqlProviderQuantidadeVendas);
 end;
 
 procedure TFormView.ProviderVendasValorTotal;
 begin
-  FClientesVendasTotalDeVendas.cdsVendasValorTotal.SetProvider(Conexao.sqlProviderVendasValorTotal);
+  FClientesVendasTotalDeVendas.cdsVendasValorTotal.SetProvider
+    (Conexao.sqlProviderVendasValorTotal);
 end;
 
 end.

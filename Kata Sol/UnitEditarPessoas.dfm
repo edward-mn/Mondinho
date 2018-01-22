@@ -26,8 +26,6 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     Align = alClient
     TabOrder = 0
     AutoSize = True
-    ExplicitWidth = 994
-    ExplicitHeight = 471
     object btnNovaPessoa: TButton
       Left = 10
       Top = 10
@@ -196,6 +194,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
         end
         object dbGridCriacaoEdicaoPessoasDBTableView1id_cadastro: TcxGridDBColumn
           DataBinding.FieldName = 'id_cadastro'
+          Visible = False
         end
       end
       object dbGridCriacaoEdicaoPessoasLevel1: TcxGridLevel
