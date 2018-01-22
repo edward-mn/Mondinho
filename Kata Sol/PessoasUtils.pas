@@ -26,7 +26,7 @@ type
   TFuncoesPessoas = class
     class function FiltroPessoas(FiltroAtualPessoas: string;
   Status1: String; Status2: String = ''; Status3: String = '';
-  Status4: String = '';Status: String = ''): string;
+  Status4: String = '';Status5: String = ''): string;
     class procedure Filtrar(Status1: String; Status2: String = '';
       Status3: String = ''; Status4: String = ''; Status5: String = '');
 
@@ -56,7 +56,7 @@ end;
 
 class function TFuncoesPessoas.FiltroPessoas(FiltroAtualPessoas: string;
   Status1: String; Status2: String = ''; Status3: String = '';
-  Status4: String = '';Status: String = ''): string;
+  Status4: String = '';Status5: String = ''): string;
 
   procedure AdicionarStatus(Box: String);
   begin
@@ -71,27 +71,27 @@ begin
 
   if (Status1 = StatusFisica) or (Status2 = StatusFisica) or
     (Status3 = StatusFisica) or (Status4 = StatusFisica) or
-    (Status4 = StatusFisica) then
+    (Status5 = StatusFisica) then
     AdicionarStatus(BoxFisica);
 
   if (Status1 = StatusJuridica) or (Status2 = StatusJuridica) or
     (Status3 = StatusJuridica) or (Status4 = StatusJuridica) or
-    (Status4 = StatusJuridica) then
+    (Status5 = StatusJuridica) then
     AdicionarStatus(BoxJuridica);
 
   if (Status1 = StatusVendedor) or (Status2 = StatusVendedor) or
     (Status3 = StatusVendedor) or (Status4 = StatusVendedor) or
-    (Status4 = StatusVendedor) then
+    (Status5 = StatusVendedor) then
     AdicionarStatus(BoxVendedor);
 
   if (Status1 = StatusEmpresa) or (Status2 = StatusEmpresa) or
     (Status3 = StatusEmpresa) or (Status4 = StatusEmpresa) or
-    (Status4 = StatusEmpresa) then
+    (Status5 = StatusEmpresa) then
     AdicionarStatus(BoxEmpresa);
 
   if (Status1 = StatusUsuarioDoSistema) or (Status2 = StatusUsuarioDoSistema) or
     (Status3 = StatusUsuarioDoSistema) or (Status4 = StatusUsuarioDoSistema) or
-    (Status4 = StatusUsuarioDoSistema) then
+    (Status5 = StatusUsuarioDoSistema) then
     AdicionarStatus(BoxUsuarioDoSistema);
 
 end;
