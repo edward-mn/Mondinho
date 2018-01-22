@@ -15,7 +15,7 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGridLevel,
   cxClasses, cxGridCustomView, cxGrid, Vcl.Menus, cxButtons,
   dxLayoutControlAdapters, dxLayoutcxEditAdapters, dxLayoutContainer,
-  dxLayoutControl;
+  dxLayoutControl, ControleUtils;
 
 type
   TFormEditarTarefas = class(TForm)
@@ -56,8 +56,6 @@ type
     LayoutItemCpData: TdxLayoutItem;
     LayoutGridTarefas: TdxLayoutItem;
     LayoutImageItemMiniLogo: TdxLayoutImageItem;
-    dxLayoutImageItem1: TdxLayoutImageItem;
-    LayoutItemCpTarefa: TdxLayoutItem;
     procedure btnAdiarTarefaClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure btnAtualizarClick(Sender: TObject);
@@ -72,9 +70,6 @@ type
     procedure ArmazenarDataAnterior;
     procedure AtualizarLista;
     procedure CancelarTarefa;
-    procedure ControleDeUsuarioNovaTarefa;
-    procedure ControleDeUsuarioEditarTarefa;
-    procedure ControleDeUsuarioDeletarTarefa;
     procedure ProviderCdsControle;
     procedure DefinirDataSet;
     procedure DeletarTarefa;
@@ -192,33 +187,6 @@ begin
   ArmazenarDataAnterior;
 end;
 
-procedure TFormEditarTarefas.ControleDeUsuarioDeletarTarefa;
-begin
-  FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value :=
-    ('ID :' + (IntToStr(Conexao.Usuario.Id)) + ' Deletou Tarefa ' +
-    (DateTimeToStr(Now)));
-  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
-end;
-
-procedure TFormEditarTarefas.ControleDeUsuarioEditarTarefa;
-begin
-  FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value :=
-    ('ID :' + (IntToStr(Conexao.Usuario.Id)) + ' Editou Tarefa ' +
-    (DateTimeToStr(Now)));
-  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
-end;
-
-procedure TFormEditarTarefas.ControleDeUsuarioNovaTarefa;
-begin
-  FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value :=
-    ('ID :' + (IntToStr(Conexao.Usuario.Id)) + ' Adicionou Nova Tarefa ' +
-    (DateTimeToStr(Now)));
-  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
-end;
-
 procedure TFormEditarTarefas.ProviderCdsControle;
 begin
   FClientesControle.cdsControleDeUsuario.SetProvider(Conexao.sqlQueryControle);
@@ -232,13 +200,15 @@ begin
 end;
 
 procedure TFormEditarTarefas.DeletarTarefa;
+const
+  DeletarTarefa = ' Deletou Tarefa ';
 begin
   if MessageDlg('Deseja realmente deletar essa tarefa ?', mtInformation,
     [mbYes, mbNo], 0) = mrYes then
   begin
     ClientesTarefas.cdsToDo.Delete;
     ClientesTarefas.cdsToDo.ApplyUpdates(0);
-    ControleDeUsuarioDeletarTarefa;
+    ControleUtils.TControleUtils.SalvarLog(DeletarTarefa);
   end;
 end;
 
@@ -282,13 +252,16 @@ begin
 end;
 
 procedure TFormEditarTarefas.SalvarTarefa;
+const
+  NovaTarefa = ' Adicionou Nova Tarefa ';
+  EditarTarefa = ' Editou Tarefa ';
 begin
   if ClientesTarefas.cdsToDo.State = dsInsert then
   begin
     try
       ClientesTarefas.cdsToDo.ApplyUpdates(0);
 
-      ControleDeUsuarioNovaTarefa;
+      ControleUtils.TControleUtils.SalvarLog(NovaTarefa);
       
       dbGridCriacaoEdicao.Enabled := True;
       cbData.Enabled := True;
@@ -308,7 +281,7 @@ begin
     try
       ClientesTarefas.cdsToDo.ApplyUpdates(0);
 
-      ControleDeUsuarioEditarTarefa;
+      ControleUtils.TControleUtils.SalvarLog(EditarTarefa);
       
       dbGridCriacaoEdicao.Enabled := True;
       cbData.Enabled := True;
