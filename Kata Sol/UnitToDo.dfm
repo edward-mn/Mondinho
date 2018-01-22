@@ -231,7 +231,6 @@
       CaptionOptions.Visible = False
       ButtonOptions.Buttons = <>
       Hidden = True
-      ItemIndex = 3
       ShowBorder = False
       Index = -1
     end
@@ -287,7 +286,6 @@
       CaptionOptions.Text = 'New Group'
       CaptionOptions.Visible = False
       ButtonOptions.Buttons = <>
-      ItemIndex = 2
       LayoutDirection = ldHorizontal
       ShowBorder = False
       Index = 0
@@ -401,7 +399,6 @@
     object layoutGrupoUsuarios: TdxLayoutGroup
       Parent = LayoutControl
       ButtonOptions.Buttons = <>
-      ItemIndex = 2
       LayoutDirection = ldHorizontal
       Index = 2
     end
