@@ -74,7 +74,6 @@ type
     procedure btnNovoClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnDeletarClick(Sender: TObject);
-    procedure btnEditarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure btnFinalizarVendaClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -87,7 +86,6 @@ type
     procedure CriarNovaVenda;
     procedure DefinirDataSet;
     procedure DeletarVenda;
-    procedure EditarVenda;
     procedure DesabilitarBotoes;
     procedure HabilitarBotoes;
     procedure DeixarCamposInvisiveis;
@@ -129,11 +127,6 @@ procedure TFormEditarVendas.btnDeletarClick(Sender: TObject);
 begin
   if not ClientesVendas.cdsVendas.IsEmpty then
     DeletarVenda;
-end;
-
-procedure TFormEditarVendas.btnEditarClick(Sender: TObject);
-begin
-  EditarVenda;
 end;
 
 procedure TFormEditarVendas.btnSalvarClick(Sender: TObject);
@@ -205,8 +198,6 @@ procedure TFormEditarVendas.CriarNovaVenda;
 begin
   DesabilitarBotoes;
 
-  ControleDeUsuarioNovaVenda;
-
   ClientesVendas.cdsVendas.Insert;
   ClientesVendas.cdsVendasid_vendedor.Value :=
     FVendedores.cdsVendedoresid_vendedor.Value;
@@ -236,15 +227,6 @@ begin
     ClientesVendas.cdsVendas.ApplyUpdates(0);
     ControleDeUsuarioDeletarVenda;
   end;
-end;
-
-procedure TFormEditarVendas.EditarVenda;
-begin
-  DesabilitarBotoes;
-
-  ControleDeUsuarioEditarVenda;
-
-  dbGridEditarVendas.Enabled := False;
 end;
 
 procedure TFormEditarVendas.FinalizarVenda;
@@ -300,16 +282,38 @@ end;
 
 procedure TFormEditarVendas.SalvarVenda;
 begin
-  if (ClientesVendas.cdsVendas.State = dsEdit) or
-    (ClientesVendas.cdsVendas.State = dsInsert) then
+  if (ClientesVendas.cdsVendas.State = dsInsert) then
   begin
     try
       CalcularValorTotal(ClientesVendas.cdsVendasquantidade.Value,
         ClientesVendas.cdsVendasvalor_produto.AsCurrency);
       ClientesVendas.cdsVendas.ApplyUpdates(0);
+
+      ControleDeUsuarioNovaVenda;
+
       dbGridEditarVendas.Enabled := True;
       ClientesVendas.cdsVendas.Refresh;
       HabilitarBotoes;
+    except
+      on E: EValidationError do
+      begin
+        TValidacaoUtils.FocarCampos(Self, E.FieldName);
+        ShowMessage(E.Message);
+        Abort;
+      end;
+    end;
+  end
+  else if ClientesVendas.cdsVendas.State = dsEdit then
+  begin
+    try
+      CalcularValorTotal(ClientesVendas.cdsVendasquantidade.Value,
+        ClientesVendas.cdsVendasvalor_produto.AsCurrency);
+      ClientesVendas.cdsVendas.ApplyUpdates(0);
+
+      ControleDeUsuarioEditarVenda;
+
+      dbGridEditarVendas.Enabled := True;
+      ClientesVendas.cdsVendas.Refresh;
     except
       on E: EValidationError do
       begin
