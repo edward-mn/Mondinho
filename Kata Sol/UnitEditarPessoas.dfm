@@ -26,8 +26,6 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
     Align = alClient
     TabOrder = 0
     AutoSize = True
-    ExplicitWidth = 994
-    ExplicitHeight = 471
     object btnNovaPessoa: TButton
       Left = 10
       Top = 10
@@ -207,10 +205,11 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       AlignVert = avClient
       ButtonOptions.Buttons = <>
       Hidden = True
+      ItemIndex = 1
       ShowBorder = False
       Index = -1
     end
-    object dxLayoutGroup1: TdxLayoutGroup
+    object LayoutGroupTudoSuperior: TdxLayoutGroup
       Parent = dxLayoutControl1Group_Root
       AlignHorz = ahClient
       AlignVert = avClient
@@ -222,8 +221,8 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       ShowBorder = False
       Index = 0
     end
-    object dxLayoutGroup2: TdxLayoutGroup
-      Parent = dxLayoutGroup1
+    object LayoutGroupBotoes: TdxLayoutGroup
+      Parent = LayoutGroupTudoSuperior
       AlignVert = avTop
       CaptionOptions.Text = 'Hidden Group'
       ButtonOptions.Buttons = <>
@@ -232,8 +231,8 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem1: TdxLayoutItem
-      Parent = dxLayoutGroup2
+    object LayoutItemBtNovo: TdxLayoutItem
+      Parent = LayoutGroupBotoes
       AlignHorz = ahLeft
       CaptionOptions.Text = 'btnNovaPessoa'
       CaptionOptions.Visible = False
@@ -243,8 +242,8 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       ControlOptions.ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem3: TdxLayoutItem
-      Parent = dxLayoutGroup2
+    object LayoutItemBtCancelar: TdxLayoutItem
+      Parent = LayoutGroupBotoes
       AlignHorz = ahLeft
       CaptionOptions.Text = 'btnCancelarPessoas'
       CaptionOptions.Visible = False
@@ -254,8 +253,8 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       ControlOptions.ShowBorder = False
       Index = 1
     end
-    object dxLayoutItem4: TdxLayoutItem
-      Parent = dxLayoutGroup2
+    object LayoutItemBtSalvar: TdxLayoutItem
+      Parent = LayoutGroupBotoes
       AlignHorz = ahLeft
       CaptionOptions.Text = 'btnSalvarPessoas'
       CaptionOptions.Visible = False
@@ -265,8 +264,8 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       ControlOptions.ShowBorder = False
       Index = 2
     end
-    object dxLayoutItem5: TdxLayoutItem
-      Parent = dxLayoutGroup2
+    object LayoutItemBtDeletar: TdxLayoutItem
+      Parent = LayoutGroupBotoes
       AlignHorz = ahLeft
       CaptionOptions.Text = 'btnDeletarCadastro'
       CaptionOptions.Visible = False
@@ -276,35 +275,38 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       ControlOptions.ShowBorder = False
       Index = 3
     end
-    object dxLayoutGroup3: TdxLayoutGroup
-      Parent = dxLayoutGroup1
+    object LayoutGroupFormulario: TdxLayoutGroup
+      Parent = LayoutGroupTudoSuperior
       AlignHorz = ahClient
       CaptionOptions.Text = 'Formul'#225'rio'
       ButtonOptions.Buttons = <>
+      ItemIndex = 1
       LayoutDirection = ldHorizontal
       Index = 1
     end
-    object dxLayoutGroup4: TdxLayoutGroup
-      Parent = dxLayoutGroup3
+    object LayoutGroupCampos: TdxLayoutGroup
+      Parent = LayoutGroupFormulario
       AlignVert = avTop
       CaptionOptions.Text = 'Hidden Group'
       ButtonOptions.Buttons = <>
       Hidden = True
+      ItemIndex = 1
       ShowBorder = False
       Index = 1
     end
-    object dxLayoutGroup5: TdxLayoutGroup
-      Parent = dxLayoutGroup4
+    object LayoutGroupCamposSuperior: TdxLayoutGroup
+      Parent = LayoutGroupCampos
       AlignHorz = ahLeft
       CaptionOptions.Text = 'Hidden Group'
       ButtonOptions.Buttons = <>
       Hidden = True
+      ItemIndex = 2
       LayoutDirection = ldHorizontal
       ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem6: TdxLayoutItem
-      Parent = dxLayoutGroup5
+    object LayoutItemCpStatus: TdxLayoutItem
+      Parent = LayoutGroupCamposSuperior
       CaptionOptions.Text = '* Status'
       CaptionOptions.Layout = clTop
       Control = cxDBstatusPessoas
@@ -313,8 +315,8 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       ControlOptions.ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem7: TdxLayoutItem
-      Parent = dxLayoutGroup5
+    object LayoutItemCpNome: TdxLayoutItem
+      Parent = LayoutGroupCamposSuperior
       CaptionOptions.Text = '*Nome'
       CaptionOptions.Layout = clTop
       Control = cxDBNome
@@ -323,8 +325,8 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       ControlOptions.ShowBorder = False
       Index = 1
     end
-    object dxLayoutItem8: TdxLayoutItem
-      Parent = dxLayoutGroup5
+    object LayoutItemCpEndereco: TdxLayoutItem
+      Parent = LayoutGroupCamposSuperior
       CaptionOptions.Text = '* Endere'#231'o'
       CaptionOptions.Layout = clTop
       Control = cxDBEndereco
@@ -333,18 +335,19 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       ControlOptions.ShowBorder = False
       Index = 2
     end
-    object dxLayoutGroup6: TdxLayoutGroup
-      Parent = dxLayoutGroup4
+    object LayoutGroupCamposInferior: TdxLayoutGroup
+      Parent = LayoutGroupCampos
       AlignHorz = ahLeft
       CaptionOptions.Text = 'Hidden Group'
       ButtonOptions.Buttons = <>
       Hidden = True
+      ItemIndex = 3
       LayoutDirection = ldHorizontal
       ShowBorder = False
       Index = 1
     end
-    object dxLayoutItem9: TdxLayoutItem
-      Parent = dxLayoutGroup6
+    object LayoutItemCpTelefone: TdxLayoutItem
+      Parent = LayoutGroupCamposInferior
       CaptionOptions.Text = 'Telefone'
       CaptionOptions.Layout = clTop
       Control = cxDBTelefone
@@ -353,8 +356,8 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       ControlOptions.ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem10: TdxLayoutItem
-      Parent = dxLayoutGroup6
+    object LayoutItemCpCelular: TdxLayoutItem
+      Parent = LayoutGroupCamposInferior
       CaptionOptions.Text = ' Celular'
       CaptionOptions.Layout = clTop
       Control = cxDBCelular
@@ -363,8 +366,8 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       ControlOptions.ShowBorder = False
       Index = 1
     end
-    object dxLayoutItem11: TdxLayoutItem
-      Parent = dxLayoutGroup6
+    object LayoutItemCpCPFCNPJ: TdxLayoutItem
+      Parent = LayoutGroupCamposInferior
       CaptionOptions.Text = '* CPF'
       CaptionOptions.Layout = clTop
       Control = maskEdtCpf
@@ -373,8 +376,8 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       ControlOptions.ShowBorder = False
       Index = 2
     end
-    object dxLayoutItem12: TdxLayoutItem
-      Parent = dxLayoutGroup6
+    object LayoutItemCpData: TdxLayoutItem
+      Parent = LayoutGroupCamposInferior
       CaptionOptions.Text = '* Data'
       CaptionOptions.Layout = clTop
       Control = cbData
@@ -383,7 +386,7 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       ControlOptions.ShowBorder = False
       Index = 3
     end
-    object dxLayoutItem13: TdxLayoutItem
+    object LayoutItemGridPessoas: TdxLayoutItem
       Parent = dxLayoutControl1Group_Root
       AlignVert = avBottom
       CaptionOptions.Text = 'dbGridCriacaoEdicaoPessoas'
@@ -394,8 +397,8 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       ControlOptions.ShowBorder = False
       Index = 1
     end
-    object dxLayoutImageItem1: TdxLayoutImageItem
-      Parent = dxLayoutGroup3
+    object LayoutImageItemMiniLogo: TdxLayoutImageItem
+      Parent = LayoutGroupFormulario
       AlignHorz = ahRight
       AlignVert = avClient
       CaptionOptions.Text = 'Image'

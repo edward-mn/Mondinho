@@ -11,18 +11,16 @@ uses
   cxDropDownEdit, cxCalendar, cxDBEdit, DataModuleClientesVendas, VendasUtils,
   cxStyles, cxCustomData, cxFilter, cxData, cxDataStorage, cxNavigator,
   cxDBData, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
-  cxGridLevel, cxClasses, cxGridCustomView, cxGrid, Vcl.Menus, cxButtons;
+  cxGridLevel, cxClasses, cxGridCustomView, cxGrid, Vcl.Menus, cxButtons,
+  dxLayoutContainer, dxLayoutControlAdapters, dxLayoutControl;
 
 type
   TFormVendas = class(TForm)
     dsVendas: TDataSource;
-    gbStatusVenda: TGroupBox;
     cbExcluida: TCheckBox;
     cbFinalizada: TCheckBox;
     cbAberta: TCheckBox;
     cbCancelada: TCheckBox;
-    gbEditarVenda: TGroupBox;
-    gbRelatorioVendas: TGroupBox;
     dbGridVendas: TcxGrid;
     dbGridVendasDBTableView1: TcxGridDBTableView;
     dbGridVendasLevel1: TcxGridLevel;
@@ -42,6 +40,26 @@ type
     btnAtualizarVendas: TcxButton;
     bntVisualizarRelatorio: TcxButton;
     btnImprimir: TcxButton;
+    dxLayoutControl1Group_Root: TdxLayoutGroup;
+    dxLayoutControl1: TdxLayoutControl;
+    LayoutGroupVendas: TdxLayoutGroup;
+    LayoutGridVendas: TdxLayoutItem;
+    LayoutGroupDireitoTodosBotoes: TdxLayoutGroup;
+    LayoutGroupDireitoDentro: TdxLayoutGroup;
+    LayoutGroupSuperiorDireito: TdxLayoutGroup;
+    LayoutItemChAberta: TdxLayoutItem;
+    LayoutItemChFinalizada: TdxLayoutItem;
+    LayoutItemChExcluida: TdxLayoutItem;
+    LayoutItemChCancelada: TdxLayoutItem;
+    LayoutItemBtPesquisar: TdxLayoutItem;
+    LayoutGroupCampoVendas: TdxLayoutGroup;
+    LayoutGroupBotoes: TdxLayoutGroup;
+    LayoutItemBtEdtRegistro: TdxLayoutItem;
+    LayoutItemBtAtualizar: TdxLayoutItem;
+    LayoutGroupCampoRelatorios: TdxLayoutGroup;
+    LayoutGroupBtRelatorios: TdxLayoutGroup;
+    LayoutItemBtVisualizar: TdxLayoutItem;
+    LayoutItemBtImprimir: TdxLayoutItem;
     procedure btnAtualizarVendasClick(Sender: TObject);
     procedure btnEditarVendasCadastrarClick(Sender: TObject);
     procedure btnPesquisarClick(Sender: TObject);

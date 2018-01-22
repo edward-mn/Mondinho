@@ -172,23 +172,24 @@ object FormEditarTarefas: TFormEditarTarefas
       AlignVert = avClient
       ButtonOptions.Buttons = <>
       Hidden = True
+      ItemIndex = 1
       ShowBorder = False
       Index = -1
     end
-    object dxLayoutGroup1: TdxLayoutGroup
+    object LayoutGroupTudoSuperior: TdxLayoutGroup
       Parent = dxLayoutControl1Group_Root
       AlignHorz = ahClient
       AlignVert = avClient
       CaptionOptions.Text = 'Hidden Group'
       ButtonOptions.Buttons = <>
       Hidden = True
-      ItemIndex = 2
+      ItemIndex = 1
       LayoutDirection = ldHorizontal
       ShowBorder = False
       Index = 0
     end
-    object dxLayoutGroup2: TdxLayoutGroup
-      Parent = dxLayoutGroup1
+    object LayoutGroupBotoes: TdxLayoutGroup
+      Parent = LayoutGroupTudoSuperior
       AlignVert = avTop
       CaptionOptions.Text = 'Hidden Group'
       ButtonOptions.Buttons = <>
@@ -197,8 +198,8 @@ object FormEditarTarefas: TFormEditarTarefas
       ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem1: TdxLayoutItem
-      Parent = dxLayoutGroup2
+    object LayoutItemBtNovo: TdxLayoutItem
+      Parent = LayoutGroupBotoes
       AlignHorz = ahLeft
       CaptionOptions.Text = 'btnNovo'
       CaptionOptions.Visible = False
@@ -208,8 +209,8 @@ object FormEditarTarefas: TFormEditarTarefas
       ControlOptions.ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem3: TdxLayoutItem
-      Parent = dxLayoutGroup2
+    object LayoutItemBtCancelar: TdxLayoutItem
+      Parent = LayoutGroupBotoes
       AlignHorz = ahLeft
       CaptionOptions.Text = 'btnCancelar'
       CaptionOptions.Visible = False
@@ -219,8 +220,8 @@ object FormEditarTarefas: TFormEditarTarefas
       ControlOptions.ShowBorder = False
       Index = 1
     end
-    object dxLayoutItem4: TdxLayoutItem
-      Parent = dxLayoutGroup2
+    object LayoutItemBtSalvar: TdxLayoutItem
+      Parent = LayoutGroupBotoes
       AlignHorz = ahLeft
       CaptionOptions.Text = 'btnSalvar'
       CaptionOptions.Visible = False
@@ -230,8 +231,8 @@ object FormEditarTarefas: TFormEditarTarefas
       ControlOptions.ShowBorder = False
       Index = 2
     end
-    object dxLayoutItem5: TdxLayoutItem
-      Parent = dxLayoutGroup2
+    object LayoutItemBtDeletar: TdxLayoutItem
+      Parent = LayoutGroupBotoes
       AlignHorz = ahLeft
       CaptionOptions.Text = 'btnDeletarTarefa'
       CaptionOptions.Visible = False
@@ -241,8 +242,8 @@ object FormEditarTarefas: TFormEditarTarefas
       ControlOptions.ShowBorder = False
       Index = 3
     end
-    object dxLayoutItem6: TdxLayoutItem
-      Parent = dxLayoutGroup2
+    object LayoutItemBtAdiarTarefa: TdxLayoutItem
+      Parent = LayoutGroupBotoes
       AlignHorz = ahLeft
       CaptionOptions.Text = 'btnAdiarTarefa'
       CaptionOptions.Visible = False
@@ -252,45 +253,28 @@ object FormEditarTarefas: TFormEditarTarefas
       ControlOptions.ShowBorder = False
       Index = 4
     end
-    object dxLayoutGroup3: TdxLayoutGroup
-      Parent = dxLayoutGroup1
-      AlignVert = avTop
-      CaptionOptions.Text = 'Hidden Group'
-      ButtonOptions.Buttons = <>
-      Hidden = True
-      ShowBorder = False
-      Index = 1
-    end
-    object dxLayoutGroup4: TdxLayoutGroup
-      Parent = dxLayoutGroup3
-      AlignHorz = ahLeft
-      CaptionOptions.Text = 'Hidden Group'
-      ButtonOptions.Buttons = <>
-      Hidden = True
-      LayoutDirection = ldHorizontal
-      ShowBorder = False
-      Index = 0
-    end
-    object dxLayoutGroup5: TdxLayoutGroup
-      Parent = dxLayoutGroup1
+    object LayoutGroupFormulario: TdxLayoutGroup
+      Parent = LayoutGroupTudoSuperior
       AlignHorz = ahClient
       AlignVert = avClient
       CaptionOptions.Text = 'Formul'#225'rio'
       ButtonOptions.Buttons = <>
+      ItemIndex = 1
       LayoutDirection = ldHorizontal
-      Index = 2
+      Index = 1
     end
-    object dxLayoutGroup6: TdxLayoutGroup
-      Parent = dxLayoutGroup5
+    object LayoutGroupCampos: TdxLayoutGroup
+      Parent = LayoutGroupFormulario
       AlignVert = avTop
       CaptionOptions.Text = 'Hidden Group'
       ButtonOptions.Buttons = <>
       Hidden = True
+      ItemIndex = 1
       ShowBorder = False
       Index = 1
     end
-    object dxLayoutGroup7: TdxLayoutGroup
-      Parent = dxLayoutGroup6
+    object LayoutGroupCamposSuperior: TdxLayoutGroup
+      Parent = LayoutGroupCampos
       AlignHorz = ahLeft
       CaptionOptions.Text = 'Hidden Group'
       ButtonOptions.Buttons = <>
@@ -300,8 +284,8 @@ object FormEditarTarefas: TFormEditarTarefas
       ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem7: TdxLayoutItem
-      Parent = dxLayoutGroup7
+    object LayoutItemCpStatus: TdxLayoutItem
+      Parent = LayoutGroupCamposSuperior
       CaptionOptions.Text = '* Status'
       CaptionOptions.Layout = clTop
       Control = cxDBstatusTarefas
@@ -310,8 +294,8 @@ object FormEditarTarefas: TFormEditarTarefas
       ControlOptions.ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem8: TdxLayoutItem
-      Parent = dxLayoutGroup7
+    object LayoutItemCpNome: TdxLayoutItem
+      Parent = LayoutGroupCamposSuperior
       CaptionOptions.Text = '* Nome'
       CaptionOptions.Layout = clTop
       Control = cxDBNome
@@ -320,8 +304,8 @@ object FormEditarTarefas: TFormEditarTarefas
       ControlOptions.ShowBorder = False
       Index = 1
     end
-    object dxLayoutItem9: TdxLayoutItem
-      Parent = dxLayoutGroup6
+    object LayoutItemCpTarefas: TdxLayoutItem
+      Parent = LayoutGroupCampos
       AlignHorz = ahLeft
       CaptionOptions.Text = '* Tarefa'
       CaptionOptions.Layout = clTop
@@ -331,8 +315,8 @@ object FormEditarTarefas: TFormEditarTarefas
       ControlOptions.ShowBorder = False
       Index = 1
     end
-    object dxLayoutItem10: TdxLayoutItem
-      Parent = dxLayoutGroup7
+    object LayoutItemCpData: TdxLayoutItem
+      Parent = LayoutGroupCamposSuperior
       AlignHorz = ahLeft
       AlignVert = avBottom
       CaptionOptions.Text = '*Data'
@@ -343,7 +327,7 @@ object FormEditarTarefas: TFormEditarTarefas
       ControlOptions.ShowBorder = False
       Index = 2
     end
-    object dxLayoutItem11: TdxLayoutItem
+    object LayoutGridTarefas: TdxLayoutItem
       Parent = dxLayoutControl1Group_Root
       AlignVert = avBottom
       CaptionOptions.Text = 'dbGridCriacaoEdicao'
@@ -354,8 +338,8 @@ object FormEditarTarefas: TFormEditarTarefas
       ControlOptions.ShowBorder = False
       Index = 1
     end
-    object sdasdy9ywew: TdxLayoutImageItem
-      Parent = dxLayoutGroup5
+    object LayoutImageItemMiniLogo: TdxLayoutImageItem
+      Parent = LayoutGroupFormulario
       AlignHorz = ahRight
       AlignVert = avClient
       CaptionOptions.Text = 'bfdgfdbgfgdf'
