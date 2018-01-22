@@ -239,8 +239,8 @@ object FormEditarVendas: TFormEditarVendas
       ShowBorder = False
       Index = -1
     end
-    object dxLayoutItem1: TdxLayoutItem
-      Parent = dxLayoutGroup2
+    object LayoutItemBtNovo: TdxLayoutItem
+      Parent = LayoutGroupBotoes
       AlignHorz = ahLeft
       CaptionOptions.Text = 'btnNovo'
       CaptionOptions.Visible = False
@@ -250,8 +250,8 @@ object FormEditarVendas: TFormEditarVendas
       ControlOptions.ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem3: TdxLayoutItem
-      Parent = dxLayoutGroup2
+    object LayoutItemBtCancelar: TdxLayoutItem
+      Parent = LayoutGroupBotoes
       AlignHorz = ahLeft
       CaptionOptions.Text = 'btnCancelar'
       CaptionOptions.Visible = False
@@ -261,8 +261,8 @@ object FormEditarVendas: TFormEditarVendas
       ControlOptions.ShowBorder = False
       Index = 1
     end
-    object dxLayoutItem4: TdxLayoutItem
-      Parent = dxLayoutGroup2
+    object LayoutItemBtSalvar: TdxLayoutItem
+      Parent = LayoutGroupBotoes
       AlignHorz = ahLeft
       CaptionOptions.Text = 'btnSalvar'
       CaptionOptions.Visible = False
@@ -272,8 +272,8 @@ object FormEditarVendas: TFormEditarVendas
       ControlOptions.ShowBorder = False
       Index = 2
     end
-    object dxLayoutItem5: TdxLayoutItem
-      Parent = dxLayoutGroup2
+    object LayoutItemBtDeletar: TdxLayoutItem
+      Parent = LayoutGroupBotoes
       AlignHorz = ahLeft
       CaptionOptions.Text = 'btnDeletar'
       CaptionOptions.Visible = False
@@ -283,8 +283,8 @@ object FormEditarVendas: TFormEditarVendas
       ControlOptions.ShowBorder = False
       Index = 3
     end
-    object dxLayoutItem6: TdxLayoutItem
-      Parent = dxLayoutGroup2
+    object LayoutItemBtFinalizarVenda: TdxLayoutItem
+      Parent = LayoutGroupBotoes
       AlignHorz = ahLeft
       CaptionOptions.Text = 'btnFinalizarVenda'
       CaptionOptions.Visible = False
@@ -294,8 +294,8 @@ object FormEditarVendas: TFormEditarVendas
       ControlOptions.ShowBorder = False
       Index = 4
     end
-    object LayoutItemStatus: TdxLayoutItem
-      Parent = dxLayoutAutoCreatedGroup4
+    object LayoutItemCpStatus: TdxLayoutItem
+      Parent = LayoutAutoCreatedGroupCamposSuperior
       AlignHorz = ahLeft
       CaptionOptions.Text = '* Status'
       CaptionOptions.Layout = clTop
@@ -305,8 +305,8 @@ object FormEditarVendas: TFormEditarVendas
       ControlOptions.ShowBorder = False
       Index = 0
     end
-    object LayoutItemVendedores: TdxLayoutItem
-      Parent = dxLayoutAutoCreatedGroup4
+    object LayoutItemCpVendedores: TdxLayoutItem
+      Parent = LayoutAutoCreatedGroupCamposSuperior
       AlignVert = avClient
       CaptionOptions.Text = '* Vendedores'
       CaptionOptions.Layout = clTop
@@ -316,8 +316,8 @@ object FormEditarVendas: TFormEditarVendas
       ControlOptions.ShowBorder = False
       Index = 1
     end
-    object LayoutItemFornecedores: TdxLayoutItem
-      Parent = dxLayoutAutoCreatedGroup4
+    object LayoutItemCpFornecedores: TdxLayoutItem
+      Parent = LayoutAutoCreatedGroupCamposSuperior
       AlignHorz = ahClient
       CaptionOptions.Text = '* Fornecedores'
       CaptionOptions.Layout = clTop
@@ -327,8 +327,8 @@ object FormEditarVendas: TFormEditarVendas
       ControlOptions.ShowBorder = False
       Index = 2
     end
-    object LayoutItemProduto: TdxLayoutItem
-      Parent = dxLayoutAutoCreatedGroup8
+    object LayoutItemCpProduto: TdxLayoutItem
+      Parent = LayoutAutoCreatedGroupCamposInferior
       AlignHorz = ahClient
       CaptionOptions.Text = '* Produtos'
       CaptionOptions.Layout = clTop
@@ -338,8 +338,8 @@ object FormEditarVendas: TFormEditarVendas
       ControlOptions.ShowBorder = False
       Index = 0
     end
-    object LayoutItemPreco: TdxLayoutItem
-      Parent = dxLayoutAutoCreatedGroup8
+    object LayoutItemCpPreco: TdxLayoutItem
+      Parent = LayoutAutoCreatedGroupCamposInferior
       AlignVert = avClient
       CaptionOptions.Text = '* Pre'#231'o'
       CaptionOptions.Layout = clTop
@@ -349,8 +349,8 @@ object FormEditarVendas: TFormEditarVendas
       ControlOptions.ShowBorder = False
       Index = 1
     end
-    object LayoutItemQuantidade: TdxLayoutItem
-      Parent = dxLayoutAutoCreatedGroup8
+    object LayoutItemCpQuantidade: TdxLayoutItem
+      Parent = LayoutAutoCreatedGroupCamposInferior
       AlignVert = avClient
       CaptionOptions.Text = '* Quantidade'
       CaptionOptions.Layout = clTop
@@ -360,8 +360,8 @@ object FormEditarVendas: TFormEditarVendas
       ControlOptions.ShowBorder = False
       Index = 2
     end
-    object LayoutItemData: TdxLayoutItem
-      Parent = dxLayoutAutoCreatedGroup8
+    object LayoutItemCpData: TdxLayoutItem
+      Parent = LayoutAutoCreatedGroupCamposInferior
       AlignVert = avClient
       CaptionOptions.Text = '* Data'
       CaptionOptions.Layout = clTop
@@ -372,7 +372,7 @@ object FormEditarVendas: TFormEditarVendas
       Index = 3
     end
     object LayoutGridVendas: TdxLayoutItem
-      Parent = dxLayoutAutoCreatedGroup5
+      Parent = LayoutAutoCreatedGroupTudo
       AlignVert = avBottom
       CaptionOptions.Text = 'dbGridEditarVendas'
       CaptionOptions.Visible = False
@@ -385,8 +385,8 @@ object FormEditarVendas: TFormEditarVendas
       ControlOptions.ShowBorder = False
       Index = 0
     end
-    object dxLayoutImageItem1: TdxLayoutImageItem
-      Parent = dxLayoutGroup3
+    object LayoutImageItemMiniLogo: TdxLayoutImageItem
+      Parent = LayoutGroupFormulario
       AlignHorz = ahRight
       AlignVert = avTop
       CaptionOptions.AlignHorz = taRightJustify
@@ -769,31 +769,33 @@ object FormEditarVendas: TFormEditarVendas
         00000049454E44AE426082}
       Index = 1
     end
-    object dxLayoutGroup1: TdxLayoutGroup
-      Parent = dxLayoutAutoCreatedGroup5
+    object LayoutGroupTudoSuperior: TdxLayoutGroup
+      Parent = LayoutAutoCreatedGroupTudo
       AlignHorz = ahClient
       AlignVert = avClient
       CaptionOptions.Text = 'Hidden Group'
       CaptionOptions.Visible = False
       ButtonOptions.Buttons = <>
       Hidden = True
+      ItemIndex = 1
       LayoutDirection = ldHorizontal
       ShowBorder = False
       Index = 1
     end
-    object dxLayoutGroup2: TdxLayoutGroup
-      Parent = dxLayoutGroup1
+    object LayoutGroupBotoes: TdxLayoutGroup
+      Parent = LayoutGroupTudoSuperior
       AlignHorz = ahLeft
       AlignVert = avTop
       CaptionOptions.Text = 'Hidden Group'
       CaptionOptions.Visible = False
       ButtonOptions.Buttons = <>
       Hidden = True
+      ItemIndex = 4
       ShowBorder = False
       Index = 0
     end
-    object dxLayoutGroup3: TdxLayoutGroup
-      Parent = dxLayoutGroup1
+    object LayoutGroupFormulario: TdxLayoutGroup
+      Parent = LayoutGroupTudoSuperior
       AlignHorz = ahClient
       AlignVert = avClient
       CaptionOptions.Text = 'Formulario'
@@ -802,26 +804,26 @@ object FormEditarVendas: TFormEditarVendas
       LayoutDirection = ldHorizontal
       Index = 1
     end
-    object dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup
+    object LayoutAutoCreatedGroupTudo: TdxLayoutAutoCreatedGroup
       Parent = dxLayoutControl1Group_Root
       Index = 0
       AutoCreated = True
     end
-    object dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup
-      Parent = dxLayoutGroup3
+    object LayoutAutoCreatedGroupCampos: TdxLayoutAutoCreatedGroup
+      Parent = LayoutGroupFormulario
       AlignHorz = ahLeft
       AlignVert = avTop
       Index = 0
       AutoCreated = True
     end
-    object dxLayoutAutoCreatedGroup8: TdxLayoutAutoCreatedGroup
-      Parent = dxLayoutAutoCreatedGroup2
+    object LayoutAutoCreatedGroupCamposInferior: TdxLayoutAutoCreatedGroup
+      Parent = LayoutAutoCreatedGroupCampos
       LayoutDirection = ldHorizontal
       Index = 1
       AutoCreated = True
     end
-    object dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup
-      Parent = dxLayoutAutoCreatedGroup2
+    object LayoutAutoCreatedGroupCamposSuperior: TdxLayoutAutoCreatedGroup
+      Parent = LayoutAutoCreatedGroupCampos
       LayoutDirection = ldHorizontal
       Index = 0
       AutoCreated = True
