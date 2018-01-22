@@ -26,6 +26,7 @@ object FormVendas: TFormVendas
     Align = alRight
     Caption = 'Status'
     TabOrder = 0
+    ExplicitLeft = 571
     object cbExcluida: TCheckBox
       Left = 6
       Top = 56

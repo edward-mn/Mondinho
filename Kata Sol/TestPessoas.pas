@@ -38,221 +38,201 @@ type
 
   end;
   var
-  FiltroPessoas, Esperado: string;
+  Esperado: string;
 
 implementation
 
 { TestTFuncoesPessoas }
 
+
 procedure TestTFuncoesPessoas.TelaPessoas_FiltroStatus_Empresa;
 begin
-  FiltroPessoas := '';
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusEmpresa);
+  FiltroPessoa := '';
+  TFuncoesPessoas.Filtrar(StatusEmpresa);
 
   Esperado := 'Status = ''Empresa''';
 
-  CheckEqualsString(Esperado, FiltroPessoas);
+  CheckEqualsString(Esperado, FiltroPessoa);
 end;
 
 procedure TestTFuncoesPessoas.TelaPessoas_FiltroStatus_Fisica;
 begin
-  FiltroPessoas := '';
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusFisica);
+  FiltroPessoa := '';
+  TFuncoesPessoas.Filtrar(StatusFisica);
 
   Esperado := 'Status = ''Fisica''';
 
-  CheckEqualsString(Esperado, FiltroPessoas);
+  CheckEqualsString(Esperado, FiltroPessoa);
 end;
 
 procedure TestTFuncoesPessoas.TelaPessoas_FiltroStatus_FisicaEEmpresa;
 begin
-  FiltroPessoas := '';
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusFisica);
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusEmpresa);
+  FiltroPessoa := '';
+  TFuncoesPessoas.Filtrar(StatusFisica,StatusEmpresa);
 
   Esperado := 'Status = ''Fisica'' or Status = ''Empresa''';
 
-  CheckEqualsString(Esperado, FiltroPessoas);
+  CheckEqualsString(Esperado, FiltroPessoa);
 end;
 
 procedure TestTFuncoesPessoas.TelaPessoas_FiltroStatus_FisicaEJuridica;
 begin
-  FiltroPessoas := '';
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusFisica);
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusJuridica);
+  FiltroPessoa := '';
+  TFuncoesPessoas.Filtrar(StatusFisica,StatusJuridica);
 
   Esperado := 'Status = ''Fisica'' or Status = ''Juridica''';
 
-  CheckEqualsString(Esperado, FiltroPessoas);
+  CheckEqualsString(Esperado, FiltroPessoa);
 end;
 
 procedure TestTFuncoesPessoas.TelaPessoas_FiltroStatus_FisicaEJuridicaEEmpresa;
 begin
-  FiltroPessoas := '';
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusFisica);
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusJuridica);
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusEmpresa);
+  FiltroPessoa := '';
+  TFuncoesPessoas.Filtrar(StatusFisica,StatusJuridica,StatusEmpresa);
 
   Esperado := 'Status = ''Fisica'' or Status = ''Juridica'' or Status = ''Empresa''';
 
-  CheckEqualsString(Esperado, FiltroPessoas);
+  CheckEqualsString(Esperado, FiltroPessoa);
 end;
 
 procedure TestTFuncoesPessoas.TelaPessoas_FiltroStatus_FisicaEJuridicaEUsuarioDoSistema;
 begin
-  FiltroPessoas := '';
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusFisica);
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusJuridica);
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusUsuarioDoSistema);
+  FiltroPessoa := '';
+  TFuncoesPessoas.Filtrar(StatusFisica,StatusJuridica,StatusUsuarioDoSistema);
 
   Esperado := 'Status = ''Fisica'' or Status = ''Juridica'' or Status = ''Usuario do Sistema''';
 
-  CheckEqualsString(Esperado, FiltroPessoas);
+  CheckEqualsString(Esperado, FiltroPessoa);
 end;
 
 procedure TestTFuncoesPessoas.TelaPessoas_FiltroStatus_FisicaEJuridicaEVendedor;
 begin
-  FiltroPessoas := '';
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusFisica);
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusJuridica);
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusVendedor);
+  FiltroPessoa := '';
+  TFuncoesPessoas.Filtrar(StatusFisica,StatusJuridica,StatusVendedor);
 
   Esperado := 'Status = ''Fisica'' or Status = ''Juridica'' or Status = ''Vendedor''';
 
-  CheckEqualsString(Esperado, FiltroPessoas);
+  CheckEqualsString(Esperado, FiltroPessoa);
 end;
 
 procedure TestTFuncoesPessoas.TelaPessoas_FiltroStatus_FisicaEUsuarioDoSistema;
 begin
-  FiltroPessoas := '';
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusFisica);
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusJuridica);
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusUsuarioDoSistema);
+  FiltroPessoa := '';
+  TFuncoesPessoas.Filtrar(StatusFisica,StatusJuridica,StatusUsuarioDoSistema);
 
   Esperado := 'Status = ''Fisica'' or Status = ''Juridica'' or Status = ''Usuario do Sistema''';
 
-  CheckEqualsString(Esperado, FiltroPessoas);
+  CheckEqualsString(Esperado, FiltroPessoa);
 end;
 
 procedure TestTFuncoesPessoas.TelaPessoas_FiltroStatus_FisicaEVendedor;
 begin
-  FiltroPessoas := '';
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusFisica);
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusVendedor);
-
+  FiltroPessoa := '';
+  TFuncoesPessoas.Filtrar(StatusFisica,StatusVendedor);
 
   Esperado := 'Status = ''Fisica'' or Status = ''Vendedor''';
 
-  CheckEqualsString(Esperado, FiltroPessoas);
+  CheckEqualsString(Esperado, FiltroPessoa);
 end;
 
 procedure TestTFuncoesPessoas.TelaPessoas_FiltroStatus_Juridica;
 begin
-  FiltroPessoas := '';
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusJuridica);
+  FiltroPessoa := '';
+  TFuncoesPessoas.Filtrar(StatusJuridica);
 
   Esperado := 'Status = ''Juridica''';
 
-  CheckEqualsString(Esperado, FiltroPessoas);
+  CheckEqualsString(Esperado, FiltroPessoa);
 end;
 
 procedure TestTFuncoesPessoas.TelaPessoas_FiltroStatus_JuridicaEEmpresa;
 begin
-  FiltroPessoas := '';
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusJuridica);
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusEmpresa);
+  FiltroPessoa := '';
+  TFuncoesPessoas.Filtrar(StatusJuridica,StatusEmpresa);
 
   Esperado := 'Status = ''Juridica'' or Status = ''Empresa''';
 
-  CheckEqualsString(Esperado, FiltroPessoas);
+  CheckEqualsString(Esperado, FiltroPessoa);
 end;
 
 procedure TestTFuncoesPessoas.TelaPessoas_FiltroStatus_JuridicaEUsuarioDoSistema;
 begin
-  FiltroPessoas := '';
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusJuridica);
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusUsuarioDoSistema);
+  FiltroPessoa := '';
+  TFuncoesPessoas.Filtrar(StatusJuridica,StatusUsuarioDoSistema);
 
   Esperado := 'Status = ''Juridica'' or Status = ''Usuario do Sistema''';
 
-  CheckEqualsString(Esperado, FiltroPessoas);
+  CheckEqualsString(Esperado, FiltroPessoa);
 end;
 
 procedure TestTFuncoesPessoas.TelaPessoas_FiltroStatus_JuridicaEVendedor;
 begin
-  FiltroPessoas := '';
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusJuridica);
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusVendedor);
+  FiltroPessoa := '';
+  TFuncoesPessoas.Filtrar(StatusJuridica,StatusVendedor);
 
   Esperado := 'Status = ''Juridica'' or Status = ''Vendedor''';
 
-  CheckEqualsString(Esperado, FiltroPessoas);
+  CheckEqualsString(Esperado, FiltroPessoa);
 end;
 
 procedure TestTFuncoesPessoas.TelaPessoas_FiltroStatus_JuridicaEVendedorEEmpresa;
 begin
-  FiltroPessoas := '';
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusFisica);
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusJuridica);
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusEmpresa);
+  FiltroPessoa := '';
+  TFuncoesPessoas.Filtrar(StatusFisica,StatusJuridica,StatusEmpresa);
 
   Esperado := 'Status = ''Fisica'' or Status = ''Juridica'' or Status = ''Empresa''';
 
-  CheckEqualsString(Esperado, FiltroPessoas);
+  CheckEqualsString(Esperado, FiltroPessoa);
 end;
 
 procedure TestTFuncoesPessoas.TelaPessoas_FiltroStatus_JuridicaEVendedorEUsuarioDoSistema;
 begin
-  FiltroPessoas := '';
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusJuridica);
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusVendedor);
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusUsuarioDoSistema);
+  FiltroPessoa := '';
+  TFuncoesPessoas.Filtrar(StatusJuridica,StatusVendedor,StatusUsuarioDoSistema);
 
   Esperado := 'Status = ''Juridica'' or Status = ''Vendedor'' or Status = ''Usuario do Sistema''';
 
-  CheckEqualsString(Esperado, FiltroPessoas);
+  CheckEqualsString(Esperado, FiltroPessoa);
 end;
 
 procedure TestTFuncoesPessoas.TelaPessoas_FiltroStatus_UsuarioDoSistema;
 begin
-  FiltroPessoas := '';
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusUsuarioDoSistema);
+  FiltroPessoa := '';
+  TFuncoesPessoas.Filtrar(StatusUsuarioDoSistema);
 
   Esperado := 'Status = ''Usuario do Sistema''';
 
-  CheckEqualsString(Esperado, FiltroPessoas);
+  CheckEqualsString(Esperado, FiltroPessoa);
 end;
 
 procedure TestTFuncoesPessoas.TelaPessoas_FiltroStatus_Vendedor;
 begin
-  FiltroPessoas := '';
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusVendedor);
+  FiltroPessoa := '';
+  TFuncoesPessoas.Filtrar(StatusVendedor);
 
   Esperado := 'Status = ''Vendedor''';
 
-  CheckEqualsString(Esperado, FiltroPessoas);
+  CheckEqualsString(Esperado, FiltroPessoa);
 end;
 
 procedure TestTFuncoesPessoas.TelaPessoas_FiltroStatus_VendedorEEmpresa;
 begin
-  FiltroPessoas := '';
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusVendedor);
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusEmpresa);
+  FiltroPessoa := '';
+  TFuncoesPessoas.Filtrar(StatusVendedor,StatusEmpresa);
 
   Esperado := 'Status = ''Vendedor'' or Status = ''Empresa''';
 
-  CheckEqualsString(Esperado, FiltroPessoas);
+  CheckEqualsString(Esperado, FiltroPessoa);
 end;
 
 procedure TestTFuncoesPessoas.TelaPessoas_FiltroStatus_VendedorEUsuarioDoSistema;
 begin
-  FiltroPessoas := '';
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusVendedor);
-  FiltroPessoas := TFuncoesPessoas.FiltroPessoas(FiltroPessoas, StatusUsuarioDoSistema);
+  FiltroPessoa := '';
+  TFuncoesPessoas.Filtrar(StatusVendedor,StatusUsuarioDoSistema);
 
   Esperado := 'Status = ''Vendedor'' or Status = ''Usuario do Sistema''';
 
-  CheckEqualsString(Esperado, FiltroPessoas);
+  CheckEqualsString(Esperado, FiltroPessoa);
 end;
 
 initialization
