@@ -177,12 +177,12 @@ end;
 
 procedure TFormCriacaoEdicaoPessoas.AdicionarCampoCNPJ;
 begin
-  maskEdtCpf.Properties.EditMask := '99.999.999/9999-99';
+  maskEdtCpf.Properties.EditMask := '00.000.000/0000-00';
 end;
 
 procedure TFormCriacaoEdicaoPessoas.AdicionarCampoCPF;
 begin
-  maskEdtCpf.Properties.EditMask := '999.999.999-99';
+  maskEdtCpf.Properties.EditMask := '000.000.000-00';
 end;
 
 procedure TFormCriacaoEdicaoPessoas.cxDBstatusPessoasFocusChanged
@@ -252,45 +252,42 @@ end;
 
 procedure TFormCriacaoEdicaoPessoas.SalvarAlteracoes;
 begin
-  if ClientesPessoas.cdsPessoas.State = dsInsert then
+  if (ClientesPessoas.cdsPessoas.State = dsInsert) then
   begin
     try
-      ClientesPessoas.cdsPessoas.ApplyUpdates(0);
+      ClientesPessoas.cdsPessoas.Post;
 
       ControleDeUsuarioNovaPessoa;
 
       dbGridCriacaoEdicaoPessoas.Enabled := True;
-      ClientesPessoas.cdsPessoas.Refresh;
       HabilitarBotoes;
     except
       on E: EvalidationError do
       begin
         TValidacaoUtils.FocarCampos(Self, E.FieldName);
-        ShowMessage(E.Message);
-        Abort;
+        raise;
       end;
-
     end;
-  end
-  else if ClientesPessoas.cdsPessoas.State = dsEdit then
+  end;
+
+  if (ClientesPessoas.cdsPessoas.State = dsEdit) then
   begin
     try
-      ClientesPessoas.cdsPessoas.ApplyUpdates(0);
+      ClientesPessoas.cdsPessoas.Post;
 
       ControleDeUsuarioEditarPessoa;
 
       dbGridCriacaoEdicaoPessoas.Enabled := True;
-      ClientesPessoas.cdsPessoas.Refresh;
     except
       on E: EvalidationError do
       begin
         TValidacaoUtils.FocarCampos(Self, E.FieldName);
-        ShowMessage(E.Message);
-        Abort;
+        raise;
       end;
-
     end;
   end;
+  ClientesPessoas.cdsPessoas.ApplyUpdates(0);
+  ClientesPessoas.cdsPessoas.Refresh;
 end;
 
 end.

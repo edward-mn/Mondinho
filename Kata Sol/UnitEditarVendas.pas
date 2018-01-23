@@ -287,42 +287,40 @@ begin
     try
       CalcularValorTotal(ClientesVendas.cdsVendasquantidade.Value,
         ClientesVendas.cdsVendasvalor_produto.AsCurrency);
-      ClientesVendas.cdsVendas.ApplyUpdates(0);
+      ClientesVendas.cdsVendas.Post;
 
       ControleDeUsuarioNovaVenda;
 
       dbGridEditarVendas.Enabled := True;
-      ClientesVendas.cdsVendas.Refresh;
       HabilitarBotoes;
     except
       on E: EValidationError do
       begin
         TValidacaoUtils.FocarCampos(Self, E.FieldName);
-        ShowMessage(E.Message);
-        Abort;
+        raise;
       end;
     end;
   end
-  else if ClientesVendas.cdsVendas.State = dsEdit then
+  else if (ClientesVendas.cdsVendas.State = dsEdit) then
   begin
     try
       CalcularValorTotal(ClientesVendas.cdsVendasquantidade.Value,
         ClientesVendas.cdsVendasvalor_produto.AsCurrency);
-      ClientesVendas.cdsVendas.ApplyUpdates(0);
+      ClientesVendas.cdsVendas.Post;
 
       ControleDeUsuarioEditarVenda;
 
       dbGridEditarVendas.Enabled := True;
-      ClientesVendas.cdsVendas.Refresh;
     except
       on E: EValidationError do
       begin
         TValidacaoUtils.FocarCampos(Self, E.FieldName);
-        ShowMessage(E.Message);
-        Abort;
+        raise;
       end;
     end;
   end;
+  ClientesVendas.cdsVendas.ApplyUpdates(0);
+  ClientesVendas.cdsVendas.Refresh;
 end;
 
 end.
