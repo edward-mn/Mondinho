@@ -5,7 +5,15 @@ interface
 uses
   System.SysUtils, System.DateUtils, DataModuleClientesVendas;
 
+var
+  FiltroVenda: string;
+
 const
+  Status1 = '';
+  Status2 = '';
+  Status3 = '';
+  Status4 = '';
+
   StatusAberta = 'Aberta';
   StatusFinalizada = 'Finalizada';
   StatusExcluida = 'Excluida';
@@ -14,8 +22,11 @@ const
 type
 
   TFuncoesVendas = class
-    class function FiltroVendas(const FiltroAtualVendas: string;
-      StatusDoFiltroVendas: String): string;
+    class function FiltroVendas(FiltroAtualVendas: string;
+  Status1: String; Status2: String = ''; Status3: String = '';
+  Status4: String = ''): string;
+    class procedure Filtrar(Status1: String; Status2: String = '';
+      Status3: String = '';Status4: String = '');
 
   const
     Ou = ' or ';
@@ -32,8 +43,14 @@ implementation
 
 { TFuncoesPessoas }
 
-class function TFuncoesVendas.FiltroVendas(const FiltroAtualVendas: string;
-  StatusDoFiltroVendas: String): string;
+class procedure TFuncoesVendas.Filtrar(Status1: String; Status2: String = '';Status3: String = '';Status4: String = '');
+begin
+  FiltroVenda := TFuncoesVendas.FiltroVendas(FiltroVenda,Status1,Status2,Status3,Status4);
+end;
+
+class function TFuncoesVendas.FiltroVendas(FiltroAtualVendas: string;
+  Status1: String; Status2: String = ''; Status3: String = '';
+  Status4: String = ''): string;
 
   procedure AdicionarStatus(Box: String);
   begin
@@ -46,18 +63,22 @@ class function TFuncoesVendas.FiltroVendas(const FiltroAtualVendas: string;
 begin
   Result := FiltroAtualVendas;
 
-  if StatusDoFiltroVendas = StatusAberta then
+  if (Status1 = StatusAberta) or (Status2 = StatusAberta) or
+    (Status3 = StatusAberta) or (Status4 = StatusAberta) then
     AdicionarStatus(BoxAberta);
 
-  if StatusDoFiltroVendas = StatusFinalizada then
+    if (Status1 = StatusFinalizada) or (Status2 = StatusFinalizada) or
+    (Status3 = StatusFinalizada) or (Status4 = StatusFinalizada) then
     AdicionarStatus(BoxFinalizada);
 
-  if StatusDoFiltroVendas = StatusExcluida then
+    if  (Status1 = StatusExcluida) or (Status2 = StatusExcluida) or
+    (Status3 = StatusExcluida) or (Status4 = StatusExcluida) then
     AdicionarStatus(BoxExcluida);
 
-  if StatusDoFiltroVendas = StatusCancelada then
+    if  (Status1 = StatusCancelada) or (Status2 = StatusCancelada) or
+    (Status3 = StatusCancelada) or (Status4 = StatusCancelada) then
     AdicionarStatus(BoxCancelada);
 
-end;
+  end;
 
-end.
+  end.

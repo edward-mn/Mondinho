@@ -46,7 +46,7 @@ type
    procedure TelaInicial_FiltroStatus_AgendadaEAtrasada;
   end;
 var
-  Filtro, Esperado: string;
+   Esperado: string;
 
 implementation
 
@@ -82,175 +82,156 @@ end;
 
 procedure TTestToDo.TelaInicial_FiltroStatus_Adiada;
 begin
-  Filtro := '';
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAdiada);
+  FiltroTarefa := '';
+  TFuncoesToDo.Filtrar(StatusAdiada);
 
   Esperado := 'Status = ''Adiada''';
 
-  CheckEqualsString(Esperado, Filtro);
+  CheckEqualsString(Esperado, FiltroTarefa);
 end;
 
 procedure TTestToDo.TelaInicial_FiltroStatus_Atrasada;
 begin
-  Filtro := '';
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAtrasada);
+  FiltroTarefa := '';
+  TFuncoesToDo.Filtrar(StatusAtrasada);
 
   Esperado := 'Status = ''Atrasada''';
 
-  CheckEqualsString(Esperado, Filtro);
+  CheckEqualsString(Esperado, FiltroTarefa);
 end;
 
 procedure TTestToDo.TelaInicial_FiltroStatus_Finalizada;
 begin
-  Filtro := '';
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusFinalizada);
+  FiltroTarefa := '';
+  TFuncoesToDo.Filtrar(StatusFinalizada);
 
   Esperado := 'Status = ''Finalizada''';
 
-  CheckEqualsString(Esperado, Filtro);
+  CheckEqualsString(Esperado, FiltroTarefa);
 end;
 
 procedure TTestToDo.TelaInicial_FiltroStatus_Agendada;
 begin
-  Filtro := '';
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAgendada);
+  FiltroTarefa := '';
+  TFuncoesToDo.Filtrar(StatusAgendada);
 
   Esperado := 'Status = ''Agendada''';
 
-  CheckEqualsString(Esperado, Filtro);
+  CheckEqualsString(Esperado, FiltroTarefa);
 end;
 
 procedure TTestToDo.TelaInicial_FiltroStatus_FinalizadaEAdiadaEAtrasada;
 begin
-  Filtro := '';
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusFinalizada);
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAdiada);
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAtrasada);
+  FiltroTarefa := '';
+  TFuncoesToDo.Filtrar(StatusFinalizada,StatusAdiada,StatusAtrasada);
 
-  Esperado := 'Status = ''Finalizada'' or Status = ''Adiada'' or Status = ''Atrasada''';
+  Esperado := 'Status = ''Atrasada'' or Status = ''Adiada'' or Status = ''Finalizada''';
 
-  CheckEqualsString(Esperado, Filtro)
+  CheckEqualsString(Esperado, FiltroTarefa)
 end;
 
 procedure TTestToDo.TelaInicial_FiltroStatus_AdiadaEAgendada;
 begin
-  Filtro := '';
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAdiada);
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAgendada);
+  FiltroTarefa := '';
+  TFuncoesToDo.Filtrar(StatusAdiada,StatusAgendada);
 
-  Esperado := 'Status = ''Adiada'' or Status = ''Agendada''';
+  Esperado := 'Status = ''Agendada'' or Status = ''Adiada''';
 
-  CheckEqualsString(Esperado, Filtro)
+  CheckEqualsString(Esperado, FiltroTarefa)
 end;
 
 procedure TTestToDo.TelaInicial_FiltroStatus_AdiadaEAtrasada;
 begin
-  Filtro := '';
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAdiada);
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAtrasada);
+  FiltroTarefa := '';
+  TFuncoesToDo.Filtrar(StatusAdiada,StatusAtrasada);
 
-  Esperado := 'Status = ''Adiada'' or Status = ''Atrasada''';
+  Esperado := 'Status = ''Atrasada'' or Status = ''Adiada''';
 
-  CheckEqualsString(Esperado, Filtro)
+  CheckEqualsString(Esperado, FiltroTarefa)
 end;
 
 procedure TTestToDo.TelaInicial_FiltroStatus_AdiadaEAtrasadaEAgendada;
 begin
-  Filtro := '';
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAdiada);
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAtrasada);
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAgendada);
+  FiltroTarefa := '';
+  TFuncoesToDo.Filtrar(StatusAdiada,StatusAtrasada,StatusAgendada);
 
-  Esperado := 'Status = ''Adiada'' or Status = ''Atrasada'' or Status = ''Agendada''';
+  Esperado := 'Status = ''Atrasada'' or Status = ''Agendada'' or Status = ''Adiada''';
 
-  CheckEqualsString(Esperado, Filtro)
+  CheckEqualsString(Esperado, FiltroTarefa)
 end;
 
 procedure TTestToDo.TelaInicial_FiltroStatus_FinalizadaEAdiada;
 begin
-  Filtro := '';
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAgendada);
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusFinalizada);
+  FiltroTarefa := '';
+  TFuncoesToDo.Filtrar(StatusAgendada,StatusFinalizada);
 
   Esperado :='Status = ''Agendada'' or Status = ''Finalizada''';
 
-  CheckEqualsString(Esperado, Filtro)
+  CheckEqualsString(Esperado, FiltroTarefa)
 end;
 
 procedure TTestToDo.TelaInicial_FiltroStatus_FinalizadaEAdiadaEAgendada;
 begin
-  Filtro := '';
+  FiltroTarefa := '';
 
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusFinalizada);
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAdiada);
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAgendada);
+  TFuncoesToDo.Filtrar(StatusFinalizada,StatusAdiada,StatusAgendada);
 
-  Esperado := 'Status = ''Finalizada'' or Status = ''Adiada'' or Status = ''Agendada''';
+  Esperado := 'Status = ''Agendada'' or Status = ''Adiada'' or Status = ''Finalizada''';
 
-  CheckEqualsString(Esperado, Filtro)
+  CheckEqualsString(Esperado, FiltroTarefa)
 end;
 
 procedure TTestToDo.TelaInicial_FiltroStatus_FinalizadaEAgendada;
 begin
-  Filtro := '';
+  FiltroTarefa := '';
 
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusFinalizada);
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAgendada);
+  TFuncoesToDo.Filtrar(StatusFinalizada,StatusAgendada);
 
-  Esperado := 'Status = ''Finalizada'' or Status = ''Agendada''';
+  Esperado := 'Status = ''Agendada'' or Status = ''Finalizada''';
 
-  CheckEqualsString(Esperado, Filtro)
+  CheckEqualsString(Esperado, FiltroTarefa)
 end;
 
 procedure TTestToDo.TelaInicial_FiltroStatus_FinalizadaEAtrasada;
 begin
-  Filtro := '';
+  FiltroTarefa := '';
 
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusFinalizada);
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAtrasada);
+  TFuncoesToDo.Filtrar(StatusFinalizada,StatusAtrasada);
 
-  Esperado := 'Status = ''Finalizada'' or Status = ''Atrasada''';
+  Esperado := 'Status = ''Atrasada'' or Status = ''Finalizada''';
 
-  CheckEqualsString(Esperado, Filtro)
+  CheckEqualsString(Esperado, FiltroTarefa)
 end;
 
 procedure TTestToDo.TelaInicial_FiltroStatus_FinalizadaEAtrasadaEAgendada;
 begin
-  Filtro := '';
+  FiltroTarefa := '';
 
-  Esperado := 'Status = ''Finalizada'' or Status = ''Atrasada'' or Status = ''Agendada''';
+  Esperado := 'Status = ''Atrasada'' or Status = ''Agendada'' or Status = ''Finalizada''';
 
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusFinalizada);
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAtrasada);
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAgendada);
+  TFuncoesToDo.Filtrar(StatusFinalizada,StatusAtrasada,StatusAgendada);
 
-  CheckEqualsString(Esperado, Filtro)
+  CheckEqualsString(Esperado, FiltroTarefa)
 end;
 
 procedure TTestToDo.TelaInicial_FiltroStatus_AgendadaEAtrasada;
 begin
-  Filtro := '';
+  FiltroTarefa := '';
+  TFuncoesToDo.Filtrar(StatusAgendada,StatusAtrasada);
 
-  Esperado := 'Status = ''Agendada'' or Status = ''Atrasada''';
+  Esperado := 'Status = ''Atrasada'' or Status = ''Agendada''';
 
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAgendada);
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAtrasada);
-
-  CheckEqualsString(Esperado, Filtro)
+  CheckEqualsString(Esperado, FiltroTarefa)
 end;
 
 procedure TTestToDo.TelaInicial_FiltroStatus_Todos;
 begin
-  Filtro := '';
+  FiltroTarefa := '';
+  TFuncoesToDo.Filtrar(StatusAgendada,StatusAtrasada,StatusFinalizada,StatusAdiada);
 
-  Esperado := 'Status = ''Agendada'' or Status = ''Atrasada'' or Status = ''Finalizada'' or Status = ''Adiada''';
+  Esperado := 'Status = ''Atrasada'' or Status = ''Agendada'' or Status = ''Adiada'' or Status = ''Finalizada''';
 
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAgendada);
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAtrasada);
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusFinalizada);
-  Filtro := TFuncoesToDo.FiltroStatus(Filtro, StatusAdiada);
-
-  CheckEqualsString(Esperado, Filtro)
+  CheckEqualsString(Esperado, FiltroTarefa)
 end;
 
 procedure TTestToDo.DefinirData_DiaDeAmanha_Amanha;

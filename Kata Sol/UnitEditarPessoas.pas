@@ -14,7 +14,7 @@ uses
   cxDataStorage, cxNavigator, cxDBData, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGridLevel, cxClasses, cxGridCustomView, cxGrid,
   Vcl.Menus, cxButtons, Vcl.ExtCtrls, dxLayoutControlAdapters,
-  dxLayoutcxEditAdapters, dxLayoutContainer, dxLayoutControl;
+  dxLayoutcxEditAdapters, dxLayoutContainer, dxLayoutControl, ControleUtils;
 
 type
   TFormCriacaoEdicaoPessoas = class(TForm)
@@ -82,9 +82,6 @@ type
     procedure DesabilitarBotoes;
     procedure HabilitarBotoes;
     procedure SalvarAlteracoes;
-    procedure ControleDeUsuarioNovaPessoa;
-    procedure ControleDeUsuarioEditarPessoa;
-    procedure ControleDeUsuarioDeletarPessoa;
     procedure ProviderCdsControle;
   public
     ClientesPessoas: TDmClientesPessoas;
@@ -140,33 +137,6 @@ begin
   dbGridCriacaoEdicaoPessoas.Enabled := True;
 end;
 
-procedure TFormCriacaoEdicaoPessoas.ControleDeUsuarioDeletarPessoa;
-begin
-  FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value :=
-    ('ID :' + (IntToStr(Conexao.Usuario.Id)) + ' Deletou Pessoa ' +
-    (DateTimeToStr(Now)));
-  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
-end;
-
-procedure TFormCriacaoEdicaoPessoas.ControleDeUsuarioEditarPessoa;
-begin
-  FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value :=
-    ('ID :' + (IntToStr(Conexao.Usuario.Id)) + ' Editou Pessoa ' +
-    (DateTimeToStr(Now)));
-  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
-end;
-
-procedure TFormCriacaoEdicaoPessoas.ControleDeUsuarioNovaPessoa;
-begin
-  FClientesControle.cdsControleDeUsuario.Insert;
-  FClientesControle.cdsControleDeUsuariocontrole_de_usuario.Value :=
-    ('ID :' + (IntToStr(Conexao.Usuario.Id)) + ' Adicionou Nova Pessoa ' +
-    (DateTimeToStr(Now)));
-  FClientesControle.cdsControleDeUsuario.ApplyUpdates(0);
-end;
-
 constructor TFormCriacaoEdicaoPessoas.Create(AOwner: TComponent);
 begin
   inherited;
@@ -204,13 +174,15 @@ begin
 end;
 
 procedure TFormCriacaoEdicaoPessoas.DeletarPessoa;
+const
+  DeletarPessoa = ' Deletou Pessoa ';
 begin
-  if MessageDlg('Deseja realmente deletar essa tarefa ?', mtInformation,
+  if MessageDlg('Deseja realmente deletar essa Pessoa ?', mtInformation,
     [mbYes, mbNo], 0) = mrYes then
   begin
     ClientesPessoas.cdsPessoas.Delete;
     ClientesPessoas.cdsPessoas.ApplyUpdates(0);
-    ControleDeUsuarioDeletarPessoa;
+    ControleUtils.TControleUtils.SalvarLog(DeletarPessoa);
   end;
 end;
 
@@ -251,13 +223,16 @@ begin
 end;
 
 procedure TFormCriacaoEdicaoPessoas.SalvarAlteracoes;
+const
+  NovaPessoa = ' Adicionou Nova Pessoa ';
+  EditarPessoa = ' Editou Pessoa ';
 begin
   if (ClientesPessoas.cdsPessoas.State = dsInsert) then
   begin
     try
       ClientesPessoas.cdsPessoas.Post;
 
-      ControleDeUsuarioNovaPessoa;
+      ControleUtils.TControleUtils.SalvarLog(NovaPessoa);
 
       dbGridCriacaoEdicaoPessoas.Enabled := True;
       HabilitarBotoes;
@@ -275,7 +250,7 @@ begin
     try
       ClientesPessoas.cdsPessoas.Post;
 
-      ControleDeUsuarioEditarPessoa;
+      ControleUtils.TControleUtils.SalvarLog(EditarPessoa);
 
       dbGridCriacaoEdicaoPessoas.Enabled := True;
     except

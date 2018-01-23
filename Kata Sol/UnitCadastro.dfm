@@ -55,9 +55,6 @@ object FormCadastro: TFormCadastro
     Align = alClient
     TabOrder = 0
     AutoSize = True
-    ExplicitTop = 2
-    ExplicitWidth = 300
-    ExplicitHeight = 250
     object Image1: TImage
       Left = 436
       Top = 10
