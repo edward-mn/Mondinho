@@ -58,11 +58,11 @@ begin
     raise EvalidationError.Create('Campo nome é obrigatório', cdsPessoaspessoas.FieldName);
   if (cdsPessoasendereco.Value.IsEmpty) then
     raise EvalidationError.Create('Campo endereço é obrigatório', cdsPessoasendereco.FieldName);
-  if (cdsPessoastelefone.Value.IsEmpty) then
+  if (cdsPessoastelefone.Value.Trim.IsEmpty) then
     raise EvalidationError.Create('Campo telefone é obrigatório', cdsPessoastelefone.FieldName);
-  if (cdsPessoascelular.Value.IsEmpty) then
+  if (cdsPessoascelular.Value.Trim.IsEmpty) then
     raise EvalidationError.Create('Campo celular é obrigatório', cdsPessoascelular.FieldName);
-  if (cdsPessoascpf_cnpj.Value.IsEmpty) then
+  if (cdsPessoascpf_cnpj.Value.Trim.IsEmpty) then
     raise EvalidationError.Create('Campo CPF/CNPJ é obrigatório', cdsPessoascpf_cnpj.FieldName);
   if (cdsPessoasdata.IsNull) then
     raise EvalidationError.Create('Campo data é obrigatório', cdsPessoasdata.FieldName);

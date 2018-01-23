@@ -256,47 +256,43 @@ const
   NovaTarefa = ' Adicionou Nova Tarefa ';
   EditarTarefa = ' Editou Tarefa ';
 begin
-  if ClientesTarefas.cdsToDo.State = dsInsert then
+  if (ClientesTarefas.cdsToDo.State = dsInsert) then
   begin
     try
-      ClientesTarefas.cdsToDo.ApplyUpdates(0);
+      ClientesTarefas.cdsToDo.Post;
 
       ControleUtils.TControleUtils.SalvarLog(NovaTarefa);
       
       dbGridCriacaoEdicao.Enabled := True;
       cbData.Enabled := True;
-      ClientesTarefas.cdsToDo.Refresh;
       HabilitarBotoes;
     except
       on E: EvalidationError do
       begin
         TValidacaoUtils.FocarCampos(Self, E.FieldName);
-        ShowMessage(E.Message);
-        Abort;
+        raise;
       end;
     end;
   end
-  else if ClientesTarefas.cdsToDo.State = dsEdit then
+  else if (ClientesTarefas.cdsToDo.State = dsEdit) then
   begin
     try
-      ClientesTarefas.cdsToDo.ApplyUpdates(0);
+      ClientesTarefas.cdsToDo.Post;
 
       ControleUtils.TControleUtils.SalvarLog(EditarTarefa);
       
       dbGridCriacaoEdicao.Enabled := True;
       cbData.Enabled := True;
-      ClientesTarefas.cdsToDo.Refresh;
     except
       on E: EvalidationError do
       begin
         TValidacaoUtils.FocarCampos(Self, E.FieldName);
-        ShowMessage(E.Message);
-        Abort;
+        raise;
       end;
-
     end;
   end;
-
+  ClientesTarefas.cdsToDo.ApplyUpdates(0);
+  ClientesTarefas.cdsToDo.Refresh;
 end;
 
 end.

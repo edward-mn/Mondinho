@@ -4,7 +4,7 @@ interface
 
 uses
   System.Classes, cxCurrencyEdit, cxDBLookupEdit, cxDBLookupComboBox,
-  cxCustomData, cxSpinEdit, cxdbedit;
+  cxCustomData, cxSpinEdit, cxdbedit, cxMaskEdit;
 
 type
   TValidacaoUtils = class

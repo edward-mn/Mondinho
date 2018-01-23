@@ -58,7 +58,9 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       Top = 91
       DataBinding.DataField = 'celular'
       DataBinding.DataSource = dsCriacaoEdicaoPessoas
-      Properties.EditMask = '!\(99\)000000000;1;_'
+      Properties.AlwaysShowBlanksAndLiterals = True
+      Properties.IgnoreMaskBlank = True
+      Properties.EditMask = '!\(99\)000000000;0;_'
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
@@ -70,7 +72,9 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       Top = 91
       DataBinding.DataField = 'telefone'
       DataBinding.DataSource = dsCriacaoEdicaoPessoas
-      Properties.EditMask = '!\(99\)00000000;1;_'
+      Properties.AlwaysShowBlanksAndLiterals = True
+      Properties.IgnoreMaskBlank = True
+      Properties.EditMask = '!\(99\)00000000;0;_'
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
@@ -125,6 +129,8 @@ object FormCriacaoEdicaoPessoas: TFormCriacaoEdicaoPessoas
       Top = 91
       DataBinding.DataField = 'cpf_cnpj'
       DataBinding.DataSource = dsCriacaoEdicaoPessoas
+      Properties.AlwaysShowBlanksAndLiterals = True
+      Properties.IgnoreMaskBlank = True
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
