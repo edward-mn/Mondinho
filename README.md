@@ -1,4 +1,6 @@
-# Mondinho 
+# Mondinho
+![](https://img.shields.io/badge/Desenvolvedores-Edward_Gabriel_Vinicius-blue.svg)      ![](https://img.shields.io/badge/Software_Gestão-Algoritimos-red.svg)      ![license](https://img.shields.io/badge/License-MIT-yellowgreen.svg)
+
 A little Project that tries to imitate some of Monde features.
 
 ## Getting Started
@@ -20,17 +22,17 @@ Open sqlConexao in DataModuleConexao and change the HostName port in Params to l
 ```
 
 ## Authors
-* **Edward Moreira** - (https://github.com/Edwardpg)
-* **Gabriel Bevilacqua** - (https://github.com/GabrielBevilacqua)
-* **Vinicius Carli** - (https://github.com/ViniciusCarli)
+* [**Edward Moreira**](https://github.com/Edwardpg)
+* [**Gabriel Bevilacqua**](https://github.com/GabrielBevilacqua)
+* [**Vinicius Carli**](https://github.com/ViniciusCarli)
 
 ## Acknowledgments
 This project would not be possible without help of
-* **Fábio Gomes** - (https://github.com/fabioxgn) 
-* **Luiz Castro**(Project Manager) - (https://github.com/luizcastrolfc) 
-* **Ronei Bienert** - (https://github.com/RoneiBienert) 
-* **Fernando Almeida** - (https://github.com/fernand-o) 
-* **Anderson Macedo** - (https://github.com/AndersonSKM)
-* **Erik Cunha** - (https://github.com/erikcunha)
+* [**Fábio Gomes**](https://github.com/fabioxgn) 
+* [**Luiz Castro**(Project Manager)](https://github.com/luizcastrolfc) 
+* [**Ronei Bienert**](https://github.com/RoneiBienert) 
+* [**Fernando Almeida**](https://github.com/fernand-o) 
+* [**Anderson Macedo**](https://github.com/AndersonSKM)
+* [**Erik Cunha**](https://github.com/erikcunha)
 
 Icon made by [Freepik](http://www.freepik.com/) from www.flaticon.com
