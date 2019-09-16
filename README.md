@@ -1,5 +1,5 @@
 # Mondinho
-![](https://img.shields.io/badge/Desenvolvedores-Edward_Gabriel_Vinicius-blue.svg)      ![](https://img.shields.io/badge/Software_Gestão-Algoritimos-red.svg)      ![license](https://img.shields.io/badge/License-MIT-yellowgreen.svg)
+![](https://img.shields.io/badge/Desenvolvedores-Edward_Gabriel_Vinicius-blue.svg)      ![](https://img.shields.io/badge/Software_Gestão-Algoritimos-red.svg)      [![GitHub Stars](https://img.shields.io/github/stars/Edwardpg/Mondinho.svg)](https://github.com/Edwardpg/Mondinho/stargazers)    ![license](https://img.shields.io/badge/License-MIT-yellowgreen.svg)
 
 A little Project that tries to imitate some of Monde features.
 
